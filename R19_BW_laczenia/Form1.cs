@@ -13,7 +13,8 @@ namespace R19_BW_laczenia
     public partial class Form1 : Form
     {
         public Form2 tabela;
-        int test = 0;
+
+        // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
         List<string> prefHelm = new List<string>();
         List<string> bazaHelm = new List<string>();
         List<string> sufHelm = new List<string>();
@@ -54,18 +55,20 @@ namespace R19_BW_laczenia
         List<string> bazaDystans = new List<string>();
         List<string> sufDystans = new List<string>();
 
+        // Zmienne do łączenia
         int[] skladnik1 = new int[4];
         int[] skladnik2 = new int[4];
         int[] wynikLaczenia = new int[4];
         int[] wynikTab = new int[4];
-
         bool dodano = false;
 
+        // Zmienna do analizatora raportów
         string[] ulepszenia;
 
         public Form1()
         {
             InitializeComponent();
+            // Załaduj bazy przedmiotów
             bazaHelmow();
             bazaZbroi();
             bazaSpodni();
@@ -77,6 +80,7 @@ namespace R19_BW_laczenia
             bazaPalnych2h();
             bazaDystansow();
 
+            // Dodawanie prefiksów, baz i sufiksów do comboBox'ów
             // Hełm
             helmWynik.ReadOnly = true;
             helmWynik.ContextMenuStrip = contextMenuStrip1;
@@ -357,7 +361,7 @@ namespace R19_BW_laczenia
             }
             cbDystansSuf.SelectedIndex = 0;
 
-            // Kalkulator ulepszen
+            // Analizator raportu
             AnalizatorRaportuTekst.ReadOnly = false;
             AnalizatorRaportuTekst.ContextMenuStrip = contextMenuStrip1;
             ARzw0zw1.Text = Convert.ToString("Zwykły -> Zwykły (+1): 0/0");
@@ -379,726 +383,144 @@ namespace R19_BW_laczenia
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
             // Wersja programu
-            toolTip1.SetToolTip(this.label1, "Wersja programu: 1.06");
+            toolTip1.SetToolTip(this.label1, "Wersja programu: 1.07");
+        }
+
+        private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
+        {
+            if ((PrefCB.Text != "") | (BazaCB.Text != "") | (SufCB.Text != ""))
+            {
+                if (skladnik1[3] == 1) Wynik.AppendText(" + ");
+            }
+            if (PrefCB.Text != "")
+            {
+                Wynik.AppendText(PrefCB.Text);
+                dodano = true;
+            }
+            if (BazaCB.Text != "")
+            {
+                Wynik.AppendText(" " + BazaCB.Text);
+                dodano = true;
+            }
+            if (SufCB.Text != "")
+            {
+                Wynik.AppendText(" " + SufCB.Text);
+                dodano = true;
+            }
+
+            if (dodano)
+            {
+                dodano = false;
+
+                if (skladnik1[3] == 0)
+                {
+                    skladnik1[0] = Pref.IndexOf(PrefCB.Text);
+                    skladnik1[1] = Baza.IndexOf(BazaCB.Text);
+                    skladnik1[2] = Suf.IndexOf(SufCB.Text);
+                    skladnik1[3] = 1;
+                }
+                else
+                {
+                    skladnik2[0] = Pref.IndexOf(PrefCB.Text);
+                    skladnik2[1] = Baza.IndexOf(BazaCB.Text);
+                    skladnik2[2] = Suf.IndexOf(SufCB.Text);
+                    skladnik2[3] = 1;
+
+                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
+
+                    wynikLaczenia[0] = SprawdzWyjatki(Pref, skladnik1[0], skladnik2[0], wynikLaczenia[0]);
+                    wynikLaczenia[1] = SprawdzWyjatki(Baza, skladnik1[1], skladnik2[1], wynikLaczenia[1]);
+                    wynikLaczenia[2] = SprawdzWyjatki(Suf, skladnik1[2], skladnik2[2], wynikLaczenia[2]);
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        skladnik1[i] = wynikLaczenia[i];
+                    }
+                    skladnik1[3] = 1;
+                    Wynik.AppendText("\r= " + Pref.ElementAt(wynikLaczenia[0]) + " " + Baza.ElementAt(wynikLaczenia[1]) + " " + Suf.ElementAt(wynikLaczenia[2]));
+                }
+            }
+
+            Wynik.ScrollToCaret();
+            ZmienLabel();
         }
 
         private void helmDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbHelmPref.Text != "") | (cbHelmBaza.Text != "") | (cbHelmSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) helmWynik.AppendText(" + ");
-            }
-
-            if (cbHelmPref.Text != "")
-            {
-                helmWynik.AppendText(cbHelmPref.Text);
-                dodano = true;
-            }
-            if (cbHelmBaza.Text != "")
-            {
-                helmWynik.AppendText(" " + cbHelmBaza.Text);
-                dodano = true;
-            }
-            if (cbHelmSuf.Text != "")
-            {
-                helmWynik.AppendText(" " + cbHelmSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefHelm.IndexOf(cbHelmPref.Text);
-                    skladnik1[1] = bazaHelm.IndexOf(cbHelmBaza.Text);
-                    skladnik1[2] = sufHelm.IndexOf(cbHelmSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefHelm.IndexOf(cbHelmPref.Text);
-                    skladnik2[1] = bazaHelm.IndexOf(cbHelmBaza.Text);
-                    skladnik2[2] = sufHelm.IndexOf(cbHelmSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefHelm.Count - 1)) & (skladnik2[0] == (prefHelm.Count - 2))) wynikLaczenia[0] = prefHelm.Count - 3; // runiczny + rytualny = szturmowy
-                    if ((skladnik1[0] == (prefHelm.Count - 2)) & (skladnik2[0] == (prefHelm.Count - 1))) wynikLaczenia[0] = prefHelm.Count - 3;
-                    if ((skladnik1[0] == (prefHelm.Count - 3)) & (skladnik2[0] == (prefHelm.Count - 1))) wynikLaczenia[0] = prefHelm.Count - 2; // szturmowy + rytualny = runiczny
-                    if ((skladnik1[0] == (prefHelm.Count - 1)) & (skladnik2[0] == (prefHelm.Count - 3))) wynikLaczenia[0] = prefHelm.Count - 2;
-                    if ((skladnik1[1] == (bazaHelm.Count - 1)) & (skladnik2[1] == (bazaHelm.Count - 2))) wynikLaczenia[1] = bazaHelm.Count - 3; // bandana + korona = opaska
-                    if ((skladnik1[1] == (bazaHelm.Count - 2)) & (skladnik2[1] == (bazaHelm.Count - 1))) wynikLaczenia[1] = bazaHelm.Count - 3;
-                    if ((skladnik1[1] == (bazaHelm.Count - 3)) & (skladnik2[1] == (bazaHelm.Count - 1))) wynikLaczenia[1] = bazaHelm.Count - 2; // opaska + korona = bandana
-                    if ((skladnik1[1] == (bazaHelm.Count - 1)) & (skladnik2[1] == (bazaHelm.Count - 3))) wynikLaczenia[1] = bazaHelm.Count - 2;
-                    if ((skladnik1[2] == (sufHelm.Count - 1)) & (skladnik2[2] == (sufHelm.Count - 2))) wynikLaczenia[2] = sufHelm.Count - 3; // magii + mocy = smoczej łuski
-                    if ((skladnik1[2] == (sufHelm.Count - 2)) & (skladnik2[2] == (sufHelm.Count - 1))) wynikLaczenia[2] = sufHelm.Count - 3;
-                    if ((skladnik1[2] == (sufHelm.Count - 3)) & (skladnik2[2] == (sufHelm.Count - 1))) wynikLaczenia[2] = sufHelm.Count - 2; // smoczej łuski + magii = mocy
-                    if ((skladnik1[2] == (sufHelm.Count - 1)) & (skladnik2[2] == (sufHelm.Count - 3))) wynikLaczenia[2] = sufHelm.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    helmWynik.AppendText("\r= " + prefHelm.ElementAt(wynikLaczenia[0]) + " " + bazaHelm.ElementAt(wynikLaczenia[1]) + " " + sufHelm.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            helmWynik.ScrollToCaret();
+            Dodaj(cbHelmPref, cbHelmBaza, cbHelmSuf, helmWynik, prefHelm, bazaHelm, sufHelm);
         }
 
         private void zbrojaDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbZbrojaPref.Text != "") | (cbZbrojaBaza.Text != "") | (cbZbrojaSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) zbrojaWynik.AppendText(" + ");
-            }
-
-            if (cbZbrojaPref.Text != "")
-            {
-                zbrojaWynik.AppendText(cbZbrojaPref.Text);
-                dodano = true;
-            }
-            if (cbZbrojaBaza.Text != "")
-            {
-                zbrojaWynik.AppendText(" " + cbZbrojaBaza.Text);
-                dodano = true;
-            }
-            if (cbZbrojaSuf.Text != "")
-            {
-                zbrojaWynik.AppendText(" " + cbZbrojaSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefZbroja.IndexOf(cbZbrojaPref.Text);
-                    skladnik1[1] = bazaZbroja.IndexOf(cbZbrojaBaza.Text);
-                    skladnik1[2] = sufZbroja.IndexOf(cbZbrojaSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefZbroja.IndexOf(cbZbrojaPref.Text);
-                    skladnik2[1] = bazaZbroja.IndexOf(cbZbrojaBaza.Text);
-                    skladnik2[2] = sufZbroja.IndexOf(cbZbrojaSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefZbroja.Count - 1)) & (skladnik2[0] == (prefZbroja.Count - 2))) wynikLaczenia[0] = prefZbroja.Count - 3; // runiczny + śmiercionośny = elfi
-                    if ((skladnik1[0] == (prefZbroja.Count - 2)) & (skladnik2[0] == (prefZbroja.Count - 1))) wynikLaczenia[0] = prefZbroja.Count - 3;
-                    if ((skladnik1[0] == (prefZbroja.Count - 3)) & (skladnik2[0] == (prefZbroja.Count - 1))) wynikLaczenia[0] = prefZbroja.Count - 2; // elfi + śmiercionośny = runiczny
-                    if ((skladnik1[0] == (prefZbroja.Count - 1)) & (skladnik2[0] == (prefZbroja.Count - 3))) wynikLaczenia[0] = prefZbroja.Count - 2;
-                    if ((skladnik1[1] == (bazaZbroja.Count - 1)) & (skladnik2[1] == (bazaZbroja.Count - 2))) wynikLaczenia[1] = bazaZbroja.Count - 3; // zbroja warstwowa + pełna zbroja = kolczuga
-                    if ((skladnik1[1] == (bazaZbroja.Count - 2)) & (skladnik2[1] == (bazaZbroja.Count - 1))) wynikLaczenia[1] = bazaZbroja.Count - 3;
-                    if ((skladnik1[1] == (bazaZbroja.Count - 3)) & (skladnik2[1] == (bazaZbroja.Count - 1))) wynikLaczenia[1] = bazaZbroja.Count - 2; // kolczuga + pełna zbroja = zbroja warstwowa
-                    if ((skladnik1[1] == (bazaZbroja.Count - 1)) & (skladnik2[1] == (bazaZbroja.Count - 3))) wynikLaczenia[1] = bazaZbroja.Count - 2;
-                    if ((skladnik1[2] == (sufZbroja.Count - 1)) & (skladnik2[2] == (sufZbroja.Count - 2))) wynikLaczenia[2] = sufZbroja.Count - 3; // szybkości + orchidei = siewcy śmierci
-                    if ((skladnik1[2] == (sufZbroja.Count - 2)) & (skladnik2[2] == (sufZbroja.Count - 1))) wynikLaczenia[2] = sufZbroja.Count - 3;
-                    if ((skladnik1[2] == (sufZbroja.Count - 3)) & (skladnik2[2] == (sufZbroja.Count - 1))) wynikLaczenia[2] = sufZbroja.Count - 2; // siewcy śmierci + orchidei = szybości
-                    if ((skladnik1[2] == (sufZbroja.Count - 1)) & (skladnik2[2] == (sufZbroja.Count - 3))) wynikLaczenia[2] = sufZbroja.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    zbrojaWynik.AppendText("\r= " + prefZbroja.ElementAt(wynikLaczenia[0]) + " " + bazaZbroja.ElementAt(wynikLaczenia[1]) + " " + sufZbroja.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            zbrojaWynik.ScrollToCaret();
+            Dodaj(cbZbrojaPref, cbZbrojaBaza, cbZbrojaSuf, zbrojaWynik, prefZbroja, bazaZbroja, sufZbroja);
         }
 
         private void spodnieDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbSpodniePref.Text != "") | (cbSpodnieBaza.Text != "") | (cbSpodnieSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) spodnieWynik.AppendText(" + ");
-            }
-
-            if (cbSpodniePref.Text != "")
-            {
-                spodnieWynik.AppendText(cbSpodniePref.Text);
-                dodano = true;
-            }
-            if (cbSpodnieBaza.Text != "")
-            {
-                spodnieWynik.AppendText(" " + cbSpodnieBaza.Text);
-                dodano = true;
-            }
-            if (cbSpodnieSuf.Text != "")
-            {
-                spodnieWynik.AppendText(" " + cbSpodnieSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefSpodnie.IndexOf(cbSpodniePref.Text);
-                    skladnik1[1] = bazaSpodnie.IndexOf(cbSpodnieBaza.Text);
-                    skladnik1[2] = sufSpodnie.IndexOf(cbSpodnieSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefSpodnie.IndexOf(cbSpodniePref.Text);
-                    skladnik2[1] = bazaSpodnie.IndexOf(cbSpodnieBaza.Text);
-                    skladnik2[2] = sufSpodnie.IndexOf(cbSpodnieSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefSpodnie.Count - 1)) & (skladnik2[0] == (prefSpodnie.Count - 2))) wynikLaczenia[0] = prefSpodnie.Count - 3; // kompozytowe + śmiercionośne = runiczne
-                    if ((skladnik1[0] == (prefSpodnie.Count - 2)) & (skladnik2[0] == (prefSpodnie.Count - 1))) wynikLaczenia[0] = prefSpodnie.Count - 3;
-                    if ((skladnik1[0] == (prefSpodnie.Count - 3)) & (skladnik2[0] == (prefSpodnie.Count - 1))) wynikLaczenia[0] = prefSpodnie.Count - 2; // runiczne + śmiercionośne = kompozytowe
-                    if ((skladnik1[0] == (prefSpodnie.Count - 1)) & (skladnik2[0] == (prefSpodnie.Count - 3))) wynikLaczenia[0] = prefSpodnie.Count - 2;
-                    if ((skladnik1[1] == (bazaSpodnie.Count - 1)) & (skladnik2[1] == (bazaSpodnie.Count - 2))) wynikLaczenia[1] = bazaSpodnie.Count - 3; // spódnica + kilt = spodnie
-                    if ((skladnik1[1] == (bazaSpodnie.Count - 2)) & (skladnik2[1] == (bazaSpodnie.Count - 1))) wynikLaczenia[1] = bazaSpodnie.Count - 3;
-                    if ((skladnik1[1] == (bazaSpodnie.Count - 3)) & (skladnik2[1] == (bazaSpodnie.Count - 1))) wynikLaczenia[1] = bazaSpodnie.Count - 2; // spodnie + kilt = spódnica
-                    if ((skladnik1[1] == (bazaSpodnie.Count - 1)) & (skladnik2[1] == (bazaSpodnie.Count - 3))) wynikLaczenia[1] = bazaSpodnie.Count - 2;
-                    if ((skladnik1[2] == (sufSpodnie.Count - 1)) & (skladnik2[2] == (sufSpodnie.Count - 2))) wynikLaczenia[2] = sufSpodnie.Count - 3; // tropiciela + mocy = inków
-                    if ((skladnik1[2] == (sufSpodnie.Count - 2)) & (skladnik2[2] == (sufSpodnie.Count - 1))) wynikLaczenia[2] = sufSpodnie.Count - 3;
-                    if ((skladnik1[2] == (sufSpodnie.Count - 3)) & (skladnik2[2] == (sufSpodnie.Count - 1))) wynikLaczenia[2] = sufSpodnie.Count - 2; // inków + mocy = tropiciela
-                    if ((skladnik1[2] == (sufSpodnie.Count - 1)) & (skladnik2[2] == (sufSpodnie.Count - 3))) wynikLaczenia[2] = sufSpodnie.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    spodnieWynik.AppendText("\r= " + prefSpodnie.ElementAt(wynikLaczenia[0]) + " " + bazaSpodnie.ElementAt(wynikLaczenia[1]) + " " + sufSpodnie.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            spodnieWynik.ScrollToCaret();
+            Dodaj(cbSpodniePref, cbSpodnieBaza, cbSpodnieSuf, spodnieWynik, prefSpodnie, bazaSpodnie, sufSpodnie);
         }
 
         private void pierscienDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbPierscienPref.Text != "") | (cbPierscienBaza.Text != "") | (cbPierscienSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) pierscienWynik.AppendText(" + ");
-            }
-
-            if (cbPierscienPref.Text != "")
-            {
-                pierscienWynik.AppendText(cbPierscienPref.Text);
-                dodano = true;
-            }
-            if (cbPierscienBaza.Text != "")
-            {
-                pierscienWynik.AppendText(" " + cbPierscienBaza.Text);
-                dodano = true;
-            }
-            if (cbPierscienSuf.Text != "")
-            {
-                pierscienWynik.AppendText(" " + cbPierscienSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefPierscien.IndexOf(cbPierscienPref.Text);
-                    skladnik1[1] = bazaPierscien.IndexOf(cbPierscienBaza.Text);
-                    skladnik1[2] = sufPierscien.IndexOf(cbPierscienSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefPierscien.IndexOf(cbPierscienPref.Text);
-                    skladnik2[1] = bazaPierscien.IndexOf(cbPierscienBaza.Text);
-                    skladnik2[2] = sufPierscien.IndexOf(cbPierscienSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefPierscien.Count - 1)) & (skladnik2[0] == (prefPierscien.Count - 2))) wynikLaczenia[0] = prefPierscien.Count - 3; // jastrzębi + czarny = pajęczy
-                    if ((skladnik1[0] == (prefPierscien.Count - 2)) & (skladnik2[0] == (prefPierscien.Count - 1))) wynikLaczenia[0] = prefPierscien.Count - 3;
-                    if ((skladnik1[0] == (prefPierscien.Count - 3)) & (skladnik2[0] == (prefPierscien.Count - 1))) wynikLaczenia[0] = prefPierscien.Count - 2; // pajęczy + czarny = jastrzębi
-                    if ((skladnik1[0] == (prefPierscien.Count - 1)) & (skladnik2[0] == (prefPierscien.Count - 3))) wynikLaczenia[0] = prefPierscien.Count - 2;
-                    if ((skladnik1[1] == (bazaPierscien.Count - 1)) & (skladnik2[1] == (bazaPierscien.Count - 2))) wynikLaczenia[1] = bazaPierscien.Count - 3; // sygnet + bransoleta = pierścień
-                    if ((skladnik1[1] == (bazaPierscien.Count - 2)) & (skladnik2[1] == (bazaPierscien.Count - 1))) wynikLaczenia[1] = bazaPierscien.Count - 3;
-                    if ((skladnik1[1] == (bazaPierscien.Count - 3)) & (skladnik2[1] == (bazaPierscien.Count - 1))) wynikLaczenia[1] = bazaPierscien.Count - 2; // pierścień + bransoleta = sygnet
-                    if ((skladnik1[1] == (bazaPierscien.Count - 1)) & (skladnik2[1] == (bazaPierscien.Count - 3))) wynikLaczenia[1] = bazaPierscien.Count - 2;
-                    if ((skladnik1[2] == (sufPierscien.Count - 1)) & (skladnik2[2] == (sufPierscien.Count - 2))) wynikLaczenia[2] = sufPierscien.Count - 3; // szaleńca + łatwości = przebiegłości
-                    if ((skladnik1[2] == (sufPierscien.Count - 2)) & (skladnik2[2] == (sufPierscien.Count - 1))) wynikLaczenia[2] = sufPierscien.Count - 3;
-                    if ((skladnik1[2] == (sufPierscien.Count - 3)) & (skladnik2[2] == (sufPierscien.Count - 1))) wynikLaczenia[2] = sufPierscien.Count - 2; // przebiegłości + łatwości = szaleńca
-                    if ((skladnik1[2] == (sufPierscien.Count - 1)) & (skladnik2[2] == (sufPierscien.Count - 3))) wynikLaczenia[2] = sufPierscien.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    pierscienWynik.AppendText("\r= " + prefPierscien.ElementAt(wynikLaczenia[0]) + " " + bazaPierscien.ElementAt(wynikLaczenia[1]) + " " + sufPierscien.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            pierscienWynik.ScrollToCaret();
+            Dodaj(cbPierscienPref, cbPierscienBaza, cbPierscienSuf, pierscienWynik, prefPierscien, bazaPierscien, sufPierscien);
         }
 
         private void amuletDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbAmuletPref.Text != "") | (cbAmuletBaza.Text != "") | (cbAmuletSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) amuletWynik.AppendText(" + ");
-            }
-
-            if (cbAmuletPref.Text != "")
-            {
-                amuletWynik.AppendText(cbAmuletPref.Text);
-                dodano = true;
-            }
-            if (cbAmuletBaza.Text != "")
-            {
-                amuletWynik.AppendText(" " + cbAmuletBaza.Text);
-                dodano = true;
-            }
-            if (cbAmuletSuf.Text != "")
-            {
-                amuletWynik.AppendText(" " + cbAmuletSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefAmulet.IndexOf(cbAmuletPref.Text);
-                    skladnik1[1] = bazaAmulet.IndexOf(cbAmuletBaza.Text);
-                    skladnik1[2] = sufAmulet.IndexOf(cbAmuletSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefAmulet.IndexOf(cbAmuletPref.Text);
-                    skladnik2[1] = bazaAmulet.IndexOf(cbAmuletBaza.Text);
-                    skladnik2[2] = sufAmulet.IndexOf(cbAmuletSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefAmulet.Count - 1)) & (skladnik2[0] == (prefAmulet.Count - 2))) wynikLaczenia[0] = prefAmulet.Count - 3; // jastrzębi + czarny = pajęczy
-                    if ((skladnik1[0] == (prefAmulet.Count - 2)) & (skladnik2[0] == (prefAmulet.Count - 1))) wynikLaczenia[0] = prefAmulet.Count - 3;
-                    if ((skladnik1[0] == (prefAmulet.Count - 3)) & (skladnik2[0] == (prefAmulet.Count - 1))) wynikLaczenia[0] = prefAmulet.Count - 2; // pajęczy + czarny = jastrzębi
-                    if ((skladnik1[0] == (prefAmulet.Count - 1)) & (skladnik2[0] == (prefAmulet.Count - 3))) wynikLaczenia[0] = prefAmulet.Count - 2;
-                    if ((skladnik1[1] == (bazaAmulet.Count - 1)) & (skladnik2[1] == (bazaAmulet.Count - 2))) wynikLaczenia[1] = bazaAmulet.Count - 3; // krawat + łańcuch = apaszka
-                    if ((skladnik1[1] == (bazaAmulet.Count - 2)) & (skladnik2[1] == (bazaAmulet.Count - 1))) wynikLaczenia[1] = bazaAmulet.Count - 3;
-                    if ((skladnik1[1] == (bazaAmulet.Count - 3)) & (skladnik2[1] == (bazaAmulet.Count - 1))) wynikLaczenia[1] = bazaAmulet.Count - 2; // apaszka + łańcuch = krawat
-                    if ((skladnik1[1] == (bazaAmulet.Count - 1)) & (skladnik2[1] == (bazaAmulet.Count - 3))) wynikLaczenia[1] = bazaAmulet.Count - 2;
-                    if ((skladnik1[2] == (sufAmulet.Count - 1)) & (skladnik2[2] == (sufAmulet.Count - 2))) wynikLaczenia[2] = sufAmulet.Count - 3; // szaleńca + łatwości = przebiegłości
-                    if ((skladnik1[2] == (sufAmulet.Count - 2)) & (skladnik2[2] == (sufAmulet.Count - 1))) wynikLaczenia[2] = sufAmulet.Count - 3;
-                    if ((skladnik1[2] == (sufAmulet.Count - 3)) & (skladnik2[2] == (sufAmulet.Count - 1))) wynikLaczenia[2] = sufAmulet.Count - 2; // przebiegłości + łatwości = szaleńca
-                    if ((skladnik1[2] == (sufAmulet.Count - 1)) & (skladnik2[2] == (sufAmulet.Count - 3))) wynikLaczenia[2] = sufAmulet.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    amuletWynik.AppendText("\r= " + prefAmulet.ElementAt(wynikLaczenia[0]) + " " + bazaAmulet.ElementAt(wynikLaczenia[1]) + " " + sufAmulet.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            amuletWynik.ScrollToCaret();
+            Dodaj(cbAmuletPref, cbAmuletBaza, cbAmuletSuf, amuletWynik, prefAmulet, bazaAmulet, sufAmulet);
         }
 
         private void biala1hDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbBiala1hPref.Text != "") | (cbBiala1hBaza.Text != "") | (cbBiala1hSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) biala1hWynik.AppendText(" + ");
-            }
-
-            if (cbBiala1hPref.Text != "")
-            {
-                biala1hWynik.AppendText(cbBiala1hPref.Text);
-                dodano = true;
-            }
-            if (cbBiala1hBaza.Text != "")
-            {
-                biala1hWynik.AppendText(" " + cbBiala1hBaza.Text);
-                dodano = true;
-            }
-            if (cbBiala1hSuf.Text != "")
-            {
-                biala1hWynik.AppendText(" " + cbBiala1hSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefBiala1h.IndexOf(cbBiala1hPref.Text);
-                    skladnik1[1] = bazaBiala1h.IndexOf(cbBiala1hBaza.Text);
-                    skladnik1[2] = sufBiala1h.IndexOf(cbBiala1hSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefBiala1h.IndexOf(cbBiala1hPref.Text);
-                    skladnik2[1] = bazaBiala1h.IndexOf(cbBiala1hBaza.Text);
-                    skladnik2[2] = sufBiala1h.IndexOf(cbBiala1hSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefBiala1h.Count - 1)) & (skladnik2[0] == (prefBiala1h.Count - 2))) wynikLaczenia[0] = prefBiala1h.Count - 3; // szybki + demoniczny = antyczny
-                    if ((skladnik1[0] == (prefBiala1h.Count - 2)) & (skladnik2[0] == (prefBiala1h.Count - 1))) wynikLaczenia[0] = prefBiala1h.Count - 3;
-                    if ((skladnik1[0] == (prefBiala1h.Count - 3)) & (skladnik2[0] == (prefBiala1h.Count - 1))) wynikLaczenia[0] = prefBiala1h.Count - 2; // antyczny + demoniczny = szybki
-                    if ((skladnik1[0] == (prefBiala1h.Count - 1)) & (skladnik2[0] == (prefBiala1h.Count - 3))) wynikLaczenia[0] = prefBiala1h.Count - 2;
-                    if ((skladnik1[1] == (bazaBiala1h.Count - 1)) & (skladnik2[1] == (bazaBiala1h.Count - 2))) wynikLaczenia[1] = bazaBiala1h.Count - 3; // wakizashi + pięść niebios = topór
-                    if ((skladnik1[1] == (bazaBiala1h.Count - 2)) & (skladnik2[1] == (bazaBiala1h.Count - 1))) wynikLaczenia[1] = bazaBiala1h.Count - 3;
-                    if ((skladnik1[1] == (bazaBiala1h.Count - 3)) & (skladnik2[1] == (bazaBiala1h.Count - 1))) wynikLaczenia[1] = bazaBiala1h.Count - 2; // topór + pięść niebios = wakizashi
-                    if ((skladnik1[1] == (bazaBiala1h.Count - 1)) & (skladnik2[1] == (bazaBiala1h.Count - 3))) wynikLaczenia[1] = bazaBiala1h.Count - 2;
-                    if ((skladnik1[2] == (sufBiala1h.Count - 1)) & (skladnik2[2] == (sufBiala1h.Count - 2))) wynikLaczenia[2] = sufBiala1h.Count - 3; // imperatora + samobójcy = klanu
-                    if ((skladnik1[2] == (sufBiala1h.Count - 2)) & (skladnik2[2] == (sufBiala1h.Count - 1))) wynikLaczenia[2] = sufBiala1h.Count - 3;
-                    if ((skladnik1[2] == (sufBiala1h.Count - 3)) & (skladnik2[2] == (sufBiala1h.Count - 1))) wynikLaczenia[2] = sufBiala1h.Count - 2; // klanu + samobójcy = imperatora
-                    if ((skladnik1[2] == (sufBiala1h.Count - 1)) & (skladnik2[2] == (sufBiala1h.Count - 3))) wynikLaczenia[2] = sufBiala1h.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    biala1hWynik.AppendText("\r= " + prefBiala1h.ElementAt(wynikLaczenia[0]) + " " + bazaBiala1h.ElementAt(wynikLaczenia[1]) + " " + sufBiala1h.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            biala1hWynik.ScrollToCaret();
+            Dodaj(cbBiala1hPref, cbBiala1hBaza, cbBiala1hSuf, biala1hWynik, prefBiala1h, bazaBiala1h, sufBiala1h);
         }
 
         private void biala2hDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbBiala2hPref.Text != "") | (cbBiala2hBaza.Text != "") | (cbBiala2hSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) biala2hWynik.AppendText(" + ");
-            }
-
-            if (cbBiala2hPref.Text != "")
-            {
-                biala2hWynik.AppendText(cbBiala2hPref.Text);
-                dodano = true;
-            }
-            if (cbBiala2hBaza.Text != "")
-            {
-                biala2hWynik.AppendText(" " + cbBiala2hBaza.Text);
-                dodano = true;
-            }
-            if (cbBiala2hSuf.Text != "")
-            {
-                biala2hWynik.AppendText(" " + cbBiala2hSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefBiala2h.IndexOf(cbBiala2hPref.Text);
-                    skladnik1[1] = bazaBiala2h.IndexOf(cbBiala2hBaza.Text);
-                    skladnik1[2] = sufBiala2h.IndexOf(cbBiala2hSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefBiala2h.IndexOf(cbBiala2hPref.Text);
-                    skladnik2[1] = bazaBiala2h.IndexOf(cbBiala2hBaza.Text);
-                    skladnik2[2] = sufBiala2h.IndexOf(cbBiala2hSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefBiala2h.Count - 1)) & (skladnik2[0] == (prefBiala2h.Count - 2))) wynikLaczenia[0] = prefBiala2h.Count - 3; // antyczny + demoniczny = zwinny
-                    if ((skladnik1[0] == (prefBiala2h.Count - 2)) & (skladnik2[0] == (prefBiala2h.Count - 1))) wynikLaczenia[0] = prefBiala2h.Count - 3;
-                    if ((skladnik1[0] == (prefBiala2h.Count - 3)) & (skladnik2[0] == (prefBiala2h.Count - 1))) wynikLaczenia[0] = prefBiala2h.Count - 2; // zwinny + demoniczny = antyczny
-                    if ((skladnik1[0] == (prefBiala2h.Count - 1)) & (skladnik2[0] == (prefBiala2h.Count - 3))) wynikLaczenia[0] = prefBiala2h.Count - 2;
-                    if ((skladnik1[1] == (bazaBiala2h.Count - 1)) & (skladnik2[1] == (bazaBiala2h.Count - 2))) wynikLaczenia[1] = bazaBiala2h.Count - 3; // katana + piła łańcuchowa = halabarda
-                    if ((skladnik1[1] == (bazaBiala2h.Count - 2)) & (skladnik2[1] == (bazaBiala2h.Count - 1))) wynikLaczenia[1] = bazaBiala2h.Count - 3;
-                    if ((skladnik1[1] == (bazaBiala2h.Count - 3)) & (skladnik2[1] == (bazaBiala2h.Count - 1))) wynikLaczenia[1] = bazaBiala2h.Count - 2; // halabarda + piła łańcuchowa = katana
-                    if ((skladnik1[1] == (bazaBiala2h.Count - 1)) & (skladnik2[1] == (bazaBiala2h.Count - 3))) wynikLaczenia[1] = bazaBiala2h.Count - 2;
-                    if ((skladnik1[2] == (sufBiala2h.Count - 1)) & (skladnik2[2] == (sufBiala2h.Count - 2))) wynikLaczenia[2] = sufBiala2h.Count - 3; // samobójcy + drakuli = bazyliszka
-                    if ((skladnik1[2] == (sufBiala2h.Count - 2)) & (skladnik2[2] == (sufBiala2h.Count - 1))) wynikLaczenia[2] = sufBiala2h.Count - 3;
-                    if ((skladnik1[2] == (sufBiala2h.Count - 3)) & (skladnik2[2] == (sufBiala2h.Count - 1))) wynikLaczenia[2] = sufBiala2h.Count - 2; // bazyliszka + drakuli = samobójcy
-                    if ((skladnik1[2] == (sufBiala2h.Count - 1)) & (skladnik2[2] == (sufBiala2h.Count - 3))) wynikLaczenia[2] = sufBiala2h.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    biala2hWynik.AppendText("\r= " + prefBiala2h.ElementAt(wynikLaczenia[0]) + " " + bazaBiala2h.ElementAt(wynikLaczenia[1]) + " " + sufBiala2h.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            biala2hWynik.ScrollToCaret();
+            Dodaj(cbBiala2hPref, cbBiala2hBaza, cbBiala2hSuf, biala2hWynik, prefBiala2h, bazaBiala2h, sufBiala2h);
         }
 
         private void palna1hDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbPalna1hPref.Text != "") | (cbPalna1hBaza.Text != "") | (cbPalna1hSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) palna1hWynik.AppendText(" + ");
-            }
-
-            if (cbPalna1hPref.Text != "")
-            {
-                palna1hWynik.AppendText(cbPalna1hPref.Text);
-                dodano = true;
-            }
-            if (cbPalna1hBaza.Text != "")
-            {
-                palna1hWynik.AppendText(" " + cbPalna1hBaza.Text);
-                dodano = true;
-            }
-            if (cbPalna1hSuf.Text != "")
-            {
-                palna1hWynik.AppendText(" " + cbPalna1hSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefPalna1h.IndexOf(cbPalna1hPref.Text);
-                    skladnik1[1] = bazaPalna1h.IndexOf(cbPalna1hBaza.Text);
-                    skladnik1[2] = sufPalna1h.IndexOf(cbPalna1hSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefPalna1h.IndexOf(cbPalna1hPref.Text);
-                    skladnik2[1] = bazaPalna1h.IndexOf(cbPalna1hBaza.Text);
-                    skladnik2[2] = sufPalna1h.IndexOf(cbPalna1hSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefPalna1h.Count - 1)) & (skladnik2[0] == (prefPalna1h.Count - 2))) wynikLaczenia[0] = prefPalna1h.Count - 3; // nic
-                    if ((skladnik1[0] == (prefPalna1h.Count - 2)) & (skladnik2[0] == (prefPalna1h.Count - 1))) wynikLaczenia[0] = prefPalna1h.Count - 3;
-                    if ((skladnik1[0] == (prefPalna1h.Count - 3)) & (skladnik2[0] == (prefPalna1h.Count - 1))) wynikLaczenia[0] = prefPalna1h.Count - 2; // nic
-                    if ((skladnik1[0] == (prefPalna1h.Count - 1)) & (skladnik2[0] == (prefPalna1h.Count - 3))) wynikLaczenia[0] = prefPalna1h.Count - 2;
-                    if ((skladnik1[1] == (bazaPalna1h.Count - 1)) & (skladnik2[1] == (bazaPalna1h.Count - 2))) wynikLaczenia[1] = bazaPalna1h.Count - 3; // mp5k + skorpion = desert eagle
-                    if ((skladnik1[1] == (bazaPalna1h.Count - 2)) & (skladnik2[1] == (bazaPalna1h.Count - 1))) wynikLaczenia[1] = bazaPalna1h.Count - 3;
-                    if ((skladnik1[1] == (bazaPalna1h.Count - 3)) & (skladnik2[1] == (bazaPalna1h.Count - 1))) wynikLaczenia[1] = bazaPalna1h.Count - 2; // desert eagle + skorpion = mp5k
-                    if ((skladnik1[1] == (bazaPalna1h.Count - 1)) & (skladnik2[1] == (bazaPalna1h.Count - 3))) wynikLaczenia[1] = bazaPalna1h.Count - 2;
-                    if ((skladnik1[2] == (sufPalna1h.Count - 1)) & (skladnik2[2] == (sufPalna1h.Count - 2))) wynikLaczenia[2] = sufPalna1h.Count - 3; // nic
-                    if ((skladnik1[2] == (sufPalna1h.Count - 2)) & (skladnik2[2] == (sufPalna1h.Count - 1))) wynikLaczenia[2] = sufPalna1h.Count - 3;
-                    if ((skladnik1[2] == (sufPalna1h.Count - 3)) & (skladnik2[2] == (sufPalna1h.Count - 1))) wynikLaczenia[2] = sufPalna1h.Count - 2; // nic
-                    if ((skladnik1[2] == (sufPalna1h.Count - 1)) & (skladnik2[2] == (sufPalna1h.Count - 3))) wynikLaczenia[2] = sufPalna1h.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    palna1hWynik.AppendText("\r= " + prefPalna1h.ElementAt(wynikLaczenia[0]) + " " + bazaPalna1h.ElementAt(wynikLaczenia[1]) + " " + sufPalna1h.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            palna1hWynik.ScrollToCaret();
+            Dodaj(cbPalna1hPref, cbPalna1hBaza, cbPalna1hSuf, palna1hWynik, prefPalna1h, bazaPalna1h, sufPalna1h);
         }
 
         private void palna2hDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbPalna2hPref.Text != "") | (cbPalna2hBaza.Text != "") | (cbPalna2hSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) palna2hWynik.AppendText(" + ");
-            }
-
-            if (cbPalna2hPref.Text != "")
-            {
-                palna2hWynik.AppendText(cbPalna2hPref.Text);
-                dodano = true;
-            }
-            if (cbPalna2hBaza.Text != "")
-            {
-                palna2hWynik.AppendText(" " + cbPalna2hBaza.Text);
-                dodano = true;
-            }
-            if (cbPalna2hSuf.Text != "")
-            {
-                palna2hWynik.AppendText(" " + cbPalna2hSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefPalna2h.IndexOf(cbPalna2hPref.Text);
-                    skladnik1[1] = bazaPalna2h.IndexOf(cbPalna2hBaza.Text);
-                    skladnik1[2] = sufPalna2h.IndexOf(cbPalna2hSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefPalna2h.IndexOf(cbPalna2hPref.Text);
-                    skladnik2[1] = bazaPalna2h.IndexOf(cbPalna2hBaza.Text);
-                    skladnik2[2] = sufPalna2h.IndexOf(cbPalna2hSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefPalna2h.Count - 1)) & (skladnik2[0] == (prefPalna2h.Count - 2))) wynikLaczenia[0] = prefPalna2h.Count - 3; // nic
-                    if ((skladnik1[0] == (prefPalna2h.Count - 2)) & (skladnik2[0] == (prefPalna2h.Count - 1))) wynikLaczenia[0] = prefPalna2h.Count - 3;
-                    if ((skladnik1[0] == (prefPalna2h.Count - 3)) & (skladnik2[0] == (prefPalna2h.Count - 1))) wynikLaczenia[0] = prefPalna2h.Count - 2; // nic
-                    if ((skladnik1[0] == (prefPalna2h.Count - 1)) & (skladnik2[0] == (prefPalna2h.Count - 3))) wynikLaczenia[0] = prefPalna2h.Count - 2;
-                    if ((skladnik1[1] == (bazaPalna2h.Count - 1)) & (skladnik2[1] == (bazaPalna2h.Count - 2))) wynikLaczenia[1] = bazaPalna2h.Count - 3; // toporek do rzucania + ciężka kusza = pilum
-                    if ((skladnik1[1] == (bazaPalna2h.Count - 2)) & (skladnik2[1] == (bazaPalna2h.Count - 1))) wynikLaczenia[1] = bazaPalna2h.Count - 3;
-                    if ((skladnik1[1] == (bazaPalna2h.Count - 3)) & (skladnik2[1] == (bazaPalna2h.Count - 1))) wynikLaczenia[1] = bazaPalna2h.Count - 2; // pilum + ciężka kusza = toporek do rzucania
-                    if ((skladnik1[1] == (bazaPalna2h.Count - 1)) & (skladnik2[1] == (bazaPalna2h.Count - 3))) wynikLaczenia[1] = bazaPalna2h.Count - 2;
-                    if ((skladnik1[2] == (sufPalna2h.Count - 1)) & (skladnik2[2] == (sufPalna2h.Count - 2))) wynikLaczenia[2] = sufPalna2h.Count - 3; // szybkostrzelności + wilka = driady
-                    if ((skladnik1[2] == (sufPalna2h.Count - 2)) & (skladnik2[2] == (sufPalna2h.Count - 1))) wynikLaczenia[2] = sufPalna2h.Count - 3;
-                    if ((skladnik1[2] == (sufPalna2h.Count - 3)) & (skladnik2[2] == (sufPalna2h.Count - 1))) wynikLaczenia[2] = sufPalna2h.Count - 2; // driady + wilka = szybkostrzelności
-                    if ((skladnik1[2] == (sufPalna2h.Count - 1)) & (skladnik2[2] == (sufPalna2h.Count - 3))) wynikLaczenia[2] = sufPalna2h.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    palna2hWynik.AppendText("\r= " + prefPalna2h.ElementAt(wynikLaczenia[0]) + " " + bazaPalna2h.ElementAt(wynikLaczenia[1]) + " " + sufPalna2h.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            palna2hWynik.ScrollToCaret();
+            Dodaj(cbPalna2hPref, cbPalna2hBaza, cbPalna2hSuf, palna2hWynik, prefPalna2h, bazaPalna2h, sufPalna2h);
         }
 
         private void dystansDodaj_Click(object sender, EventArgs e)
         {
-            if ((cbDystansPref.Text != "") | (cbDystansBaza.Text != "") | (cbDystansSuf.Text != ""))
-            {
-                if (skladnik1[3] == 1) dystansWynik.AppendText(" + ");
-            }
-
-            if (cbDystansPref.Text != "")
-            {
-                dystansWynik.AppendText(cbDystansPref.Text);
-                dodano = true;
-            }
-            if (cbDystansBaza.Text != "")
-            {
-                dystansWynik.AppendText(" " + cbDystansBaza.Text);
-                dodano = true;
-            }
-            if (cbDystansSuf.Text != "")
-            {
-                dystansWynik.AppendText(" " + cbDystansSuf.Text);
-                dodano = true;
-            }
-
-            if (dodano)
-            {
-                dodano = false;
-
-                if (skladnik1[3] == 0)
-                {
-                    skladnik1[0] = prefDystans.IndexOf(cbDystansPref.Text);
-                    skladnik1[1] = bazaDystans.IndexOf(cbDystansBaza.Text);
-                    skladnik1[2] = sufDystans.IndexOf(cbDystansSuf.Text);
-                    skladnik1[3] = 1;
-                }
-                else
-                {
-                    skladnik2[0] = prefDystans.IndexOf(cbDystansPref.Text);
-                    skladnik2[1] = bazaDystans.IndexOf(cbDystansBaza.Text);
-                    skladnik2[2] = sufDystans.IndexOf(cbDystansSuf.Text);
-                    skladnik2[3] = 1;
-
-                    wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
-
-                    if ((skladnik1[0] == (prefDystans.Count - 1)) & (skladnik2[0] == (prefDystans.Count - 2))) wynikLaczenia[0] = prefDystans.Count - 3; // nic
-                    if ((skladnik1[0] == (prefDystans.Count - 2)) & (skladnik2[0] == (prefDystans.Count - 1))) wynikLaczenia[0] = prefDystans.Count - 3;
-                    if ((skladnik1[0] == (prefDystans.Count - 3)) & (skladnik2[0] == (prefDystans.Count - 1))) wynikLaczenia[0] = prefDystans.Count - 2; // nic
-                    if ((skladnik1[0] == (prefDystans.Count - 1)) & (skladnik2[0] == (prefDystans.Count - 3))) wynikLaczenia[0] = prefDystans.Count - 2;
-                    if ((skladnik1[1] == (bazaDystans.Count - 1)) & (skladnik2[1] == (bazaDystans.Count - 2))) wynikLaczenia[1] = bazaDystans.Count - 3; // toporek do rzucania + ciężka kusza = pilum
-                    if ((skladnik1[1] == (bazaDystans.Count - 2)) & (skladnik2[1] == (bazaDystans.Count - 1))) wynikLaczenia[1] = bazaDystans.Count - 3;
-                    if ((skladnik1[1] == (bazaDystans.Count - 3)) & (skladnik2[1] == (bazaDystans.Count - 1))) wynikLaczenia[1] = bazaDystans.Count - 2; // pilum + ciężka kusza = toporek do rzucania
-                    if ((skladnik1[1] == (bazaDystans.Count - 1)) & (skladnik2[1] == (bazaDystans.Count - 3))) wynikLaczenia[1] = bazaDystans.Count - 2;
-                    if ((skladnik1[2] == (sufDystans.Count - 1)) & (skladnik2[2] == (sufDystans.Count - 2))) wynikLaczenia[2] = sufDystans.Count - 3; // szybkostrzelności + wilka = driady
-                    if ((skladnik1[2] == (sufDystans.Count - 2)) & (skladnik2[2] == (sufDystans.Count - 1))) wynikLaczenia[2] = sufDystans.Count - 3;
-                    if ((skladnik1[2] == (sufDystans.Count - 3)) & (skladnik2[2] == (sufDystans.Count - 1))) wynikLaczenia[2] = sufDystans.Count - 2; // driady + wilka = szybkostrzelności
-                    if ((skladnik1[2] == (sufDystans.Count - 1)) & (skladnik2[2] == (sufDystans.Count - 3))) wynikLaczenia[2] = sufDystans.Count - 2;
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
-                    dystansWynik.AppendText("\r= " + prefDystans.ElementAt(wynikLaczenia[0]) + " " + bazaDystans.ElementAt(wynikLaczenia[1]) + " " + sufDystans.ElementAt(wynikLaczenia[2]));
-                }
-            }
-
-            dystansWynik.ScrollToCaret();
+            Dodaj(cbDystansPref, cbDystansBaza, cbDystansSuf, dystansWynik, prefDystans, bazaDystans, sufDystans);
         }
 
         public int[] polacz(int pref1, int baza1, int suf1, int pref2, int baza2, int suf2)
         {
             int[] wynik = new int[4];
-            double x, y;
+            double x = 0, y = 0;
 
-            // prefiks
-            if (true)
+            for (int i = 0; i < 3; i++)
             {
-                x = pref1;
-                y = pref2;
+                switch (i)
+                {
+                    case 0:
+                        x = pref1;
+                        y = pref2;
+                        break;
+                    case 1:
+                        x = baza1;
+                        y = baza2;
+                        break;
+                    case 2:
+                        x = suf1;
+                        y = suf2;
+                        break;
+                }
 
-                if ((pref1 == 0) | (pref2 == 0)) wynik[0] = 0;
-                else if (pref1 == pref2) wynik[0] = pref1;
-                else if (true) wynik[0] = Convert.ToInt32(Math.Ceiling((x + y) / 2) + 1);
-            }
-
-            // baza
-            if (true)
-            {
-                x = baza1;
-                y = baza2;
-
-                if ((baza1 == 0) | (baza2 == 0)) wynik[1] = 0;
-                else if (baza1 == baza2) wynik[1] = baza1;
-                else if (true) wynik[1] = Convert.ToInt32(Math.Ceiling((x + y) / 2) + 1);
-            }
-
-
-            // sufiks
-            if (true)
-            {
-                x = suf1;
-                y = suf2;
-
-                if ((suf1 == 0) | (suf2 == 0)) wynik[2] = 0;
-                else if (suf1 == suf2) wynik[2] = suf1;
-                else if (true) wynik[2] = Convert.ToInt32(Math.Ceiling((x + y) / 2) + 1);
+                if ((Convert.ToInt32(x) == 0) | (Convert.ToInt32(y) == 0)) wynik[i] = 0;
+                else if (x == y) wynik[i] = Convert.ToInt32(x);
+                else if (true) wynik[i] = Convert.ToInt32(Math.Ceiling((x + y) / 2) + 1);
             }
 
             return wynik;
@@ -1593,6 +1015,11 @@ namespace R19_BW_laczenia
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Czyszczenie();
+        }
+
+        private void Czyszczenie()
+        {
             // Czyszczenie składników i okienek wyników po przepłączeniu zakładki
             skladnik1 = new int[4] { 0, 0, 0, 0 };
             skladnik2 = new int[4] { 0, 0, 0, 0 };
@@ -1609,1659 +1036,262 @@ namespace R19_BW_laczenia
             palna1hWynik.Clear();
             palna2hWynik.Clear();
             dystansWynik.Clear();
+            AnalizatorRaportuTekst.Clear();
 
             // czyszczenie labeli
             PrefHelmL.Text = "";
+            BazaHelmL.Text = "";
+            SufHelmL.Text = "";
+            PrefZbrojaL.Text = "";
+            BazaZbrojaL.Text = "";
+            SufZbrojaL.Text = "";
+            PrefSpodnieL.Text = "";
+            BazaSpodnieL.Text = "";
+            SufSpodnieL.Text = "";
+            PrefPierscienL.Text = "";
+            BazaPierscienL.Text = "";
+            SufPierscienL.Text = "";
+            PrefAmuletL.Text = "";
+            BazaAmuletL.Text = "";
+            SufAmuletL.Text = "";
+            PrefBiala1hL.Text = "";
+            BazaBiala1hL.Text = "";
+            SufBiala1hL.Text = "";
+            PrefBiala2hL.Text = "";
+            BazaBiala2hL.Text = "";
+            SufBiala2hL.Text = "";
+            PrefPalna1hL.Text = "";
+            BazaPalna1hL.Text = "";
+            SufPalna1hL.Text = "";
+            PrefPalna2hL.Text = "";
+            BazaPalna2hL.Text = "";
+            SufPalna2hL.Text = "";
+            PrefDystansL.Text = "";
+            BazaDystansL.Text = "";
+            SufDystansL.Text = "";
+        }
+
+        private void InicjalizacjaTabeli(Form2 tab, List<string> baza, string disp)
+        {
+            if (tab != null)
+            {
+                tab.IsOpen = false;
+                tab.Dispose();
+                tab.Close();
+            }
+
+            tabela = new Form2();
+            tabela.DisplayedTable = disp;
+            tabela.dataGridView1.RowCount = baza.Count();
+            tabela.dataGridView1.ColumnCount = baza.Count();
+            tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
+            if (tabela.Height < 150) tabela.Height = 150;
+            tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
+
+            for (int i = 0; i < baza.Count(); i++)
+            {
+                tabela.dataGridView1.Rows[i].Cells[0].Value = baza[i];
+                tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
+                tabela.dataGridView1.Rows[0].Cells[i].Value = baza[i];
+                tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
+
+                if (i > 0)
+                {
+                    tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.SkyBlue;
+
+                    for (int j = 1; j < baza.Count(); j++)
+                    {
+                        if ((i == (baza.Count - 1)) & (j == (baza.Count - 2))) wynikTab[0] = baza.Count - 3; // wyjątki
+                        else if ((i == (baza.Count - 2)) & (j == (baza.Count - 1))) wynikTab[0] = baza.Count - 3;
+                        else if ((i == (baza.Count - 3)) & (j == (baza.Count - 1))) wynikTab[0] = baza.Count - 2;
+                        else if ((i == (baza.Count - 1)) & (j == (baza.Count - 3))) wynikTab[0] = baza.Count - 2;
+                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
+
+                        tabela.dataGridView1.Rows[i].Cells[j].Value = baza.ElementAt(wynikTab[0]);
+                    }
+                }
+            }
+            tabela.Show();
         }
 
         private void prefHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefHelm")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefHelm";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefHelm.Count();
-                tabela.dataGridView1.ColumnCount = prefHelm.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefHelm.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefHelm[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefHelm[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefHelm.Count(); i++)
-                {
-                    for (int j = 1; j < prefHelm.Count(); j++)
-                    {
-                        if ((i == (prefHelm.Count - 1)) & (j == (prefHelm.Count - 2))) wynikTab[0] = prefHelm.Count - 3; // wyjątki
-                        else if ((i == (prefHelm.Count - 2)) & (j == (prefHelm.Count - 1))) wynikTab[0] = prefHelm.Count - 3;
-                        else if ((i == (prefHelm.Count - 3)) & (j == (prefHelm.Count - 1))) wynikTab[0] = prefHelm.Count - 2;
-                        else if ((i == (prefHelm.Count - 1)) & (j == (prefHelm.Count - 3))) wynikTab[0] = prefHelm.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefHelm.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefHelm.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefHelm") InicjalizacjaTabeli(tabela, prefHelm, "PrefHelm");
+            else tabela.BringToFront();
         }
 
         private void bazaHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaHelm")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaHelm";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaHelm.Count();
-                tabela.dataGridView1.ColumnCount = bazaHelm.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaHelm.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaHelm[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaHelm[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaHelm.Count(); i++)
-                {
-                    for (int j = 1; j < bazaHelm.Count(); j++)
-                    {
-                        if ((i == (bazaHelm.Count - 1)) & (j == (bazaHelm.Count - 2))) wynikTab[0] = bazaHelm.Count - 3; // wyjątki
-                        else if ((i == (bazaHelm.Count - 2)) & (j == (bazaHelm.Count - 1))) wynikTab[0] = bazaHelm.Count - 3;
-                        else if ((i == (bazaHelm.Count - 3)) & (j == (bazaHelm.Count - 1))) wynikTab[0] = bazaHelm.Count - 2;
-                        else if ((i == (bazaHelm.Count - 1)) & (j == (bazaHelm.Count - 3))) wynikTab[0] = bazaHelm.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaHelm.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaHelm.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaHelm") InicjalizacjaTabeli(tabela, bazaHelm, "BazaHelm");
+            else tabela.BringToFront();
         }
 
         private void sufHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufHelm")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufHelm";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufHelm.Count();
-                tabela.dataGridView1.ColumnCount = sufHelm.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufHelm.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufHelm[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufHelm[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufHelm.Count(); i++)
-                {
-                    for (int j = 1; j < sufHelm.Count(); j++)
-                    {
-                        if ((i == (sufHelm.Count - 1)) & (j == (sufHelm.Count - 2))) wynikTab[0] = sufHelm.Count - 3; // wyjątki
-                        else if ((i == (sufHelm.Count - 2)) & (j == (sufHelm.Count - 1))) wynikTab[0] = sufHelm.Count - 3;
-                        else if ((i == (sufHelm.Count - 3)) & (j == (sufHelm.Count - 1))) wynikTab[0] = sufHelm.Count - 2;
-                        else if ((i == (sufHelm.Count - 1)) & (j == (sufHelm.Count - 3))) wynikTab[0] = sufHelm.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufHelm.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufHelm.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufHelm") InicjalizacjaTabeli(tabela, sufHelm, "SufHelm");
+            else tabela.BringToFront();
         }
 
         private void prefZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefZbroja")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefZbroja";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefZbroja.Count();
-                tabela.dataGridView1.ColumnCount = prefZbroja.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefZbroja.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefZbroja[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefZbroja[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefZbroja.Count(); i++)
-                {
-                    for (int j = 1; j < prefZbroja.Count(); j++)
-                    {
-                        if ((i == (prefZbroja.Count - 1)) & (j == (prefZbroja.Count - 2))) wynikTab[0] = prefZbroja.Count - 3; // wyjątki
-                        else if ((i == (prefZbroja.Count - 2)) & (j == (prefZbroja.Count - 1))) wynikTab[0] = prefZbroja.Count - 3;
-                        else if ((i == (prefZbroja.Count - 3)) & (j == (prefZbroja.Count - 1))) wynikTab[0] = prefZbroja.Count - 2;
-                        else if ((i == (prefZbroja.Count - 1)) & (j == (prefZbroja.Count - 3))) wynikTab[0] = prefZbroja.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefZbroja.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefZbroja.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefZbroja") InicjalizacjaTabeli(tabela, prefZbroja, "PrefZbroja");
+            else tabela.BringToFront();
         }
 
         private void bazaZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaZbroja")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaZbroja";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaZbroja.Count();
-                tabela.dataGridView1.ColumnCount = bazaZbroja.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaZbroja.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaZbroja[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaZbroja[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaZbroja.Count(); i++)
-                {
-                    for (int j = 1; j < bazaZbroja.Count(); j++)
-                    {
-                        if ((i == (bazaZbroja.Count - 1)) & (j == (bazaZbroja.Count - 2))) wynikTab[0] = bazaZbroja.Count - 3; // wyjątki
-                        else if ((i == (bazaZbroja.Count - 2)) & (j == (bazaZbroja.Count - 1))) wynikTab[0] = bazaZbroja.Count - 3;
-                        else if ((i == (bazaZbroja.Count - 3)) & (j == (bazaZbroja.Count - 1))) wynikTab[0] = bazaZbroja.Count - 2;
-                        else if ((i == (bazaZbroja.Count - 1)) & (j == (bazaZbroja.Count - 3))) wynikTab[0] = bazaZbroja.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaZbroja.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaZbroja.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaZbroja") InicjalizacjaTabeli(tabela, bazaZbroja, "BazaZbroja");
+            else tabela.BringToFront();
         }
 
         private void sufZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufZbroja")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufZbroja";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufZbroja.Count();
-                tabela.dataGridView1.ColumnCount = sufZbroja.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufZbroja.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufZbroja[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufZbroja[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufZbroja.Count(); i++)
-                {
-                    for (int j = 1; j < sufZbroja.Count(); j++)
-                    {
-                        if ((i == (sufZbroja.Count - 1)) & (j == (sufZbroja.Count - 2))) wynikTab[0] = sufZbroja.Count - 3; // wyjątki
-                        else if ((i == (sufZbroja.Count - 2)) & (j == (sufZbroja.Count - 1))) wynikTab[0] = sufZbroja.Count - 3;
-                        else if ((i == (sufZbroja.Count - 3)) & (j == (sufZbroja.Count - 1))) wynikTab[0] = sufZbroja.Count - 2;
-                        else if ((i == (sufZbroja.Count - 1)) & (j == (sufZbroja.Count - 3))) wynikTab[0] = sufZbroja.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufZbroja.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufZbroja.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufZbroja") InicjalizacjaTabeli(tabela, sufZbroja, "SufZbroja");
+            else tabela.BringToFront();
         }
 
         private void prefSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefSpodnie")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefSpodnie";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefSpodnie.Count();
-                tabela.dataGridView1.ColumnCount = prefSpodnie.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefSpodnie.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefSpodnie[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefSpodnie[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefSpodnie.Count(); i++)
-                {
-                    for (int j = 1; j < prefSpodnie.Count(); j++)
-                    {
-                        if ((i == (prefSpodnie.Count - 1)) & (j == (prefSpodnie.Count - 2))) wynikTab[0] = prefSpodnie.Count - 3; // wyjątki
-                        else if ((i == (prefSpodnie.Count - 2)) & (j == (prefSpodnie.Count - 1))) wynikTab[0] = prefSpodnie.Count - 3;
-                        else if ((i == (prefSpodnie.Count - 3)) & (j == (prefSpodnie.Count - 1))) wynikTab[0] = prefSpodnie.Count - 2;
-                        else if ((i == (prefSpodnie.Count - 1)) & (j == (prefSpodnie.Count - 3))) wynikTab[0] = prefSpodnie.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefSpodnie.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefSpodnie.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefSpodnie") InicjalizacjaTabeli(tabela, prefSpodnie, "PrefSpodnie");
+            else tabela.BringToFront();
         }
 
         private void bazaSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaSpodnie")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaSpodnie";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaSpodnie.Count();
-                tabela.dataGridView1.ColumnCount = bazaSpodnie.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaSpodnie.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaSpodnie[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaSpodnie[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaSpodnie.Count(); i++)
-                {
-                    for (int j = 1; j < bazaSpodnie.Count(); j++)
-                    {
-                        if ((i == (bazaSpodnie.Count - 1)) & (j == (bazaSpodnie.Count - 2))) wynikTab[0] = bazaSpodnie.Count - 3; // wyjątki
-                        else if ((i == (bazaSpodnie.Count - 2)) & (j == (bazaSpodnie.Count - 1))) wynikTab[0] = bazaSpodnie.Count - 3;
-                        else if ((i == (bazaSpodnie.Count - 3)) & (j == (bazaSpodnie.Count - 1))) wynikTab[0] = bazaSpodnie.Count - 2;
-                        else if ((i == (bazaSpodnie.Count - 1)) & (j == (bazaSpodnie.Count - 3))) wynikTab[0] = bazaSpodnie.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaSpodnie.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaSpodnie.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaSpodnie") InicjalizacjaTabeli(tabela, bazaSpodnie, "BazaSpodnie");
+            else tabela.BringToFront();
         }
 
         private void sufSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufSpodnie")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufSpodnie";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufSpodnie.Count();
-                tabela.dataGridView1.ColumnCount = sufSpodnie.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufSpodnie.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufSpodnie[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufSpodnie[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufSpodnie.Count(); i++)
-                {
-                    for (int j = 1; j < sufSpodnie.Count(); j++)
-                    {
-                        if ((i == (sufSpodnie.Count - 1)) & (j == (sufSpodnie.Count - 2))) wynikTab[0] = sufSpodnie.Count - 3; // wyjątki
-                        else if ((i == (sufSpodnie.Count - 2)) & (j == (sufSpodnie.Count - 1))) wynikTab[0] = sufSpodnie.Count - 3;
-                        else if ((i == (sufSpodnie.Count - 3)) & (j == (sufSpodnie.Count - 1))) wynikTab[0] = sufSpodnie.Count - 2;
-                        else if ((i == (sufSpodnie.Count - 1)) & (j == (sufSpodnie.Count - 3))) wynikTab[0] = sufSpodnie.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufSpodnie.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufSpodnie.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufSpodnie") InicjalizacjaTabeli(tabela, sufSpodnie, "SufSpodnie");
+            else tabela.BringToFront();
         }
 
         private void prefPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefPierscien")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefPierscien";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefPierscien.Count();
-                tabela.dataGridView1.ColumnCount = prefPierscien.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefPierscien.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefPierscien[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefPierscien[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefPierscien.Count(); i++)
-                {
-                    for (int j = 1; j < prefPierscien.Count(); j++)
-                    {
-                        if ((i == (prefPierscien.Count - 1)) & (j == (prefPierscien.Count - 2))) wynikTab[0] = prefPierscien.Count - 3; // wyjątki
-                        else if ((i == (prefPierscien.Count - 2)) & (j == (prefPierscien.Count - 1))) wynikTab[0] = prefPierscien.Count - 3;
-                        else if ((i == (prefPierscien.Count - 3)) & (j == (prefPierscien.Count - 1))) wynikTab[0] = prefPierscien.Count - 2;
-                        else if ((i == (prefPierscien.Count - 1)) & (j == (prefPierscien.Count - 3))) wynikTab[0] = prefPierscien.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefPierscien.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefPierscien.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefPierscien") InicjalizacjaTabeli(tabela, prefPierscien, "PrefPierscien");
+            else tabela.BringToFront();
         }
 
         private void bazaPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaPierscien")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaPierscien";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaPierscien.Count();
-                tabela.dataGridView1.ColumnCount = bazaPierscien.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaPierscien.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaPierscien[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaPierscien[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaPierscien.Count(); i++)
-                {
-                    for (int j = 1; j < bazaPierscien.Count(); j++)
-                    {
-                        if ((i == (bazaPierscien.Count - 1)) & (j == (bazaPierscien.Count - 2))) wynikTab[0] = bazaPierscien.Count - 3; // wyjątki
-                        else if ((i == (bazaPierscien.Count - 2)) & (j == (bazaPierscien.Count - 1))) wynikTab[0] = bazaPierscien.Count - 3;
-                        else if ((i == (bazaPierscien.Count - 3)) & (j == (bazaPierscien.Count - 1))) wynikTab[0] = bazaPierscien.Count - 2;
-                        else if ((i == (bazaPierscien.Count - 1)) & (j == (bazaPierscien.Count - 3))) wynikTab[0] = bazaPierscien.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaPierscien.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaPierscien.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaPierscien") InicjalizacjaTabeli(tabela, bazaPierscien, "BazaPierscien");
+            else tabela.BringToFront();
         }
 
         private void sufPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufPierscien")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufPierscien";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufPierscien.Count();
-                tabela.dataGridView1.ColumnCount = sufPierscien.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufPierscien.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufPierscien[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufPierscien[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufPierscien.Count(); i++)
-                {
-                    for (int j = 1; j < sufPierscien.Count(); j++)
-                    {
-                        if ((i == (sufPierscien.Count - 1)) & (j == (sufPierscien.Count - 2))) wynikTab[0] = sufPierscien.Count - 3; // wyjątki
-                        else if ((i == (sufPierscien.Count - 2)) & (j == (sufPierscien.Count - 1))) wynikTab[0] = sufPierscien.Count - 3;
-                        else if ((i == (sufPierscien.Count - 3)) & (j == (sufPierscien.Count - 1))) wynikTab[0] = sufPierscien.Count - 2;
-                        else if ((i == (sufPierscien.Count - 1)) & (j == (sufPierscien.Count - 3))) wynikTab[0] = sufPierscien.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufPierscien.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufPierscien.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufPierscien") InicjalizacjaTabeli(tabela, sufPierscien, "SufPierscien");
+            else tabela.BringToFront();
         }
 
         private void prefAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefAmulet")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefAmulet";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefAmulet.Count();
-                tabela.dataGridView1.ColumnCount = prefAmulet.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefAmulet.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefAmulet[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefAmulet[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefAmulet.Count(); i++)
-                {
-                    for (int j = 1; j < prefAmulet.Count(); j++)
-                    {
-                        if ((i == (prefAmulet.Count - 1)) & (j == (prefAmulet.Count - 2))) wynikTab[0] = prefAmulet.Count - 3; // wyjątki
-                        else if ((i == (prefAmulet.Count - 2)) & (j == (prefAmulet.Count - 1))) wynikTab[0] = prefAmulet.Count - 3;
-                        else if ((i == (prefAmulet.Count - 3)) & (j == (prefAmulet.Count - 1))) wynikTab[0] = prefAmulet.Count - 2;
-                        else if ((i == (prefAmulet.Count - 1)) & (j == (prefAmulet.Count - 3))) wynikTab[0] = prefAmulet.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefAmulet.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefAmulet.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefAmulet") InicjalizacjaTabeli(tabela, prefAmulet, "PrefAmulet");
+            else tabela.BringToFront();
         }
 
         private void bazaAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaAmulet")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaAmulet";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaAmulet.Count();
-                tabela.dataGridView1.ColumnCount = bazaAmulet.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaAmulet.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaAmulet[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaAmulet[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaAmulet.Count(); i++)
-                {
-                    for (int j = 1; j < bazaAmulet.Count(); j++)
-                    {
-                        if ((i == (bazaAmulet.Count - 1)) & (j == (bazaAmulet.Count - 2))) wynikTab[0] = bazaAmulet.Count - 3; // wyjątki
-                        else if ((i == (bazaAmulet.Count - 2)) & (j == (bazaAmulet.Count - 1))) wynikTab[0] = bazaAmulet.Count - 3;
-                        else if ((i == (bazaAmulet.Count - 3)) & (j == (bazaAmulet.Count - 1))) wynikTab[0] = bazaAmulet.Count - 2;
-                        else if ((i == (bazaAmulet.Count - 1)) & (j == (bazaAmulet.Count - 3))) wynikTab[0] = bazaAmulet.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaAmulet.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaAmulet.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaAmulet") InicjalizacjaTabeli(tabela, bazaAmulet, "BazaAmulet");
+            else tabela.BringToFront();
         }
 
         private void sufAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufAmulet")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufAmulet";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufAmulet.Count();
-                tabela.dataGridView1.ColumnCount = sufAmulet.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufAmulet.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufAmulet[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufAmulet[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufAmulet.Count(); i++)
-                {
-                    for (int j = 1; j < sufAmulet.Count(); j++)
-                    {
-                        if ((i == (sufAmulet.Count - 1)) & (j == (sufAmulet.Count - 2))) wynikTab[0] = sufAmulet.Count - 3; // wyjątki
-                        else if ((i == (sufAmulet.Count - 2)) & (j == (sufAmulet.Count - 1))) wynikTab[0] = sufAmulet.Count - 3;
-                        else if ((i == (sufAmulet.Count - 3)) & (j == (sufAmulet.Count - 1))) wynikTab[0] = sufAmulet.Count - 2;
-                        else if ((i == (sufAmulet.Count - 1)) & (j == (sufAmulet.Count - 3))) wynikTab[0] = sufAmulet.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufAmulet.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufAmulet.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufAmulet") InicjalizacjaTabeli(tabela, sufAmulet, "SufAmulet");
+            else tabela.BringToFront();
         }
 
         private void prefBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefBiala1h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefBiala1h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefBiala1h.Count();
-                tabela.dataGridView1.ColumnCount = prefBiala1h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefBiala1h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefBiala1h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefBiala1h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefBiala1h.Count(); i++)
-                {
-                    for (int j = 1; j < prefBiala1h.Count(); j++)
-                    {
-                        if ((i == (prefBiala1h.Count - 1)) & (j == (prefBiala1h.Count - 2))) wynikTab[0] = prefBiala1h.Count - 3; // wyjątki
-                        else if ((i == (prefBiala1h.Count - 2)) & (j == (prefBiala1h.Count - 1))) wynikTab[0] = prefBiala1h.Count - 3;
-                        else if ((i == (prefBiala1h.Count - 3)) & (j == (prefBiala1h.Count - 1))) wynikTab[0] = prefBiala1h.Count - 2;
-                        else if ((i == (prefBiala1h.Count - 1)) & (j == (prefBiala1h.Count - 3))) wynikTab[0] = prefBiala1h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefBiala1h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefBiala1h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefBiala1h") InicjalizacjaTabeli(tabela, prefBiala1h, "PrefBiala1h");
+            else tabela.BringToFront();
         }
 
         private void bazaBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaBiala1h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaBiala1h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaBiala1h.Count();
-                tabela.dataGridView1.ColumnCount = bazaBiala1h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaBiala1h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaBiala1h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaBiala1h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaBiala1h.Count(); i++)
-                {
-                    for (int j = 1; j < bazaBiala1h.Count(); j++)
-                    {
-                        if ((i == (bazaBiala1h.Count - 1)) & (j == (bazaBiala1h.Count - 2))) wynikTab[0] = bazaBiala1h.Count - 3; // wyjątki
-                        else if ((i == (bazaBiala1h.Count - 2)) & (j == (bazaBiala1h.Count - 1))) wynikTab[0] = bazaBiala1h.Count - 3;
-                        else if ((i == (bazaBiala1h.Count - 3)) & (j == (bazaBiala1h.Count - 1))) wynikTab[0] = bazaBiala1h.Count - 2;
-                        else if ((i == (bazaBiala1h.Count - 1)) & (j == (bazaBiala1h.Count - 3))) wynikTab[0] = bazaBiala1h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaBiala1h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaBiala1h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaBiala1h") InicjalizacjaTabeli(tabela, bazaBiala1h, "BazaBiala1h");
+            else tabela.BringToFront();
         }
 
         private void sufBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufBiala1h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufBiala1h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufBiala1h.Count();
-                tabela.dataGridView1.ColumnCount = sufBiala1h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufBiala1h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufBiala1h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufBiala1h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufBiala1h.Count(); i++)
-                {
-                    for (int j = 1; j < sufBiala1h.Count(); j++)
-                    {
-                        if ((i == (sufBiala1h.Count - 1)) & (j == (sufBiala1h.Count - 2))) wynikTab[0] = sufBiala1h.Count - 3; // wyjątki
-                        else if ((i == (sufBiala1h.Count - 2)) & (j == (sufBiala1h.Count - 1))) wynikTab[0] = sufBiala1h.Count - 3;
-                        else if ((i == (sufBiala1h.Count - 3)) & (j == (sufBiala1h.Count - 1))) wynikTab[0] = sufBiala1h.Count - 2;
-                        else if ((i == (sufBiala1h.Count - 1)) & (j == (sufBiala1h.Count - 3))) wynikTab[0] = sufBiala1h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufBiala1h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufBiala1h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufBiala1h") InicjalizacjaTabeli(tabela, sufBiala1h, "SufBiala1h");
+            else tabela.BringToFront();
         }
 
         private void prefBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefBiala2h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefBiala2h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefBiala2h.Count();
-                tabela.dataGridView1.ColumnCount = prefBiala2h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefBiala2h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefBiala2h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefBiala2h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefBiala2h.Count(); i++)
-                {
-                    for (int j = 1; j < prefBiala2h.Count(); j++)
-                    {
-                        if ((i == (prefBiala2h.Count - 1)) & (j == (prefBiala2h.Count - 2))) wynikTab[0] = prefBiala2h.Count - 3; // wyjątki
-                        else if ((i == (prefBiala2h.Count - 2)) & (j == (prefBiala2h.Count - 1))) wynikTab[0] = prefBiala2h.Count - 3;
-                        else if ((i == (prefBiala2h.Count - 3)) & (j == (prefBiala2h.Count - 1))) wynikTab[0] = prefBiala2h.Count - 2;
-                        else if ((i == (prefBiala2h.Count - 1)) & (j == (prefBiala2h.Count - 3))) wynikTab[0] = prefBiala2h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefBiala2h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefBiala2h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefBiala2h") InicjalizacjaTabeli(tabela, prefBiala2h, "PrefBiala2h");
+            else tabela.BringToFront();
         }
 
         private void bazaBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaBiala2h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaBiala2h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaBiala2h.Count();
-                tabela.dataGridView1.ColumnCount = bazaBiala2h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaBiala2h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaBiala2h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaBiala2h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaBiala2h.Count(); i++)
-                {
-                    for (int j = 1; j < bazaBiala2h.Count(); j++)
-                    {
-                        if ((i == (bazaBiala2h.Count - 1)) & (j == (bazaBiala2h.Count - 2))) wynikTab[0] = bazaBiala2h.Count - 3; // wyjątki
-                        else if ((i == (bazaBiala2h.Count - 2)) & (j == (bazaBiala2h.Count - 1))) wynikTab[0] = bazaBiala2h.Count - 3;
-                        else if ((i == (bazaBiala2h.Count - 3)) & (j == (bazaBiala2h.Count - 1))) wynikTab[0] = bazaBiala2h.Count - 2;
-                        else if ((i == (bazaBiala2h.Count - 1)) & (j == (bazaBiala2h.Count - 3))) wynikTab[0] = bazaBiala2h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaBiala2h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaBiala2h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaBiala2h") InicjalizacjaTabeli(tabela, bazaBiala2h, "BazaBiala2h");
+            else tabela.BringToFront();
         }
 
         private void sufBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufBiala2h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufBiala2h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufBiala2h.Count();
-                tabela.dataGridView1.ColumnCount = sufBiala2h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufBiala2h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufBiala2h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufBiala2h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufBiala2h.Count(); i++)
-                {
-                    for (int j = 1; j < sufBiala2h.Count(); j++)
-                    {
-                        if ((i == (sufBiala2h.Count - 1)) & (j == (sufBiala2h.Count - 2))) wynikTab[0] = sufBiala2h.Count - 3; // wyjątki
-                        else if ((i == (sufBiala2h.Count - 2)) & (j == (sufBiala2h.Count - 1))) wynikTab[0] = sufBiala2h.Count - 3;
-                        else if ((i == (sufBiala2h.Count - 3)) & (j == (sufBiala2h.Count - 1))) wynikTab[0] = sufBiala2h.Count - 2;
-                        else if ((i == (sufBiala2h.Count - 1)) & (j == (sufBiala2h.Count - 3))) wynikTab[0] = sufBiala2h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufBiala2h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufBiala2h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufBiala2h") InicjalizacjaTabeli(tabela, sufBiala2h, "SufBiala2h");
+            else tabela.BringToFront();
         }
 
         private void prefPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefPalna1h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefPalna1h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefPalna1h.Count();
-                tabela.dataGridView1.ColumnCount = prefPalna1h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefPalna1h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefPalna1h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefPalna1h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefPalna1h.Count(); i++)
-                {
-                    for (int j = 1; j < prefPalna1h.Count(); j++)
-                    {
-                        if ((i == (prefPalna1h.Count - 1)) & (j == (prefPalna1h.Count - 2))) wynikTab[0] = prefPalna1h.Count - 3; // wyjątki
-                        else if ((i == (prefPalna1h.Count - 2)) & (j == (prefPalna1h.Count - 1))) wynikTab[0] = prefPalna1h.Count - 3;
-                        else if ((i == (prefPalna1h.Count - 3)) & (j == (prefPalna1h.Count - 1))) wynikTab[0] = prefPalna1h.Count - 2;
-                        else if ((i == (prefPalna1h.Count - 1)) & (j == (prefPalna1h.Count - 3))) wynikTab[0] = prefPalna1h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefPalna1h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefPalna1h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefPalna1h") InicjalizacjaTabeli(tabela, prefPalna1h, "PrefPalna1h");
+            else tabela.BringToFront();
         }
 
         private void bazaPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaPalna1h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaPalna1h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaPalna1h.Count();
-                tabela.dataGridView1.ColumnCount = bazaPalna1h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaPalna1h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaPalna1h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaPalna1h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaPalna1h.Count(); i++)
-                {
-                    for (int j = 1; j < bazaPalna1h.Count(); j++)
-                    {
-                        if ((i == (bazaPalna1h.Count - 1)) & (j == (bazaPalna1h.Count - 2))) wynikTab[0] = bazaPalna1h.Count - 3; // wyjątki
-                        else if ((i == (bazaPalna1h.Count - 2)) & (j == (bazaPalna1h.Count - 1))) wynikTab[0] = bazaPalna1h.Count - 3;
-                        else if ((i == (bazaPalna1h.Count - 3)) & (j == (bazaPalna1h.Count - 1))) wynikTab[0] = bazaPalna1h.Count - 2;
-                        else if ((i == (bazaPalna1h.Count - 1)) & (j == (bazaPalna1h.Count - 3))) wynikTab[0] = bazaPalna1h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaPalna1h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaPalna1h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaPalna1h") InicjalizacjaTabeli(tabela, bazaPalna1h, "BazaPalna1h");
+            else tabela.BringToFront();
         }
 
         private void sufPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufPalna1h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufPalna1h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufPalna1h.Count();
-                tabela.dataGridView1.ColumnCount = sufPalna1h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufPalna1h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufPalna1h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufPalna1h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufPalna1h.Count(); i++)
-                {
-                    for (int j = 1; j < sufPalna1h.Count(); j++)
-                    {
-                        if ((i == (sufPalna1h.Count - 1)) & (j == (sufPalna1h.Count - 2))) wynikTab[0] = sufPalna1h.Count - 3; // wyjątki
-                        else if ((i == (sufPalna1h.Count - 2)) & (j == (sufPalna1h.Count - 1))) wynikTab[0] = sufPalna1h.Count - 3;
-                        else if ((i == (sufPalna1h.Count - 3)) & (j == (sufPalna1h.Count - 1))) wynikTab[0] = sufPalna1h.Count - 2;
-                        else if ((i == (sufPalna1h.Count - 1)) & (j == (sufPalna1h.Count - 3))) wynikTab[0] = sufPalna1h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufPalna1h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufPalna1h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufPalna1h") InicjalizacjaTabeli(tabela, sufPalna1h, "SufPalna1h");
+            else tabela.BringToFront();
         }
 
         private void prefPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefPalna2h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefPalna2h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefPalna2h.Count();
-                tabela.dataGridView1.ColumnCount = prefPalna2h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefPalna2h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefPalna2h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefPalna2h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefPalna2h.Count(); i++)
-                {
-                    for (int j = 1; j < prefPalna2h.Count(); j++)
-                    {
-                        if ((i == (prefPalna2h.Count - 1)) & (j == (prefPalna2h.Count - 2))) wynikTab[0] = prefPalna2h.Count - 3; // wyjątki
-                        else if ((i == (prefPalna2h.Count - 2)) & (j == (prefPalna2h.Count - 1))) wynikTab[0] = prefPalna2h.Count - 3;
-                        else if ((i == (prefPalna2h.Count - 3)) & (j == (prefPalna2h.Count - 1))) wynikTab[0] = prefPalna2h.Count - 2;
-                        else if ((i == (prefPalna2h.Count - 1)) & (j == (prefPalna2h.Count - 3))) wynikTab[0] = prefPalna2h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefPalna2h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefPalna2h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefPalna2h") InicjalizacjaTabeli(tabela, prefPalna2h, "PrefPalna2h");
+            else tabela.BringToFront();
         }
 
         private void bazaPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaPalna2h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaPalna2h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaPalna2h.Count();
-                tabela.dataGridView1.ColumnCount = bazaPalna2h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaPalna2h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaPalna2h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaPalna2h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaPalna2h.Count(); i++)
-                {
-                    for (int j = 1; j < bazaPalna2h.Count(); j++)
-                    {
-                        if ((i == (bazaPalna2h.Count - 1)) & (j == (bazaPalna2h.Count - 2))) wynikTab[0] = bazaPalna2h.Count - 3; // wyjątki
-                        else if ((i == (bazaPalna2h.Count - 2)) & (j == (bazaPalna2h.Count - 1))) wynikTab[0] = bazaPalna2h.Count - 3;
-                        else if ((i == (bazaPalna2h.Count - 3)) & (j == (bazaPalna2h.Count - 1))) wynikTab[0] = bazaPalna2h.Count - 2;
-                        else if ((i == (bazaPalna2h.Count - 1)) & (j == (bazaPalna2h.Count - 3))) wynikTab[0] = bazaPalna2h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaPalna2h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaPalna2h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaPalna2h") InicjalizacjaTabeli(tabela, bazaPalna2h, "BazaPalna2h");
+            else tabela.BringToFront();
         }
 
         private void sufPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufPalna2h")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufPalna2h";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufPalna2h.Count();
-                tabela.dataGridView1.ColumnCount = sufPalna2h.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufPalna2h.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufPalna2h[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufPalna2h[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufPalna2h.Count(); i++)
-                {
-                    for (int j = 1; j < sufPalna2h.Count(); j++)
-                    {
-                        if ((i == (sufPalna2h.Count - 1)) & (j == (sufPalna2h.Count - 2))) wynikTab[0] = sufPalna2h.Count - 3; // wyjątki
-                        else if ((i == (sufPalna2h.Count - 2)) & (j == (sufPalna2h.Count - 1))) wynikTab[0] = sufPalna2h.Count - 3;
-                        else if ((i == (sufPalna2h.Count - 3)) & (j == (sufPalna2h.Count - 1))) wynikTab[0] = sufPalna2h.Count - 2;
-                        else if ((i == (sufPalna2h.Count - 1)) & (j == (sufPalna2h.Count - 3))) wynikTab[0] = sufPalna2h.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufPalna2h.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufPalna2h.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufPalna2h") InicjalizacjaTabeli(tabela, sufPalna2h, "SufPalna2h");
+            else tabela.BringToFront();
         }
 
         private void prefDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefDystans")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "PrefDystans";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = prefDystans.Count();
-                tabela.dataGridView1.ColumnCount = prefDystans.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < prefDystans.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = prefDystans[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = prefDystans[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < prefDystans.Count(); i++)
-                {
-                    for (int j = 1; j < prefDystans.Count(); j++)
-                    {
-                        if ((i == (prefDystans.Count - 1)) & (j == (prefDystans.Count - 2))) wynikTab[0] = prefDystans.Count - 3; // wyjątki
-                        else if ((i == (prefDystans.Count - 2)) & (j == (prefDystans.Count - 1))) wynikTab[0] = prefDystans.Count - 3;
-                        else if ((i == (prefDystans.Count - 3)) & (j == (prefDystans.Count - 1))) wynikTab[0] = prefDystans.Count - 2;
-                        else if ((i == (prefDystans.Count - 1)) & (j == (prefDystans.Count - 3))) wynikTab[0] = prefDystans.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = prefDystans.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < prefDystans.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "PrefDystans") InicjalizacjaTabeli(tabela, prefDystans, "PrefDystans");
+            else tabela.BringToFront();
         }
 
         private void bazaDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaDystans")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "BazaDystans";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = bazaDystans.Count();
-                tabela.dataGridView1.ColumnCount = bazaDystans.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < bazaDystans.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = bazaDystans[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = bazaDystans[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < bazaDystans.Count(); i++)
-                {
-                    for (int j = 1; j < bazaDystans.Count(); j++)
-                    {
-                        if ((i == (bazaDystans.Count - 1)) & (j == (bazaDystans.Count - 2))) wynikTab[0] = bazaDystans.Count - 3; // wyjątki
-                        else if ((i == (bazaDystans.Count - 2)) & (j == (bazaDystans.Count - 1))) wynikTab[0] = bazaDystans.Count - 3;
-                        else if ((i == (bazaDystans.Count - 3)) & (j == (bazaDystans.Count - 1))) wynikTab[0] = bazaDystans.Count - 2;
-                        else if ((i == (bazaDystans.Count - 1)) & (j == (bazaDystans.Count - 3))) wynikTab[0] = bazaDystans.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = bazaDystans.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < bazaDystans.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "BazaDystans") InicjalizacjaTabeli(tabela, bazaDystans, "BazaDystans");
+            else tabela.BringToFront();
         }
 
         private void sufDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufDystans")
-            {
-                if (tabela != null)
-                {
-                    tabela.IsOpen = false;
-                    tabela.Dispose();
-                    tabela.Close();
-                }
-
-                tabela = new Form2();
-                tabela.DisplayedTable = "SufDystans";
-
-                tabela.dataGridView1.RowCount = 1;
-                tabela.dataGridView1.ColumnCount = 1;
-                tabela.dataGridView1.RowCount = sufDystans.Count();
-                tabela.dataGridView1.ColumnCount = sufDystans.Count();
-
-                tabela.Height = 60 + (tabela.dataGridView1.RowCount * tabela.dataGridView1.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-                if (tabela.Height < 150) tabela.Height = 150;
-                tabela.Width = Convert.ToInt32(tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-                for (int i = 0; i < sufDystans.Count(); i++)
-                {
-                    tabela.dataGridView1.Rows[i].Cells[0].Value = sufDystans[i];
-                    tabela.dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                    tabela.dataGridView1.Rows[0].Cells[i].Value = sufDystans[i];
-                    tabela.dataGridView1.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-                }
-
-                for (int i = 1; i < sufDystans.Count(); i++)
-                {
-                    for (int j = 1; j < sufDystans.Count(); j++)
-                    {
-                        if ((i == (sufDystans.Count - 1)) & (j == (sufDystans.Count - 2))) wynikTab[0] = sufDystans.Count - 3; // wyjątki
-                        else if ((i == (sufDystans.Count - 2)) & (j == (sufDystans.Count - 1))) wynikTab[0] = sufDystans.Count - 3;
-                        else if ((i == (sufDystans.Count - 3)) & (j == (sufDystans.Count - 1))) wynikTab[0] = sufDystans.Count - 2;
-                        else if ((i == (sufDystans.Count - 1)) & (j == (sufDystans.Count - 3))) wynikTab[0] = sufDystans.Count - 2;
-                        else if (true) wynikTab = polacz(i, 0, 0, j, 0, 0);
-
-                        tabela.dataGridView1.Rows[i].Cells[j].Value = sufDystans.ElementAt(wynikTab[0]);
-                    }
-                }
-
-                for (int i = 1; i < sufDystans.Count(); i++) tabela.dataGridView1.Rows[i].Cells[i].Style.BackColor = Color.LightBlue;
-
-                tabela.Show();
-            }
-            else
-            {
-                tabela.BringToFront();
-            }
+            if (tabela == null || tabela.IsOpen == false || tabela.DisplayedTable != "SufDystans") InicjalizacjaTabeli(tabela, sufDystans, "SufDystans");
+            else tabela.BringToFront();
         }
 
         private void kopiujToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3357,47 +1387,7 @@ namespace R19_BW_laczenia
 
         private void wyczyśćToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            skladnik1 = new int[4] { 0, 0, 0, 0 };
-            skladnik2 = new int[4] { 0, 0, 0, 0 };
-            wynikLaczenia = new int[4] { 0, 0, 0, 0 };
-            dodano = false;
-
-            switch (tabControl1.SelectedTab.Text)
-            {
-                case "Hełm":
-                    helmWynik.Clear();
-                    break;
-                case "Zbroja":
-                    zbrojaWynik.Clear();
-                    break;
-                case "Spodnie":
-                    spodnieWynik.Clear();
-                    break;
-                case "Pierścień":
-                    pierscienWynik.Clear();
-                    break;
-                case "Amulet":
-                    amuletWynik.Clear();
-                    break;
-                case "Biała 1h":
-                    biala1hWynik.Clear();
-                    break;
-                case "Biała 2h":
-                    biala2hWynik.Clear();
-                    break;
-                case "Palna 1h":
-                    palna1hWynik.Clear();
-                    break;
-                case "Palna 2h":
-                    palna2hWynik.Clear();
-                    break;
-                case "Dystans":
-                    dystansWynik.Clear();
-                    break;
-                case "Analizator raportu":
-                    AnalizatorRaportuTekst.Clear();
-                    break;
-            }
+            Czyszczenie();
         }
 
         private void AnalizatorRaportuOblicz_Click(object sender, EventArgs e)
@@ -3603,36 +1593,69 @@ namespace R19_BW_laczenia
                 "3. Kliknij 'Oblicz'.");
         }
 
-        private void Label_TextChanged(object sender, EventArgs e)
+        private void CB_TextChanged(object sender, EventArgs e)
+        {
+            ZmienLabel();
+        }
+
+        private void ZmienLabelObliczenia(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, List<string> Pref, List<string> Baza, List<string> Suf, Label PrefLab, Label BazaLab, Label SufLab)
+        {
+            int[] TempSkladnik = new int[3];
+            int[] TempWynik = new int[3];
+
+            TempSkladnik[0] = Pref.IndexOf(PrefCB.Text);
+            TempSkladnik[1] = Baza.IndexOf(BazaCB.Text);
+            TempSkladnik[2] = Suf.IndexOf(SufCB.Text);
+
+            TempWynik = polacz(skladnik1[0], skladnik1[1], skladnik1[2], TempSkladnik[0], TempSkladnik[1], TempSkladnik[2]);
+
+            TempWynik[0] = SprawdzWyjatki(Pref, skladnik1[0], TempSkladnik[0], TempWynik[0]);
+            TempWynik[1] = SprawdzWyjatki(Baza, skladnik1[1], TempSkladnik[1], TempWynik[1]);
+            TempWynik[2] = SprawdzWyjatki(Suf, skladnik1[2], TempSkladnik[2], TempWynik[2]);
+
+            if (PrefCB.Text != "") PrefLab.Text = Pref.ElementAt(TempWynik[0]);
+            if (PrefCB.Text == "") PrefLab.Text = "";
+            if (BazaCB.Text != "") BazaLab.Text = Baza.ElementAt(TempWynik[1]);
+            if (BazaCB.Text == "") BazaLab.Text = "";
+            if (SufCB.Text != "") SufLab.Text = Suf.ElementAt(TempWynik[2]);
+            if (SufCB.Text == "") SufLab.Text = "";
+        }
+
+        private void ZmienLabel()
         {
             if (skladnik1[3] != 0)
             {
-                int[] TempSkladnik = new int[3];
-                int[] TempWynik = new int[3];
-
                 switch (tabControl1.SelectedTab.Text)
                 {
                     case "Hełm":
-                        TempSkladnik[0] = prefHelm.IndexOf(cbHelmPref.Text);
-                        TempSkladnik[1] = bazaHelm.IndexOf(cbHelmBaza.Text);
-                        TempSkladnik[2] = sufHelm.IndexOf(cbHelmSuf.Text);
-
-                        TempWynik = polacz(skladnik1[0], skladnik1[1], skladnik1[2], TempSkladnik[0], TempSkladnik[1], TempSkladnik[2]);
-
-                        if ((skladnik1[0] == (prefHelm.Count - 1)) & (TempSkladnik[0] == (prefHelm.Count - 2))) TempWynik[0] = prefHelm.Count - 3; // runiczny + rytualny = szturmowy
-                        if ((skladnik1[0] == (prefHelm.Count - 2)) & (TempSkladnik[0] == (prefHelm.Count - 1))) TempWynik[0] = prefHelm.Count - 3;
-                        if ((skladnik1[0] == (prefHelm.Count - 3)) & (TempSkladnik[0] == (prefHelm.Count - 1))) TempWynik[0] = prefHelm.Count - 2; // szturmowy + rytualny = runiczny
-                        if ((skladnik1[0] == (prefHelm.Count - 1)) & (TempSkladnik[0] == (prefHelm.Count - 3))) TempWynik[0] = prefHelm.Count - 2;
-                        if ((skladnik1[1] == (bazaHelm.Count - 1)) & (TempSkladnik[1] == (bazaHelm.Count - 2))) TempWynik[1] = bazaHelm.Count - 3; // bandana + korona = opaska
-                        if ((skladnik1[1] == (bazaHelm.Count - 2)) & (TempSkladnik[1] == (bazaHelm.Count - 1))) TempWynik[1] = bazaHelm.Count - 3;
-                        if ((skladnik1[1] == (bazaHelm.Count - 3)) & (TempSkladnik[1] == (bazaHelm.Count - 1))) TempWynik[1] = bazaHelm.Count - 2; // opaska + korona = bandana
-                        if ((skladnik1[1] == (bazaHelm.Count - 1)) & (TempSkladnik[1] == (bazaHelm.Count - 3))) TempWynik[1] = bazaHelm.Count - 2;
-                        if ((skladnik1[2] == (sufHelm.Count - 1)) & (TempSkladnik[2] == (sufHelm.Count - 2))) TempWynik[2] = sufHelm.Count - 3; // magii + mocy = smoczej łuski
-                        if ((skladnik1[2] == (sufHelm.Count - 2)) & (TempSkladnik[2] == (sufHelm.Count - 1))) TempWynik[2] = sufHelm.Count - 3;
-                        if ((skladnik1[2] == (sufHelm.Count - 3)) & (TempSkladnik[2] == (sufHelm.Count - 1))) TempWynik[2] = sufHelm.Count - 2; // smoczej łuski + magii = mocy
-                        if ((skladnik1[2] == (sufHelm.Count - 1)) & (TempSkladnik[2] == (sufHelm.Count - 3))) TempWynik[2] = sufHelm.Count - 2;
-
-                        if (cbHelmPref.Text != "") PrefHelmL.Text = prefHelm.ElementAt(TempWynik[0]);
+                        ZmienLabelObliczenia(cbHelmPref, cbHelmBaza, cbHelmSuf, prefHelm, bazaHelm, sufHelm, PrefHelmL, BazaHelmL, SufHelmL);
+                        break;
+                    case "Zbroja":
+                        ZmienLabelObliczenia(cbZbrojaPref, cbZbrojaBaza, cbZbrojaSuf, prefZbroja, bazaZbroja, sufZbroja, PrefZbrojaL, BazaZbrojaL, SufZbrojaL);
+                        break;
+                    case "Spodnie":
+                        ZmienLabelObliczenia(cbSpodniePref, cbSpodnieBaza, cbSpodnieSuf, prefSpodnie, bazaSpodnie, sufSpodnie, PrefSpodnieL, BazaSpodnieL, SufSpodnieL);
+                        break;
+                    case "Pierścień":
+                        ZmienLabelObliczenia(cbPierscienPref, cbPierscienBaza, cbPierscienSuf, prefPierscien, bazaPierscien, sufPierscien, PrefPierscienL, BazaPierscienL, SufPierscienL);
+                        break;
+                    case "Amulet":
+                        ZmienLabelObliczenia(cbAmuletPref, cbAmuletBaza, cbAmuletSuf, prefAmulet, bazaAmulet, sufAmulet, PrefAmuletL, BazaAmuletL, SufAmuletL);
+                        break;
+                    case "Biała 1h":
+                        ZmienLabelObliczenia(cbBiala1hPref, cbBiala1hBaza, cbBiala1hSuf, prefBiala1h, bazaBiala1h, sufBiala1h, PrefBiala1hL, BazaBiala1hL, SufBiala1hL);
+                        break;
+                    case "Biała 2h":
+                        ZmienLabelObliczenia(cbBiala2hPref, cbBiala2hBaza, cbBiala2hSuf, prefBiala2h, bazaBiala2h, sufBiala2h, PrefBiala2hL, BazaBiala2hL, SufBiala2hL);
+                        break;
+                    case "Palna 1h":
+                        ZmienLabelObliczenia(cbPalna1hPref, cbPalna1hBaza, cbPalna1hSuf, prefPalna1h, bazaPalna1h, sufPalna1h, PrefPalna1hL, BazaPalna1hL, SufPalna1hL);
+                        break;
+                    case "Palna 2h":
+                        ZmienLabelObliczenia(cbPalna2hPref, cbPalna2hBaza, cbPalna2hSuf, prefPalna2h, bazaPalna2h, sufPalna2h, PrefPalna2hL, BazaPalna2hL, SufPalna2hL);
+                        break;
+                    case "Dystans":
+                        ZmienLabelObliczenia(cbDystansPref, cbDystansBaza, cbDystansSuf, prefDystans, bazaDystans, sufDystans, PrefDystansL, BazaDystansL, SufDystansL);
                         break;
                 }
             }
@@ -3642,6 +1665,16 @@ namespace R19_BW_laczenia
         {
             // Odsyłacz do mojej postaci
             System.Diagnostics.Process.Start("https://r19.bloodwars.interia.pl/showmsg.php?a=profile&uid=2755");
+        }
+
+        private int SprawdzWyjatki(List<string> B, int sk1, int sk2, int w)
+        {
+            // Sprawdzenie wyjątków przy łączeniach przy końcu tabeli
+            if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 2))) w = B.Count - 3;
+            if ((sk1 == (B.Count - 2)) & (sk2 == (B.Count - 1))) w = B.Count - 3;
+            if ((sk1 == (B.Count - 3)) & (sk2 == (B.Count - 1))) w = B.Count - 2;
+            if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 3))) w = B.Count - 2;
+            return w;
         }
     }
 }

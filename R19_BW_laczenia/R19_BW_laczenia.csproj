@@ -24,8 +24,8 @@
     <ProductName>BW R19 Łączenia</ProductName>
     <PublisherName>Abev</PublisherName>
     <SuiteName>Narzędzie Bloodwars</SuiteName>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>1.0.0.6</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.7.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>false</BootstrapperEnabled>

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.PrefHelmL = new System.Windows.Forms.Label();
             this.sufHelmPanel = new System.Windows.Forms.Panel();
             this.sufHelmPanelLabel = new System.Windows.Forms.Label();
             this.bazaHelmPanel = new System.Windows.Forms.Panel();
@@ -291,7 +292,35 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyśćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.PrefHelmL = new System.Windows.Forms.Label();
+            this.BazaHelmL = new System.Windows.Forms.Label();
+            this.SufHelmL = new System.Windows.Forms.Label();
+            this.SufZbrojaL = new System.Windows.Forms.Label();
+            this.BazaZbrojaL = new System.Windows.Forms.Label();
+            this.PrefZbrojaL = new System.Windows.Forms.Label();
+            this.PrefSpodnieL = new System.Windows.Forms.Label();
+            this.BazaSpodnieL = new System.Windows.Forms.Label();
+            this.SufSpodnieL = new System.Windows.Forms.Label();
+            this.PrefPierscienL = new System.Windows.Forms.Label();
+            this.BazaPierscienL = new System.Windows.Forms.Label();
+            this.SufPierscienL = new System.Windows.Forms.Label();
+            this.PrefAmuletL = new System.Windows.Forms.Label();
+            this.BazaAmuletL = new System.Windows.Forms.Label();
+            this.SufAmuletL = new System.Windows.Forms.Label();
+            this.PrefBiala1hL = new System.Windows.Forms.Label();
+            this.BazaBiala1hL = new System.Windows.Forms.Label();
+            this.SufBiala1hL = new System.Windows.Forms.Label();
+            this.PrefBiala2hL = new System.Windows.Forms.Label();
+            this.BazaBiala2hL = new System.Windows.Forms.Label();
+            this.SufBiala2hL = new System.Windows.Forms.Label();
+            this.PrefPalna1hL = new System.Windows.Forms.Label();
+            this.BazaPalna1hL = new System.Windows.Forms.Label();
+            this.SufPalna1hL = new System.Windows.Forms.Label();
+            this.PrefPalna2hL = new System.Windows.Forms.Label();
+            this.BazaPalna2hL = new System.Windows.Forms.Label();
+            this.SufPalna2hL = new System.Windows.Forms.Label();
+            this.PrefDystansL = new System.Windows.Forms.Label();
+            this.BazaDystansL = new System.Windows.Forms.Label();
+            this.SufDystansL = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -371,6 +400,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.SufHelmL);
+            this.tabPage1.Controls.Add(this.BazaHelmL);
             this.tabPage1.Controls.Add(this.PrefHelmL);
             this.tabPage1.Controls.Add(this.sufHelmPanel);
             this.tabPage1.Controls.Add(this.bazaHelmPanel);
@@ -391,13 +422,22 @@
             this.tabPage1.Text = "Hełm";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // PrefHelmL
+            // 
+            this.PrefHelmL.Location = new System.Drawing.Point(686, 41);
+            this.PrefHelmL.Name = "PrefHelmL";
+            this.PrefHelmL.Size = new System.Drawing.Size(150, 29);
+            this.PrefHelmL.TabIndex = 10;
+            this.PrefHelmL.Text = " ";
+            this.PrefHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // sufHelmPanel
             // 
             this.sufHelmPanel.BackColor = System.Drawing.Color.Gainsboro;
             this.sufHelmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufHelmPanel.Controls.Add(this.sufHelmPanelLabel);
             this.sufHelmPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufHelmPanel.Location = new System.Drawing.Point(1004, 141);
+            this.sufHelmPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufHelmPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufHelmPanel.Name = "sufHelmPanel";
             this.sufHelmPanel.Size = new System.Drawing.Size(151, 84);
@@ -421,7 +461,7 @@
             this.bazaHelmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaHelmPanel.Controls.Add(this.bazaHelmPanelLabel);
             this.bazaHelmPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaHelmPanel.Location = new System.Drawing.Point(845, 141);
+            this.bazaHelmPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaHelmPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaHelmPanel.Name = "bazaHelmPanel";
             this.bazaHelmPanel.Size = new System.Drawing.Size(151, 84);
@@ -445,7 +485,7 @@
             this.prefHelmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefHelmPanel.Controls.Add(this.prefHelmPanelLabel);
             this.prefHelmPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefHelmPanel.Location = new System.Drawing.Point(686, 141);
+            this.prefHelmPanel.Location = new System.Drawing.Point(686, 120);
             this.prefHelmPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefHelmPanel.Name = "prefHelmPanel";
             this.prefHelmPanel.Size = new System.Drawing.Size(151, 84);
@@ -586,7 +626,7 @@
             // helmDodaj
             // 
             this.helmDodaj.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helmDodaj.Location = new System.Drawing.Point(845, 87);
+            this.helmDodaj.Location = new System.Drawing.Point(845, 74);
             this.helmDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.helmDodaj.Name = "helmDodaj";
             this.helmDodaj.Size = new System.Drawing.Size(151, 38);
@@ -604,6 +644,7 @@
             this.cbHelmSuf.Name = "cbHelmSuf";
             this.cbHelmSuf.Size = new System.Drawing.Size(150, 29);
             this.cbHelmSuf.TabIndex = 3;
+            this.cbHelmSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbHelmBaza
             // 
@@ -614,6 +655,7 @@
             this.cbHelmBaza.Name = "cbHelmBaza";
             this.cbHelmBaza.Size = new System.Drawing.Size(150, 29);
             this.cbHelmBaza.TabIndex = 2;
+            this.cbHelmBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbHelmPref
             // 
@@ -624,7 +666,7 @@
             this.cbHelmPref.Name = "cbHelmPref";
             this.cbHelmPref.Size = new System.Drawing.Size(150, 29);
             this.cbHelmPref.TabIndex = 1;
-            this.cbHelmPref.TextChanged += new System.EventHandler(this.Label_TextChanged);
+            this.cbHelmPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // helmWynik
             // 
@@ -639,6 +681,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.SufZbrojaL);
+            this.tabPage2.Controls.Add(this.BazaZbrojaL);
+            this.tabPage2.Controls.Add(this.PrefZbrojaL);
             this.tabPage2.Controls.Add(this.sufZbrojaPanel);
             this.tabPage2.Controls.Add(this.bazaZbrojaPanel);
             this.tabPage2.Controls.Add(this.prefZbrojaPanel);
@@ -664,7 +709,7 @@
             this.sufZbrojaPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufZbrojaPanel.Controls.Add(this.sufZbrojaPanelLabel);
             this.sufZbrojaPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufZbrojaPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufZbrojaPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufZbrojaPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufZbrojaPanel.Name = "sufZbrojaPanel";
             this.sufZbrojaPanel.Size = new System.Drawing.Size(151, 84);
@@ -688,7 +733,7 @@
             this.bazaZbrojaPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaZbrojaPanel.Controls.Add(this.bazaZbrojaPanelLabel);
             this.bazaZbrojaPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaZbrojaPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaZbrojaPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaZbrojaPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaZbrojaPanel.Name = "bazaZbrojaPanel";
             this.bazaZbrojaPanel.Size = new System.Drawing.Size(151, 84);
@@ -712,7 +757,7 @@
             this.prefZbrojaPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefZbrojaPanel.Controls.Add(this.prefZbrojaPanelLabel);
             this.prefZbrojaPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefZbrojaPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefZbrojaPanel.Location = new System.Drawing.Point(686, 120);
             this.prefZbrojaPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefZbrojaPanel.Name = "prefZbrojaPanel";
             this.prefZbrojaPanel.Size = new System.Drawing.Size(151, 84);
@@ -852,7 +897,7 @@
             // 
             // zbrojaDodaj
             // 
-            this.zbrojaDodaj.Location = new System.Drawing.Point(845, 46);
+            this.zbrojaDodaj.Location = new System.Drawing.Point(845, 74);
             this.zbrojaDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.zbrojaDodaj.Name = "zbrojaDodaj";
             this.zbrojaDodaj.Size = new System.Drawing.Size(151, 38);
@@ -870,6 +915,7 @@
             this.cbZbrojaSuf.Name = "cbZbrojaSuf";
             this.cbZbrojaSuf.Size = new System.Drawing.Size(150, 29);
             this.cbZbrojaSuf.TabIndex = 8;
+            this.cbZbrojaSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbZbrojaBaza
             // 
@@ -880,6 +926,7 @@
             this.cbZbrojaBaza.Name = "cbZbrojaBaza";
             this.cbZbrojaBaza.Size = new System.Drawing.Size(150, 29);
             this.cbZbrojaBaza.TabIndex = 7;
+            this.cbZbrojaBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbZbrojaPref
             // 
@@ -890,6 +937,7 @@
             this.cbZbrojaPref.Name = "cbZbrojaPref";
             this.cbZbrojaPref.Size = new System.Drawing.Size(150, 29);
             this.cbZbrojaPref.TabIndex = 6;
+            this.cbZbrojaPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // zbrojaWynik
             // 
@@ -904,6 +952,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.SufSpodnieL);
+            this.tabPage3.Controls.Add(this.BazaSpodnieL);
+            this.tabPage3.Controls.Add(this.PrefSpodnieL);
             this.tabPage3.Controls.Add(this.sufSpodniePanel);
             this.tabPage3.Controls.Add(this.bazaSpodniePanel);
             this.tabPage3.Controls.Add(this.prefSpodniePanel);
@@ -928,7 +979,7 @@
             this.sufSpodniePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufSpodniePanel.Controls.Add(this.sufSpodniePanelLabel);
             this.sufSpodniePanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufSpodniePanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufSpodniePanel.Location = new System.Drawing.Point(1004, 120);
             this.sufSpodniePanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufSpodniePanel.Name = "sufSpodniePanel";
             this.sufSpodniePanel.Size = new System.Drawing.Size(151, 84);
@@ -952,7 +1003,7 @@
             this.bazaSpodniePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaSpodniePanel.Controls.Add(this.bazaSpodniePanelLabel);
             this.bazaSpodniePanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaSpodniePanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaSpodniePanel.Location = new System.Drawing.Point(845, 120);
             this.bazaSpodniePanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaSpodniePanel.Name = "bazaSpodniePanel";
             this.bazaSpodniePanel.Size = new System.Drawing.Size(151, 84);
@@ -976,7 +1027,7 @@
             this.prefSpodniePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefSpodniePanel.Controls.Add(this.prefSpodniePanelLabel);
             this.prefSpodniePanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefSpodniePanel.Location = new System.Drawing.Point(686, 100);
+            this.prefSpodniePanel.Location = new System.Drawing.Point(686, 120);
             this.prefSpodniePanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefSpodniePanel.Name = "prefSpodniePanel";
             this.prefSpodniePanel.Size = new System.Drawing.Size(151, 84);
@@ -1116,7 +1167,7 @@
             // 
             // spodnieDodaj
             // 
-            this.spodnieDodaj.Location = new System.Drawing.Point(845, 46);
+            this.spodnieDodaj.Location = new System.Drawing.Point(845, 74);
             this.spodnieDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.spodnieDodaj.Name = "spodnieDodaj";
             this.spodnieDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1134,6 +1185,7 @@
             this.cbSpodnieSuf.Name = "cbSpodnieSuf";
             this.cbSpodnieSuf.Size = new System.Drawing.Size(150, 29);
             this.cbSpodnieSuf.TabIndex = 13;
+            this.cbSpodnieSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbSpodnieBaza
             // 
@@ -1144,6 +1196,7 @@
             this.cbSpodnieBaza.Name = "cbSpodnieBaza";
             this.cbSpodnieBaza.Size = new System.Drawing.Size(150, 29);
             this.cbSpodnieBaza.TabIndex = 12;
+            this.cbSpodnieBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbSpodniePref
             // 
@@ -1154,6 +1207,7 @@
             this.cbSpodniePref.Name = "cbSpodniePref";
             this.cbSpodniePref.Size = new System.Drawing.Size(150, 29);
             this.cbSpodniePref.TabIndex = 11;
+            this.cbSpodniePref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // spodnieWynik
             // 
@@ -1168,6 +1222,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.SufPierscienL);
+            this.tabPage4.Controls.Add(this.BazaPierscienL);
+            this.tabPage4.Controls.Add(this.PrefPierscienL);
             this.tabPage4.Controls.Add(this.sufPierscienPanel);
             this.tabPage4.Controls.Add(this.bazaPierscienPanel);
             this.tabPage4.Controls.Add(this.prefPierscienPanel);
@@ -1192,7 +1249,7 @@
             this.sufPierscienPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufPierscienPanel.Controls.Add(this.sufPierscienPanelLabel);
             this.sufPierscienPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufPierscienPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufPierscienPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufPierscienPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufPierscienPanel.Name = "sufPierscienPanel";
             this.sufPierscienPanel.Size = new System.Drawing.Size(151, 84);
@@ -1216,7 +1273,7 @@
             this.bazaPierscienPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaPierscienPanel.Controls.Add(this.bazaPierscienPanelLabel);
             this.bazaPierscienPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaPierscienPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaPierscienPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaPierscienPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaPierscienPanel.Name = "bazaPierscienPanel";
             this.bazaPierscienPanel.Size = new System.Drawing.Size(151, 84);
@@ -1240,7 +1297,7 @@
             this.prefPierscienPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefPierscienPanel.Controls.Add(this.prefPierscienPanelLabel);
             this.prefPierscienPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefPierscienPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefPierscienPanel.Location = new System.Drawing.Point(686, 120);
             this.prefPierscienPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefPierscienPanel.Name = "prefPierscienPanel";
             this.prefPierscienPanel.Size = new System.Drawing.Size(151, 84);
@@ -1380,7 +1437,7 @@
             // 
             // pierscienDodaj
             // 
-            this.pierscienDodaj.Location = new System.Drawing.Point(845, 46);
+            this.pierscienDodaj.Location = new System.Drawing.Point(845, 74);
             this.pierscienDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.pierscienDodaj.Name = "pierscienDodaj";
             this.pierscienDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1398,6 +1455,7 @@
             this.cbPierscienSuf.Name = "cbPierscienSuf";
             this.cbPierscienSuf.Size = new System.Drawing.Size(150, 29);
             this.cbPierscienSuf.TabIndex = 18;
+            this.cbPierscienSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPierscienBaza
             // 
@@ -1408,6 +1466,7 @@
             this.cbPierscienBaza.Name = "cbPierscienBaza";
             this.cbPierscienBaza.Size = new System.Drawing.Size(150, 29);
             this.cbPierscienBaza.TabIndex = 17;
+            this.cbPierscienBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPierscienPref
             // 
@@ -1418,6 +1477,7 @@
             this.cbPierscienPref.Name = "cbPierscienPref";
             this.cbPierscienPref.Size = new System.Drawing.Size(150, 29);
             this.cbPierscienPref.TabIndex = 16;
+            this.cbPierscienPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // pierscienWynik
             // 
@@ -1432,6 +1492,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.SufAmuletL);
+            this.tabPage5.Controls.Add(this.BazaAmuletL);
+            this.tabPage5.Controls.Add(this.PrefAmuletL);
             this.tabPage5.Controls.Add(this.sufAmuletPanel);
             this.tabPage5.Controls.Add(this.bazaAmuletPanel);
             this.tabPage5.Controls.Add(this.prefAmuletPanel);
@@ -1456,7 +1519,7 @@
             this.sufAmuletPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufAmuletPanel.Controls.Add(this.sufAmuletPanelLabel);
             this.sufAmuletPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufAmuletPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufAmuletPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufAmuletPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufAmuletPanel.Name = "sufAmuletPanel";
             this.sufAmuletPanel.Size = new System.Drawing.Size(151, 84);
@@ -1480,7 +1543,7 @@
             this.bazaAmuletPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaAmuletPanel.Controls.Add(this.bazaAmuletPanelLabel);
             this.bazaAmuletPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaAmuletPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaAmuletPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaAmuletPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaAmuletPanel.Name = "bazaAmuletPanel";
             this.bazaAmuletPanel.Size = new System.Drawing.Size(151, 84);
@@ -1504,7 +1567,7 @@
             this.prefAmuletPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefAmuletPanel.Controls.Add(this.prefAmuletPanelLabel);
             this.prefAmuletPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefAmuletPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefAmuletPanel.Location = new System.Drawing.Point(686, 120);
             this.prefAmuletPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefAmuletPanel.Name = "prefAmuletPanel";
             this.prefAmuletPanel.Size = new System.Drawing.Size(151, 84);
@@ -1644,7 +1707,7 @@
             // 
             // amuletDodaj
             // 
-            this.amuletDodaj.Location = new System.Drawing.Point(845, 46);
+            this.amuletDodaj.Location = new System.Drawing.Point(845, 74);
             this.amuletDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.amuletDodaj.Name = "amuletDodaj";
             this.amuletDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1662,6 +1725,7 @@
             this.cbAmuletSuf.Name = "cbAmuletSuf";
             this.cbAmuletSuf.Size = new System.Drawing.Size(150, 29);
             this.cbAmuletSuf.TabIndex = 23;
+            this.cbAmuletSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbAmuletBaza
             // 
@@ -1672,6 +1736,7 @@
             this.cbAmuletBaza.Name = "cbAmuletBaza";
             this.cbAmuletBaza.Size = new System.Drawing.Size(150, 29);
             this.cbAmuletBaza.TabIndex = 22;
+            this.cbAmuletBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbAmuletPref
             // 
@@ -1682,6 +1747,7 @@
             this.cbAmuletPref.Name = "cbAmuletPref";
             this.cbAmuletPref.Size = new System.Drawing.Size(150, 29);
             this.cbAmuletPref.TabIndex = 21;
+            this.cbAmuletPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // amuletWynik
             // 
@@ -1696,6 +1762,9 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.SufBiala1hL);
+            this.tabPage6.Controls.Add(this.BazaBiala1hL);
+            this.tabPage6.Controls.Add(this.PrefBiala1hL);
             this.tabPage6.Controls.Add(this.sufBiala1hPanel);
             this.tabPage6.Controls.Add(this.bazaBiala1hPanel);
             this.tabPage6.Controls.Add(this.prefBiala1hPanel);
@@ -1720,7 +1789,7 @@
             this.sufBiala1hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufBiala1hPanel.Controls.Add(this.sufBiala1hPanelLabel);
             this.sufBiala1hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufBiala1hPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufBiala1hPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufBiala1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufBiala1hPanel.Name = "sufBiala1hPanel";
             this.sufBiala1hPanel.Size = new System.Drawing.Size(151, 84);
@@ -1744,7 +1813,7 @@
             this.bazaBiala1hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaBiala1hPanel.Controls.Add(this.bazaBiala1hPanelLabel);
             this.bazaBiala1hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaBiala1hPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaBiala1hPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaBiala1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaBiala1hPanel.Name = "bazaBiala1hPanel";
             this.bazaBiala1hPanel.Size = new System.Drawing.Size(151, 84);
@@ -1768,7 +1837,7 @@
             this.prefBiala1hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefBiala1hPanel.Controls.Add(this.prefBiala1hPanelLabel);
             this.prefBiala1hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefBiala1hPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefBiala1hPanel.Location = new System.Drawing.Point(686, 120);
             this.prefBiala1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefBiala1hPanel.Name = "prefBiala1hPanel";
             this.prefBiala1hPanel.Size = new System.Drawing.Size(151, 84);
@@ -1908,7 +1977,7 @@
             // 
             // biala1hDodaj
             // 
-            this.biala1hDodaj.Location = new System.Drawing.Point(845, 46);
+            this.biala1hDodaj.Location = new System.Drawing.Point(845, 74);
             this.biala1hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.biala1hDodaj.Name = "biala1hDodaj";
             this.biala1hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1926,6 +1995,7 @@
             this.cbBiala1hSuf.Name = "cbBiala1hSuf";
             this.cbBiala1hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbBiala1hSuf.TabIndex = 28;
+            this.cbBiala1hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala1hBaza
             // 
@@ -1936,6 +2006,7 @@
             this.cbBiala1hBaza.Name = "cbBiala1hBaza";
             this.cbBiala1hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbBiala1hBaza.TabIndex = 27;
+            this.cbBiala1hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala1hPref
             // 
@@ -1946,6 +2017,7 @@
             this.cbBiala1hPref.Name = "cbBiala1hPref";
             this.cbBiala1hPref.Size = new System.Drawing.Size(150, 29);
             this.cbBiala1hPref.TabIndex = 26;
+            this.cbBiala1hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // biala1hWynik
             // 
@@ -1960,6 +2032,9 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.SufBiala2hL);
+            this.tabPage7.Controls.Add(this.BazaBiala2hL);
+            this.tabPage7.Controls.Add(this.PrefBiala2hL);
             this.tabPage7.Controls.Add(this.sufBiala2hPanel);
             this.tabPage7.Controls.Add(this.bazaBiala2hPanel);
             this.tabPage7.Controls.Add(this.prefBiala2hPanel);
@@ -1984,7 +2059,7 @@
             this.sufBiala2hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufBiala2hPanel.Controls.Add(this.sufBiala2hPanelLabel);
             this.sufBiala2hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufBiala2hPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufBiala2hPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufBiala2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufBiala2hPanel.Name = "sufBiala2hPanel";
             this.sufBiala2hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2008,7 +2083,7 @@
             this.bazaBiala2hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaBiala2hPanel.Controls.Add(this.bazaBiala2hPanelLabel);
             this.bazaBiala2hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaBiala2hPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaBiala2hPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaBiala2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaBiala2hPanel.Name = "bazaBiala2hPanel";
             this.bazaBiala2hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2032,7 +2107,7 @@
             this.prefBiala2hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefBiala2hPanel.Controls.Add(this.prefBiala2hPanelLabel);
             this.prefBiala2hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefBiala2hPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefBiala2hPanel.Location = new System.Drawing.Point(686, 120);
             this.prefBiala2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefBiala2hPanel.Name = "prefBiala2hPanel";
             this.prefBiala2hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2172,7 +2247,7 @@
             // 
             // biala2hDodaj
             // 
-            this.biala2hDodaj.Location = new System.Drawing.Point(845, 46);
+            this.biala2hDodaj.Location = new System.Drawing.Point(845, 74);
             this.biala2hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.biala2hDodaj.Name = "biala2hDodaj";
             this.biala2hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2190,6 +2265,7 @@
             this.cbBiala2hSuf.Name = "cbBiala2hSuf";
             this.cbBiala2hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbBiala2hSuf.TabIndex = 33;
+            this.cbBiala2hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala2hBaza
             // 
@@ -2200,6 +2276,7 @@
             this.cbBiala2hBaza.Name = "cbBiala2hBaza";
             this.cbBiala2hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbBiala2hBaza.TabIndex = 32;
+            this.cbBiala2hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala2hPref
             // 
@@ -2210,6 +2287,7 @@
             this.cbBiala2hPref.Name = "cbBiala2hPref";
             this.cbBiala2hPref.Size = new System.Drawing.Size(150, 29);
             this.cbBiala2hPref.TabIndex = 31;
+            this.cbBiala2hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // biala2hWynik
             // 
@@ -2224,6 +2302,9 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.SufPalna1hL);
+            this.tabPage8.Controls.Add(this.BazaPalna1hL);
+            this.tabPage8.Controls.Add(this.PrefPalna1hL);
             this.tabPage8.Controls.Add(this.sufPalna1hPanel);
             this.tabPage8.Controls.Add(this.bazaPalna1hPanel);
             this.tabPage8.Controls.Add(this.prefPalna1hPanel);
@@ -2248,7 +2329,7 @@
             this.sufPalna1hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufPalna1hPanel.Controls.Add(this.sufPalna1hPanelLabel);
             this.sufPalna1hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufPalna1hPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufPalna1hPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufPalna1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufPalna1hPanel.Name = "sufPalna1hPanel";
             this.sufPalna1hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2272,7 +2353,7 @@
             this.bazaPalna1hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaPalna1hPanel.Controls.Add(this.bazaPalna1hPanelLabel);
             this.bazaPalna1hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaPalna1hPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaPalna1hPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaPalna1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaPalna1hPanel.Name = "bazaPalna1hPanel";
             this.bazaPalna1hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2296,7 +2377,7 @@
             this.prefPalna1hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefPalna1hPanel.Controls.Add(this.prefPalna1hPanelLabel);
             this.prefPalna1hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefPalna1hPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefPalna1hPanel.Location = new System.Drawing.Point(686, 120);
             this.prefPalna1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefPalna1hPanel.Name = "prefPalna1hPanel";
             this.prefPalna1hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2436,7 +2517,7 @@
             // 
             // palna1hDodaj
             // 
-            this.palna1hDodaj.Location = new System.Drawing.Point(845, 46);
+            this.palna1hDodaj.Location = new System.Drawing.Point(845, 74);
             this.palna1hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.palna1hDodaj.Name = "palna1hDodaj";
             this.palna1hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2454,6 +2535,7 @@
             this.cbPalna1hSuf.Name = "cbPalna1hSuf";
             this.cbPalna1hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbPalna1hSuf.TabIndex = 38;
+            this.cbPalna1hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna1hBaza
             // 
@@ -2464,6 +2546,7 @@
             this.cbPalna1hBaza.Name = "cbPalna1hBaza";
             this.cbPalna1hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbPalna1hBaza.TabIndex = 37;
+            this.cbPalna1hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna1hPref
             // 
@@ -2474,6 +2557,7 @@
             this.cbPalna1hPref.Name = "cbPalna1hPref";
             this.cbPalna1hPref.Size = new System.Drawing.Size(150, 29);
             this.cbPalna1hPref.TabIndex = 36;
+            this.cbPalna1hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // palna1hWynik
             // 
@@ -2488,6 +2572,9 @@
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.SufPalna2hL);
+            this.tabPage9.Controls.Add(this.BazaPalna2hL);
+            this.tabPage9.Controls.Add(this.PrefPalna2hL);
             this.tabPage9.Controls.Add(this.sufPalna2hPanel);
             this.tabPage9.Controls.Add(this.bazaPalna2hPanel);
             this.tabPage9.Controls.Add(this.prefPalna2hPanel);
@@ -2512,7 +2599,7 @@
             this.sufPalna2hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufPalna2hPanel.Controls.Add(this.sufPalna2hPanelLabel);
             this.sufPalna2hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufPalna2hPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufPalna2hPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufPalna2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufPalna2hPanel.Name = "sufPalna2hPanel";
             this.sufPalna2hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2536,7 +2623,7 @@
             this.bazaPalna2hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaPalna2hPanel.Controls.Add(this.bazaPalna2hPanelLabel);
             this.bazaPalna2hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaPalna2hPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaPalna2hPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaPalna2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaPalna2hPanel.Name = "bazaPalna2hPanel";
             this.bazaPalna2hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2560,7 +2647,7 @@
             this.prefPalna2hPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefPalna2hPanel.Controls.Add(this.prefPalna2hPanelLabel);
             this.prefPalna2hPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefPalna2hPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefPalna2hPanel.Location = new System.Drawing.Point(686, 120);
             this.prefPalna2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefPalna2hPanel.Name = "prefPalna2hPanel";
             this.prefPalna2hPanel.Size = new System.Drawing.Size(151, 84);
@@ -2700,7 +2787,7 @@
             // 
             // palna2hDodaj
             // 
-            this.palna2hDodaj.Location = new System.Drawing.Point(845, 46);
+            this.palna2hDodaj.Location = new System.Drawing.Point(845, 74);
             this.palna2hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.palna2hDodaj.Name = "palna2hDodaj";
             this.palna2hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2718,6 +2805,7 @@
             this.cbPalna2hSuf.Name = "cbPalna2hSuf";
             this.cbPalna2hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbPalna2hSuf.TabIndex = 43;
+            this.cbPalna2hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna2hBaza
             // 
@@ -2728,6 +2816,7 @@
             this.cbPalna2hBaza.Name = "cbPalna2hBaza";
             this.cbPalna2hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbPalna2hBaza.TabIndex = 42;
+            this.cbPalna2hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna2hPref
             // 
@@ -2738,6 +2827,7 @@
             this.cbPalna2hPref.Name = "cbPalna2hPref";
             this.cbPalna2hPref.Size = new System.Drawing.Size(150, 29);
             this.cbPalna2hPref.TabIndex = 41;
+            this.cbPalna2hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // palna2hWynik
             // 
@@ -2752,6 +2842,9 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.SufDystansL);
+            this.tabPage10.Controls.Add(this.BazaDystansL);
+            this.tabPage10.Controls.Add(this.PrefDystansL);
             this.tabPage10.Controls.Add(this.sufDystansPanel);
             this.tabPage10.Controls.Add(this.bazaDystansPanel);
             this.tabPage10.Controls.Add(this.prefDystansPanel);
@@ -2776,7 +2869,7 @@
             this.sufDystansPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sufDystansPanel.Controls.Add(this.sufDystansPanelLabel);
             this.sufDystansPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.sufDystansPanel.Location = new System.Drawing.Point(1004, 100);
+            this.sufDystansPanel.Location = new System.Drawing.Point(1004, 120);
             this.sufDystansPanel.Margin = new System.Windows.Forms.Padding(4);
             this.sufDystansPanel.Name = "sufDystansPanel";
             this.sufDystansPanel.Size = new System.Drawing.Size(151, 84);
@@ -2800,7 +2893,7 @@
             this.bazaDystansPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bazaDystansPanel.Controls.Add(this.bazaDystansPanelLabel);
             this.bazaDystansPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bazaDystansPanel.Location = new System.Drawing.Point(845, 100);
+            this.bazaDystansPanel.Location = new System.Drawing.Point(845, 120);
             this.bazaDystansPanel.Margin = new System.Windows.Forms.Padding(4);
             this.bazaDystansPanel.Name = "bazaDystansPanel";
             this.bazaDystansPanel.Size = new System.Drawing.Size(151, 84);
@@ -2824,7 +2917,7 @@
             this.prefDystansPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.prefDystansPanel.Controls.Add(this.prefDystansPanelLabel);
             this.prefDystansPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.prefDystansPanel.Location = new System.Drawing.Point(686, 100);
+            this.prefDystansPanel.Location = new System.Drawing.Point(686, 120);
             this.prefDystansPanel.Margin = new System.Windows.Forms.Padding(4);
             this.prefDystansPanel.Name = "prefDystansPanel";
             this.prefDystansPanel.Size = new System.Drawing.Size(151, 84);
@@ -2964,7 +3057,7 @@
             // 
             // dystansDodaj
             // 
-            this.dystansDodaj.Location = new System.Drawing.Point(845, 46);
+            this.dystansDodaj.Location = new System.Drawing.Point(845, 74);
             this.dystansDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.dystansDodaj.Name = "dystansDodaj";
             this.dystansDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2982,6 +3075,7 @@
             this.cbDystansSuf.Name = "cbDystansSuf";
             this.cbDystansSuf.Size = new System.Drawing.Size(150, 29);
             this.cbDystansSuf.TabIndex = 38;
+            this.cbDystansSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbDystansBaza
             // 
@@ -2992,6 +3086,7 @@
             this.cbDystansBaza.Name = "cbDystansBaza";
             this.cbDystansBaza.Size = new System.Drawing.Size(150, 29);
             this.cbDystansBaza.TabIndex = 37;
+            this.cbDystansBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbDystansPref
             // 
@@ -3002,6 +3097,7 @@
             this.cbDystansPref.Name = "cbDystansPref";
             this.cbDystansPref.Size = new System.Drawing.Size(150, 29);
             this.cbDystansPref.TabIndex = 36;
+            this.cbDystansPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // dystansWynik
             // 
@@ -3331,14 +3427,266 @@
             this.wyczyśćToolStripMenuItem.Text = "Wyczyść";
             this.wyczyśćToolStripMenuItem.Click += new System.EventHandler(this.wyczyśćToolStripMenuItem_Click);
             // 
-            // PrefHelmL
+            // BazaHelmL
             // 
-            this.PrefHelmL.Location = new System.Drawing.Point(686, 41);
-            this.PrefHelmL.Name = "PrefHelmL";
-            this.PrefHelmL.Size = new System.Drawing.Size(150, 29);
-            this.PrefHelmL.TabIndex = 10;
-            this.PrefHelmL.Text = " ";
-            this.PrefHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.BazaHelmL.Location = new System.Drawing.Point(845, 41);
+            this.BazaHelmL.Name = "BazaHelmL";
+            this.BazaHelmL.Size = new System.Drawing.Size(150, 29);
+            this.BazaHelmL.TabIndex = 11;
+            this.BazaHelmL.Text = " ";
+            this.BazaHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufHelmL
+            // 
+            this.SufHelmL.Location = new System.Drawing.Point(1004, 41);
+            this.SufHelmL.Name = "SufHelmL";
+            this.SufHelmL.Size = new System.Drawing.Size(150, 29);
+            this.SufHelmL.TabIndex = 12;
+            this.SufHelmL.Text = " ";
+            this.SufHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufZbrojaL
+            // 
+            this.SufZbrojaL.Location = new System.Drawing.Point(1004, 41);
+            this.SufZbrojaL.Name = "SufZbrojaL";
+            this.SufZbrojaL.Size = new System.Drawing.Size(150, 29);
+            this.SufZbrojaL.TabIndex = 15;
+            this.SufZbrojaL.Text = " ";
+            this.SufZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaZbrojaL
+            // 
+            this.BazaZbrojaL.Location = new System.Drawing.Point(845, 41);
+            this.BazaZbrojaL.Name = "BazaZbrojaL";
+            this.BazaZbrojaL.Size = new System.Drawing.Size(150, 29);
+            this.BazaZbrojaL.TabIndex = 14;
+            this.BazaZbrojaL.Text = " ";
+            this.BazaZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefZbrojaL
+            // 
+            this.PrefZbrojaL.Location = new System.Drawing.Point(686, 41);
+            this.PrefZbrojaL.Name = "PrefZbrojaL";
+            this.PrefZbrojaL.Size = new System.Drawing.Size(150, 29);
+            this.PrefZbrojaL.TabIndex = 13;
+            this.PrefZbrojaL.Text = " ";
+            this.PrefZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefSpodnieL
+            // 
+            this.PrefSpodnieL.Location = new System.Drawing.Point(686, 41);
+            this.PrefSpodnieL.Name = "PrefSpodnieL";
+            this.PrefSpodnieL.Size = new System.Drawing.Size(150, 29);
+            this.PrefSpodnieL.TabIndex = 19;
+            this.PrefSpodnieL.Text = " ";
+            this.PrefSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaSpodnieL
+            // 
+            this.BazaSpodnieL.Location = new System.Drawing.Point(845, 41);
+            this.BazaSpodnieL.Name = "BazaSpodnieL";
+            this.BazaSpodnieL.Size = new System.Drawing.Size(150, 29);
+            this.BazaSpodnieL.TabIndex = 20;
+            this.BazaSpodnieL.Text = " ";
+            this.BazaSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufSpodnieL
+            // 
+            this.SufSpodnieL.Location = new System.Drawing.Point(1004, 41);
+            this.SufSpodnieL.Name = "SufSpodnieL";
+            this.SufSpodnieL.Size = new System.Drawing.Size(150, 29);
+            this.SufSpodnieL.TabIndex = 21;
+            this.SufSpodnieL.Text = " ";
+            this.SufSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefPierscienL
+            // 
+            this.PrefPierscienL.Location = new System.Drawing.Point(686, 41);
+            this.PrefPierscienL.Name = "PrefPierscienL";
+            this.PrefPierscienL.Size = new System.Drawing.Size(150, 29);
+            this.PrefPierscienL.TabIndex = 24;
+            this.PrefPierscienL.Text = " ";
+            this.PrefPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaPierscienL
+            // 
+            this.BazaPierscienL.Location = new System.Drawing.Point(845, 41);
+            this.BazaPierscienL.Name = "BazaPierscienL";
+            this.BazaPierscienL.Size = new System.Drawing.Size(150, 29);
+            this.BazaPierscienL.TabIndex = 25;
+            this.BazaPierscienL.Text = " ";
+            this.BazaPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufPierscienL
+            // 
+            this.SufPierscienL.Location = new System.Drawing.Point(1004, 41);
+            this.SufPierscienL.Name = "SufPierscienL";
+            this.SufPierscienL.Size = new System.Drawing.Size(150, 29);
+            this.SufPierscienL.TabIndex = 26;
+            this.SufPierscienL.Text = " ";
+            this.SufPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefAmuletL
+            // 
+            this.PrefAmuletL.Location = new System.Drawing.Point(686, 41);
+            this.PrefAmuletL.Name = "PrefAmuletL";
+            this.PrefAmuletL.Size = new System.Drawing.Size(150, 29);
+            this.PrefAmuletL.TabIndex = 29;
+            this.PrefAmuletL.Text = " ";
+            this.PrefAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaAmuletL
+            // 
+            this.BazaAmuletL.Location = new System.Drawing.Point(845, 41);
+            this.BazaAmuletL.Name = "BazaAmuletL";
+            this.BazaAmuletL.Size = new System.Drawing.Size(150, 29);
+            this.BazaAmuletL.TabIndex = 30;
+            this.BazaAmuletL.Text = " ";
+            this.BazaAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufAmuletL
+            // 
+            this.SufAmuletL.Location = new System.Drawing.Point(1004, 41);
+            this.SufAmuletL.Name = "SufAmuletL";
+            this.SufAmuletL.Size = new System.Drawing.Size(150, 29);
+            this.SufAmuletL.TabIndex = 31;
+            this.SufAmuletL.Text = " ";
+            this.SufAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefBiala1hL
+            // 
+            this.PrefBiala1hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefBiala1hL.Name = "PrefBiala1hL";
+            this.PrefBiala1hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefBiala1hL.TabIndex = 34;
+            this.PrefBiala1hL.Text = " ";
+            this.PrefBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaBiala1hL
+            // 
+            this.BazaBiala1hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaBiala1hL.Name = "BazaBiala1hL";
+            this.BazaBiala1hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaBiala1hL.TabIndex = 35;
+            this.BazaBiala1hL.Text = " ";
+            this.BazaBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufBiala1hL
+            // 
+            this.SufBiala1hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufBiala1hL.Name = "SufBiala1hL";
+            this.SufBiala1hL.Size = new System.Drawing.Size(150, 29);
+            this.SufBiala1hL.TabIndex = 36;
+            this.SufBiala1hL.Text = " ";
+            this.SufBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefBiala2hL
+            // 
+            this.PrefBiala2hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefBiala2hL.Name = "PrefBiala2hL";
+            this.PrefBiala2hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefBiala2hL.TabIndex = 39;
+            this.PrefBiala2hL.Text = " ";
+            this.PrefBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaBiala2hL
+            // 
+            this.BazaBiala2hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaBiala2hL.Name = "BazaBiala2hL";
+            this.BazaBiala2hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaBiala2hL.TabIndex = 40;
+            this.BazaBiala2hL.Text = " ";
+            this.BazaBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufBiala2hL
+            // 
+            this.SufBiala2hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufBiala2hL.Name = "SufBiala2hL";
+            this.SufBiala2hL.Size = new System.Drawing.Size(150, 29);
+            this.SufBiala2hL.TabIndex = 41;
+            this.SufBiala2hL.Text = " ";
+            this.SufBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefPalna1hL
+            // 
+            this.PrefPalna1hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefPalna1hL.Name = "PrefPalna1hL";
+            this.PrefPalna1hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefPalna1hL.TabIndex = 44;
+            this.PrefPalna1hL.Text = " ";
+            this.PrefPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaPalna1hL
+            // 
+            this.BazaPalna1hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaPalna1hL.Name = "BazaPalna1hL";
+            this.BazaPalna1hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaPalna1hL.TabIndex = 45;
+            this.BazaPalna1hL.Text = " ";
+            this.BazaPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufPalna1hL
+            // 
+            this.SufPalna1hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufPalna1hL.Name = "SufPalna1hL";
+            this.SufPalna1hL.Size = new System.Drawing.Size(150, 29);
+            this.SufPalna1hL.TabIndex = 46;
+            this.SufPalna1hL.Text = " ";
+            this.SufPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefPalna2hL
+            // 
+            this.PrefPalna2hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefPalna2hL.Name = "PrefPalna2hL";
+            this.PrefPalna2hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefPalna2hL.TabIndex = 49;
+            this.PrefPalna2hL.Text = " ";
+            this.PrefPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaPalna2hL
+            // 
+            this.BazaPalna2hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaPalna2hL.Name = "BazaPalna2hL";
+            this.BazaPalna2hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaPalna2hL.TabIndex = 50;
+            this.BazaPalna2hL.Text = " ";
+            this.BazaPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufPalna2hL
+            // 
+            this.SufPalna2hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufPalna2hL.Name = "SufPalna2hL";
+            this.SufPalna2hL.Size = new System.Drawing.Size(150, 29);
+            this.SufPalna2hL.TabIndex = 51;
+            this.SufPalna2hL.Text = " ";
+            this.SufPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefDystansL
+            // 
+            this.PrefDystansL.Location = new System.Drawing.Point(686, 41);
+            this.PrefDystansL.Name = "PrefDystansL";
+            this.PrefDystansL.Size = new System.Drawing.Size(150, 29);
+            this.PrefDystansL.TabIndex = 52;
+            this.PrefDystansL.Text = " ";
+            this.PrefDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaDystansL
+            // 
+            this.BazaDystansL.Location = new System.Drawing.Point(845, 41);
+            this.BazaDystansL.Name = "BazaDystansL";
+            this.BazaDystansL.Size = new System.Drawing.Size(150, 29);
+            this.BazaDystansL.TabIndex = 53;
+            this.BazaDystansL.Text = " ";
+            this.BazaDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SufDystansL
+            // 
+            this.SufDystansL.Location = new System.Drawing.Point(1004, 41);
+            this.SufDystansL.Name = "SufDystansL";
+            this.SufDystansL.Size = new System.Drawing.Size(150, 29);
+            this.SufDystansL.TabIndex = 54;
+            this.SufDystansL.Text = " ";
+            this.SufDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -3688,6 +4036,35 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label PrefHelmL;
+        private System.Windows.Forms.Label SufHelmL;
+        private System.Windows.Forms.Label BazaHelmL;
+        private System.Windows.Forms.Label SufZbrojaL;
+        private System.Windows.Forms.Label BazaZbrojaL;
+        private System.Windows.Forms.Label PrefZbrojaL;
+        private System.Windows.Forms.Label SufSpodnieL;
+        private System.Windows.Forms.Label BazaSpodnieL;
+        private System.Windows.Forms.Label PrefSpodnieL;
+        private System.Windows.Forms.Label SufPierscienL;
+        private System.Windows.Forms.Label BazaPierscienL;
+        private System.Windows.Forms.Label PrefPierscienL;
+        private System.Windows.Forms.Label SufAmuletL;
+        private System.Windows.Forms.Label BazaAmuletL;
+        private System.Windows.Forms.Label PrefAmuletL;
+        private System.Windows.Forms.Label SufBiala1hL;
+        private System.Windows.Forms.Label BazaBiala1hL;
+        private System.Windows.Forms.Label PrefBiala1hL;
+        private System.Windows.Forms.Label SufBiala2hL;
+        private System.Windows.Forms.Label BazaBiala2hL;
+        private System.Windows.Forms.Label PrefBiala2hL;
+        private System.Windows.Forms.Label SufPalna1hL;
+        private System.Windows.Forms.Label BazaPalna1hL;
+        private System.Windows.Forms.Label PrefPalna1hL;
+        private System.Windows.Forms.Label SufPalna2hL;
+        private System.Windows.Forms.Label BazaPalna2hL;
+        private System.Windows.Forms.Label PrefPalna2hL;
+        private System.Windows.Forms.Label SufDystansL;
+        private System.Windows.Forms.Label BazaDystansL;
+        private System.Windows.Forms.Label PrefDystansL;
     }
 }
 
