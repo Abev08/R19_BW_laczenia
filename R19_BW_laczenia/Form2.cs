@@ -27,6 +27,7 @@ namespace R19_BW_laczenia
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.RowCount = 1;
             dataGridView1.ColumnCount = 1;
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // Włączenie DoubleBuffered dla dataGridView
             typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(dataGridView1, true, null);
         }

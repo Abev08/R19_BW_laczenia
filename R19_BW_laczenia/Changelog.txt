@@ -1,0 +1,26 @@
+﻿Version 1.08
+	- Dodano przycisk "Cofnij",
+	- Dodano opcję zapisu do pliku przeprowadzonych łączeń w menu prawego przycisku myszy.
+
+Version 1.07
+	- Dodano wynik łączenia aktualizowany na bierząco.
+
+Version 1.06
+	- Dodano quality of life features:
+		-- Poprawiono czcionki,
+		-- Zmieniono kolory wykorzystywane w tabelach łączeń,
+		-- Dodano podświetlanie wiersza i kolumny zaznaczonego elementu w tabeli łączeń,
+		-- Włączono podwójne buforowanie tabeli łączeń (zwiększyło to responsywność i zlikwidowało migotanie tabeli łączeń),
+		-- Wprowadzono wiele usprawnień dotyczących kodu programu,
+		-- I wiele innych.
+
+Version 1.05
+	- Dodano analizator raportów.
+
+Version 1.04
+	- Dodano tabele łączeń,
+	- Zaimplementowano automatyczne skalowanie okna tabeli łączeń do ilości wierszy,
+	- Dodano menu prawego przycisku myszy.
+
+Version 1.03
+	- Dodano schowek.

@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.HelmCofnij = new System.Windows.Forms.Button();
+            this.SufHelmL = new System.Windows.Forms.Label();
+            this.BazaHelmL = new System.Windows.Forms.Label();
             this.PrefHelmL = new System.Windows.Forms.Label();
             this.sufHelmPanel = new System.Windows.Forms.Panel();
             this.sufHelmPanelLabel = new System.Windows.Forms.Label();
@@ -55,6 +58,9 @@
             this.cbHelmPref = new System.Windows.Forms.ComboBox();
             this.helmWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.SufZbrojaL = new System.Windows.Forms.Label();
+            this.BazaZbrojaL = new System.Windows.Forms.Label();
+            this.PrefZbrojaL = new System.Windows.Forms.Label();
             this.sufZbrojaPanel = new System.Windows.Forms.Panel();
             this.sufZbrojaPanelLabel = new System.Windows.Forms.Label();
             this.bazaZbrojaPanel = new System.Windows.Forms.Panel();
@@ -78,6 +84,9 @@
             this.cbZbrojaPref = new System.Windows.Forms.ComboBox();
             this.zbrojaWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.SufSpodnieL = new System.Windows.Forms.Label();
+            this.BazaSpodnieL = new System.Windows.Forms.Label();
+            this.PrefSpodnieL = new System.Windows.Forms.Label();
             this.sufSpodniePanel = new System.Windows.Forms.Panel();
             this.sufSpodniePanelLabel = new System.Windows.Forms.Label();
             this.bazaSpodniePanel = new System.Windows.Forms.Panel();
@@ -101,6 +110,9 @@
             this.cbSpodniePref = new System.Windows.Forms.ComboBox();
             this.spodnieWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.SufPierscienL = new System.Windows.Forms.Label();
+            this.BazaPierscienL = new System.Windows.Forms.Label();
+            this.PrefPierscienL = new System.Windows.Forms.Label();
             this.sufPierscienPanel = new System.Windows.Forms.Panel();
             this.sufPierscienPanelLabel = new System.Windows.Forms.Label();
             this.bazaPierscienPanel = new System.Windows.Forms.Panel();
@@ -124,6 +136,9 @@
             this.cbPierscienPref = new System.Windows.Forms.ComboBox();
             this.pierscienWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.SufAmuletL = new System.Windows.Forms.Label();
+            this.BazaAmuletL = new System.Windows.Forms.Label();
+            this.PrefAmuletL = new System.Windows.Forms.Label();
             this.sufAmuletPanel = new System.Windows.Forms.Panel();
             this.sufAmuletPanelLabel = new System.Windows.Forms.Label();
             this.bazaAmuletPanel = new System.Windows.Forms.Panel();
@@ -147,6 +162,9 @@
             this.cbAmuletPref = new System.Windows.Forms.ComboBox();
             this.amuletWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.SufBiala1hL = new System.Windows.Forms.Label();
+            this.BazaBiala1hL = new System.Windows.Forms.Label();
+            this.PrefBiala1hL = new System.Windows.Forms.Label();
             this.sufBiala1hPanel = new System.Windows.Forms.Panel();
             this.sufBiala1hPanelLabel = new System.Windows.Forms.Label();
             this.bazaBiala1hPanel = new System.Windows.Forms.Panel();
@@ -170,6 +188,9 @@
             this.cbBiala1hPref = new System.Windows.Forms.ComboBox();
             this.biala1hWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.SufBiala2hL = new System.Windows.Forms.Label();
+            this.BazaBiala2hL = new System.Windows.Forms.Label();
+            this.PrefBiala2hL = new System.Windows.Forms.Label();
             this.sufBiala2hPanel = new System.Windows.Forms.Panel();
             this.sufBiala2hPanelLabel = new System.Windows.Forms.Label();
             this.bazaBiala2hPanel = new System.Windows.Forms.Panel();
@@ -193,6 +214,9 @@
             this.cbBiala2hPref = new System.Windows.Forms.ComboBox();
             this.biala2hWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.SufPalna1hL = new System.Windows.Forms.Label();
+            this.BazaPalna1hL = new System.Windows.Forms.Label();
+            this.PrefPalna1hL = new System.Windows.Forms.Label();
             this.sufPalna1hPanel = new System.Windows.Forms.Panel();
             this.sufPalna1hPanelLabel = new System.Windows.Forms.Label();
             this.bazaPalna1hPanel = new System.Windows.Forms.Panel();
@@ -216,6 +240,9 @@
             this.cbPalna1hPref = new System.Windows.Forms.ComboBox();
             this.palna1hWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.SufPalna2hL = new System.Windows.Forms.Label();
+            this.BazaPalna2hL = new System.Windows.Forms.Label();
+            this.PrefPalna2hL = new System.Windows.Forms.Label();
             this.sufPalna2hPanel = new System.Windows.Forms.Panel();
             this.sufPalna2hPanelLabel = new System.Windows.Forms.Label();
             this.bazaPalna2hPanel = new System.Windows.Forms.Panel();
@@ -239,6 +266,9 @@
             this.cbPalna2hPref = new System.Windows.Forms.ComboBox();
             this.palna2hWynik = new System.Windows.Forms.RichTextBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.SufDystansL = new System.Windows.Forms.Label();
+            this.BazaDystansL = new System.Windows.Forms.Label();
+            this.PrefDystansL = new System.Windows.Forms.Label();
             this.sufDystansPanel = new System.Windows.Forms.Panel();
             this.sufDystansPanelLabel = new System.Windows.Forms.Label();
             this.bazaDystansPanel = new System.Windows.Forms.Panel();
@@ -290,37 +320,19 @@
             this.kopiujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopiujWszystkoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.wyczyśćToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.BazaHelmL = new System.Windows.Forms.Label();
-            this.SufHelmL = new System.Windows.Forms.Label();
-            this.SufZbrojaL = new System.Windows.Forms.Label();
-            this.BazaZbrojaL = new System.Windows.Forms.Label();
-            this.PrefZbrojaL = new System.Windows.Forms.Label();
-            this.PrefSpodnieL = new System.Windows.Forms.Label();
-            this.BazaSpodnieL = new System.Windows.Forms.Label();
-            this.SufSpodnieL = new System.Windows.Forms.Label();
-            this.PrefPierscienL = new System.Windows.Forms.Label();
-            this.BazaPierscienL = new System.Windows.Forms.Label();
-            this.SufPierscienL = new System.Windows.Forms.Label();
-            this.PrefAmuletL = new System.Windows.Forms.Label();
-            this.BazaAmuletL = new System.Windows.Forms.Label();
-            this.SufAmuletL = new System.Windows.Forms.Label();
-            this.PrefBiala1hL = new System.Windows.Forms.Label();
-            this.BazaBiala1hL = new System.Windows.Forms.Label();
-            this.SufBiala1hL = new System.Windows.Forms.Label();
-            this.PrefBiala2hL = new System.Windows.Forms.Label();
-            this.BazaBiala2hL = new System.Windows.Forms.Label();
-            this.SufBiala2hL = new System.Windows.Forms.Label();
-            this.PrefPalna1hL = new System.Windows.Forms.Label();
-            this.BazaPalna1hL = new System.Windows.Forms.Label();
-            this.SufPalna1hL = new System.Windows.Forms.Label();
-            this.PrefPalna2hL = new System.Windows.Forms.Label();
-            this.BazaPalna2hL = new System.Windows.Forms.Label();
-            this.SufPalna2hL = new System.Windows.Forms.Label();
-            this.PrefDystansL = new System.Windows.Forms.Label();
-            this.BazaDystansL = new System.Windows.Forms.Label();
-            this.SufDystansL = new System.Windows.Forms.Label();
+            this.ZbrojaCofnij = new System.Windows.Forms.Button();
+            this.SpodnieCofnij = new System.Windows.Forms.Button();
+            this.PierscienCofnij = new System.Windows.Forms.Button();
+            this.AmuletCofnij = new System.Windows.Forms.Button();
+            this.Biala1hCofnij = new System.Windows.Forms.Button();
+            this.Biala2hCofnij = new System.Windows.Forms.Button();
+            this.Palna1hCofnij = new System.Windows.Forms.Button();
+            this.Palna2hCofnij = new System.Windows.Forms.Button();
+            this.DystansCofnij = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ZapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -400,6 +412,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.HelmCofnij);
             this.tabPage1.Controls.Add(this.SufHelmL);
             this.tabPage1.Controls.Add(this.BazaHelmL);
             this.tabPage1.Controls.Add(this.PrefHelmL);
@@ -421,6 +434,36 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Hełm";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // HelmCofnij
+            // 
+            this.HelmCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelmCofnij.Location = new System.Drawing.Point(925, 74);
+            this.HelmCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.HelmCofnij.Name = "HelmCofnij";
+            this.HelmCofnij.Size = new System.Drawing.Size(151, 38);
+            this.HelmCofnij.TabIndex = 13;
+            this.HelmCofnij.Text = "Cofnij";
+            this.HelmCofnij.UseVisualStyleBackColor = true;
+            this.HelmCofnij.Click += new System.EventHandler(this.HelmCofnij_Click);
+            // 
+            // SufHelmL
+            // 
+            this.SufHelmL.Location = new System.Drawing.Point(1004, 41);
+            this.SufHelmL.Name = "SufHelmL";
+            this.SufHelmL.Size = new System.Drawing.Size(150, 29);
+            this.SufHelmL.TabIndex = 12;
+            this.SufHelmL.Text = " ";
+            this.SufHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaHelmL
+            // 
+            this.BazaHelmL.Location = new System.Drawing.Point(845, 41);
+            this.BazaHelmL.Name = "BazaHelmL";
+            this.BazaHelmL.Size = new System.Drawing.Size(150, 29);
+            this.BazaHelmL.TabIndex = 11;
+            this.BazaHelmL.Text = " ";
+            this.BazaHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PrefHelmL
             // 
@@ -626,7 +669,7 @@
             // helmDodaj
             // 
             this.helmDodaj.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helmDodaj.Location = new System.Drawing.Point(845, 74);
+            this.helmDodaj.Location = new System.Drawing.Point(765, 74);
             this.helmDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.helmDodaj.Name = "helmDodaj";
             this.helmDodaj.Size = new System.Drawing.Size(151, 38);
@@ -681,6 +724,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ZbrojaCofnij);
             this.tabPage2.Controls.Add(this.SufZbrojaL);
             this.tabPage2.Controls.Add(this.BazaZbrojaL);
             this.tabPage2.Controls.Add(this.PrefZbrojaL);
@@ -702,6 +746,33 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Zbroja";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // SufZbrojaL
+            // 
+            this.SufZbrojaL.Location = new System.Drawing.Point(1004, 41);
+            this.SufZbrojaL.Name = "SufZbrojaL";
+            this.SufZbrojaL.Size = new System.Drawing.Size(150, 29);
+            this.SufZbrojaL.TabIndex = 15;
+            this.SufZbrojaL.Text = " ";
+            this.SufZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaZbrojaL
+            // 
+            this.BazaZbrojaL.Location = new System.Drawing.Point(845, 41);
+            this.BazaZbrojaL.Name = "BazaZbrojaL";
+            this.BazaZbrojaL.Size = new System.Drawing.Size(150, 29);
+            this.BazaZbrojaL.TabIndex = 14;
+            this.BazaZbrojaL.Text = " ";
+            this.BazaZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefZbrojaL
+            // 
+            this.PrefZbrojaL.Location = new System.Drawing.Point(686, 41);
+            this.PrefZbrojaL.Name = "PrefZbrojaL";
+            this.PrefZbrojaL.Size = new System.Drawing.Size(150, 29);
+            this.PrefZbrojaL.TabIndex = 13;
+            this.PrefZbrojaL.Text = " ";
+            this.PrefZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufZbrojaPanel
             // 
@@ -897,7 +968,7 @@
             // 
             // zbrojaDodaj
             // 
-            this.zbrojaDodaj.Location = new System.Drawing.Point(845, 74);
+            this.zbrojaDodaj.Location = new System.Drawing.Point(765, 74);
             this.zbrojaDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.zbrojaDodaj.Name = "zbrojaDodaj";
             this.zbrojaDodaj.Size = new System.Drawing.Size(151, 38);
@@ -952,6 +1023,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.SpodnieCofnij);
             this.tabPage3.Controls.Add(this.SufSpodnieL);
             this.tabPage3.Controls.Add(this.BazaSpodnieL);
             this.tabPage3.Controls.Add(this.PrefSpodnieL);
@@ -972,6 +1044,33 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Spodnie";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // SufSpodnieL
+            // 
+            this.SufSpodnieL.Location = new System.Drawing.Point(1004, 41);
+            this.SufSpodnieL.Name = "SufSpodnieL";
+            this.SufSpodnieL.Size = new System.Drawing.Size(150, 29);
+            this.SufSpodnieL.TabIndex = 21;
+            this.SufSpodnieL.Text = " ";
+            this.SufSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaSpodnieL
+            // 
+            this.BazaSpodnieL.Location = new System.Drawing.Point(845, 41);
+            this.BazaSpodnieL.Name = "BazaSpodnieL";
+            this.BazaSpodnieL.Size = new System.Drawing.Size(150, 29);
+            this.BazaSpodnieL.TabIndex = 20;
+            this.BazaSpodnieL.Text = " ";
+            this.BazaSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefSpodnieL
+            // 
+            this.PrefSpodnieL.Location = new System.Drawing.Point(686, 41);
+            this.PrefSpodnieL.Name = "PrefSpodnieL";
+            this.PrefSpodnieL.Size = new System.Drawing.Size(150, 29);
+            this.PrefSpodnieL.TabIndex = 19;
+            this.PrefSpodnieL.Text = " ";
+            this.PrefSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufSpodniePanel
             // 
@@ -1167,7 +1266,7 @@
             // 
             // spodnieDodaj
             // 
-            this.spodnieDodaj.Location = new System.Drawing.Point(845, 74);
+            this.spodnieDodaj.Location = new System.Drawing.Point(765, 74);
             this.spodnieDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.spodnieDodaj.Name = "spodnieDodaj";
             this.spodnieDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1222,6 +1321,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.PierscienCofnij);
             this.tabPage4.Controls.Add(this.SufPierscienL);
             this.tabPage4.Controls.Add(this.BazaPierscienL);
             this.tabPage4.Controls.Add(this.PrefPierscienL);
@@ -1242,6 +1342,33 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Pierścień";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // SufPierscienL
+            // 
+            this.SufPierscienL.Location = new System.Drawing.Point(1004, 41);
+            this.SufPierscienL.Name = "SufPierscienL";
+            this.SufPierscienL.Size = new System.Drawing.Size(150, 29);
+            this.SufPierscienL.TabIndex = 26;
+            this.SufPierscienL.Text = " ";
+            this.SufPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaPierscienL
+            // 
+            this.BazaPierscienL.Location = new System.Drawing.Point(845, 41);
+            this.BazaPierscienL.Name = "BazaPierscienL";
+            this.BazaPierscienL.Size = new System.Drawing.Size(150, 29);
+            this.BazaPierscienL.TabIndex = 25;
+            this.BazaPierscienL.Text = " ";
+            this.BazaPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefPierscienL
+            // 
+            this.PrefPierscienL.Location = new System.Drawing.Point(686, 41);
+            this.PrefPierscienL.Name = "PrefPierscienL";
+            this.PrefPierscienL.Size = new System.Drawing.Size(150, 29);
+            this.PrefPierscienL.TabIndex = 24;
+            this.PrefPierscienL.Text = " ";
+            this.PrefPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufPierscienPanel
             // 
@@ -1437,7 +1564,7 @@
             // 
             // pierscienDodaj
             // 
-            this.pierscienDodaj.Location = new System.Drawing.Point(845, 74);
+            this.pierscienDodaj.Location = new System.Drawing.Point(765, 74);
             this.pierscienDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.pierscienDodaj.Name = "pierscienDodaj";
             this.pierscienDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1492,6 +1619,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.AmuletCofnij);
             this.tabPage5.Controls.Add(this.SufAmuletL);
             this.tabPage5.Controls.Add(this.BazaAmuletL);
             this.tabPage5.Controls.Add(this.PrefAmuletL);
@@ -1512,6 +1640,33 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Amulet";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // SufAmuletL
+            // 
+            this.SufAmuletL.Location = new System.Drawing.Point(1004, 41);
+            this.SufAmuletL.Name = "SufAmuletL";
+            this.SufAmuletL.Size = new System.Drawing.Size(150, 29);
+            this.SufAmuletL.TabIndex = 31;
+            this.SufAmuletL.Text = " ";
+            this.SufAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaAmuletL
+            // 
+            this.BazaAmuletL.Location = new System.Drawing.Point(845, 41);
+            this.BazaAmuletL.Name = "BazaAmuletL";
+            this.BazaAmuletL.Size = new System.Drawing.Size(150, 29);
+            this.BazaAmuletL.TabIndex = 30;
+            this.BazaAmuletL.Text = " ";
+            this.BazaAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefAmuletL
+            // 
+            this.PrefAmuletL.Location = new System.Drawing.Point(686, 41);
+            this.PrefAmuletL.Name = "PrefAmuletL";
+            this.PrefAmuletL.Size = new System.Drawing.Size(150, 29);
+            this.PrefAmuletL.TabIndex = 29;
+            this.PrefAmuletL.Text = " ";
+            this.PrefAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufAmuletPanel
             // 
@@ -1707,7 +1862,7 @@
             // 
             // amuletDodaj
             // 
-            this.amuletDodaj.Location = new System.Drawing.Point(845, 74);
+            this.amuletDodaj.Location = new System.Drawing.Point(765, 74);
             this.amuletDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.amuletDodaj.Name = "amuletDodaj";
             this.amuletDodaj.Size = new System.Drawing.Size(151, 38);
@@ -1762,6 +1917,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.Biala1hCofnij);
             this.tabPage6.Controls.Add(this.SufBiala1hL);
             this.tabPage6.Controls.Add(this.BazaBiala1hL);
             this.tabPage6.Controls.Add(this.PrefBiala1hL);
@@ -1782,6 +1938,33 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Biała 1h";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // SufBiala1hL
+            // 
+            this.SufBiala1hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufBiala1hL.Name = "SufBiala1hL";
+            this.SufBiala1hL.Size = new System.Drawing.Size(150, 29);
+            this.SufBiala1hL.TabIndex = 36;
+            this.SufBiala1hL.Text = " ";
+            this.SufBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaBiala1hL
+            // 
+            this.BazaBiala1hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaBiala1hL.Name = "BazaBiala1hL";
+            this.BazaBiala1hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaBiala1hL.TabIndex = 35;
+            this.BazaBiala1hL.Text = " ";
+            this.BazaBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefBiala1hL
+            // 
+            this.PrefBiala1hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefBiala1hL.Name = "PrefBiala1hL";
+            this.PrefBiala1hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefBiala1hL.TabIndex = 34;
+            this.PrefBiala1hL.Text = " ";
+            this.PrefBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufBiala1hPanel
             // 
@@ -1977,7 +2160,7 @@
             // 
             // biala1hDodaj
             // 
-            this.biala1hDodaj.Location = new System.Drawing.Point(845, 74);
+            this.biala1hDodaj.Location = new System.Drawing.Point(765, 74);
             this.biala1hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.biala1hDodaj.Name = "biala1hDodaj";
             this.biala1hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2032,6 +2215,7 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.Biala2hCofnij);
             this.tabPage7.Controls.Add(this.SufBiala2hL);
             this.tabPage7.Controls.Add(this.BazaBiala2hL);
             this.tabPage7.Controls.Add(this.PrefBiala2hL);
@@ -2052,6 +2236,33 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Biała 2h";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // SufBiala2hL
+            // 
+            this.SufBiala2hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufBiala2hL.Name = "SufBiala2hL";
+            this.SufBiala2hL.Size = new System.Drawing.Size(150, 29);
+            this.SufBiala2hL.TabIndex = 41;
+            this.SufBiala2hL.Text = " ";
+            this.SufBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaBiala2hL
+            // 
+            this.BazaBiala2hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaBiala2hL.Name = "BazaBiala2hL";
+            this.BazaBiala2hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaBiala2hL.TabIndex = 40;
+            this.BazaBiala2hL.Text = " ";
+            this.BazaBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefBiala2hL
+            // 
+            this.PrefBiala2hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefBiala2hL.Name = "PrefBiala2hL";
+            this.PrefBiala2hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefBiala2hL.TabIndex = 39;
+            this.PrefBiala2hL.Text = " ";
+            this.PrefBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufBiala2hPanel
             // 
@@ -2247,7 +2458,7 @@
             // 
             // biala2hDodaj
             // 
-            this.biala2hDodaj.Location = new System.Drawing.Point(845, 74);
+            this.biala2hDodaj.Location = new System.Drawing.Point(765, 74);
             this.biala2hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.biala2hDodaj.Name = "biala2hDodaj";
             this.biala2hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2302,6 +2513,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.Palna1hCofnij);
             this.tabPage8.Controls.Add(this.SufPalna1hL);
             this.tabPage8.Controls.Add(this.BazaPalna1hL);
             this.tabPage8.Controls.Add(this.PrefPalna1hL);
@@ -2322,6 +2534,33 @@
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Palna 1h";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // SufPalna1hL
+            // 
+            this.SufPalna1hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufPalna1hL.Name = "SufPalna1hL";
+            this.SufPalna1hL.Size = new System.Drawing.Size(150, 29);
+            this.SufPalna1hL.TabIndex = 46;
+            this.SufPalna1hL.Text = " ";
+            this.SufPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaPalna1hL
+            // 
+            this.BazaPalna1hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaPalna1hL.Name = "BazaPalna1hL";
+            this.BazaPalna1hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaPalna1hL.TabIndex = 45;
+            this.BazaPalna1hL.Text = " ";
+            this.BazaPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefPalna1hL
+            // 
+            this.PrefPalna1hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefPalna1hL.Name = "PrefPalna1hL";
+            this.PrefPalna1hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefPalna1hL.TabIndex = 44;
+            this.PrefPalna1hL.Text = " ";
+            this.PrefPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufPalna1hPanel
             // 
@@ -2517,7 +2756,7 @@
             // 
             // palna1hDodaj
             // 
-            this.palna1hDodaj.Location = new System.Drawing.Point(845, 74);
+            this.palna1hDodaj.Location = new System.Drawing.Point(765, 74);
             this.palna1hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.palna1hDodaj.Name = "palna1hDodaj";
             this.palna1hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2572,6 +2811,7 @@
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.Palna2hCofnij);
             this.tabPage9.Controls.Add(this.SufPalna2hL);
             this.tabPage9.Controls.Add(this.BazaPalna2hL);
             this.tabPage9.Controls.Add(this.PrefPalna2hL);
@@ -2592,6 +2832,33 @@
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Palna 2h";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // SufPalna2hL
+            // 
+            this.SufPalna2hL.Location = new System.Drawing.Point(1004, 41);
+            this.SufPalna2hL.Name = "SufPalna2hL";
+            this.SufPalna2hL.Size = new System.Drawing.Size(150, 29);
+            this.SufPalna2hL.TabIndex = 51;
+            this.SufPalna2hL.Text = " ";
+            this.SufPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaPalna2hL
+            // 
+            this.BazaPalna2hL.Location = new System.Drawing.Point(845, 41);
+            this.BazaPalna2hL.Name = "BazaPalna2hL";
+            this.BazaPalna2hL.Size = new System.Drawing.Size(150, 29);
+            this.BazaPalna2hL.TabIndex = 50;
+            this.BazaPalna2hL.Text = " ";
+            this.BazaPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefPalna2hL
+            // 
+            this.PrefPalna2hL.Location = new System.Drawing.Point(686, 41);
+            this.PrefPalna2hL.Name = "PrefPalna2hL";
+            this.PrefPalna2hL.Size = new System.Drawing.Size(150, 29);
+            this.PrefPalna2hL.TabIndex = 49;
+            this.PrefPalna2hL.Text = " ";
+            this.PrefPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufPalna2hPanel
             // 
@@ -2787,7 +3054,7 @@
             // 
             // palna2hDodaj
             // 
-            this.palna2hDodaj.Location = new System.Drawing.Point(845, 74);
+            this.palna2hDodaj.Location = new System.Drawing.Point(765, 74);
             this.palna2hDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.palna2hDodaj.Name = "palna2hDodaj";
             this.palna2hDodaj.Size = new System.Drawing.Size(151, 38);
@@ -2842,6 +3109,7 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.DystansCofnij);
             this.tabPage10.Controls.Add(this.SufDystansL);
             this.tabPage10.Controls.Add(this.BazaDystansL);
             this.tabPage10.Controls.Add(this.PrefDystansL);
@@ -2862,6 +3130,33 @@
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Dystans";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // SufDystansL
+            // 
+            this.SufDystansL.Location = new System.Drawing.Point(1004, 41);
+            this.SufDystansL.Name = "SufDystansL";
+            this.SufDystansL.Size = new System.Drawing.Size(150, 29);
+            this.SufDystansL.TabIndex = 54;
+            this.SufDystansL.Text = " ";
+            this.SufDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BazaDystansL
+            // 
+            this.BazaDystansL.Location = new System.Drawing.Point(845, 41);
+            this.BazaDystansL.Name = "BazaDystansL";
+            this.BazaDystansL.Size = new System.Drawing.Size(150, 29);
+            this.BazaDystansL.TabIndex = 53;
+            this.BazaDystansL.Text = " ";
+            this.BazaDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PrefDystansL
+            // 
+            this.PrefDystansL.Location = new System.Drawing.Point(686, 41);
+            this.PrefDystansL.Name = "PrefDystansL";
+            this.PrefDystansL.Size = new System.Drawing.Size(150, 29);
+            this.PrefDystansL.TabIndex = 52;
+            this.PrefDystansL.Text = " ";
+            this.PrefDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sufDystansPanel
             // 
@@ -3057,7 +3352,7 @@
             // 
             // dystansDodaj
             // 
-            this.dystansDodaj.Location = new System.Drawing.Point(845, 74);
+            this.dystansDodaj.Location = new System.Drawing.Point(765, 74);
             this.dystansDodaj.Margin = new System.Windows.Forms.Padding(4);
             this.dystansDodaj.Name = "dystansDodaj";
             this.dystansDodaj.Size = new System.Drawing.Size(151, 38);
@@ -3397,9 +3692,11 @@
             this.kopiujToolStripMenuItem,
             this.kopiujWszystkoToolStripMenuItem,
             this.toolStripSeparator1,
-            this.wyczyśćToolStripMenuItem});
+            this.ZapiszToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.wyczyscToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 140);
             // 
             // kopiujToolStripMenuItem
             // 
@@ -3420,273 +3717,132 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
             // 
-            // wyczyśćToolStripMenuItem
+            // wyczyscToolStripMenuItem
             // 
-            this.wyczyśćToolStripMenuItem.Name = "wyczyśćToolStripMenuItem";
-            this.wyczyśćToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
-            this.wyczyśćToolStripMenuItem.Text = "Wyczyść";
-            this.wyczyśćToolStripMenuItem.Click += new System.EventHandler(this.wyczyśćToolStripMenuItem_Click);
+            this.wyczyscToolStripMenuItem.Name = "wyczyscToolStripMenuItem";
+            this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.wyczyscToolStripMenuItem.Text = "Wyczyść";
+            this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.wyczyscToolStripMenuItem_Click);
             // 
-            // BazaHelmL
+            // ZbrojaCofnij
             // 
-            this.BazaHelmL.Location = new System.Drawing.Point(845, 41);
-            this.BazaHelmL.Name = "BazaHelmL";
-            this.BazaHelmL.Size = new System.Drawing.Size(150, 29);
-            this.BazaHelmL.TabIndex = 11;
-            this.BazaHelmL.Text = " ";
-            this.BazaHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ZbrojaCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZbrojaCofnij.Location = new System.Drawing.Point(925, 74);
+            this.ZbrojaCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.ZbrojaCofnij.Name = "ZbrojaCofnij";
+            this.ZbrojaCofnij.Size = new System.Drawing.Size(151, 38);
+            this.ZbrojaCofnij.TabIndex = 16;
+            this.ZbrojaCofnij.Text = "Cofnij";
+            this.ZbrojaCofnij.UseVisualStyleBackColor = true;
+            this.ZbrojaCofnij.Click += new System.EventHandler(this.ZbrojaCofnij_Click);
             // 
-            // SufHelmL
+            // SpodnieCofnij
             // 
-            this.SufHelmL.Location = new System.Drawing.Point(1004, 41);
-            this.SufHelmL.Name = "SufHelmL";
-            this.SufHelmL.Size = new System.Drawing.Size(150, 29);
-            this.SufHelmL.TabIndex = 12;
-            this.SufHelmL.Text = " ";
-            this.SufHelmL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SpodnieCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpodnieCofnij.Location = new System.Drawing.Point(925, 74);
+            this.SpodnieCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.SpodnieCofnij.Name = "SpodnieCofnij";
+            this.SpodnieCofnij.Size = new System.Drawing.Size(151, 38);
+            this.SpodnieCofnij.TabIndex = 22;
+            this.SpodnieCofnij.Text = "Cofnij";
+            this.SpodnieCofnij.UseVisualStyleBackColor = true;
+            this.SpodnieCofnij.Click += new System.EventHandler(this.SpodnieCofnij_Click);
             // 
-            // SufZbrojaL
+            // PierscienCofnij
             // 
-            this.SufZbrojaL.Location = new System.Drawing.Point(1004, 41);
-            this.SufZbrojaL.Name = "SufZbrojaL";
-            this.SufZbrojaL.Size = new System.Drawing.Size(150, 29);
-            this.SufZbrojaL.TabIndex = 15;
-            this.SufZbrojaL.Text = " ";
-            this.SufZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PierscienCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PierscienCofnij.Location = new System.Drawing.Point(925, 74);
+            this.PierscienCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.PierscienCofnij.Name = "PierscienCofnij";
+            this.PierscienCofnij.Size = new System.Drawing.Size(151, 38);
+            this.PierscienCofnij.TabIndex = 27;
+            this.PierscienCofnij.Text = "Cofnij";
+            this.PierscienCofnij.UseVisualStyleBackColor = true;
+            this.PierscienCofnij.Click += new System.EventHandler(this.PierscienCofnij_Click);
             // 
-            // BazaZbrojaL
+            // AmuletCofnij
             // 
-            this.BazaZbrojaL.Location = new System.Drawing.Point(845, 41);
-            this.BazaZbrojaL.Name = "BazaZbrojaL";
-            this.BazaZbrojaL.Size = new System.Drawing.Size(150, 29);
-            this.BazaZbrojaL.TabIndex = 14;
-            this.BazaZbrojaL.Text = " ";
-            this.BazaZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AmuletCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AmuletCofnij.Location = new System.Drawing.Point(925, 74);
+            this.AmuletCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.AmuletCofnij.Name = "AmuletCofnij";
+            this.AmuletCofnij.Size = new System.Drawing.Size(151, 38);
+            this.AmuletCofnij.TabIndex = 32;
+            this.AmuletCofnij.Text = "Cofnij";
+            this.AmuletCofnij.UseVisualStyleBackColor = true;
+            this.AmuletCofnij.Click += new System.EventHandler(this.AmuletCofnij_Click);
             // 
-            // PrefZbrojaL
+            // Biala1hCofnij
             // 
-            this.PrefZbrojaL.Location = new System.Drawing.Point(686, 41);
-            this.PrefZbrojaL.Name = "PrefZbrojaL";
-            this.PrefZbrojaL.Size = new System.Drawing.Size(150, 29);
-            this.PrefZbrojaL.TabIndex = 13;
-            this.PrefZbrojaL.Text = " ";
-            this.PrefZbrojaL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Biala1hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Biala1hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Biala1hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Biala1hCofnij.Name = "Biala1hCofnij";
+            this.Biala1hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Biala1hCofnij.TabIndex = 37;
+            this.Biala1hCofnij.Text = "Cofnij";
+            this.Biala1hCofnij.UseVisualStyleBackColor = true;
+            this.Biala1hCofnij.Click += new System.EventHandler(this.Biala1hCofnij_Click);
             // 
-            // PrefSpodnieL
+            // Biala2hCofnij
             // 
-            this.PrefSpodnieL.Location = new System.Drawing.Point(686, 41);
-            this.PrefSpodnieL.Name = "PrefSpodnieL";
-            this.PrefSpodnieL.Size = new System.Drawing.Size(150, 29);
-            this.PrefSpodnieL.TabIndex = 19;
-            this.PrefSpodnieL.Text = " ";
-            this.PrefSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Biala2hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Biala2hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Biala2hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Biala2hCofnij.Name = "Biala2hCofnij";
+            this.Biala2hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Biala2hCofnij.TabIndex = 42;
+            this.Biala2hCofnij.Text = "Cofnij";
+            this.Biala2hCofnij.UseVisualStyleBackColor = true;
+            this.Biala2hCofnij.Click += new System.EventHandler(this.Biala2hCofnij_Click);
             // 
-            // BazaSpodnieL
+            // Palna1hCofnij
             // 
-            this.BazaSpodnieL.Location = new System.Drawing.Point(845, 41);
-            this.BazaSpodnieL.Name = "BazaSpodnieL";
-            this.BazaSpodnieL.Size = new System.Drawing.Size(150, 29);
-            this.BazaSpodnieL.TabIndex = 20;
-            this.BazaSpodnieL.Text = " ";
-            this.BazaSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Palna1hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Palna1hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Palna1hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Palna1hCofnij.Name = "Palna1hCofnij";
+            this.Palna1hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Palna1hCofnij.TabIndex = 47;
+            this.Palna1hCofnij.Text = "Cofnij";
+            this.Palna1hCofnij.UseVisualStyleBackColor = true;
+            this.Palna1hCofnij.Click += new System.EventHandler(this.Palna1hCofnij_Click);
             // 
-            // SufSpodnieL
+            // Palna2hCofnij
             // 
-            this.SufSpodnieL.Location = new System.Drawing.Point(1004, 41);
-            this.SufSpodnieL.Name = "SufSpodnieL";
-            this.SufSpodnieL.Size = new System.Drawing.Size(150, 29);
-            this.SufSpodnieL.TabIndex = 21;
-            this.SufSpodnieL.Text = " ";
-            this.SufSpodnieL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Palna2hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Palna2hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Palna2hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Palna2hCofnij.Name = "Palna2hCofnij";
+            this.Palna2hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Palna2hCofnij.TabIndex = 52;
+            this.Palna2hCofnij.Text = "Cofnij";
+            this.Palna2hCofnij.UseVisualStyleBackColor = true;
+            this.Palna2hCofnij.Click += new System.EventHandler(this.Palna2hCofnij_Click);
             // 
-            // PrefPierscienL
+            // DystansCofnij
             // 
-            this.PrefPierscienL.Location = new System.Drawing.Point(686, 41);
-            this.PrefPierscienL.Name = "PrefPierscienL";
-            this.PrefPierscienL.Size = new System.Drawing.Size(150, 29);
-            this.PrefPierscienL.TabIndex = 24;
-            this.PrefPierscienL.Text = " ";
-            this.PrefPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DystansCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DystansCofnij.Location = new System.Drawing.Point(925, 74);
+            this.DystansCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.DystansCofnij.Name = "DystansCofnij";
+            this.DystansCofnij.Size = new System.Drawing.Size(151, 38);
+            this.DystansCofnij.TabIndex = 55;
+            this.DystansCofnij.Text = "Cofnij";
+            this.DystansCofnij.UseVisualStyleBackColor = true;
+            this.DystansCofnij.Click += new System.EventHandler(this.DystansCofnij_Click);
             // 
-            // BazaPierscienL
+            // toolStripSeparator2
             // 
-            this.BazaPierscienL.Location = new System.Drawing.Point(845, 41);
-            this.BazaPierscienL.Name = "BazaPierscienL";
-            this.BazaPierscienL.Size = new System.Drawing.Size(150, 29);
-            this.BazaPierscienL.TabIndex = 25;
-            this.BazaPierscienL.Text = " ";
-            this.BazaPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
             // 
-            // SufPierscienL
+            // ZapiszToolStripMenuItem
             // 
-            this.SufPierscienL.Location = new System.Drawing.Point(1004, 41);
-            this.SufPierscienL.Name = "SufPierscienL";
-            this.SufPierscienL.Size = new System.Drawing.Size(150, 29);
-            this.SufPierscienL.TabIndex = 26;
-            this.SufPierscienL.Text = " ";
-            this.SufPierscienL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PrefAmuletL
-            // 
-            this.PrefAmuletL.Location = new System.Drawing.Point(686, 41);
-            this.PrefAmuletL.Name = "PrefAmuletL";
-            this.PrefAmuletL.Size = new System.Drawing.Size(150, 29);
-            this.PrefAmuletL.TabIndex = 29;
-            this.PrefAmuletL.Text = " ";
-            this.PrefAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BazaAmuletL
-            // 
-            this.BazaAmuletL.Location = new System.Drawing.Point(845, 41);
-            this.BazaAmuletL.Name = "BazaAmuletL";
-            this.BazaAmuletL.Size = new System.Drawing.Size(150, 29);
-            this.BazaAmuletL.TabIndex = 30;
-            this.BazaAmuletL.Text = " ";
-            this.BazaAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SufAmuletL
-            // 
-            this.SufAmuletL.Location = new System.Drawing.Point(1004, 41);
-            this.SufAmuletL.Name = "SufAmuletL";
-            this.SufAmuletL.Size = new System.Drawing.Size(150, 29);
-            this.SufAmuletL.TabIndex = 31;
-            this.SufAmuletL.Text = " ";
-            this.SufAmuletL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PrefBiala1hL
-            // 
-            this.PrefBiala1hL.Location = new System.Drawing.Point(686, 41);
-            this.PrefBiala1hL.Name = "PrefBiala1hL";
-            this.PrefBiala1hL.Size = new System.Drawing.Size(150, 29);
-            this.PrefBiala1hL.TabIndex = 34;
-            this.PrefBiala1hL.Text = " ";
-            this.PrefBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BazaBiala1hL
-            // 
-            this.BazaBiala1hL.Location = new System.Drawing.Point(845, 41);
-            this.BazaBiala1hL.Name = "BazaBiala1hL";
-            this.BazaBiala1hL.Size = new System.Drawing.Size(150, 29);
-            this.BazaBiala1hL.TabIndex = 35;
-            this.BazaBiala1hL.Text = " ";
-            this.BazaBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SufBiala1hL
-            // 
-            this.SufBiala1hL.Location = new System.Drawing.Point(1004, 41);
-            this.SufBiala1hL.Name = "SufBiala1hL";
-            this.SufBiala1hL.Size = new System.Drawing.Size(150, 29);
-            this.SufBiala1hL.TabIndex = 36;
-            this.SufBiala1hL.Text = " ";
-            this.SufBiala1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PrefBiala2hL
-            // 
-            this.PrefBiala2hL.Location = new System.Drawing.Point(686, 41);
-            this.PrefBiala2hL.Name = "PrefBiala2hL";
-            this.PrefBiala2hL.Size = new System.Drawing.Size(150, 29);
-            this.PrefBiala2hL.TabIndex = 39;
-            this.PrefBiala2hL.Text = " ";
-            this.PrefBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BazaBiala2hL
-            // 
-            this.BazaBiala2hL.Location = new System.Drawing.Point(845, 41);
-            this.BazaBiala2hL.Name = "BazaBiala2hL";
-            this.BazaBiala2hL.Size = new System.Drawing.Size(150, 29);
-            this.BazaBiala2hL.TabIndex = 40;
-            this.BazaBiala2hL.Text = " ";
-            this.BazaBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SufBiala2hL
-            // 
-            this.SufBiala2hL.Location = new System.Drawing.Point(1004, 41);
-            this.SufBiala2hL.Name = "SufBiala2hL";
-            this.SufBiala2hL.Size = new System.Drawing.Size(150, 29);
-            this.SufBiala2hL.TabIndex = 41;
-            this.SufBiala2hL.Text = " ";
-            this.SufBiala2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PrefPalna1hL
-            // 
-            this.PrefPalna1hL.Location = new System.Drawing.Point(686, 41);
-            this.PrefPalna1hL.Name = "PrefPalna1hL";
-            this.PrefPalna1hL.Size = new System.Drawing.Size(150, 29);
-            this.PrefPalna1hL.TabIndex = 44;
-            this.PrefPalna1hL.Text = " ";
-            this.PrefPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BazaPalna1hL
-            // 
-            this.BazaPalna1hL.Location = new System.Drawing.Point(845, 41);
-            this.BazaPalna1hL.Name = "BazaPalna1hL";
-            this.BazaPalna1hL.Size = new System.Drawing.Size(150, 29);
-            this.BazaPalna1hL.TabIndex = 45;
-            this.BazaPalna1hL.Text = " ";
-            this.BazaPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SufPalna1hL
-            // 
-            this.SufPalna1hL.Location = new System.Drawing.Point(1004, 41);
-            this.SufPalna1hL.Name = "SufPalna1hL";
-            this.SufPalna1hL.Size = new System.Drawing.Size(150, 29);
-            this.SufPalna1hL.TabIndex = 46;
-            this.SufPalna1hL.Text = " ";
-            this.SufPalna1hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PrefPalna2hL
-            // 
-            this.PrefPalna2hL.Location = new System.Drawing.Point(686, 41);
-            this.PrefPalna2hL.Name = "PrefPalna2hL";
-            this.PrefPalna2hL.Size = new System.Drawing.Size(150, 29);
-            this.PrefPalna2hL.TabIndex = 49;
-            this.PrefPalna2hL.Text = " ";
-            this.PrefPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BazaPalna2hL
-            // 
-            this.BazaPalna2hL.Location = new System.Drawing.Point(845, 41);
-            this.BazaPalna2hL.Name = "BazaPalna2hL";
-            this.BazaPalna2hL.Size = new System.Drawing.Size(150, 29);
-            this.BazaPalna2hL.TabIndex = 50;
-            this.BazaPalna2hL.Text = " ";
-            this.BazaPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SufPalna2hL
-            // 
-            this.SufPalna2hL.Location = new System.Drawing.Point(1004, 41);
-            this.SufPalna2hL.Name = "SufPalna2hL";
-            this.SufPalna2hL.Size = new System.Drawing.Size(150, 29);
-            this.SufPalna2hL.TabIndex = 51;
-            this.SufPalna2hL.Text = " ";
-            this.SufPalna2hL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PrefDystansL
-            // 
-            this.PrefDystansL.Location = new System.Drawing.Point(686, 41);
-            this.PrefDystansL.Name = "PrefDystansL";
-            this.PrefDystansL.Size = new System.Drawing.Size(150, 29);
-            this.PrefDystansL.TabIndex = 52;
-            this.PrefDystansL.Text = " ";
-            this.PrefDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BazaDystansL
-            // 
-            this.BazaDystansL.Location = new System.Drawing.Point(845, 41);
-            this.BazaDystansL.Name = "BazaDystansL";
-            this.BazaDystansL.Size = new System.Drawing.Size(150, 29);
-            this.BazaDystansL.TabIndex = 53;
-            this.BazaDystansL.Text = " ";
-            this.BazaDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SufDystansL
-            // 
-            this.SufDystansL.Location = new System.Drawing.Point(1004, 41);
-            this.SufDystansL.Name = "SufDystansL";
-            this.SufDystansL.Size = new System.Drawing.Size(150, 29);
-            this.SufDystansL.TabIndex = 54;
-            this.SufDystansL.Text = " ";
-            this.SufDystansL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ZapiszToolStripMenuItem.Name = "ZapiszToolStripMenuItem";
+            this.ZapiszToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.ZapiszToolStripMenuItem.Text = "Zapisz";
+            this.ZapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -4007,7 +4163,7 @@
         private System.Windows.Forms.Label prefDystansPanelLabel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem kopiujToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wyczyśćToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wyczyscToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kopiujWszystkoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TabPage tabPage11;
@@ -4065,6 +4221,18 @@
         private System.Windows.Forms.Label SufDystansL;
         private System.Windows.Forms.Label BazaDystansL;
         private System.Windows.Forms.Label PrefDystansL;
+        private System.Windows.Forms.Button HelmCofnij;
+        private System.Windows.Forms.Button ZbrojaCofnij;
+        private System.Windows.Forms.Button SpodnieCofnij;
+        private System.Windows.Forms.Button PierscienCofnij;
+        private System.Windows.Forms.Button AmuletCofnij;
+        private System.Windows.Forms.Button Biala1hCofnij;
+        private System.Windows.Forms.Button Biala2hCofnij;
+        private System.Windows.Forms.Button Palna1hCofnij;
+        private System.Windows.Forms.Button Palna2hCofnij;
+        private System.Windows.Forms.Button DystansCofnij;
+        private System.Windows.Forms.ToolStripMenuItem ZapiszToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

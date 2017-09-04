@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace R19_BW_laczenia
 {
@@ -61,6 +58,8 @@ namespace R19_BW_laczenia
         int[] wynikLaczenia = new int[4];
         int[] wynikTab = new int[4];
         bool dodano = false;
+        List<int[]> HistoriaPrzedmiotow = new List<int[]>();
+        List<string> HistoriaLaczen = new List<string>();
 
         // Zmienna do analizatora raportów
         string[] ulepszenia;
@@ -79,6 +78,9 @@ namespace R19_BW_laczenia
             bazaPalnych1h();
             bazaPalnych2h();
             bazaDystansow();
+
+            // Dodaj "puste okno" do historii łączeń
+            HistoriaLaczen.Add("");
 
             // Dodawanie prefiksów, baz i sufiksów do comboBox'ów
             // Hełm
@@ -383,7 +385,7 @@ namespace R19_BW_laczenia
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
             // Wersja programu
-            toolTip1.SetToolTip(this.label1, "Wersja programu: 1.07");
+            toolTip1.SetToolTip(this.label1, "Wersja programu: 1.08");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
@@ -418,6 +420,8 @@ namespace R19_BW_laczenia
                     skladnik1[1] = Baza.IndexOf(BazaCB.Text);
                     skladnik1[2] = Suf.IndexOf(SufCB.Text);
                     skladnik1[3] = 1;
+                    //HistoriaPrzedmiotow.Add(skladnik1);
+                    HistoriaPrzedmiotow.Add(new int[] { skladnik1[0], skladnik1[1], skladnik1[2], skladnik1[3] });
                 }
                 else
                 {
@@ -425,6 +429,8 @@ namespace R19_BW_laczenia
                     skladnik2[1] = Baza.IndexOf(BazaCB.Text);
                     skladnik2[2] = Suf.IndexOf(SufCB.Text);
                     skladnik2[3] = 1;
+                    //HistoriaPrzedmiotow.Add(skladnik2);
+                    HistoriaPrzedmiotow.Add(new int[] { skladnik2[0], skladnik2[1], skladnik2[2], skladnik2[3] });
 
                     wynikLaczenia = polacz(skladnik1[0], skladnik1[1], skladnik1[2], skladnik2[0], skladnik2[1], skladnik2[2]);
 
@@ -432,13 +438,14 @@ namespace R19_BW_laczenia
                     wynikLaczenia[1] = SprawdzWyjatki(Baza, skladnik1[1], skladnik2[1], wynikLaczenia[1]);
                     wynikLaczenia[2] = SprawdzWyjatki(Suf, skladnik1[2], skladnik2[2], wynikLaczenia[2]);
 
-                    for (int i = 0; i < 4; i++)
-                    {
-                        skladnik1[i] = wynikLaczenia[i];
-                    }
-                    skladnik1[3] = 1;
+                    skladnik1 = new int[] { wynikLaczenia[0], wynikLaczenia[1], wynikLaczenia[2], 1 };
+
+                    //HistoriaPrzedmiotow.Add(skladnik1);
+                    HistoriaPrzedmiotow.Add(new int[] { skladnik1[0], skladnik1[1], skladnik1[2], skladnik1[3] });
                     Wynik.AppendText("\r= " + Pref.ElementAt(wynikLaczenia[0]) + " " + Baza.ElementAt(wynikLaczenia[1]) + " " + Suf.ElementAt(wynikLaczenia[2]));
                 }
+
+                HistoriaLaczen.Add(Wynik.Text);
             }
 
             Wynik.ScrollToCaret();
@@ -1021,9 +1028,9 @@ namespace R19_BW_laczenia
         private void Czyszczenie()
         {
             // Czyszczenie składników i okienek wyników po przepłączeniu zakładki
-            skladnik1 = new int[4] { 0, 0, 0, 0 };
-            skladnik2 = new int[4] { 0, 0, 0, 0 };
-            wynikLaczenia = new int[4] { 0, 0, 0, 0 };
+            skladnik1 = new int[] { 0, 0, 0, 0 };
+            skladnik2 = new int[] { 0, 0, 0, 0 };
+            wynikLaczenia = new int[] { 0, 0, 0, 0 };
             dodano = false;
 
             helmWynik.Clear();
@@ -1069,6 +1076,11 @@ namespace R19_BW_laczenia
             PrefDystansL.Text = "";
             BazaDystansL.Text = "";
             SufDystansL.Text = "";
+
+            // Czyszczenie historii
+            HistoriaLaczen.Clear();
+            HistoriaLaczen.Add("");
+            HistoriaPrzedmiotow.Clear();
         }
 
         private void InicjalizacjaTabeli(Form2 tab, List<string> baza, string disp)
@@ -1385,9 +1397,58 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void wyczyśćToolStripMenuItem_Click(object sender, EventArgs e)
+        private void wyczyscToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Czyszczenie();
+        }
+
+        private void ZapiszToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "Text Files (*.txt)|*.txt|All Files|*.*";
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream a = File.Open(saveFile.FileName, FileMode.Create))
+                using (StreamWriter aa = new StreamWriter(a))
+                {
+                    switch (tabControl1.SelectedTab.Text)
+                    {
+                        case "Hełm":
+                            aa.Write(helmWynik.Text);
+                            break;
+                        case "Zbroja":
+                            aa.Write(zbrojaWynik.Text);
+                            break;
+                        case "Spodnie":
+                            aa.Write(spodnieWynik.Text);
+                            break;
+                        case "Pierścień":
+                            aa.Write(pierscienWynik.Text);
+                            break;
+                        case "Amulet":
+                            aa.Write(amuletWynik.Text);
+                            break;
+                        case "Biała 1h":
+                            aa.Write(biala1hWynik.Text);
+                            break;
+                        case "Biała 2h":
+                            aa.Write(biala2hWynik.Text);
+                            break;
+                        case "Palna 1h":
+                            aa.Write(palna1hWynik.Text);
+                            break;
+                        case "Palna 2h":
+                            aa.Write(palna2hWynik.Text);
+                            break;
+                        case "Dystans":
+                            aa.Write(dystansWynik.Text);
+                            break;
+                        case "Analizator raportu":
+                            aa.Write(AnalizatorRaportuTekst.Text);
+                            break;
+                    }
+                }
+            }
         }
 
         private void AnalizatorRaportuOblicz_Click(object sender, EventArgs e)
@@ -1675,6 +1736,79 @@ namespace R19_BW_laczenia
             if ((sk1 == (B.Count - 3)) & (sk2 == (B.Count - 1))) w = B.Count - 2;
             if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 3))) w = B.Count - 2;
             return w;
+        }
+
+        private void Cofnij(RichTextBox R)
+        {
+            if (HistoriaLaczen.Count > 1)
+            {
+                // Usuń ostatnie łączenie i zaktualizuj tekst
+                HistoriaLaczen.RemoveAt(HistoriaLaczen.Count - 1);
+                R.Text = HistoriaLaczen[HistoriaLaczen.Count - 1];
+
+                // Usuń drugi składnik i wynik łączenia
+                if (HistoriaPrzedmiotow.Count > 1) HistoriaPrzedmiotow.RemoveAt(HistoriaPrzedmiotow.Count - 1);
+                if (HistoriaPrzedmiotow.Count > 1) HistoriaPrzedmiotow.RemoveAt(HistoriaPrzedmiotow.Count - 1);
+
+                skladnik1 = HistoriaPrzedmiotow[HistoriaPrzedmiotow.Count - 1];
+                skladnik2 = new int[] { 0, 0, 0, 0 };
+
+                if (HistoriaLaczen.Count == 1) Czyszczenie();
+            }
+
+            if (R.Text.Length > 1) R.Select(R.Text.Length - 1, 0);
+            R.ScrollToCaret();
+            ZmienLabel();
+        }
+
+        private void HelmCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(helmWynik);
+        }
+
+        private void ZbrojaCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(zbrojaWynik);
+        }
+
+        private void SpodnieCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(spodnieWynik);
+        }
+
+        private void PierscienCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(pierscienWynik);
+        }
+
+        private void AmuletCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(amuletWynik);
+        }
+
+        private void Biala1hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(biala1hWynik);
+        }
+
+        private void Biala2hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(biala2hWynik);
+        }
+
+        private void Palna1hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(palna1hWynik);
+        }
+
+        private void Palna2hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(palna2hWynik);
+        }
+
+        private void DystansCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(dystansWynik);
         }
     }
 }
