@@ -436,7 +436,7 @@ namespace R19_BW_laczenia
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.09\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.09.1\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
@@ -1676,9 +1676,9 @@ namespace R19_BW_laczenia
             baza.Add("");
             baza.Add("Naszyjnik");
             baza.Add("Amulet");
+            baza.Add("Łańcuch");
             baza.Add("Apaszka");
             baza.Add("Krawat");
-            baza.Add("Łańcuch");
 
             // Sufiksy amuletów w uporządkowanej kolejności
             suf.Add("");
