@@ -1,4 +1,10 @@
-﻿Version 1.08
+﻿Version 1.09
+	- Dodano ikony aplikacji,
+	- Dodano tła,
+	- Dopasowano kolory czcionek do współpracy z tłami,
+	- Dalsze poprawki kodu.
+	
+Version 1.08
 	- Dodano przycisk "Cofnij",
 	- Dodano opcję zapisu do pliku przeprowadzonych łączeń w menu prawego przycisku myszy.
 

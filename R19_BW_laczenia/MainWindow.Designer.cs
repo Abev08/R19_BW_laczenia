@@ -1,6 +1,6 @@
 ﻿namespace R19_BW_laczenia
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.GlownyTab = new System.Windows.Forms.TabControl();
+            this.TabHelm = new System.Windows.Forms.TabPage();
             this.HelmCofnij = new System.Windows.Forms.Button();
             this.SufHelmL = new System.Windows.Forms.Label();
             this.BazaHelmL = new System.Windows.Forms.Label();
@@ -52,12 +52,13 @@
             this.cbHelmPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbHelmBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbHelmSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.helmDodaj = new System.Windows.Forms.Button();
+            this.HelmDodaj = new System.Windows.Forms.Button();
             this.cbHelmSuf = new System.Windows.Forms.ComboBox();
             this.cbHelmBaza = new System.Windows.Forms.ComboBox();
             this.cbHelmPref = new System.Windows.Forms.ComboBox();
             this.helmWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TabZbroja = new System.Windows.Forms.TabPage();
+            this.ZbrojaCofnij = new System.Windows.Forms.Button();
             this.SufZbrojaL = new System.Windows.Forms.Label();
             this.BazaZbrojaL = new System.Windows.Forms.Label();
             this.PrefZbrojaL = new System.Windows.Forms.Label();
@@ -78,12 +79,13 @@
             this.cbZbrojaPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbZbrojaBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbZbrojaSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.zbrojaDodaj = new System.Windows.Forms.Button();
+            this.ZbrojaDodaj = new System.Windows.Forms.Button();
             this.cbZbrojaSuf = new System.Windows.Forms.ComboBox();
             this.cbZbrojaBaza = new System.Windows.Forms.ComboBox();
             this.cbZbrojaPref = new System.Windows.Forms.ComboBox();
             this.zbrojaWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.TabSpodnie = new System.Windows.Forms.TabPage();
+            this.SpodnieCofnij = new System.Windows.Forms.Button();
             this.SufSpodnieL = new System.Windows.Forms.Label();
             this.BazaSpodnieL = new System.Windows.Forms.Label();
             this.PrefSpodnieL = new System.Windows.Forms.Label();
@@ -104,12 +106,13 @@
             this.cbSpodniePref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbSpodnieBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbSpodnieSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.spodnieDodaj = new System.Windows.Forms.Button();
+            this.SpodnieDodaj = new System.Windows.Forms.Button();
             this.cbSpodnieSuf = new System.Windows.Forms.ComboBox();
             this.cbSpodnieBaza = new System.Windows.Forms.ComboBox();
             this.cbSpodniePref = new System.Windows.Forms.ComboBox();
             this.spodnieWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.TabPierscien = new System.Windows.Forms.TabPage();
+            this.PierscienCofnij = new System.Windows.Forms.Button();
             this.SufPierscienL = new System.Windows.Forms.Label();
             this.BazaPierscienL = new System.Windows.Forms.Label();
             this.PrefPierscienL = new System.Windows.Forms.Label();
@@ -130,12 +133,13 @@
             this.cbPierscienPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbPierscienBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbPierscienSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.pierscienDodaj = new System.Windows.Forms.Button();
+            this.PierscienDodaj = new System.Windows.Forms.Button();
             this.cbPierscienSuf = new System.Windows.Forms.ComboBox();
             this.cbPierscienBaza = new System.Windows.Forms.ComboBox();
             this.cbPierscienPref = new System.Windows.Forms.ComboBox();
             this.pierscienWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.TabAmulet = new System.Windows.Forms.TabPage();
+            this.AmuletCofnij = new System.Windows.Forms.Button();
             this.SufAmuletL = new System.Windows.Forms.Label();
             this.BazaAmuletL = new System.Windows.Forms.Label();
             this.PrefAmuletL = new System.Windows.Forms.Label();
@@ -156,12 +160,13 @@
             this.cbAmuletPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbAmuletBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbAmuletSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.amuletDodaj = new System.Windows.Forms.Button();
+            this.AmuletDodaj = new System.Windows.Forms.Button();
             this.cbAmuletSuf = new System.Windows.Forms.ComboBox();
             this.cbAmuletBaza = new System.Windows.Forms.ComboBox();
             this.cbAmuletPref = new System.Windows.Forms.ComboBox();
             this.amuletWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.TabBiala1h = new System.Windows.Forms.TabPage();
+            this.Biala1hCofnij = new System.Windows.Forms.Button();
             this.SufBiala1hL = new System.Windows.Forms.Label();
             this.BazaBiala1hL = new System.Windows.Forms.Label();
             this.PrefBiala1hL = new System.Windows.Forms.Label();
@@ -182,12 +187,13 @@
             this.cbBiala1hPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbBiala1hBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbBiala1hSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.biala1hDodaj = new System.Windows.Forms.Button();
+            this.Biala1hDodaj = new System.Windows.Forms.Button();
             this.cbBiala1hSuf = new System.Windows.Forms.ComboBox();
             this.cbBiala1hBaza = new System.Windows.Forms.ComboBox();
             this.cbBiala1hPref = new System.Windows.Forms.ComboBox();
             this.biala1hWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.TabBiala2h = new System.Windows.Forms.TabPage();
+            this.Biala2hCofnij = new System.Windows.Forms.Button();
             this.SufBiala2hL = new System.Windows.Forms.Label();
             this.BazaBiala2hL = new System.Windows.Forms.Label();
             this.PrefBiala2hL = new System.Windows.Forms.Label();
@@ -208,12 +214,13 @@
             this.cbBiala2hPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbBiala2hBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbBiala2hSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.biala2hDodaj = new System.Windows.Forms.Button();
+            this.Biala2hDodaj = new System.Windows.Forms.Button();
             this.cbBiala2hSuf = new System.Windows.Forms.ComboBox();
             this.cbBiala2hBaza = new System.Windows.Forms.ComboBox();
             this.cbBiala2hPref = new System.Windows.Forms.ComboBox();
             this.biala2hWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.TabPalna1h = new System.Windows.Forms.TabPage();
+            this.Palna1hCofnij = new System.Windows.Forms.Button();
             this.SufPalna1hL = new System.Windows.Forms.Label();
             this.BazaPalna1hL = new System.Windows.Forms.Label();
             this.PrefPalna1hL = new System.Windows.Forms.Label();
@@ -234,12 +241,13 @@
             this.cbPalna1hPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbPalna1hBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbPalna1hSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.palna1hDodaj = new System.Windows.Forms.Button();
+            this.Palna1hDodaj = new System.Windows.Forms.Button();
             this.cbPalna1hSuf = new System.Windows.Forms.ComboBox();
             this.cbPalna1hBaza = new System.Windows.Forms.ComboBox();
             this.cbPalna1hPref = new System.Windows.Forms.ComboBox();
             this.palna1hWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.TabPalna2h = new System.Windows.Forms.TabPage();
+            this.Palna2hCofnij = new System.Windows.Forms.Button();
             this.SufPalna2hL = new System.Windows.Forms.Label();
             this.BazaPalna2hL = new System.Windows.Forms.Label();
             this.PrefPalna2hL = new System.Windows.Forms.Label();
@@ -260,12 +268,13 @@
             this.cbPalna2hPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbPalna2hBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbPalna2hSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.palna2hDodaj = new System.Windows.Forms.Button();
+            this.Palna2hDodaj = new System.Windows.Forms.Button();
             this.cbPalna2hSuf = new System.Windows.Forms.ComboBox();
             this.cbPalna2hBaza = new System.Windows.Forms.ComboBox();
             this.cbPalna2hPref = new System.Windows.Forms.ComboBox();
             this.palna2hWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.TabDystans = new System.Windows.Forms.TabPage();
+            this.DystansCofnij = new System.Windows.Forms.Button();
             this.SufDystansL = new System.Windows.Forms.Label();
             this.BazaDystansL = new System.Windows.Forms.Label();
             this.PrefDystansL = new System.Windows.Forms.Label();
@@ -286,12 +295,12 @@
             this.cbDystansPref_sh1 = new System.Windows.Forms.ComboBox();
             this.cbDystansBaza_sh1 = new System.Windows.Forms.ComboBox();
             this.cbDystansSuf_sh1 = new System.Windows.Forms.ComboBox();
-            this.dystansDodaj = new System.Windows.Forms.Button();
+            this.DystansDodaj = new System.Windows.Forms.Button();
             this.cbDystansSuf = new System.Windows.Forms.ComboBox();
             this.cbDystansBaza = new System.Windows.Forms.ComboBox();
             this.cbDystansPref = new System.Windows.Forms.ComboBox();
             this.dystansWynik = new System.Windows.Forms.RichTextBox();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.TabAnalizator = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.ARzw4zw5 = new System.Windows.Forms.Label();
@@ -315,125 +324,115 @@
             this.AnalizatorRaportuPomoc = new System.Windows.Forms.Button();
             this.AnalizatorRaportuOblicz = new System.Windows.Forms.Button();
             this.AnalizatorRaportuTekst = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ByMe = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.kopiujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopiujWszystkoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ZapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ZbrojaCofnij = new System.Windows.Forms.Button();
-            this.SpodnieCofnij = new System.Windows.Forms.Button();
-            this.PierscienCofnij = new System.Windows.Forms.Button();
-            this.AmuletCofnij = new System.Windows.Forms.Button();
-            this.Biala1hCofnij = new System.Windows.Forms.Button();
-            this.Biala2hCofnij = new System.Windows.Forms.Button();
-            this.Palna1hCofnij = new System.Windows.Forms.Button();
-            this.Palna2hCofnij = new System.Windows.Forms.Button();
-            this.DystansCofnij = new System.Windows.Forms.Button();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.ZapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.GlownyTab.SuspendLayout();
+            this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
             this.bazaHelmPanel.SuspendLayout();
             this.prefHelmPanel.SuspendLayout();
             this.HelmPanel.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.TabZbroja.SuspendLayout();
             this.sufZbrojaPanel.SuspendLayout();
             this.bazaZbrojaPanel.SuspendLayout();
             this.prefZbrojaPanel.SuspendLayout();
             this.ZbrojaPanel.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.TabSpodnie.SuspendLayout();
             this.sufSpodniePanel.SuspendLayout();
             this.bazaSpodniePanel.SuspendLayout();
             this.prefSpodniePanel.SuspendLayout();
             this.SpodniePanel.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.TabPierscien.SuspendLayout();
             this.sufPierscienPanel.SuspendLayout();
             this.bazaPierscienPanel.SuspendLayout();
             this.prefPierscienPanel.SuspendLayout();
             this.PierscienPanel.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.TabAmulet.SuspendLayout();
             this.sufAmuletPanel.SuspendLayout();
             this.bazaAmuletPanel.SuspendLayout();
             this.prefAmuletPanel.SuspendLayout();
             this.AmuletPanel.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.TabBiala1h.SuspendLayout();
             this.sufBiala1hPanel.SuspendLayout();
             this.bazaBiala1hPanel.SuspendLayout();
             this.prefBiala1hPanel.SuspendLayout();
             this.Biala1hPanel.SuspendLayout();
-            this.tabPage7.SuspendLayout();
+            this.TabBiala2h.SuspendLayout();
             this.sufBiala2hPanel.SuspendLayout();
             this.bazaBiala2hPanel.SuspendLayout();
             this.prefBiala2hPanel.SuspendLayout();
             this.Biala2hPanel.SuspendLayout();
-            this.tabPage8.SuspendLayout();
+            this.TabPalna1h.SuspendLayout();
             this.sufPalna1hPanel.SuspendLayout();
             this.bazaPalna1hPanel.SuspendLayout();
             this.prefPalna1hPanel.SuspendLayout();
             this.Palna1hPanel.SuspendLayout();
-            this.tabPage9.SuspendLayout();
+            this.TabPalna2h.SuspendLayout();
             this.sufPalna2hPanel.SuspendLayout();
             this.bazaPalna2hPanel.SuspendLayout();
             this.prefPalna2hPanel.SuspendLayout();
             this.Palna2hPanel.SuspendLayout();
-            this.tabPage10.SuspendLayout();
+            this.TabDystans.SuspendLayout();
             this.sufDystansPanel.SuspendLayout();
             this.bazaDystansPanel.SuspendLayout();
             this.prefDystansPanel.SuspendLayout();
             this.DystansPanel.SuspendLayout();
-            this.tabPage11.SuspendLayout();
+            this.TabAnalizator.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // GlownyTab
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1172, 584);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.GlownyTab.Controls.Add(this.TabHelm);
+            this.GlownyTab.Controls.Add(this.TabZbroja);
+            this.GlownyTab.Controls.Add(this.TabSpodnie);
+            this.GlownyTab.Controls.Add(this.TabPierscien);
+            this.GlownyTab.Controls.Add(this.TabAmulet);
+            this.GlownyTab.Controls.Add(this.TabBiala1h);
+            this.GlownyTab.Controls.Add(this.TabBiala2h);
+            this.GlownyTab.Controls.Add(this.TabPalna1h);
+            this.GlownyTab.Controls.Add(this.TabPalna2h);
+            this.GlownyTab.Controls.Add(this.TabDystans);
+            this.GlownyTab.Controls.Add(this.TabAnalizator);
+            this.GlownyTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GlownyTab.Location = new System.Drawing.Point(0, 0);
+            this.GlownyTab.Margin = new System.Windows.Forms.Padding(4);
+            this.GlownyTab.Name = "GlownyTab";
+            this.GlownyTab.SelectedIndex = 0;
+            this.GlownyTab.Size = new System.Drawing.Size(1172, 584);
+            this.GlownyTab.TabIndex = 0;
+            this.GlownyTab.SelectedIndexChanged += new System.EventHandler(this.GlownyTab_SelectedIndexChanged);
             // 
-            // tabPage1
+            // TabHelm
             // 
-            this.tabPage1.Controls.Add(this.HelmCofnij);
-            this.tabPage1.Controls.Add(this.SufHelmL);
-            this.tabPage1.Controls.Add(this.BazaHelmL);
-            this.tabPage1.Controls.Add(this.PrefHelmL);
-            this.tabPage1.Controls.Add(this.sufHelmPanel);
-            this.tabPage1.Controls.Add(this.bazaHelmPanel);
-            this.tabPage1.Controls.Add(this.prefHelmPanel);
-            this.tabPage1.Controls.Add(this.HelmPanel);
-            this.tabPage1.Controls.Add(this.helmDodaj);
-            this.tabPage1.Controls.Add(this.cbHelmSuf);
-            this.tabPage1.Controls.Add(this.cbHelmBaza);
-            this.tabPage1.Controls.Add(this.cbHelmPref);
-            this.tabPage1.Controls.Add(this.helmWynik);
-            this.tabPage1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 37);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Hełm";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.TabHelm.Controls.Add(this.HelmCofnij);
+            this.TabHelm.Controls.Add(this.SufHelmL);
+            this.TabHelm.Controls.Add(this.BazaHelmL);
+            this.TabHelm.Controls.Add(this.PrefHelmL);
+            this.TabHelm.Controls.Add(this.sufHelmPanel);
+            this.TabHelm.Controls.Add(this.bazaHelmPanel);
+            this.TabHelm.Controls.Add(this.prefHelmPanel);
+            this.TabHelm.Controls.Add(this.HelmPanel);
+            this.TabHelm.Controls.Add(this.HelmDodaj);
+            this.TabHelm.Controls.Add(this.cbHelmSuf);
+            this.TabHelm.Controls.Add(this.cbHelmBaza);
+            this.TabHelm.Controls.Add(this.cbHelmPref);
+            this.TabHelm.Controls.Add(this.helmWynik);
+            this.TabHelm.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabHelm.Location = new System.Drawing.Point(4, 37);
+            this.TabHelm.Margin = new System.Windows.Forms.Padding(4);
+            this.TabHelm.Name = "TabHelm";
+            this.TabHelm.Padding = new System.Windows.Forms.Padding(4);
+            this.TabHelm.Size = new System.Drawing.Size(1164, 543);
+            this.TabHelm.TabIndex = 0;
+            this.TabHelm.Text = "Hełm";
             // 
             // HelmCofnij
             // 
@@ -449,6 +448,8 @@
             // 
             // SufHelmL
             // 
+            this.SufHelmL.BackColor = System.Drawing.Color.Transparent;
+            this.SufHelmL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufHelmL.Location = new System.Drawing.Point(1004, 41);
             this.SufHelmL.Name = "SufHelmL";
             this.SufHelmL.Size = new System.Drawing.Size(150, 29);
@@ -458,6 +459,8 @@
             // 
             // BazaHelmL
             // 
+            this.BazaHelmL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaHelmL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaHelmL.Location = new System.Drawing.Point(845, 41);
             this.BazaHelmL.Name = "BazaHelmL";
             this.BazaHelmL.Size = new System.Drawing.Size(150, 29);
@@ -467,6 +470,8 @@
             // 
             // PrefHelmL
             // 
+            this.PrefHelmL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefHelmL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefHelmL.Location = new System.Drawing.Point(686, 41);
             this.PrefHelmL.Name = "PrefHelmL";
             this.PrefHelmL.Size = new System.Drawing.Size(150, 29);
@@ -629,6 +634,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(188, 1);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
@@ -666,17 +672,17 @@
             this.cbHelmSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbHelmSuf_sh1.TabIndex = 8;
             // 
-            // helmDodaj
+            // HelmDodaj
             // 
-            this.helmDodaj.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helmDodaj.Location = new System.Drawing.Point(765, 74);
-            this.helmDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.helmDodaj.Name = "helmDodaj";
-            this.helmDodaj.Size = new System.Drawing.Size(151, 38);
-            this.helmDodaj.TabIndex = 4;
-            this.helmDodaj.Text = "Dodaj";
-            this.helmDodaj.UseVisualStyleBackColor = true;
-            this.helmDodaj.Click += new System.EventHandler(this.helmDodaj_Click);
+            this.HelmDodaj.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelmDodaj.Location = new System.Drawing.Point(765, 74);
+            this.HelmDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.HelmDodaj.Name = "HelmDodaj";
+            this.HelmDodaj.Size = new System.Drawing.Size(151, 38);
+            this.HelmDodaj.TabIndex = 4;
+            this.HelmDodaj.Text = "Dodaj";
+            this.HelmDodaj.UseVisualStyleBackColor = true;
+            this.HelmDodaj.Click += new System.EventHandler(this.HelmDodaj_Click);
             // 
             // cbHelmSuf
             // 
@@ -713,6 +719,7 @@
             // 
             // helmWynik
             // 
+            this.helmWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.helmWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.helmWynik.Location = new System.Drawing.Point(8, 8);
             this.helmWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -722,33 +729,46 @@
             this.helmWynik.TabIndex = 0;
             this.helmWynik.Text = "";
             // 
-            // tabPage2
+            // TabZbroja
             // 
-            this.tabPage2.Controls.Add(this.ZbrojaCofnij);
-            this.tabPage2.Controls.Add(this.SufZbrojaL);
-            this.tabPage2.Controls.Add(this.BazaZbrojaL);
-            this.tabPage2.Controls.Add(this.PrefZbrojaL);
-            this.tabPage2.Controls.Add(this.sufZbrojaPanel);
-            this.tabPage2.Controls.Add(this.bazaZbrojaPanel);
-            this.tabPage2.Controls.Add(this.prefZbrojaPanel);
-            this.tabPage2.Controls.Add(this.ZbrojaPanel);
-            this.tabPage2.Controls.Add(this.zbrojaDodaj);
-            this.tabPage2.Controls.Add(this.cbZbrojaSuf);
-            this.tabPage2.Controls.Add(this.cbZbrojaBaza);
-            this.tabPage2.Controls.Add(this.cbZbrojaPref);
-            this.tabPage2.Controls.Add(this.zbrojaWynik);
-            this.tabPage2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage2.Location = new System.Drawing.Point(4, 37);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Zbroja";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.TabZbroja.Controls.Add(this.ZbrojaCofnij);
+            this.TabZbroja.Controls.Add(this.SufZbrojaL);
+            this.TabZbroja.Controls.Add(this.BazaZbrojaL);
+            this.TabZbroja.Controls.Add(this.PrefZbrojaL);
+            this.TabZbroja.Controls.Add(this.sufZbrojaPanel);
+            this.TabZbroja.Controls.Add(this.bazaZbrojaPanel);
+            this.TabZbroja.Controls.Add(this.prefZbrojaPanel);
+            this.TabZbroja.Controls.Add(this.ZbrojaPanel);
+            this.TabZbroja.Controls.Add(this.ZbrojaDodaj);
+            this.TabZbroja.Controls.Add(this.cbZbrojaSuf);
+            this.TabZbroja.Controls.Add(this.cbZbrojaBaza);
+            this.TabZbroja.Controls.Add(this.cbZbrojaPref);
+            this.TabZbroja.Controls.Add(this.zbrojaWynik);
+            this.TabZbroja.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabZbroja.Location = new System.Drawing.Point(4, 37);
+            this.TabZbroja.Margin = new System.Windows.Forms.Padding(4);
+            this.TabZbroja.Name = "TabZbroja";
+            this.TabZbroja.Padding = new System.Windows.Forms.Padding(4);
+            this.TabZbroja.Size = new System.Drawing.Size(1164, 543);
+            this.TabZbroja.TabIndex = 1;
+            this.TabZbroja.Text = "Zbroja";
+            // 
+            // ZbrojaCofnij
+            // 
+            this.ZbrojaCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZbrojaCofnij.Location = new System.Drawing.Point(925, 74);
+            this.ZbrojaCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.ZbrojaCofnij.Name = "ZbrojaCofnij";
+            this.ZbrojaCofnij.Size = new System.Drawing.Size(151, 38);
+            this.ZbrojaCofnij.TabIndex = 16;
+            this.ZbrojaCofnij.Text = "Cofnij";
+            this.ZbrojaCofnij.UseVisualStyleBackColor = true;
+            this.ZbrojaCofnij.Click += new System.EventHandler(this.ZbrojaCofnij_Click);
             // 
             // SufZbrojaL
             // 
+            this.SufZbrojaL.BackColor = System.Drawing.Color.Transparent;
+            this.SufZbrojaL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufZbrojaL.Location = new System.Drawing.Point(1004, 41);
             this.SufZbrojaL.Name = "SufZbrojaL";
             this.SufZbrojaL.Size = new System.Drawing.Size(150, 29);
@@ -758,6 +778,8 @@
             // 
             // BazaZbrojaL
             // 
+            this.BazaZbrojaL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaZbrojaL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaZbrojaL.Location = new System.Drawing.Point(845, 41);
             this.BazaZbrojaL.Name = "BazaZbrojaL";
             this.BazaZbrojaL.Size = new System.Drawing.Size(150, 29);
@@ -767,6 +789,8 @@
             // 
             // PrefZbrojaL
             // 
+            this.PrefZbrojaL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefZbrojaL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefZbrojaL.Location = new System.Drawing.Point(686, 41);
             this.PrefZbrojaL.Name = "PrefZbrojaL";
             this.PrefZbrojaL.Size = new System.Drawing.Size(150, 29);
@@ -929,6 +953,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(188, 1);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -966,16 +991,16 @@
             this.cbZbrojaSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbZbrojaSuf_sh1.TabIndex = 8;
             // 
-            // zbrojaDodaj
+            // ZbrojaDodaj
             // 
-            this.zbrojaDodaj.Location = new System.Drawing.Point(765, 74);
-            this.zbrojaDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.zbrojaDodaj.Name = "zbrojaDodaj";
-            this.zbrojaDodaj.Size = new System.Drawing.Size(151, 38);
-            this.zbrojaDodaj.TabIndex = 9;
-            this.zbrojaDodaj.Text = "Dodaj";
-            this.zbrojaDodaj.UseVisualStyleBackColor = true;
-            this.zbrojaDodaj.Click += new System.EventHandler(this.zbrojaDodaj_Click);
+            this.ZbrojaDodaj.Location = new System.Drawing.Point(765, 74);
+            this.ZbrojaDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.ZbrojaDodaj.Name = "ZbrojaDodaj";
+            this.ZbrojaDodaj.Size = new System.Drawing.Size(151, 38);
+            this.ZbrojaDodaj.TabIndex = 9;
+            this.ZbrojaDodaj.Text = "Dodaj";
+            this.ZbrojaDodaj.UseVisualStyleBackColor = true;
+            this.ZbrojaDodaj.Click += new System.EventHandler(this.ZbrojaDodaj_Click);
             // 
             // cbZbrojaSuf
             // 
@@ -1012,6 +1037,7 @@
             // 
             // zbrojaWynik
             // 
+            this.zbrojaWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.zbrojaWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.zbrojaWynik.Location = new System.Drawing.Point(8, 8);
             this.zbrojaWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -1021,32 +1047,45 @@
             this.zbrojaWynik.TabIndex = 5;
             this.zbrojaWynik.Text = "";
             // 
-            // tabPage3
+            // TabSpodnie
             // 
-            this.tabPage3.Controls.Add(this.SpodnieCofnij);
-            this.tabPage3.Controls.Add(this.SufSpodnieL);
-            this.tabPage3.Controls.Add(this.BazaSpodnieL);
-            this.tabPage3.Controls.Add(this.PrefSpodnieL);
-            this.tabPage3.Controls.Add(this.sufSpodniePanel);
-            this.tabPage3.Controls.Add(this.bazaSpodniePanel);
-            this.tabPage3.Controls.Add(this.prefSpodniePanel);
-            this.tabPage3.Controls.Add(this.SpodniePanel);
-            this.tabPage3.Controls.Add(this.spodnieDodaj);
-            this.tabPage3.Controls.Add(this.cbSpodnieSuf);
-            this.tabPage3.Controls.Add(this.cbSpodnieBaza);
-            this.tabPage3.Controls.Add(this.cbSpodniePref);
-            this.tabPage3.Controls.Add(this.spodnieWynik);
-            this.tabPage3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage3.Location = new System.Drawing.Point(4, 37);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Spodnie";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.TabSpodnie.Controls.Add(this.SpodnieCofnij);
+            this.TabSpodnie.Controls.Add(this.SufSpodnieL);
+            this.TabSpodnie.Controls.Add(this.BazaSpodnieL);
+            this.TabSpodnie.Controls.Add(this.PrefSpodnieL);
+            this.TabSpodnie.Controls.Add(this.sufSpodniePanel);
+            this.TabSpodnie.Controls.Add(this.bazaSpodniePanel);
+            this.TabSpodnie.Controls.Add(this.prefSpodniePanel);
+            this.TabSpodnie.Controls.Add(this.SpodniePanel);
+            this.TabSpodnie.Controls.Add(this.SpodnieDodaj);
+            this.TabSpodnie.Controls.Add(this.cbSpodnieSuf);
+            this.TabSpodnie.Controls.Add(this.cbSpodnieBaza);
+            this.TabSpodnie.Controls.Add(this.cbSpodniePref);
+            this.TabSpodnie.Controls.Add(this.spodnieWynik);
+            this.TabSpodnie.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabSpodnie.Location = new System.Drawing.Point(4, 37);
+            this.TabSpodnie.Margin = new System.Windows.Forms.Padding(4);
+            this.TabSpodnie.Name = "TabSpodnie";
+            this.TabSpodnie.Size = new System.Drawing.Size(1164, 543);
+            this.TabSpodnie.TabIndex = 2;
+            this.TabSpodnie.Text = "Spodnie";
+            // 
+            // SpodnieCofnij
+            // 
+            this.SpodnieCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpodnieCofnij.Location = new System.Drawing.Point(925, 74);
+            this.SpodnieCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.SpodnieCofnij.Name = "SpodnieCofnij";
+            this.SpodnieCofnij.Size = new System.Drawing.Size(151, 38);
+            this.SpodnieCofnij.TabIndex = 22;
+            this.SpodnieCofnij.Text = "Cofnij";
+            this.SpodnieCofnij.UseVisualStyleBackColor = true;
+            this.SpodnieCofnij.Click += new System.EventHandler(this.SpodnieCofnij_Click);
             // 
             // SufSpodnieL
             // 
+            this.SufSpodnieL.BackColor = System.Drawing.Color.Transparent;
+            this.SufSpodnieL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufSpodnieL.Location = new System.Drawing.Point(1004, 41);
             this.SufSpodnieL.Name = "SufSpodnieL";
             this.SufSpodnieL.Size = new System.Drawing.Size(150, 29);
@@ -1056,6 +1095,8 @@
             // 
             // BazaSpodnieL
             // 
+            this.BazaSpodnieL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaSpodnieL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaSpodnieL.Location = new System.Drawing.Point(845, 41);
             this.BazaSpodnieL.Name = "BazaSpodnieL";
             this.BazaSpodnieL.Size = new System.Drawing.Size(150, 29);
@@ -1065,6 +1106,8 @@
             // 
             // PrefSpodnieL
             // 
+            this.PrefSpodnieL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefSpodnieL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefSpodnieL.Location = new System.Drawing.Point(686, 41);
             this.PrefSpodnieL.Name = "PrefSpodnieL";
             this.PrefSpodnieL.Size = new System.Drawing.Size(150, 29);
@@ -1227,6 +1270,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Location = new System.Drawing.Point(188, 1);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
@@ -1264,16 +1308,16 @@
             this.cbSpodnieSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbSpodnieSuf_sh1.TabIndex = 8;
             // 
-            // spodnieDodaj
+            // SpodnieDodaj
             // 
-            this.spodnieDodaj.Location = new System.Drawing.Point(765, 74);
-            this.spodnieDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.spodnieDodaj.Name = "spodnieDodaj";
-            this.spodnieDodaj.Size = new System.Drawing.Size(151, 38);
-            this.spodnieDodaj.TabIndex = 14;
-            this.spodnieDodaj.Text = "Dodaj";
-            this.spodnieDodaj.UseVisualStyleBackColor = true;
-            this.spodnieDodaj.Click += new System.EventHandler(this.spodnieDodaj_Click);
+            this.SpodnieDodaj.Location = new System.Drawing.Point(765, 74);
+            this.SpodnieDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.SpodnieDodaj.Name = "SpodnieDodaj";
+            this.SpodnieDodaj.Size = new System.Drawing.Size(151, 38);
+            this.SpodnieDodaj.TabIndex = 14;
+            this.SpodnieDodaj.Text = "Dodaj";
+            this.SpodnieDodaj.UseVisualStyleBackColor = true;
+            this.SpodnieDodaj.Click += new System.EventHandler(this.SpodnieDodaj_Click);
             // 
             // cbSpodnieSuf
             // 
@@ -1310,6 +1354,7 @@
             // 
             // spodnieWynik
             // 
+            this.spodnieWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spodnieWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.spodnieWynik.Location = new System.Drawing.Point(8, 8);
             this.spodnieWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -1319,32 +1364,45 @@
             this.spodnieWynik.TabIndex = 10;
             this.spodnieWynik.Text = "";
             // 
-            // tabPage4
+            // TabPierscien
             // 
-            this.tabPage4.Controls.Add(this.PierscienCofnij);
-            this.tabPage4.Controls.Add(this.SufPierscienL);
-            this.tabPage4.Controls.Add(this.BazaPierscienL);
-            this.tabPage4.Controls.Add(this.PrefPierscienL);
-            this.tabPage4.Controls.Add(this.sufPierscienPanel);
-            this.tabPage4.Controls.Add(this.bazaPierscienPanel);
-            this.tabPage4.Controls.Add(this.prefPierscienPanel);
-            this.tabPage4.Controls.Add(this.PierscienPanel);
-            this.tabPage4.Controls.Add(this.pierscienDodaj);
-            this.tabPage4.Controls.Add(this.cbPierscienSuf);
-            this.tabPage4.Controls.Add(this.cbPierscienBaza);
-            this.tabPage4.Controls.Add(this.cbPierscienPref);
-            this.tabPage4.Controls.Add(this.pierscienWynik);
-            this.tabPage4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage4.Location = new System.Drawing.Point(4, 37);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Pierścień";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.TabPierscien.Controls.Add(this.PierscienCofnij);
+            this.TabPierscien.Controls.Add(this.SufPierscienL);
+            this.TabPierscien.Controls.Add(this.BazaPierscienL);
+            this.TabPierscien.Controls.Add(this.PrefPierscienL);
+            this.TabPierscien.Controls.Add(this.sufPierscienPanel);
+            this.TabPierscien.Controls.Add(this.bazaPierscienPanel);
+            this.TabPierscien.Controls.Add(this.prefPierscienPanel);
+            this.TabPierscien.Controls.Add(this.PierscienPanel);
+            this.TabPierscien.Controls.Add(this.PierscienDodaj);
+            this.TabPierscien.Controls.Add(this.cbPierscienSuf);
+            this.TabPierscien.Controls.Add(this.cbPierscienBaza);
+            this.TabPierscien.Controls.Add(this.cbPierscienPref);
+            this.TabPierscien.Controls.Add(this.pierscienWynik);
+            this.TabPierscien.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabPierscien.Location = new System.Drawing.Point(4, 37);
+            this.TabPierscien.Margin = new System.Windows.Forms.Padding(4);
+            this.TabPierscien.Name = "TabPierscien";
+            this.TabPierscien.Size = new System.Drawing.Size(1164, 543);
+            this.TabPierscien.TabIndex = 3;
+            this.TabPierscien.Text = "Pierścień";
+            // 
+            // PierscienCofnij
+            // 
+            this.PierscienCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PierscienCofnij.Location = new System.Drawing.Point(925, 74);
+            this.PierscienCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.PierscienCofnij.Name = "PierscienCofnij";
+            this.PierscienCofnij.Size = new System.Drawing.Size(151, 38);
+            this.PierscienCofnij.TabIndex = 27;
+            this.PierscienCofnij.Text = "Cofnij";
+            this.PierscienCofnij.UseVisualStyleBackColor = true;
+            this.PierscienCofnij.Click += new System.EventHandler(this.PierscienCofnij_Click);
             // 
             // SufPierscienL
             // 
+            this.SufPierscienL.BackColor = System.Drawing.Color.Transparent;
+            this.SufPierscienL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufPierscienL.Location = new System.Drawing.Point(1004, 41);
             this.SufPierscienL.Name = "SufPierscienL";
             this.SufPierscienL.Size = new System.Drawing.Size(150, 29);
@@ -1354,6 +1412,8 @@
             // 
             // BazaPierscienL
             // 
+            this.BazaPierscienL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaPierscienL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaPierscienL.Location = new System.Drawing.Point(845, 41);
             this.BazaPierscienL.Name = "BazaPierscienL";
             this.BazaPierscienL.Size = new System.Drawing.Size(150, 29);
@@ -1363,6 +1423,8 @@
             // 
             // PrefPierscienL
             // 
+            this.PrefPierscienL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefPierscienL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefPierscienL.Location = new System.Drawing.Point(686, 41);
             this.PrefPierscienL.Name = "PrefPierscienL";
             this.PrefPierscienL.Size = new System.Drawing.Size(150, 29);
@@ -1525,6 +1587,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.Location = new System.Drawing.Point(188, 1);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
@@ -1562,16 +1625,16 @@
             this.cbPierscienSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbPierscienSuf_sh1.TabIndex = 8;
             // 
-            // pierscienDodaj
+            // PierscienDodaj
             // 
-            this.pierscienDodaj.Location = new System.Drawing.Point(765, 74);
-            this.pierscienDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.pierscienDodaj.Name = "pierscienDodaj";
-            this.pierscienDodaj.Size = new System.Drawing.Size(151, 38);
-            this.pierscienDodaj.TabIndex = 19;
-            this.pierscienDodaj.Text = "Dodaj";
-            this.pierscienDodaj.UseVisualStyleBackColor = true;
-            this.pierscienDodaj.Click += new System.EventHandler(this.pierscienDodaj_Click);
+            this.PierscienDodaj.Location = new System.Drawing.Point(765, 74);
+            this.PierscienDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.PierscienDodaj.Name = "PierscienDodaj";
+            this.PierscienDodaj.Size = new System.Drawing.Size(151, 38);
+            this.PierscienDodaj.TabIndex = 19;
+            this.PierscienDodaj.Text = "Dodaj";
+            this.PierscienDodaj.UseVisualStyleBackColor = true;
+            this.PierscienDodaj.Click += new System.EventHandler(this.PierscienDodaj_Click);
             // 
             // cbPierscienSuf
             // 
@@ -1608,6 +1671,7 @@
             // 
             // pierscienWynik
             // 
+            this.pierscienWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pierscienWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.pierscienWynik.Location = new System.Drawing.Point(8, 8);
             this.pierscienWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -1617,32 +1681,45 @@
             this.pierscienWynik.TabIndex = 15;
             this.pierscienWynik.Text = "";
             // 
-            // tabPage5
+            // TabAmulet
             // 
-            this.tabPage5.Controls.Add(this.AmuletCofnij);
-            this.tabPage5.Controls.Add(this.SufAmuletL);
-            this.tabPage5.Controls.Add(this.BazaAmuletL);
-            this.tabPage5.Controls.Add(this.PrefAmuletL);
-            this.tabPage5.Controls.Add(this.sufAmuletPanel);
-            this.tabPage5.Controls.Add(this.bazaAmuletPanel);
-            this.tabPage5.Controls.Add(this.prefAmuletPanel);
-            this.tabPage5.Controls.Add(this.AmuletPanel);
-            this.tabPage5.Controls.Add(this.amuletDodaj);
-            this.tabPage5.Controls.Add(this.cbAmuletSuf);
-            this.tabPage5.Controls.Add(this.cbAmuletBaza);
-            this.tabPage5.Controls.Add(this.cbAmuletPref);
-            this.tabPage5.Controls.Add(this.amuletWynik);
-            this.tabPage5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage5.Location = new System.Drawing.Point(4, 37);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Amulet";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.TabAmulet.Controls.Add(this.AmuletCofnij);
+            this.TabAmulet.Controls.Add(this.SufAmuletL);
+            this.TabAmulet.Controls.Add(this.BazaAmuletL);
+            this.TabAmulet.Controls.Add(this.PrefAmuletL);
+            this.TabAmulet.Controls.Add(this.sufAmuletPanel);
+            this.TabAmulet.Controls.Add(this.bazaAmuletPanel);
+            this.TabAmulet.Controls.Add(this.prefAmuletPanel);
+            this.TabAmulet.Controls.Add(this.AmuletPanel);
+            this.TabAmulet.Controls.Add(this.AmuletDodaj);
+            this.TabAmulet.Controls.Add(this.cbAmuletSuf);
+            this.TabAmulet.Controls.Add(this.cbAmuletBaza);
+            this.TabAmulet.Controls.Add(this.cbAmuletPref);
+            this.TabAmulet.Controls.Add(this.amuletWynik);
+            this.TabAmulet.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabAmulet.Location = new System.Drawing.Point(4, 37);
+            this.TabAmulet.Margin = new System.Windows.Forms.Padding(4);
+            this.TabAmulet.Name = "TabAmulet";
+            this.TabAmulet.Size = new System.Drawing.Size(1164, 543);
+            this.TabAmulet.TabIndex = 4;
+            this.TabAmulet.Text = "Amulet";
+            // 
+            // AmuletCofnij
+            // 
+            this.AmuletCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AmuletCofnij.Location = new System.Drawing.Point(925, 74);
+            this.AmuletCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.AmuletCofnij.Name = "AmuletCofnij";
+            this.AmuletCofnij.Size = new System.Drawing.Size(151, 38);
+            this.AmuletCofnij.TabIndex = 32;
+            this.AmuletCofnij.Text = "Cofnij";
+            this.AmuletCofnij.UseVisualStyleBackColor = true;
+            this.AmuletCofnij.Click += new System.EventHandler(this.AmuletCofnij_Click);
             // 
             // SufAmuletL
             // 
+            this.SufAmuletL.BackColor = System.Drawing.Color.Transparent;
+            this.SufAmuletL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufAmuletL.Location = new System.Drawing.Point(1004, 41);
             this.SufAmuletL.Name = "SufAmuletL";
             this.SufAmuletL.Size = new System.Drawing.Size(150, 29);
@@ -1652,6 +1729,8 @@
             // 
             // BazaAmuletL
             // 
+            this.BazaAmuletL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaAmuletL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaAmuletL.Location = new System.Drawing.Point(845, 41);
             this.BazaAmuletL.Name = "BazaAmuletL";
             this.BazaAmuletL.Size = new System.Drawing.Size(150, 29);
@@ -1661,6 +1740,8 @@
             // 
             // PrefAmuletL
             // 
+            this.PrefAmuletL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefAmuletL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefAmuletL.Location = new System.Drawing.Point(686, 41);
             this.PrefAmuletL.Name = "PrefAmuletL";
             this.PrefAmuletL.Size = new System.Drawing.Size(150, 29);
@@ -1823,6 +1904,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Location = new System.Drawing.Point(188, 1);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
@@ -1860,16 +1942,16 @@
             this.cbAmuletSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbAmuletSuf_sh1.TabIndex = 8;
             // 
-            // amuletDodaj
+            // AmuletDodaj
             // 
-            this.amuletDodaj.Location = new System.Drawing.Point(765, 74);
-            this.amuletDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.amuletDodaj.Name = "amuletDodaj";
-            this.amuletDodaj.Size = new System.Drawing.Size(151, 38);
-            this.amuletDodaj.TabIndex = 24;
-            this.amuletDodaj.Text = "Dodaj";
-            this.amuletDodaj.UseVisualStyleBackColor = true;
-            this.amuletDodaj.Click += new System.EventHandler(this.amuletDodaj_Click);
+            this.AmuletDodaj.Location = new System.Drawing.Point(765, 74);
+            this.AmuletDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.AmuletDodaj.Name = "AmuletDodaj";
+            this.AmuletDodaj.Size = new System.Drawing.Size(151, 38);
+            this.AmuletDodaj.TabIndex = 24;
+            this.AmuletDodaj.Text = "Dodaj";
+            this.AmuletDodaj.UseVisualStyleBackColor = true;
+            this.AmuletDodaj.Click += new System.EventHandler(this.AmuletDodaj_Click);
             // 
             // cbAmuletSuf
             // 
@@ -1906,6 +1988,7 @@
             // 
             // amuletWynik
             // 
+            this.amuletWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.amuletWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.amuletWynik.Location = new System.Drawing.Point(8, 8);
             this.amuletWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -1915,32 +1998,45 @@
             this.amuletWynik.TabIndex = 20;
             this.amuletWynik.Text = "";
             // 
-            // tabPage6
+            // TabBiala1h
             // 
-            this.tabPage6.Controls.Add(this.Biala1hCofnij);
-            this.tabPage6.Controls.Add(this.SufBiala1hL);
-            this.tabPage6.Controls.Add(this.BazaBiala1hL);
-            this.tabPage6.Controls.Add(this.PrefBiala1hL);
-            this.tabPage6.Controls.Add(this.sufBiala1hPanel);
-            this.tabPage6.Controls.Add(this.bazaBiala1hPanel);
-            this.tabPage6.Controls.Add(this.prefBiala1hPanel);
-            this.tabPage6.Controls.Add(this.Biala1hPanel);
-            this.tabPage6.Controls.Add(this.biala1hDodaj);
-            this.tabPage6.Controls.Add(this.cbBiala1hSuf);
-            this.tabPage6.Controls.Add(this.cbBiala1hBaza);
-            this.tabPage6.Controls.Add(this.cbBiala1hPref);
-            this.tabPage6.Controls.Add(this.biala1hWynik);
-            this.tabPage6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage6.Location = new System.Drawing.Point(4, 37);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Biała 1h";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.TabBiala1h.Controls.Add(this.Biala1hCofnij);
+            this.TabBiala1h.Controls.Add(this.SufBiala1hL);
+            this.TabBiala1h.Controls.Add(this.BazaBiala1hL);
+            this.TabBiala1h.Controls.Add(this.PrefBiala1hL);
+            this.TabBiala1h.Controls.Add(this.sufBiala1hPanel);
+            this.TabBiala1h.Controls.Add(this.bazaBiala1hPanel);
+            this.TabBiala1h.Controls.Add(this.prefBiala1hPanel);
+            this.TabBiala1h.Controls.Add(this.Biala1hPanel);
+            this.TabBiala1h.Controls.Add(this.Biala1hDodaj);
+            this.TabBiala1h.Controls.Add(this.cbBiala1hSuf);
+            this.TabBiala1h.Controls.Add(this.cbBiala1hBaza);
+            this.TabBiala1h.Controls.Add(this.cbBiala1hPref);
+            this.TabBiala1h.Controls.Add(this.biala1hWynik);
+            this.TabBiala1h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabBiala1h.Location = new System.Drawing.Point(4, 37);
+            this.TabBiala1h.Margin = new System.Windows.Forms.Padding(4);
+            this.TabBiala1h.Name = "TabBiala1h";
+            this.TabBiala1h.Size = new System.Drawing.Size(1164, 543);
+            this.TabBiala1h.TabIndex = 5;
+            this.TabBiala1h.Text = "Biała 1h";
+            // 
+            // Biala1hCofnij
+            // 
+            this.Biala1hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Biala1hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Biala1hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Biala1hCofnij.Name = "Biala1hCofnij";
+            this.Biala1hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Biala1hCofnij.TabIndex = 37;
+            this.Biala1hCofnij.Text = "Cofnij";
+            this.Biala1hCofnij.UseVisualStyleBackColor = true;
+            this.Biala1hCofnij.Click += new System.EventHandler(this.Biala1hCofnij_Click);
             // 
             // SufBiala1hL
             // 
+            this.SufBiala1hL.BackColor = System.Drawing.Color.Transparent;
+            this.SufBiala1hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufBiala1hL.Location = new System.Drawing.Point(1004, 41);
             this.SufBiala1hL.Name = "SufBiala1hL";
             this.SufBiala1hL.Size = new System.Drawing.Size(150, 29);
@@ -1950,6 +2046,8 @@
             // 
             // BazaBiala1hL
             // 
+            this.BazaBiala1hL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaBiala1hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaBiala1hL.Location = new System.Drawing.Point(845, 41);
             this.BazaBiala1hL.Name = "BazaBiala1hL";
             this.BazaBiala1hL.Size = new System.Drawing.Size(150, 29);
@@ -1959,6 +2057,8 @@
             // 
             // PrefBiala1hL
             // 
+            this.PrefBiala1hL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefBiala1hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefBiala1hL.Location = new System.Drawing.Point(686, 41);
             this.PrefBiala1hL.Name = "PrefBiala1hL";
             this.PrefBiala1hL.Size = new System.Drawing.Size(150, 29);
@@ -2121,6 +2221,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(188, 1);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
@@ -2158,16 +2259,16 @@
             this.cbBiala1hSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbBiala1hSuf_sh1.TabIndex = 8;
             // 
-            // biala1hDodaj
+            // Biala1hDodaj
             // 
-            this.biala1hDodaj.Location = new System.Drawing.Point(765, 74);
-            this.biala1hDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.biala1hDodaj.Name = "biala1hDodaj";
-            this.biala1hDodaj.Size = new System.Drawing.Size(151, 38);
-            this.biala1hDodaj.TabIndex = 29;
-            this.biala1hDodaj.Text = "Dodaj";
-            this.biala1hDodaj.UseVisualStyleBackColor = true;
-            this.biala1hDodaj.Click += new System.EventHandler(this.biala1hDodaj_Click);
+            this.Biala1hDodaj.Location = new System.Drawing.Point(765, 74);
+            this.Biala1hDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.Biala1hDodaj.Name = "Biala1hDodaj";
+            this.Biala1hDodaj.Size = new System.Drawing.Size(151, 38);
+            this.Biala1hDodaj.TabIndex = 29;
+            this.Biala1hDodaj.Text = "Dodaj";
+            this.Biala1hDodaj.UseVisualStyleBackColor = true;
+            this.Biala1hDodaj.Click += new System.EventHandler(this.Biala1hDodaj_Click);
             // 
             // cbBiala1hSuf
             // 
@@ -2204,6 +2305,7 @@
             // 
             // biala1hWynik
             // 
+            this.biala1hWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.biala1hWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.biala1hWynik.Location = new System.Drawing.Point(8, 8);
             this.biala1hWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -2213,32 +2315,45 @@
             this.biala1hWynik.TabIndex = 25;
             this.biala1hWynik.Text = "";
             // 
-            // tabPage7
+            // TabBiala2h
             // 
-            this.tabPage7.Controls.Add(this.Biala2hCofnij);
-            this.tabPage7.Controls.Add(this.SufBiala2hL);
-            this.tabPage7.Controls.Add(this.BazaBiala2hL);
-            this.tabPage7.Controls.Add(this.PrefBiala2hL);
-            this.tabPage7.Controls.Add(this.sufBiala2hPanel);
-            this.tabPage7.Controls.Add(this.bazaBiala2hPanel);
-            this.tabPage7.Controls.Add(this.prefBiala2hPanel);
-            this.tabPage7.Controls.Add(this.Biala2hPanel);
-            this.tabPage7.Controls.Add(this.biala2hDodaj);
-            this.tabPage7.Controls.Add(this.cbBiala2hSuf);
-            this.tabPage7.Controls.Add(this.cbBiala2hBaza);
-            this.tabPage7.Controls.Add(this.cbBiala2hPref);
-            this.tabPage7.Controls.Add(this.biala2hWynik);
-            this.tabPage7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage7.Location = new System.Drawing.Point(4, 37);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Biała 2h";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.TabBiala2h.Controls.Add(this.Biala2hCofnij);
+            this.TabBiala2h.Controls.Add(this.SufBiala2hL);
+            this.TabBiala2h.Controls.Add(this.BazaBiala2hL);
+            this.TabBiala2h.Controls.Add(this.PrefBiala2hL);
+            this.TabBiala2h.Controls.Add(this.sufBiala2hPanel);
+            this.TabBiala2h.Controls.Add(this.bazaBiala2hPanel);
+            this.TabBiala2h.Controls.Add(this.prefBiala2hPanel);
+            this.TabBiala2h.Controls.Add(this.Biala2hPanel);
+            this.TabBiala2h.Controls.Add(this.Biala2hDodaj);
+            this.TabBiala2h.Controls.Add(this.cbBiala2hSuf);
+            this.TabBiala2h.Controls.Add(this.cbBiala2hBaza);
+            this.TabBiala2h.Controls.Add(this.cbBiala2hPref);
+            this.TabBiala2h.Controls.Add(this.biala2hWynik);
+            this.TabBiala2h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabBiala2h.Location = new System.Drawing.Point(4, 37);
+            this.TabBiala2h.Margin = new System.Windows.Forms.Padding(4);
+            this.TabBiala2h.Name = "TabBiala2h";
+            this.TabBiala2h.Size = new System.Drawing.Size(1164, 543);
+            this.TabBiala2h.TabIndex = 6;
+            this.TabBiala2h.Text = "Biała 2h";
+            // 
+            // Biala2hCofnij
+            // 
+            this.Biala2hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Biala2hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Biala2hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Biala2hCofnij.Name = "Biala2hCofnij";
+            this.Biala2hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Biala2hCofnij.TabIndex = 42;
+            this.Biala2hCofnij.Text = "Cofnij";
+            this.Biala2hCofnij.UseVisualStyleBackColor = true;
+            this.Biala2hCofnij.Click += new System.EventHandler(this.Biala2hCofnij_Click);
             // 
             // SufBiala2hL
             // 
+            this.SufBiala2hL.BackColor = System.Drawing.Color.Transparent;
+            this.SufBiala2hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufBiala2hL.Location = new System.Drawing.Point(1004, 41);
             this.SufBiala2hL.Name = "SufBiala2hL";
             this.SufBiala2hL.Size = new System.Drawing.Size(150, 29);
@@ -2248,6 +2363,8 @@
             // 
             // BazaBiala2hL
             // 
+            this.BazaBiala2hL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaBiala2hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaBiala2hL.Location = new System.Drawing.Point(845, 41);
             this.BazaBiala2hL.Name = "BazaBiala2hL";
             this.BazaBiala2hL.Size = new System.Drawing.Size(150, 29);
@@ -2257,6 +2374,8 @@
             // 
             // PrefBiala2hL
             // 
+            this.PrefBiala2hL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefBiala2hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefBiala2hL.Location = new System.Drawing.Point(686, 41);
             this.PrefBiala2hL.Name = "PrefBiala2hL";
             this.PrefBiala2hL.Size = new System.Drawing.Size(150, 29);
@@ -2419,6 +2538,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label8.Location = new System.Drawing.Point(188, 1);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
@@ -2456,16 +2576,16 @@
             this.cbBiala2hSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbBiala2hSuf_sh1.TabIndex = 8;
             // 
-            // biala2hDodaj
+            // Biala2hDodaj
             // 
-            this.biala2hDodaj.Location = new System.Drawing.Point(765, 74);
-            this.biala2hDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.biala2hDodaj.Name = "biala2hDodaj";
-            this.biala2hDodaj.Size = new System.Drawing.Size(151, 38);
-            this.biala2hDodaj.TabIndex = 34;
-            this.biala2hDodaj.Text = "Dodaj";
-            this.biala2hDodaj.UseVisualStyleBackColor = true;
-            this.biala2hDodaj.Click += new System.EventHandler(this.biala2hDodaj_Click);
+            this.Biala2hDodaj.Location = new System.Drawing.Point(765, 74);
+            this.Biala2hDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.Biala2hDodaj.Name = "Biala2hDodaj";
+            this.Biala2hDodaj.Size = new System.Drawing.Size(151, 38);
+            this.Biala2hDodaj.TabIndex = 34;
+            this.Biala2hDodaj.Text = "Dodaj";
+            this.Biala2hDodaj.UseVisualStyleBackColor = true;
+            this.Biala2hDodaj.Click += new System.EventHandler(this.Biala2hDodaj_Click);
             // 
             // cbBiala2hSuf
             // 
@@ -2502,6 +2622,7 @@
             // 
             // biala2hWynik
             // 
+            this.biala2hWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.biala2hWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.biala2hWynik.Location = new System.Drawing.Point(8, 8);
             this.biala2hWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -2511,32 +2632,45 @@
             this.biala2hWynik.TabIndex = 30;
             this.biala2hWynik.Text = "";
             // 
-            // tabPage8
+            // TabPalna1h
             // 
-            this.tabPage8.Controls.Add(this.Palna1hCofnij);
-            this.tabPage8.Controls.Add(this.SufPalna1hL);
-            this.tabPage8.Controls.Add(this.BazaPalna1hL);
-            this.tabPage8.Controls.Add(this.PrefPalna1hL);
-            this.tabPage8.Controls.Add(this.sufPalna1hPanel);
-            this.tabPage8.Controls.Add(this.bazaPalna1hPanel);
-            this.tabPage8.Controls.Add(this.prefPalna1hPanel);
-            this.tabPage8.Controls.Add(this.Palna1hPanel);
-            this.tabPage8.Controls.Add(this.palna1hDodaj);
-            this.tabPage8.Controls.Add(this.cbPalna1hSuf);
-            this.tabPage8.Controls.Add(this.cbPalna1hBaza);
-            this.tabPage8.Controls.Add(this.cbPalna1hPref);
-            this.tabPage8.Controls.Add(this.palna1hWynik);
-            this.tabPage8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage8.Location = new System.Drawing.Point(4, 37);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Palna 1h";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.TabPalna1h.Controls.Add(this.Palna1hCofnij);
+            this.TabPalna1h.Controls.Add(this.SufPalna1hL);
+            this.TabPalna1h.Controls.Add(this.BazaPalna1hL);
+            this.TabPalna1h.Controls.Add(this.PrefPalna1hL);
+            this.TabPalna1h.Controls.Add(this.sufPalna1hPanel);
+            this.TabPalna1h.Controls.Add(this.bazaPalna1hPanel);
+            this.TabPalna1h.Controls.Add(this.prefPalna1hPanel);
+            this.TabPalna1h.Controls.Add(this.Palna1hPanel);
+            this.TabPalna1h.Controls.Add(this.Palna1hDodaj);
+            this.TabPalna1h.Controls.Add(this.cbPalna1hSuf);
+            this.TabPalna1h.Controls.Add(this.cbPalna1hBaza);
+            this.TabPalna1h.Controls.Add(this.cbPalna1hPref);
+            this.TabPalna1h.Controls.Add(this.palna1hWynik);
+            this.TabPalna1h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabPalna1h.Location = new System.Drawing.Point(4, 37);
+            this.TabPalna1h.Margin = new System.Windows.Forms.Padding(4);
+            this.TabPalna1h.Name = "TabPalna1h";
+            this.TabPalna1h.Size = new System.Drawing.Size(1164, 543);
+            this.TabPalna1h.TabIndex = 7;
+            this.TabPalna1h.Text = "Palna 1h";
+            // 
+            // Palna1hCofnij
+            // 
+            this.Palna1hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Palna1hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Palna1hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Palna1hCofnij.Name = "Palna1hCofnij";
+            this.Palna1hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Palna1hCofnij.TabIndex = 47;
+            this.Palna1hCofnij.Text = "Cofnij";
+            this.Palna1hCofnij.UseVisualStyleBackColor = true;
+            this.Palna1hCofnij.Click += new System.EventHandler(this.Palna1hCofnij_Click);
             // 
             // SufPalna1hL
             // 
+            this.SufPalna1hL.BackColor = System.Drawing.Color.Transparent;
+            this.SufPalna1hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufPalna1hL.Location = new System.Drawing.Point(1004, 41);
             this.SufPalna1hL.Name = "SufPalna1hL";
             this.SufPalna1hL.Size = new System.Drawing.Size(150, 29);
@@ -2546,6 +2680,8 @@
             // 
             // BazaPalna1hL
             // 
+            this.BazaPalna1hL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaPalna1hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaPalna1hL.Location = new System.Drawing.Point(845, 41);
             this.BazaPalna1hL.Name = "BazaPalna1hL";
             this.BazaPalna1hL.Size = new System.Drawing.Size(150, 29);
@@ -2555,6 +2691,8 @@
             // 
             // PrefPalna1hL
             // 
+            this.PrefPalna1hL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefPalna1hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefPalna1hL.Location = new System.Drawing.Point(686, 41);
             this.PrefPalna1hL.Name = "PrefPalna1hL";
             this.PrefPalna1hL.Size = new System.Drawing.Size(150, 29);
@@ -2717,6 +2855,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label9.Location = new System.Drawing.Point(188, 1);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
@@ -2754,16 +2893,16 @@
             this.cbPalna1hSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbPalna1hSuf_sh1.TabIndex = 8;
             // 
-            // palna1hDodaj
+            // Palna1hDodaj
             // 
-            this.palna1hDodaj.Location = new System.Drawing.Point(765, 74);
-            this.palna1hDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.palna1hDodaj.Name = "palna1hDodaj";
-            this.palna1hDodaj.Size = new System.Drawing.Size(151, 38);
-            this.palna1hDodaj.TabIndex = 39;
-            this.palna1hDodaj.Text = "Dodaj";
-            this.palna1hDodaj.UseVisualStyleBackColor = true;
-            this.palna1hDodaj.Click += new System.EventHandler(this.palna1hDodaj_Click);
+            this.Palna1hDodaj.Location = new System.Drawing.Point(765, 74);
+            this.Palna1hDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.Palna1hDodaj.Name = "Palna1hDodaj";
+            this.Palna1hDodaj.Size = new System.Drawing.Size(151, 38);
+            this.Palna1hDodaj.TabIndex = 39;
+            this.Palna1hDodaj.Text = "Dodaj";
+            this.Palna1hDodaj.UseVisualStyleBackColor = true;
+            this.Palna1hDodaj.Click += new System.EventHandler(this.Palna1hDodaj_Click);
             // 
             // cbPalna1hSuf
             // 
@@ -2800,6 +2939,7 @@
             // 
             // palna1hWynik
             // 
+            this.palna1hWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.palna1hWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.palna1hWynik.Location = new System.Drawing.Point(8, 8);
             this.palna1hWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -2809,32 +2949,45 @@
             this.palna1hWynik.TabIndex = 35;
             this.palna1hWynik.Text = "";
             // 
-            // tabPage9
+            // TabPalna2h
             // 
-            this.tabPage9.Controls.Add(this.Palna2hCofnij);
-            this.tabPage9.Controls.Add(this.SufPalna2hL);
-            this.tabPage9.Controls.Add(this.BazaPalna2hL);
-            this.tabPage9.Controls.Add(this.PrefPalna2hL);
-            this.tabPage9.Controls.Add(this.sufPalna2hPanel);
-            this.tabPage9.Controls.Add(this.bazaPalna2hPanel);
-            this.tabPage9.Controls.Add(this.prefPalna2hPanel);
-            this.tabPage9.Controls.Add(this.Palna2hPanel);
-            this.tabPage9.Controls.Add(this.palna2hDodaj);
-            this.tabPage9.Controls.Add(this.cbPalna2hSuf);
-            this.tabPage9.Controls.Add(this.cbPalna2hBaza);
-            this.tabPage9.Controls.Add(this.cbPalna2hPref);
-            this.tabPage9.Controls.Add(this.palna2hWynik);
-            this.tabPage9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage9.Location = new System.Drawing.Point(4, 37);
-            this.tabPage9.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "Palna 2h";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this.TabPalna2h.Controls.Add(this.Palna2hCofnij);
+            this.TabPalna2h.Controls.Add(this.SufPalna2hL);
+            this.TabPalna2h.Controls.Add(this.BazaPalna2hL);
+            this.TabPalna2h.Controls.Add(this.PrefPalna2hL);
+            this.TabPalna2h.Controls.Add(this.sufPalna2hPanel);
+            this.TabPalna2h.Controls.Add(this.bazaPalna2hPanel);
+            this.TabPalna2h.Controls.Add(this.prefPalna2hPanel);
+            this.TabPalna2h.Controls.Add(this.Palna2hPanel);
+            this.TabPalna2h.Controls.Add(this.Palna2hDodaj);
+            this.TabPalna2h.Controls.Add(this.cbPalna2hSuf);
+            this.TabPalna2h.Controls.Add(this.cbPalna2hBaza);
+            this.TabPalna2h.Controls.Add(this.cbPalna2hPref);
+            this.TabPalna2h.Controls.Add(this.palna2hWynik);
+            this.TabPalna2h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabPalna2h.Location = new System.Drawing.Point(4, 37);
+            this.TabPalna2h.Margin = new System.Windows.Forms.Padding(4);
+            this.TabPalna2h.Name = "TabPalna2h";
+            this.TabPalna2h.Size = new System.Drawing.Size(1164, 543);
+            this.TabPalna2h.TabIndex = 8;
+            this.TabPalna2h.Text = "Palna 2h";
+            // 
+            // Palna2hCofnij
+            // 
+            this.Palna2hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Palna2hCofnij.Location = new System.Drawing.Point(925, 74);
+            this.Palna2hCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.Palna2hCofnij.Name = "Palna2hCofnij";
+            this.Palna2hCofnij.Size = new System.Drawing.Size(151, 38);
+            this.Palna2hCofnij.TabIndex = 52;
+            this.Palna2hCofnij.Text = "Cofnij";
+            this.Palna2hCofnij.UseVisualStyleBackColor = true;
+            this.Palna2hCofnij.Click += new System.EventHandler(this.Palna2hCofnij_Click);
             // 
             // SufPalna2hL
             // 
+            this.SufPalna2hL.BackColor = System.Drawing.Color.Transparent;
+            this.SufPalna2hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufPalna2hL.Location = new System.Drawing.Point(1004, 41);
             this.SufPalna2hL.Name = "SufPalna2hL";
             this.SufPalna2hL.Size = new System.Drawing.Size(150, 29);
@@ -2844,6 +2997,8 @@
             // 
             // BazaPalna2hL
             // 
+            this.BazaPalna2hL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaPalna2hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaPalna2hL.Location = new System.Drawing.Point(845, 41);
             this.BazaPalna2hL.Name = "BazaPalna2hL";
             this.BazaPalna2hL.Size = new System.Drawing.Size(150, 29);
@@ -2853,6 +3008,8 @@
             // 
             // PrefPalna2hL
             // 
+            this.PrefPalna2hL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefPalna2hL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefPalna2hL.Location = new System.Drawing.Point(686, 41);
             this.PrefPalna2hL.Name = "PrefPalna2hL";
             this.PrefPalna2hL.Size = new System.Drawing.Size(150, 29);
@@ -3015,6 +3172,7 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label10.Location = new System.Drawing.Point(188, 1);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
@@ -3052,16 +3210,16 @@
             this.cbPalna2hSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbPalna2hSuf_sh1.TabIndex = 8;
             // 
-            // palna2hDodaj
+            // Palna2hDodaj
             // 
-            this.palna2hDodaj.Location = new System.Drawing.Point(765, 74);
-            this.palna2hDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.palna2hDodaj.Name = "palna2hDodaj";
-            this.palna2hDodaj.Size = new System.Drawing.Size(151, 38);
-            this.palna2hDodaj.TabIndex = 44;
-            this.palna2hDodaj.Text = "Dodaj";
-            this.palna2hDodaj.UseVisualStyleBackColor = true;
-            this.palna2hDodaj.Click += new System.EventHandler(this.palna2hDodaj_Click);
+            this.Palna2hDodaj.Location = new System.Drawing.Point(765, 74);
+            this.Palna2hDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.Palna2hDodaj.Name = "Palna2hDodaj";
+            this.Palna2hDodaj.Size = new System.Drawing.Size(151, 38);
+            this.Palna2hDodaj.TabIndex = 44;
+            this.Palna2hDodaj.Text = "Dodaj";
+            this.Palna2hDodaj.UseVisualStyleBackColor = true;
+            this.Palna2hDodaj.Click += new System.EventHandler(this.Palna2hDodaj_Click);
             // 
             // cbPalna2hSuf
             // 
@@ -3098,6 +3256,7 @@
             // 
             // palna2hWynik
             // 
+            this.palna2hWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.palna2hWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.palna2hWynik.Location = new System.Drawing.Point(8, 8);
             this.palna2hWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -3107,32 +3266,45 @@
             this.palna2hWynik.TabIndex = 40;
             this.palna2hWynik.Text = "";
             // 
-            // tabPage10
+            // TabDystans
             // 
-            this.tabPage10.Controls.Add(this.DystansCofnij);
-            this.tabPage10.Controls.Add(this.SufDystansL);
-            this.tabPage10.Controls.Add(this.BazaDystansL);
-            this.tabPage10.Controls.Add(this.PrefDystansL);
-            this.tabPage10.Controls.Add(this.sufDystansPanel);
-            this.tabPage10.Controls.Add(this.bazaDystansPanel);
-            this.tabPage10.Controls.Add(this.prefDystansPanel);
-            this.tabPage10.Controls.Add(this.DystansPanel);
-            this.tabPage10.Controls.Add(this.dystansDodaj);
-            this.tabPage10.Controls.Add(this.cbDystansSuf);
-            this.tabPage10.Controls.Add(this.cbDystansBaza);
-            this.tabPage10.Controls.Add(this.cbDystansPref);
-            this.tabPage10.Controls.Add(this.dystansWynik);
-            this.tabPage10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tabPage10.Location = new System.Drawing.Point(4, 37);
-            this.tabPage10.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage10.TabIndex = 9;
-            this.tabPage10.Text = "Dystans";
-            this.tabPage10.UseVisualStyleBackColor = true;
+            this.TabDystans.Controls.Add(this.DystansCofnij);
+            this.TabDystans.Controls.Add(this.SufDystansL);
+            this.TabDystans.Controls.Add(this.BazaDystansL);
+            this.TabDystans.Controls.Add(this.PrefDystansL);
+            this.TabDystans.Controls.Add(this.sufDystansPanel);
+            this.TabDystans.Controls.Add(this.bazaDystansPanel);
+            this.TabDystans.Controls.Add(this.prefDystansPanel);
+            this.TabDystans.Controls.Add(this.DystansPanel);
+            this.TabDystans.Controls.Add(this.DystansDodaj);
+            this.TabDystans.Controls.Add(this.cbDystansSuf);
+            this.TabDystans.Controls.Add(this.cbDystansBaza);
+            this.TabDystans.Controls.Add(this.cbDystansPref);
+            this.TabDystans.Controls.Add(this.dystansWynik);
+            this.TabDystans.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TabDystans.Location = new System.Drawing.Point(4, 37);
+            this.TabDystans.Margin = new System.Windows.Forms.Padding(4);
+            this.TabDystans.Name = "TabDystans";
+            this.TabDystans.Size = new System.Drawing.Size(1164, 543);
+            this.TabDystans.TabIndex = 9;
+            this.TabDystans.Text = "Dystans";
+            // 
+            // DystansCofnij
+            // 
+            this.DystansCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DystansCofnij.Location = new System.Drawing.Point(925, 74);
+            this.DystansCofnij.Margin = new System.Windows.Forms.Padding(4);
+            this.DystansCofnij.Name = "DystansCofnij";
+            this.DystansCofnij.Size = new System.Drawing.Size(151, 38);
+            this.DystansCofnij.TabIndex = 55;
+            this.DystansCofnij.Text = "Cofnij";
+            this.DystansCofnij.UseVisualStyleBackColor = true;
+            this.DystansCofnij.Click += new System.EventHandler(this.DystansCofnij_Click);
             // 
             // SufDystansL
             // 
+            this.SufDystansL.BackColor = System.Drawing.Color.Transparent;
+            this.SufDystansL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SufDystansL.Location = new System.Drawing.Point(1004, 41);
             this.SufDystansL.Name = "SufDystansL";
             this.SufDystansL.Size = new System.Drawing.Size(150, 29);
@@ -3142,6 +3314,8 @@
             // 
             // BazaDystansL
             // 
+            this.BazaDystansL.BackColor = System.Drawing.Color.Transparent;
+            this.BazaDystansL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BazaDystansL.Location = new System.Drawing.Point(845, 41);
             this.BazaDystansL.Name = "BazaDystansL";
             this.BazaDystansL.Size = new System.Drawing.Size(150, 29);
@@ -3151,6 +3325,8 @@
             // 
             // PrefDystansL
             // 
+            this.PrefDystansL.BackColor = System.Drawing.Color.Transparent;
+            this.PrefDystansL.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrefDystansL.Location = new System.Drawing.Point(686, 41);
             this.PrefDystansL.Name = "PrefDystansL";
             this.PrefDystansL.Size = new System.Drawing.Size(150, 29);
@@ -3313,6 +3489,7 @@
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label11.Location = new System.Drawing.Point(188, 1);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
@@ -3350,16 +3527,16 @@
             this.cbDystansSuf_sh1.Size = new System.Drawing.Size(146, 29);
             this.cbDystansSuf_sh1.TabIndex = 8;
             // 
-            // dystansDodaj
+            // DystansDodaj
             // 
-            this.dystansDodaj.Location = new System.Drawing.Point(765, 74);
-            this.dystansDodaj.Margin = new System.Windows.Forms.Padding(4);
-            this.dystansDodaj.Name = "dystansDodaj";
-            this.dystansDodaj.Size = new System.Drawing.Size(151, 38);
-            this.dystansDodaj.TabIndex = 39;
-            this.dystansDodaj.Text = "Dodaj";
-            this.dystansDodaj.UseVisualStyleBackColor = true;
-            this.dystansDodaj.Click += new System.EventHandler(this.dystansDodaj_Click);
+            this.DystansDodaj.Location = new System.Drawing.Point(765, 74);
+            this.DystansDodaj.Margin = new System.Windows.Forms.Padding(4);
+            this.DystansDodaj.Name = "DystansDodaj";
+            this.DystansDodaj.Size = new System.Drawing.Size(151, 38);
+            this.DystansDodaj.TabIndex = 39;
+            this.DystansDodaj.Text = "Dodaj";
+            this.DystansDodaj.UseVisualStyleBackColor = true;
+            this.DystansDodaj.Click += new System.EventHandler(this.DystansDodaj_Click);
             // 
             // cbDystansSuf
             // 
@@ -3396,6 +3573,7 @@
             // 
             // dystansWynik
             // 
+            this.dystansWynik.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dystansWynik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dystansWynik.Location = new System.Drawing.Point(8, 8);
             this.dystansWynik.Margin = new System.Windows.Forms.Padding(4);
@@ -3405,43 +3583,44 @@
             this.dystansWynik.TabIndex = 35;
             this.dystansWynik.Text = "";
             // 
-            // tabPage11
+            // TabAnalizator
             // 
-            this.tabPage11.Controls.Add(this.label14);
-            this.tabPage11.Controls.Add(this.label13);
-            this.tabPage11.Controls.Add(this.ARzw4zw5);
-            this.tabPage11.Controls.Add(this.ARzw3zw4);
-            this.tabPage11.Controls.Add(this.ARzw2zw3);
-            this.tabPage11.Controls.Add(this.ARzw1zw2);
-            this.tabPage11.Controls.Add(this.ARzw0zw1);
-            this.tabPage11.Controls.Add(this.ARdsk4dsk5);
-            this.tabPage11.Controls.Add(this.ARdsk3dsk4);
-            this.tabPage11.Controls.Add(this.ARdsk2dsk3);
-            this.tabPage11.Controls.Add(this.ARdsk1dsk2);
-            this.tabPage11.Controls.Add(this.ARdsk0dsk1);
-            this.tabPage11.Controls.Add(this.ARdb5dsk0);
-            this.tabPage11.Controls.Add(this.ARdb4db5);
-            this.tabPage11.Controls.Add(this.ARdb3db4);
-            this.tabPage11.Controls.Add(this.ARdb2db3);
-            this.tabPage11.Controls.Add(this.ARdb1db2);
-            this.tabPage11.Controls.Add(this.ARdb0db1);
-            this.tabPage11.Controls.Add(this.ARzw5db0);
-            this.tabPage11.Controls.Add(this.label12);
-            this.tabPage11.Controls.Add(this.AnalizatorRaportuPomoc);
-            this.tabPage11.Controls.Add(this.AnalizatorRaportuOblicz);
-            this.tabPage11.Controls.Add(this.AnalizatorRaportuTekst);
-            this.tabPage11.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.tabPage11.Location = new System.Drawing.Point(4, 37);
-            this.tabPage11.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1164, 543);
-            this.tabPage11.TabIndex = 10;
-            this.tabPage11.Text = "Analizator raportu";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.TabAnalizator.Controls.Add(this.label14);
+            this.TabAnalizator.Controls.Add(this.label13);
+            this.TabAnalizator.Controls.Add(this.ARzw4zw5);
+            this.TabAnalizator.Controls.Add(this.ARzw3zw4);
+            this.TabAnalizator.Controls.Add(this.ARzw2zw3);
+            this.TabAnalizator.Controls.Add(this.ARzw1zw2);
+            this.TabAnalizator.Controls.Add(this.ARzw0zw1);
+            this.TabAnalizator.Controls.Add(this.ARdsk4dsk5);
+            this.TabAnalizator.Controls.Add(this.ARdsk3dsk4);
+            this.TabAnalizator.Controls.Add(this.ARdsk2dsk3);
+            this.TabAnalizator.Controls.Add(this.ARdsk1dsk2);
+            this.TabAnalizator.Controls.Add(this.ARdsk0dsk1);
+            this.TabAnalizator.Controls.Add(this.ARdb5dsk0);
+            this.TabAnalizator.Controls.Add(this.ARdb4db5);
+            this.TabAnalizator.Controls.Add(this.ARdb3db4);
+            this.TabAnalizator.Controls.Add(this.ARdb2db3);
+            this.TabAnalizator.Controls.Add(this.ARdb1db2);
+            this.TabAnalizator.Controls.Add(this.ARdb0db1);
+            this.TabAnalizator.Controls.Add(this.ARzw5db0);
+            this.TabAnalizator.Controls.Add(this.label12);
+            this.TabAnalizator.Controls.Add(this.AnalizatorRaportuPomoc);
+            this.TabAnalizator.Controls.Add(this.AnalizatorRaportuOblicz);
+            this.TabAnalizator.Controls.Add(this.AnalizatorRaportuTekst);
+            this.TabAnalizator.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.TabAnalizator.Location = new System.Drawing.Point(4, 37);
+            this.TabAnalizator.Margin = new System.Windows.Forms.Padding(4);
+            this.TabAnalizator.Name = "TabAnalizator";
+            this.TabAnalizator.Size = new System.Drawing.Size(1164, 543);
+            this.TabAnalizator.TabIndex = 10;
+            this.TabAnalizator.Text = "Analizator raportu";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label14.Location = new System.Drawing.Point(835, 362);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
@@ -3452,6 +3631,8 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label13.Location = new System.Drawing.Point(835, 208);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
@@ -3462,6 +3643,8 @@
             // ARzw4zw5
             // 
             this.ARzw4zw5.AutoSize = true;
+            this.ARzw4zw5.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw4zw5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARzw4zw5.Location = new System.Drawing.Point(835, 162);
             this.ARzw4zw5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw4zw5.Name = "ARzw4zw5";
@@ -3472,6 +3655,8 @@
             // ARzw3zw4
             // 
             this.ARzw3zw4.AutoSize = true;
+            this.ARzw3zw4.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw3zw4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARzw3zw4.Location = new System.Drawing.Point(835, 139);
             this.ARzw3zw4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw3zw4.Name = "ARzw3zw4";
@@ -3482,6 +3667,8 @@
             // ARzw2zw3
             // 
             this.ARzw2zw3.AutoSize = true;
+            this.ARzw2zw3.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw2zw3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARzw2zw3.Location = new System.Drawing.Point(835, 116);
             this.ARzw2zw3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw2zw3.Name = "ARzw2zw3";
@@ -3492,6 +3679,8 @@
             // ARzw1zw2
             // 
             this.ARzw1zw2.AutoSize = true;
+            this.ARzw1zw2.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw1zw2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARzw1zw2.Location = new System.Drawing.Point(835, 94);
             this.ARzw1zw2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw1zw2.Name = "ARzw1zw2";
@@ -3502,6 +3691,8 @@
             // ARzw0zw1
             // 
             this.ARzw0zw1.AutoSize = true;
+            this.ARzw0zw1.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw0zw1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARzw0zw1.Location = new System.Drawing.Point(835, 73);
             this.ARzw0zw1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw0zw1.Name = "ARzw0zw1";
@@ -3512,6 +3703,8 @@
             // ARdsk4dsk5
             // 
             this.ARdsk4dsk5.AutoSize = true;
+            this.ARdsk4dsk5.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk4dsk5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdsk4dsk5.Location = new System.Drawing.Point(835, 477);
             this.ARdsk4dsk5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk4dsk5.Name = "ARdsk4dsk5";
@@ -3522,6 +3715,8 @@
             // ARdsk3dsk4
             // 
             this.ARdsk3dsk4.AutoSize = true;
+            this.ARdsk3dsk4.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk3dsk4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdsk3dsk4.Location = new System.Drawing.Point(835, 454);
             this.ARdsk3dsk4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk3dsk4.Name = "ARdsk3dsk4";
@@ -3532,6 +3727,8 @@
             // ARdsk2dsk3
             // 
             this.ARdsk2dsk3.AutoSize = true;
+            this.ARdsk2dsk3.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk2dsk3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdsk2dsk3.Location = new System.Drawing.Point(835, 431);
             this.ARdsk2dsk3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk2dsk3.Name = "ARdsk2dsk3";
@@ -3542,6 +3739,8 @@
             // ARdsk1dsk2
             // 
             this.ARdsk1dsk2.AutoSize = true;
+            this.ARdsk1dsk2.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk1dsk2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdsk1dsk2.Location = new System.Drawing.Point(835, 408);
             this.ARdsk1dsk2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk1dsk2.Name = "ARdsk1dsk2";
@@ -3552,6 +3751,8 @@
             // ARdsk0dsk1
             // 
             this.ARdsk0dsk1.AutoSize = true;
+            this.ARdsk0dsk1.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk0dsk1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdsk0dsk1.Location = new System.Drawing.Point(835, 385);
             this.ARdsk0dsk1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk0dsk1.Name = "ARdsk0dsk1";
@@ -3562,6 +3763,8 @@
             // ARdb5dsk0
             // 
             this.ARdb5dsk0.AutoSize = true;
+            this.ARdb5dsk0.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb5dsk0.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdb5dsk0.Location = new System.Drawing.Point(835, 339);
             this.ARdb5dsk0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdb5dsk0.Name = "ARdb5dsk0";
@@ -3572,6 +3775,8 @@
             // ARdb4db5
             // 
             this.ARdb4db5.AutoSize = true;
+            this.ARdb4db5.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb4db5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdb4db5.Location = new System.Drawing.Point(835, 316);
             this.ARdb4db5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdb4db5.Name = "ARdb4db5";
@@ -3582,6 +3787,8 @@
             // ARdb3db4
             // 
             this.ARdb3db4.AutoSize = true;
+            this.ARdb3db4.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb3db4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdb3db4.Location = new System.Drawing.Point(835, 295);
             this.ARdb3db4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdb3db4.Name = "ARdb3db4";
@@ -3592,6 +3799,8 @@
             // ARdb2db3
             // 
             this.ARdb2db3.AutoSize = true;
+            this.ARdb2db3.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb2db3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdb2db3.Location = new System.Drawing.Point(835, 274);
             this.ARdb2db3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdb2db3.Name = "ARdb2db3";
@@ -3602,6 +3811,8 @@
             // ARdb1db2
             // 
             this.ARdb1db2.AutoSize = true;
+            this.ARdb1db2.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb1db2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdb1db2.Location = new System.Drawing.Point(835, 253);
             this.ARdb1db2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdb1db2.Name = "ARdb1db2";
@@ -3612,6 +3823,8 @@
             // ARdb0db1
             // 
             this.ARdb0db1.AutoSize = true;
+            this.ARdb0db1.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb0db1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARdb0db1.Location = new System.Drawing.Point(835, 231);
             this.ARdb0db1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdb0db1.Name = "ARdb0db1";
@@ -3622,6 +3835,8 @@
             // ARzw5db0
             // 
             this.ARzw5db0.AutoSize = true;
+            this.ARzw5db0.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw5db0.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ARzw5db0.Location = new System.Drawing.Point(835, 185);
             this.ARzw5db0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw5db0.Name = "ARzw5db0";
@@ -3632,6 +3847,8 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label12.Location = new System.Drawing.Point(826, 50);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
@@ -3663,6 +3880,7 @@
             // 
             // AnalizatorRaportuTekst
             // 
+            this.AnalizatorRaportuTekst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AnalizatorRaportuTekst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AnalizatorRaportuTekst.Location = new System.Drawing.Point(8, 8);
             this.AnalizatorRaportuTekst.Margin = new System.Windows.Forms.Padding(4);
@@ -3672,18 +3890,18 @@
             this.AnalizatorRaportuTekst.TabIndex = 36;
             this.AnalizatorRaportuTekst.Text = "";
             // 
-            // label1
+            // ByMe
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(1094, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "by Abev";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.ByMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ByMe.AutoSize = true;
+            this.ByMe.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ByMe.Location = new System.Drawing.Point(1094, 9);
+            this.ByMe.Margin = new System.Windows.Forms.Padding(12);
+            this.ByMe.Name = "ByMe";
+            this.ByMe.Size = new System.Drawing.Size(73, 23);
+            this.ByMe.TabIndex = 1;
+            this.ByMe.Text = "by Abev";
+            this.ByMe.Click += new System.EventHandler(this.label1_Click);
             // 
             // contextMenuStrip1
             // 
@@ -3696,146 +3914,26 @@
             this.toolStripSeparator2,
             this.wyczyscToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 140);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 112);
             // 
             // kopiujToolStripMenuItem
             // 
             this.kopiujToolStripMenuItem.Name = "kopiujToolStripMenuItem";
             this.kopiujToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
             this.kopiujToolStripMenuItem.Text = "Kopiuj";
-            this.kopiujToolStripMenuItem.Click += new System.EventHandler(this.kopiujToolStripMenuItem_Click);
+            this.kopiujToolStripMenuItem.Click += new System.EventHandler(this.KopiujToolStripMenuItem_Click);
             // 
             // kopiujWszystkoToolStripMenuItem
             // 
             this.kopiujWszystkoToolStripMenuItem.Name = "kopiujWszystkoToolStripMenuItem";
             this.kopiujWszystkoToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
             this.kopiujWszystkoToolStripMenuItem.Text = "Kopiuj wszystko";
-            this.kopiujWszystkoToolStripMenuItem.Click += new System.EventHandler(this.kopiujWszystkoToolStripMenuItem_Click);
+            this.kopiujWszystkoToolStripMenuItem.Click += new System.EventHandler(this.KopiujWszystkoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
-            // 
-            // wyczyscToolStripMenuItem
-            // 
-            this.wyczyscToolStripMenuItem.Name = "wyczyscToolStripMenuItem";
-            this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
-            this.wyczyscToolStripMenuItem.Text = "Wyczyść";
-            this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.wyczyscToolStripMenuItem_Click);
-            // 
-            // ZbrojaCofnij
-            // 
-            this.ZbrojaCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZbrojaCofnij.Location = new System.Drawing.Point(925, 74);
-            this.ZbrojaCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.ZbrojaCofnij.Name = "ZbrojaCofnij";
-            this.ZbrojaCofnij.Size = new System.Drawing.Size(151, 38);
-            this.ZbrojaCofnij.TabIndex = 16;
-            this.ZbrojaCofnij.Text = "Cofnij";
-            this.ZbrojaCofnij.UseVisualStyleBackColor = true;
-            this.ZbrojaCofnij.Click += new System.EventHandler(this.ZbrojaCofnij_Click);
-            // 
-            // SpodnieCofnij
-            // 
-            this.SpodnieCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpodnieCofnij.Location = new System.Drawing.Point(925, 74);
-            this.SpodnieCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.SpodnieCofnij.Name = "SpodnieCofnij";
-            this.SpodnieCofnij.Size = new System.Drawing.Size(151, 38);
-            this.SpodnieCofnij.TabIndex = 22;
-            this.SpodnieCofnij.Text = "Cofnij";
-            this.SpodnieCofnij.UseVisualStyleBackColor = true;
-            this.SpodnieCofnij.Click += new System.EventHandler(this.SpodnieCofnij_Click);
-            // 
-            // PierscienCofnij
-            // 
-            this.PierscienCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PierscienCofnij.Location = new System.Drawing.Point(925, 74);
-            this.PierscienCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.PierscienCofnij.Name = "PierscienCofnij";
-            this.PierscienCofnij.Size = new System.Drawing.Size(151, 38);
-            this.PierscienCofnij.TabIndex = 27;
-            this.PierscienCofnij.Text = "Cofnij";
-            this.PierscienCofnij.UseVisualStyleBackColor = true;
-            this.PierscienCofnij.Click += new System.EventHandler(this.PierscienCofnij_Click);
-            // 
-            // AmuletCofnij
-            // 
-            this.AmuletCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AmuletCofnij.Location = new System.Drawing.Point(925, 74);
-            this.AmuletCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.AmuletCofnij.Name = "AmuletCofnij";
-            this.AmuletCofnij.Size = new System.Drawing.Size(151, 38);
-            this.AmuletCofnij.TabIndex = 32;
-            this.AmuletCofnij.Text = "Cofnij";
-            this.AmuletCofnij.UseVisualStyleBackColor = true;
-            this.AmuletCofnij.Click += new System.EventHandler(this.AmuletCofnij_Click);
-            // 
-            // Biala1hCofnij
-            // 
-            this.Biala1hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Biala1hCofnij.Location = new System.Drawing.Point(925, 74);
-            this.Biala1hCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.Biala1hCofnij.Name = "Biala1hCofnij";
-            this.Biala1hCofnij.Size = new System.Drawing.Size(151, 38);
-            this.Biala1hCofnij.TabIndex = 37;
-            this.Biala1hCofnij.Text = "Cofnij";
-            this.Biala1hCofnij.UseVisualStyleBackColor = true;
-            this.Biala1hCofnij.Click += new System.EventHandler(this.Biala1hCofnij_Click);
-            // 
-            // Biala2hCofnij
-            // 
-            this.Biala2hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Biala2hCofnij.Location = new System.Drawing.Point(925, 74);
-            this.Biala2hCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.Biala2hCofnij.Name = "Biala2hCofnij";
-            this.Biala2hCofnij.Size = new System.Drawing.Size(151, 38);
-            this.Biala2hCofnij.TabIndex = 42;
-            this.Biala2hCofnij.Text = "Cofnij";
-            this.Biala2hCofnij.UseVisualStyleBackColor = true;
-            this.Biala2hCofnij.Click += new System.EventHandler(this.Biala2hCofnij_Click);
-            // 
-            // Palna1hCofnij
-            // 
-            this.Palna1hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Palna1hCofnij.Location = new System.Drawing.Point(925, 74);
-            this.Palna1hCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.Palna1hCofnij.Name = "Palna1hCofnij";
-            this.Palna1hCofnij.Size = new System.Drawing.Size(151, 38);
-            this.Palna1hCofnij.TabIndex = 47;
-            this.Palna1hCofnij.Text = "Cofnij";
-            this.Palna1hCofnij.UseVisualStyleBackColor = true;
-            this.Palna1hCofnij.Click += new System.EventHandler(this.Palna1hCofnij_Click);
-            // 
-            // Palna2hCofnij
-            // 
-            this.Palna2hCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Palna2hCofnij.Location = new System.Drawing.Point(925, 74);
-            this.Palna2hCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.Palna2hCofnij.Name = "Palna2hCofnij";
-            this.Palna2hCofnij.Size = new System.Drawing.Size(151, 38);
-            this.Palna2hCofnij.TabIndex = 52;
-            this.Palna2hCofnij.Text = "Cofnij";
-            this.Palna2hCofnij.UseVisualStyleBackColor = true;
-            this.Palna2hCofnij.Click += new System.EventHandler(this.Palna2hCofnij_Click);
-            // 
-            // DystansCofnij
-            // 
-            this.DystansCofnij.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DystansCofnij.Location = new System.Drawing.Point(925, 74);
-            this.DystansCofnij.Margin = new System.Windows.Forms.Padding(4);
-            this.DystansCofnij.Name = "DystansCofnij";
-            this.DystansCofnij.Size = new System.Drawing.Size(151, 38);
-            this.DystansCofnij.TabIndex = 55;
-            this.DystansCofnij.Text = "Cofnij";
-            this.DystansCofnij.UseVisualStyleBackColor = true;
-            this.DystansCofnij.Click += new System.EventHandler(this.DystansCofnij_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
             // 
             // ZapiszToolStripMenuItem
             // 
@@ -3844,83 +3942,95 @@
             this.ZapiszToolStripMenuItem.Text = "Zapisz";
             this.ZapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click);
             // 
-            // Form1
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
+            // 
+            // wyczyscToolStripMenuItem
+            // 
+            this.wyczyscToolStripMenuItem.Name = "wyczyscToolStripMenuItem";
+            this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.wyczyscToolStripMenuItem.Text = "Wyczyść";
+            this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1168, 576);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.ByMe);
+            this.Controls.Add(this.GlownyTab);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Bloodwars R19 ŁĄCZENIA";
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.GlownyTab.ResumeLayout(false);
+            this.TabHelm.ResumeLayout(false);
             this.sufHelmPanel.ResumeLayout(false);
             this.bazaHelmPanel.ResumeLayout(false);
             this.prefHelmPanel.ResumeLayout(false);
             this.HelmPanel.ResumeLayout(false);
             this.HelmPanel.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.TabZbroja.ResumeLayout(false);
             this.sufZbrojaPanel.ResumeLayout(false);
             this.bazaZbrojaPanel.ResumeLayout(false);
             this.prefZbrojaPanel.ResumeLayout(false);
             this.ZbrojaPanel.ResumeLayout(false);
             this.ZbrojaPanel.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
+            this.TabSpodnie.ResumeLayout(false);
             this.sufSpodniePanel.ResumeLayout(false);
             this.bazaSpodniePanel.ResumeLayout(false);
             this.prefSpodniePanel.ResumeLayout(false);
             this.SpodniePanel.ResumeLayout(false);
             this.SpodniePanel.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
+            this.TabPierscien.ResumeLayout(false);
             this.sufPierscienPanel.ResumeLayout(false);
             this.bazaPierscienPanel.ResumeLayout(false);
             this.prefPierscienPanel.ResumeLayout(false);
             this.PierscienPanel.ResumeLayout(false);
             this.PierscienPanel.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
+            this.TabAmulet.ResumeLayout(false);
             this.sufAmuletPanel.ResumeLayout(false);
             this.bazaAmuletPanel.ResumeLayout(false);
             this.prefAmuletPanel.ResumeLayout(false);
             this.AmuletPanel.ResumeLayout(false);
             this.AmuletPanel.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
+            this.TabBiala1h.ResumeLayout(false);
             this.sufBiala1hPanel.ResumeLayout(false);
             this.bazaBiala1hPanel.ResumeLayout(false);
             this.prefBiala1hPanel.ResumeLayout(false);
             this.Biala1hPanel.ResumeLayout(false);
             this.Biala1hPanel.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
+            this.TabBiala2h.ResumeLayout(false);
             this.sufBiala2hPanel.ResumeLayout(false);
             this.bazaBiala2hPanel.ResumeLayout(false);
             this.prefBiala2hPanel.ResumeLayout(false);
             this.Biala2hPanel.ResumeLayout(false);
             this.Biala2hPanel.PerformLayout();
-            this.tabPage8.ResumeLayout(false);
+            this.TabPalna1h.ResumeLayout(false);
             this.sufPalna1hPanel.ResumeLayout(false);
             this.bazaPalna1hPanel.ResumeLayout(false);
             this.prefPalna1hPanel.ResumeLayout(false);
             this.Palna1hPanel.ResumeLayout(false);
             this.Palna1hPanel.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
+            this.TabPalna2h.ResumeLayout(false);
             this.sufPalna2hPanel.ResumeLayout(false);
             this.bazaPalna2hPanel.ResumeLayout(false);
             this.prefPalna2hPanel.ResumeLayout(false);
             this.Palna2hPanel.ResumeLayout(false);
             this.Palna2hPanel.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
+            this.TabDystans.ResumeLayout(false);
             this.sufDystansPanel.ResumeLayout(false);
             this.bazaDystansPanel.ResumeLayout(false);
             this.prefDystansPanel.ResumeLayout(false);
             this.DystansPanel.ResumeLayout(false);
             this.DystansPanel.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
+            this.TabAnalizator.ResumeLayout(false);
+            this.TabAnalizator.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -3929,64 +4039,63 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button helmDodaj;
+        private System.Windows.Forms.TabControl GlownyTab;
+        private System.Windows.Forms.TabPage TabHelm;
+        private System.Windows.Forms.TabPage TabZbroja;
+        private System.Windows.Forms.Button HelmDodaj;
         private System.Windows.Forms.ComboBox cbHelmSuf;
         private System.Windows.Forms.ComboBox cbHelmBaza;
         private System.Windows.Forms.ComboBox cbHelmPref;
-        private System.Windows.Forms.RichTextBox helmWynik;
-        private System.Windows.Forms.Button zbrojaDodaj;
+        private System.Windows.Forms.Button ZbrojaDodaj;
         private System.Windows.Forms.ComboBox cbZbrojaSuf;
         private System.Windows.Forms.ComboBox cbZbrojaBaza;
         private System.Windows.Forms.ComboBox cbZbrojaPref;
         private System.Windows.Forms.RichTextBox zbrojaWynik;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.Button spodnieDodaj;
+        private System.Windows.Forms.TabPage TabSpodnie;
+        private System.Windows.Forms.TabPage TabPierscien;
+        private System.Windows.Forms.TabPage TabAmulet;
+        private System.Windows.Forms.TabPage TabBiala1h;
+        private System.Windows.Forms.TabPage TabBiala2h;
+        private System.Windows.Forms.TabPage TabPalna1h;
+        private System.Windows.Forms.TabPage TabPalna2h;
+        private System.Windows.Forms.TabPage TabDystans;
+        private System.Windows.Forms.Button SpodnieDodaj;
         private System.Windows.Forms.ComboBox cbSpodnieSuf;
         private System.Windows.Forms.ComboBox cbSpodnieBaza;
         private System.Windows.Forms.ComboBox cbSpodniePref;
         private System.Windows.Forms.RichTextBox spodnieWynik;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button pierscienDodaj;
+        private System.Windows.Forms.Label ByMe;
+        private System.Windows.Forms.Button PierscienDodaj;
         private System.Windows.Forms.ComboBox cbPierscienSuf;
         private System.Windows.Forms.ComboBox cbPierscienBaza;
         private System.Windows.Forms.ComboBox cbPierscienPref;
         private System.Windows.Forms.RichTextBox pierscienWynik;
-        private System.Windows.Forms.Button amuletDodaj;
+        private System.Windows.Forms.Button AmuletDodaj;
         private System.Windows.Forms.ComboBox cbAmuletSuf;
         private System.Windows.Forms.ComboBox cbAmuletBaza;
         private System.Windows.Forms.ComboBox cbAmuletPref;
         private System.Windows.Forms.RichTextBox amuletWynik;
-        private System.Windows.Forms.Button biala1hDodaj;
+        private System.Windows.Forms.Button Biala1hDodaj;
         private System.Windows.Forms.ComboBox cbBiala1hSuf;
         private System.Windows.Forms.ComboBox cbBiala1hBaza;
         private System.Windows.Forms.ComboBox cbBiala1hPref;
         private System.Windows.Forms.RichTextBox biala1hWynik;
-        private System.Windows.Forms.Button biala2hDodaj;
+        private System.Windows.Forms.Button Biala2hDodaj;
         private System.Windows.Forms.ComboBox cbBiala2hSuf;
         private System.Windows.Forms.ComboBox cbBiala2hBaza;
         private System.Windows.Forms.ComboBox cbBiala2hPref;
         private System.Windows.Forms.RichTextBox biala2hWynik;
-        private System.Windows.Forms.Button dystansDodaj;
+        private System.Windows.Forms.Button DystansDodaj;
         private System.Windows.Forms.ComboBox cbDystansSuf;
         private System.Windows.Forms.ComboBox cbDystansBaza;
         private System.Windows.Forms.ComboBox cbDystansPref;
         private System.Windows.Forms.RichTextBox dystansWynik;
-        private System.Windows.Forms.Button palna1hDodaj;
+        private System.Windows.Forms.Button Palna1hDodaj;
         private System.Windows.Forms.ComboBox cbPalna1hSuf;
         private System.Windows.Forms.ComboBox cbPalna1hBaza;
         private System.Windows.Forms.ComboBox cbPalna1hPref;
         private System.Windows.Forms.RichTextBox palna1hWynik;
-        private System.Windows.Forms.Button palna2hDodaj;
+        private System.Windows.Forms.Button Palna2hDodaj;
         private System.Windows.Forms.ComboBox cbPalna2hSuf;
         private System.Windows.Forms.ComboBox cbPalna2hBaza;
         private System.Windows.Forms.ComboBox cbPalna2hPref;
@@ -4166,7 +4275,7 @@
         private System.Windows.Forms.ToolStripMenuItem wyczyscToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kopiujWszystkoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage TabAnalizator;
         private System.Windows.Forms.RichTextBox AnalizatorRaportuTekst;
         private System.Windows.Forms.Button AnalizatorRaportuOblicz;
         private System.Windows.Forms.Button AnalizatorRaportuPomoc;
@@ -4233,6 +4342,7 @@
         private System.Windows.Forms.Button DystansCofnij;
         private System.Windows.Forms.ToolStripMenuItem ZapiszToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.RichTextBox helmWynik;
     }
 }
 
