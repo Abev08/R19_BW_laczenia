@@ -7,7 +7,7 @@
     <ProjectGuid>{7D2C0C6C-F9E7-479C-A73F-E8B5CCE6BBFC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>R19_BW_laczenia</RootNamespace>
-    <AssemblyName>R19_BW_laczenia</AssemblyName>
+    <AssemblyName>R19 Bloodwars Łączenia</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -148,7 +148,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Changelog.txt" />
     <Content Include="Graphics\README.txt" />
     <None Include="Graphics\Table_icon.ico" />
     <None Include="Graphics\Icon.ico" />

@@ -3967,7 +3967,7 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Bloodwars R19 ŁĄCZENIA";
+            this.Text = "R19 Bloodwars Łączenia";
             this.GlownyTab.ResumeLayout(false);
             this.TabHelm.ResumeLayout(false);
             this.sufHelmPanel.ResumeLayout(false);
