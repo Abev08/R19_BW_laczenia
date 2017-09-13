@@ -1,12 +1,12 @@
-Aplikacja wspomagaj¹ca ³¹czenie przedmiotów w grze Bloodwars (www.bloodwars.interia.pl).
-Listy przedmiotów przystosowano do serwera R19.
+Aplikacja wspomagajÄ…ca Å‚Ä…czenie przedmiotÃ³w w grze Bloodwars (www.bloodwars.interia.pl).
+Listy przedmiotÃ³w przystosowano do serwera R19.
 
 
-Wewn¹trz archiwum R19_BW_laczenia.zip znajduje siê wykonywalna wersja programu (.exe).
-
-
-
+WewnÄ…trz archiwum R19_BW_laczenia.zip znajduje siÄ™ wykonywalna wersja programu (.exe).
 
 
 
-Aplikacja zosta³a wykonana przez gracza Abev.
+
+
+
+Aplikacja zostaÅ‚a wykonana przez gracza Abev.
