@@ -326,6 +326,8 @@
             this.AnalizatorRaportuTekst = new System.Windows.Forms.RichTextBox();
             this.ByMe = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.wklejToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.kopiujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopiujWszystkoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -333,8 +335,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.wklejToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -3918,7 +3918,20 @@
             this.toolStripSeparator2,
             this.wyczyscToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 170);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 142);
+            // 
+            // wklejToolStripMenuItem1
+            // 
+            this.wklejToolStripMenuItem1.Enabled = false;
+            this.wklejToolStripMenuItem1.Name = "wklejToolStripMenuItem1";
+            this.wklejToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
+            this.wklejToolStripMenuItem1.Text = "Wklej";
+            this.wklejToolStripMenuItem1.Click += new System.EventHandler(this.wklejToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
             // 
             // kopiujToolStripMenuItem
             // 
@@ -3958,19 +3971,6 @@
             this.wyczyscToolStripMenuItem.Text = "Wyczyść";
             this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
             // 
-            // wklejToolStripMenuItem1
-            // 
-            this.wklejToolStripMenuItem1.Enabled = false;
-            this.wklejToolStripMenuItem1.Name = "wklejToolStripMenuItem1";
-            this.wklejToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
-            this.wklejToolStripMenuItem1.Text = "Wklej";
-            this.wklejToolStripMenuItem1.Click += new System.EventHandler(this.wklejToolStripMenuItem1_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -3984,7 +3984,7 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "R19 Bloodwars Łączenia";
+            this.Text = "R19 Blood Wars - Łączenia";
             this.GlownyTab.ResumeLayout(false);
             this.TabHelm.ResumeLayout(false);
             this.sufHelmPanel.ResumeLayout(false);

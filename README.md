@@ -1,6 +1,6 @@
-# R19 Bloodwars Łączenia
+# R19 Blood Wars Łączenia
   
-Aplikacja wspomagająca łączenie przedmiotów w grze Bloodwars (www.bloodwars.interia.pl).  
+Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars.interia.pl).  
 Listy przedmiotów przystosowano do serwera R19.
   
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](R19_BW_laczenia.zip)).
