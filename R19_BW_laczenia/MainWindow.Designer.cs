@@ -333,6 +333,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.wklejToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -3907,6 +3909,8 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wklejToolStripMenuItem1,
+            this.toolStripSeparator3,
             this.kopiujToolStripMenuItem,
             this.kopiujWszystkoToolStripMenuItem,
             this.toolStripSeparator1,
@@ -3914,7 +3918,7 @@
             this.toolStripSeparator2,
             this.wyczyscToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 112);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 170);
             // 
             // kopiujToolStripMenuItem
             // 
@@ -3953,6 +3957,19 @@
             this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
             this.wyczyscToolStripMenuItem.Text = "Wyczyść";
             this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
+            // 
+            // wklejToolStripMenuItem1
+            // 
+            this.wklejToolStripMenuItem1.Enabled = false;
+            this.wklejToolStripMenuItem1.Name = "wklejToolStripMenuItem1";
+            this.wklejToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
+            this.wklejToolStripMenuItem1.Text = "Wklej";
+            this.wklejToolStripMenuItem1.Click += new System.EventHandler(this.wklejToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
             // 
             // MainWindow
             // 
@@ -4343,6 +4360,8 @@
         private System.Windows.Forms.ToolStripMenuItem ZapiszToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.RichTextBox helmWynik;
+        private System.Windows.Forms.ToolStripMenuItem wklejToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

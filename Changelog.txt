@@ -1,7 +1,8 @@
 ﻿Version 1.10
 	- Zmieniono kolor tła okienek z tekstem,
 	- Dopasowano kolor czcionek do wspołpracy z tłami,
-	- Dodano kolorowanie tekstu w analizatorze raportów.
+	- Dodano kolorowanie tekstu w analizatorze raportów,
+	- Dodano opcję "Wklej" do menu prawego przycisku myszy.
 
 Version 1.09.1
 	- Bugfix: Poprawiono łączenia baz amuletów.

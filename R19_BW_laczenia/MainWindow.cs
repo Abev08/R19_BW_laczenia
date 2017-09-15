@@ -859,6 +859,11 @@ namespace R19_BW_laczenia
         private void GlownyTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             Czyszczenie();
+            if (GlownyTab.SelectedTab.Text == "Analizator raportu") wklejToolStripMenuItem1.Enabled = true;
+            else
+            {
+                wklejToolStripMenuItem1.Enabled = false;
+            }
         }
 
         private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1064,6 +1069,15 @@ namespace R19_BW_laczenia
                             break;
                     }
                 }
+            }
+        }
+
+        private void wklejToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (GlownyTab.SelectedTab.Text == "Analizator raportu")
+            {
+                AnalizatorRaportuTekst.Paste();
+                AnalizatorRaportuTekst.ScrollToCaret();
             }
         }
 
