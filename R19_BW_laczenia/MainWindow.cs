@@ -85,7 +85,9 @@ namespace R19_BW_laczenia
 
             // Zmienne do zmian wyglądu
             Color bckColorTab = Color.Black; // Zmiana koloru tła z Transparent (przeźroczysty) niweluje migotanie przy TabControl
-            Color bckColorRTB = Color.Gainsboro; // Kolor tła RichTextBox'a
+            Color bckColorRTB = Color.FromArgb(20, 20, 20); // Kolor tła RichTextBox'a
+            Font fontRTB = new Font("Segoe UI", 9); // Czcionka RTB
+            Color foreColorRTB = Color.FromName("ControlLightLight");   // Kolor czcionki RTB
             ImageLayout imgLayoutTab = ImageLayout.Tile;   // Wybór typu obrazu tła tab'u - kafelka
             Image bckPictureTab = Properties.Resources.Background_black;    // Obraz tła tab'u
 
@@ -94,6 +96,8 @@ namespace R19_BW_laczenia
             TabHelm.BackColor = bckColorTab;
             TabHelm.BackgroundImageLayout = imgLayoutTab;
             TabHelm.BackgroundImage = bckPictureTab;
+            helmWynik.Font = fontRTB;
+            helmWynik.ForeColor = foreColorRTB;
             helmWynik.BackColor = bckColorRTB;
             helmWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             helmWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -126,6 +130,8 @@ namespace R19_BW_laczenia
             TabZbroja.BackColor = bckColorTab;
             TabZbroja.BackgroundImageLayout = imgLayoutTab;
             TabZbroja.BackgroundImage = bckPictureTab;
+            zbrojaWynik.Font = fontRTB;
+            zbrojaWynik.ForeColor = foreColorRTB;
             zbrojaWynik.BackColor = bckColorRTB;
             zbrojaWynik.ReadOnly = true;    // Ustawienie flagi Read Only
             zbrojaWynik.ContextMenuStrip = contextMenuStrip1;   // Dodanie menu prawego przycisku myszy
@@ -158,6 +164,8 @@ namespace R19_BW_laczenia
             TabSpodnie.BackColor = bckColorTab;
             TabSpodnie.BackgroundImageLayout = imgLayoutTab;
             TabSpodnie.BackgroundImage = bckPictureTab;
+            spodnieWynik.Font = fontRTB;
+            spodnieWynik.ForeColor = foreColorRTB;
             spodnieWynik.BackColor = bckColorRTB;
             spodnieWynik.ReadOnly = true;   // Ustawienie flagi Read Only
             spodnieWynik.ContextMenuStrip = contextMenuStrip1;  // Dodanie menu prawego przycisku myszy
@@ -190,6 +198,8 @@ namespace R19_BW_laczenia
             TabPierscien.BackColor = bckColorTab;
             TabPierscien.BackgroundImageLayout = imgLayoutTab;
             TabPierscien.BackgroundImage = bckPictureTab;
+            pierscienWynik.Font = fontRTB;
+            pierscienWynik.ForeColor = foreColorRTB;
             pierscienWynik.BackColor = bckColorRTB;
             pierscienWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             pierscienWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -222,6 +232,8 @@ namespace R19_BW_laczenia
             TabAmulet.BackColor = bckColorTab;
             TabAmulet.BackgroundImageLayout = imgLayoutTab;
             TabAmulet.BackgroundImage = bckPictureTab;
+            amuletWynik.Font = fontRTB;
+            amuletWynik.ForeColor = foreColorRTB;
             amuletWynik.BackColor = bckColorRTB;
             amuletWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             amuletWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -254,6 +266,8 @@ namespace R19_BW_laczenia
             TabBiala1h.BackColor = bckColorTab;
             TabBiala1h.BackgroundImageLayout = imgLayoutTab;
             TabBiala1h.BackgroundImage = bckPictureTab;
+            biala1hWynik.Font = fontRTB;
+            biala1hWynik.ForeColor = foreColorRTB;
             biala1hWynik.BackColor = bckColorRTB;
             biala1hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             biala1hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -286,6 +300,8 @@ namespace R19_BW_laczenia
             TabBiala2h.BackColor = bckColorTab;
             TabBiala2h.BackgroundImageLayout = imgLayoutTab;
             TabBiala2h.BackgroundImage = bckPictureTab;
+            biala2hWynik.Font = fontRTB;
+            biala2hWynik.ForeColor = foreColorRTB;
             biala2hWynik.BackColor = bckColorRTB;
             biala2hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             biala2hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -318,6 +334,8 @@ namespace R19_BW_laczenia
             TabPalna1h.BackColor = bckColorTab;
             TabPalna1h.BackgroundImageLayout = imgLayoutTab;
             TabPalna1h.BackgroundImage = bckPictureTab;
+            palna1hWynik.Font = fontRTB;
+            palna1hWynik.ForeColor = foreColorRTB;
             palna1hWynik.BackColor = bckColorRTB;
             palna1hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             palna1hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -350,6 +368,8 @@ namespace R19_BW_laczenia
             TabPalna2h.BackColor = bckColorTab;
             TabPalna2h.BackgroundImageLayout = imgLayoutTab;
             TabPalna2h.BackgroundImage = bckPictureTab;
+            palna2hWynik.Font = fontRTB;
+            palna2hWynik.ForeColor = foreColorRTB;
             palna2hWynik.BackColor = bckColorRTB;
             palna2hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             palna2hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -382,6 +402,8 @@ namespace R19_BW_laczenia
             TabDystans.BackColor = bckColorTab;
             TabDystans.BackgroundImageLayout = imgLayoutTab;
             TabDystans.BackgroundImage = bckPictureTab;
+            dystansWynik.Font = fontRTB;
+            dystansWynik.ForeColor = foreColorRTB;
             dystansWynik.BackColor = bckColorRTB;
             dystansWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             dystansWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
@@ -414,6 +436,8 @@ namespace R19_BW_laczenia
             TabAnalizator.BackColor = bckColorTab;
             TabAnalizator.BackgroundImageLayout = imgLayoutTab;
             TabAnalizator.BackgroundImage = bckPictureTab;
+            AnalizatorRaportuTekst.Font = fontRTB;
+            AnalizatorRaportuTekst.ForeColor = foreColorRTB;
             AnalizatorRaportuTekst.BackColor = bckColorRTB;
             AnalizatorRaportuTekst.ReadOnly = false;
             AnalizatorRaportuTekst.ContextMenuStrip = contextMenuStrip1;    // Dodanie menu prawego przycisku myszy
@@ -436,7 +460,7 @@ namespace R19_BW_laczenia
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.09.1\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
@@ -1064,15 +1088,27 @@ namespace R19_BW_laczenia
             int dsk2dsk3 = 0, dsk2dsk3c = 0;
             int dsk3dsk4 = 0, dsk3dsk4c = 0;
             int dsk4dsk5 = 0, dsk4dsk5c = 0;
+
+            // Wyłączenie zawijania wierszy
+            AnalizatorRaportuTekst.WordWrap = false;
+
             // Podziel tekst na wiersze
             string[] ulepszenia = AnalizatorRaportuTekst.Text.Split('\n');
-
+            
             // W każdym wierszu spróbuj wyszukać odpowiedni ciąg znaków (odpowiednie słowa)
             // i na ich podstawie zwiększ odpowiednie zmienne
             for (int i = 0; i < ulepszenia.Count(); i++)
             {
+                // Zmiana koloru nieprzydatnego tekstu na szary
+                AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
+                AnalizatorRaportuTekst.SelectionColor = Color.FromArgb(40, 40, 40);
+
                 if (ulepszenia[i].Contains("Ulepszono przedmiot"))
                 {
+                    // Zmiana koloru tekstu pomyślnego ulepszenia na zielony
+                    AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
+                    AnalizatorRaportuTekst.SelectionColor = Color.ForestGreen;
+
                     if (ulepszenia[i].Contains("Doskonał") & ulepszenia[i].Contains("Dobr"))
                     {
                         // ulepszenie dobry -> dsk
@@ -1191,6 +1227,10 @@ namespace R19_BW_laczenia
 
                 if (ulepszenia[i].Contains("nie został ulepszony"))
                 {
+                    // Zmiana koloru tekstu na czerwony przy niepowodzeniu
+                    AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
+                    AnalizatorRaportuTekst.SelectionColor = Color.Red;
+
                     if (ulepszenia[i].Contains("Doskonał"))
                     {
                         // Niepowodzenie ulepszenia przedmiotu doskonałego
@@ -1221,26 +1261,29 @@ namespace R19_BW_laczenia
                         else if (!ulepszenia[i].Contains("(+1)")) zw0zw1c++;
                     }
                 }
-
-                // Wyświetl przeanalizowane ulepszenia
-                ARzw0zw1.Text = Convert.ToString("Zwykły -> Zwykły (+1): " + zw0zw1 + "/" + zw0zw1c);
-                ARzw1zw2.Text = Convert.ToString("Zwykły (+1) -> Zwykły (+2): " + zw1zw2 + "/" + zw1zw2c);
-                ARzw2zw3.Text = Convert.ToString("Zwykły (+2) -> Zwykły (+3): " + zw2zw3 + "/" + zw2zw3c);
-                ARzw3zw4.Text = Convert.ToString("Zwykły (+3) -> Zwykły (+4): " + zw3zw4 + "/" + zw3zw4c);
-                ARzw4zw5.Text = Convert.ToString("Zwykły (+4) -> Zwykły (+5): " + zw4zw5 + "/" + zw4zw5c);
-                ARzw5db0.Text = Convert.ToString("Zwykły (+5) -> Dobry: " + zw5db0 + "/" + zw5db0c);
-                ARdb0db1.Text = Convert.ToString("Dobry -> Dobry (+1): " + db0db1 + "/" + db0db1c);
-                ARdb1db2.Text = Convert.ToString("Dobry (+1) -> Dobry (+2): " + db1db2 + "/" + db1db2c);
-                ARdb2db3.Text = Convert.ToString("Dobry (+2) -> Dobry (+3): " + db2db3 + "/" + db2db3c);
-                ARdb3db4.Text = Convert.ToString("Dobry (+3) -> Dobry (+4): " + db3db4 + "/" + db3db4c);
-                ARdb4db5.Text = Convert.ToString("Dobry (+4) -> Dobry (+5): " + db4db5 + "/" + db4db5c);
-                ARdb5dsk0.Text = Convert.ToString("Dobry (+5) -> Doskonały: " + db5dsk0 + "/" + db5dsk0c);
-                ARdsk0dsk1.Text = Convert.ToString("Doskonały -> Doskonały (+1): " + dsk0dsk1 + "/" + dsk0dsk1c);
-                ARdsk1dsk2.Text = Convert.ToString("Doskonały (+1) -> Doskonały (+2): " + dsk1dsk2 + "/" + dsk1dsk2c);
-                ARdsk2dsk3.Text = Convert.ToString("Doskonały (+2) -> Doskonały (+3): " + dsk2dsk3 + "/" + dsk2dsk3c);
-                ARdsk3dsk4.Text = Convert.ToString("Doskonały (+3) -> Doskonały (+4): " + dsk3dsk4 + "/" + dsk3dsk4c);
-                ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): " + dsk4dsk5 + "/" + dsk4dsk5c);
             }
+
+            AnalizatorRaportuTekst.WordWrap = true;
+            AnalizatorRaportuTekst.ScrollToCaret();
+
+            // Wyświetl przeanalizowane ulepszenia
+            ARzw0zw1.Text = Convert.ToString("Zwykły -> Zwykły (+1): " + zw0zw1 + "/" + zw0zw1c);
+            ARzw1zw2.Text = Convert.ToString("Zwykły (+1) -> Zwykły (+2): " + zw1zw2 + "/" + zw1zw2c);
+            ARzw2zw3.Text = Convert.ToString("Zwykły (+2) -> Zwykły (+3): " + zw2zw3 + "/" + zw2zw3c);
+            ARzw3zw4.Text = Convert.ToString("Zwykły (+3) -> Zwykły (+4): " + zw3zw4 + "/" + zw3zw4c);
+            ARzw4zw5.Text = Convert.ToString("Zwykły (+4) -> Zwykły (+5): " + zw4zw5 + "/" + zw4zw5c);
+            ARzw5db0.Text = Convert.ToString("Zwykły (+5) -> Dobry: " + zw5db0 + "/" + zw5db0c);
+            ARdb0db1.Text = Convert.ToString("Dobry -> Dobry (+1): " + db0db1 + "/" + db0db1c);
+            ARdb1db2.Text = Convert.ToString("Dobry (+1) -> Dobry (+2): " + db1db2 + "/" + db1db2c);
+            ARdb2db3.Text = Convert.ToString("Dobry (+2) -> Dobry (+3): " + db2db3 + "/" + db2db3c);
+            ARdb3db4.Text = Convert.ToString("Dobry (+3) -> Dobry (+4): " + db3db4 + "/" + db3db4c);
+            ARdb4db5.Text = Convert.ToString("Dobry (+4) -> Dobry (+5): " + db4db5 + "/" + db4db5c);
+            ARdb5dsk0.Text = Convert.ToString("Dobry (+5) -> Doskonały: " + db5dsk0 + "/" + db5dsk0c);
+            ARdsk0dsk1.Text = Convert.ToString("Doskonały -> Doskonały (+1): " + dsk0dsk1 + "/" + dsk0dsk1c);
+            ARdsk1dsk2.Text = Convert.ToString("Doskonały (+1) -> Doskonały (+2): " + dsk1dsk2 + "/" + dsk1dsk2c);
+            ARdsk2dsk3.Text = Convert.ToString("Doskonały (+2) -> Doskonały (+3): " + dsk2dsk3 + "/" + dsk2dsk3c);
+            ARdsk3dsk4.Text = Convert.ToString("Doskonały (+3) -> Doskonały (+4): " + dsk3dsk4 + "/" + dsk3dsk4c);
+            ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): " + dsk4dsk5 + "/" + dsk4dsk5c);
         }
 
         private void AnalizatorRaportuPomoc_Click(object sender, EventArgs e)

@@ -1,4 +1,9 @@
-﻿Version 1.09.1
+﻿Version 1.10
+	- Zmieniono kolor tła okienek z tekstem,
+	- Dopasowano kolor czcionek do wspołpracy z tłami,
+	- Dodano kolorowanie tekstu w analizatorze raportów.
+
+Version 1.09.1
 	- Bugfix: Poprawiono łączenia baz amuletów.
 
 Version 1.09
