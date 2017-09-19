@@ -460,7 +460,7 @@ namespace R19_BW_laczenia
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.1\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
@@ -1114,7 +1114,7 @@ namespace R19_BW_laczenia
             for (int i = 0; i < ulepszenia.Count(); i++)
             {
                 // Zmiana koloru nieprzydatnego tekstu na szary
-                AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
+                if (AnalizatorRaportuTekst.Text != "") AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
                 AnalizatorRaportuTekst.SelectionColor = Color.FromArgb(40, 40, 40);
 
                 if (ulepszenia[i].Contains("Ulepszono przedmiot"))

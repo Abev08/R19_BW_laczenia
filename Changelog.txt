@@ -1,4 +1,7 @@
-﻿Version 1.10
+﻿Version 1.10.1
+	- Bugfix: IndexOutOfRangeException - Kliknięcie "Oblicz" w analizatorze raportów bez wprowadzenia tekstu.
+
+Version 1.10
 	- Zmieniono kolor tła okienek z tekstem,
 	- Dopasowano kolor czcionek do wspołpracy z tłami,
 	- Dodano kolorowanie tekstu w analizatorze raportów,
