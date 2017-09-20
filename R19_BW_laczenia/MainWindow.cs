@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace R19_BW_laczenia
 {
@@ -49,6 +50,13 @@ namespace R19_BW_laczenia
         List<string> PrefDystans = new List<string>();
         List<string> BazaDystans = new List<string>();
         List<string> SufDystans = new List<string>();
+
+        // Zmienne do analizatora łączeń
+        List<int[]> przedmioty = new List<int[]>();
+        List<int[]> wyniki = new List<int[]>();
+        List<string> historia = new List<string>();
+        List<int> filtrPrzedmioty = new List<int>();
+        bool doOnceAnalizator = true;
 
         // Zmienne do łączenia
         int[] component1 = new int[4];
@@ -459,8 +467,24 @@ namespace R19_BW_laczenia
             ARdsk3dsk4.Text = Convert.ToString("Doskonały (+3) -> Doskonały (+4): 0/0");
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
+            // Analizator łączeń
+            listaTypowPrzedmiotow.Items.Add("Hełm");
+            listaTypowPrzedmiotow.Items.Add("Zbroja");
+            listaTypowPrzedmiotow.Items.Add("Spodnie");
+            listaTypowPrzedmiotow.Items.Add("Pierścień");
+            listaTypowPrzedmiotow.Items.Add("Amulet");
+            listaTypowPrzedmiotow.Items.Add("Biała 1h");
+            listaTypowPrzedmiotow.Items.Add("Biała 2h");
+            listaTypowPrzedmiotow.Items.Add("Palna 1h");
+            listaTypowPrzedmiotow.Items.Add("Palna 2h");
+            listaTypowPrzedmiotow.Items.Add("Dystans");
+            listaTypowPrzedmiotow.SelectedIndex = 0;
+            przedmiotyDoAnalizy.WordWrap = true;
+            przedmiotyDoAnalizy.ContextMenuStrip = contextMenuStrip1;
+            przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.\n";
+
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.1\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.1 (Alpha 2.0)\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
@@ -868,6 +892,7 @@ namespace R19_BW_laczenia
 
         private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (GlownyTab.SelectedTab.Text == "??") przedmiotyDoAnalizy.Clear();
             Czyszczenie();
         }
 
@@ -1466,6 +1491,359 @@ namespace R19_BW_laczenia
         private void DystansCofnij_Click(object sender, EventArgs e)
         {
             Cofnij(dystansWynik);
+        }
+
+        private void ZaladujPrzedmioty_Click(object sender, EventArgs e)
+        {
+            // Wyczyść listy załadowanych przedmiotów
+            zaladowanePrzedmioty.Items.Clear();
+            polaczonePrzedmioty.Items.Clear();
+            znalezionoPolaczen.Text = " ";
+            cbFiltrPref.Items.Clear();
+            cbFiltrBaza.Items.Clear();
+            cbFiltrSuf.Items.Clear();
+
+            przedmioty.Clear();
+
+            switch (listaTypowPrzedmiotow.SelectedItem)
+            {
+                case "Hełm":
+                    Zaladuj(PrefHelm, BazaHelm, SufHelm);
+                    break;
+                case "Zbroja":
+                    Zaladuj(PrefZbroja, BazaZbroja, SufZbroja);
+                    break;
+                case "Spodnie":
+                    Zaladuj(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    break;
+                case "Pierścień":
+                    Zaladuj(PrefPierscien, BazaPierscien, SufPierscien);
+                    break;
+                case "Amulet":
+                    Zaladuj(PrefAmulet, BazaAmulet, SufAmulet);
+                    break;
+                case "Biała 1h":
+                    Zaladuj(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    break;
+                case "Biała 2h":
+                    Zaladuj(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    break;
+                case "Palna 1h":
+                    Zaladuj(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    break;
+                case "Palna 2h":
+                    Zaladuj(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    break;
+                case "Dystans":
+                    Zaladuj(PrefDystans, BazaDystans, SufDystans);
+                    break;
+            }
+
+            zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
+            if (przedmioty.Count > 0) zaladowanePrzedmioty.SelectedIndex = 0;
+            if (przedmioty.Count > 1) analizujPolaczenia.Enabled = true;
+        }
+
+        private void Zaladuj(List<string> pref, List<string> baza, List<string> suf)
+        {
+            zaladowanePrzedmioty.Items.Clear();
+            przedmioty.Clear();
+
+            przedmiotyDoAnalizy.WordWrap = false;
+
+            // Podziel wklejony tekst na linie
+            string[] linie = przedmiotyDoAnalizy.Text.Split('\n');
+
+            foreach (string line in linie)
+            {
+                int[] przedmiot = new int[3] { 0, 0, 0 };
+                string[] wyrazy = line.Split(' ');
+
+                for (int i = 0; i < wyrazy.Count(); i++)
+                {
+                    // Pomiń spacje i inne wyrazy z ilością znaków < 3
+                    if (wyrazy[i].Length < 3) continue;
+
+                    // Przytnij końcówkę wyrazu - ułatwienie identyfikacji przedmiotów
+                    wyrazy[i] = wyrazy[i].Substring(0, wyrazy[i].Length - 1);
+
+                    if (pref.Any(p => p.Contains(wyrazy[i]))) przedmiot[0] = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
+                    if (baza.Any(b => b.Contains(wyrazy[i]))) przedmiot[1] = baza.IndexOf(baza.Find(b => b.Contains(wyrazy[i])));
+                    if (suf.Any(s => s.Contains(wyrazy[i]))) przedmiot[2] = suf.IndexOf(suf.Find(s => s.Contains(wyrazy[i])));
+                }
+
+                // Jeżeli znaleziono prefiks / bazę / sufiks to dodaj przedmiot do listy przedmiotów
+                if (przedmiot.Sum() > 0)
+                {
+                    przedmioty.Add(przedmiot);
+                    zaladowanePrzedmioty.Items.Add(pref.ElementAt(przedmiot[0]) + " " + baza.ElementAt(przedmiot[1]) + " " + suf.ElementAt(przedmiot[2]));
+                }
+            }
+
+            przedmiotyDoAnalizy.WordWrap = true;
+        }
+
+        private void AnalizujPolaczenia_Click(object sender, EventArgs e)
+        {
+            historia.Clear();
+            polaczonePrzedmioty.Items.Clear();
+            wyniki.Clear();
+
+            switch (listaTypowPrzedmiotow.SelectedItem)
+            {
+                case "Hełm":
+                    AnalizujPolaczenia(PrefHelm, BazaHelm, SufHelm);
+                    break;
+                case "Zbroja":
+                    AnalizujPolaczenia(PrefZbroja, BazaZbroja, SufZbroja);
+                    break;
+                case "Spodnie":
+                    AnalizujPolaczenia(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    break;
+                case "Pierścień":
+                    AnalizujPolaczenia(PrefPierscien, BazaPierscien, SufPierscien);
+                    break;
+                case "Amulet":
+                    AnalizujPolaczenia(PrefAmulet, BazaAmulet, SufAmulet);
+                    break;
+                case "Biała 1h":
+                    AnalizujPolaczenia(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    break;
+                case "Biała 2h":
+                    AnalizujPolaczenia(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    break;
+                case "Palna 1h":
+                    AnalizujPolaczenia(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    break;
+                case "Palna 2h":
+                    AnalizujPolaczenia(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    break;
+                case "Dystans":
+                    AnalizujPolaczenia(PrefDystans, BazaDystans, SufDystans);
+                    break;
+            }
+        }
+
+        private void Test(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, int[] skladnik, List<string> pref, List<string> baza, List<string> suf, string prefHist = "")
+        {
+            int numerPetli = nrPetli + 1;
+            string hist = prefHist;
+
+            for (int i = 0; i < iloscPrzed; i++)
+            {
+                // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
+                if (indeksy.Contains(i)) continue;
+
+                // Dodaj wykorzystany "indeks" przedmiotu do listy
+                indeksy.Add(i);
+
+                int[] wynik = Polacz(skladnik[0], skladnik[1], skladnik[2], przedmioty[i][0], przedmioty[i][1], przedmioty[i][2]);
+                wynik[0] = SprawdzWyjatki(pref, skladnik[0], przedmioty[i][0], wynik[0]);
+                wynik[1] = SprawdzWyjatki(baza, skladnik[1], przedmioty[i][1], wynik[1]);
+                wynik[2] = SprawdzWyjatki(suf, skladnik[2], przedmioty[i][2], wynik[2]);
+                wyniki.Add(wynik);
+
+                // TODO: ulepszyć historię
+                string skladnik1 = pref.ElementAt(skladnik[0]).ToString() + " " + baza.ElementAt(skladnik[1]).ToString() + " " + suf.ElementAt(skladnik[2]).ToString();
+                string skladnik2 = pref.ElementAt(przedmioty[i][0]).ToString() + " " + baza.ElementAt(przedmioty[i][1]).ToString() + " " + suf.ElementAt(przedmioty[i][2]).ToString();
+                hist = hist + "\n= " + skladnik1 + " + " + skladnik2;
+                historia.Add(hist);
+
+                if (iloscPrzed > nrPetli) Test(indeksy, iloscPrzed, numerPetli, 2, wynik, pref, baza, suf, hist);
+
+                // Usuń wykorzystany "indeks" przedmiotu z listy
+                indeksy.RemoveAt(numerPetli - 1);
+            }
+        }
+
+        private void AnalizujPolaczenia(List<string> pref, List<string> baza, List<string> suf)
+        {
+            List<int> indeksy = new List<int>();
+            int iloscPrzedmiotów = przedmioty.Count();
+            int iloscPetli = 2;
+            string hist = "";
+
+            for (int sk1 = 0; sk1 < iloscPrzedmiotów ; sk1++)
+            {
+                indeksy.Clear();
+                indeksy.Add(sk1);
+                znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / (double)iloscPrzedmiotów) * (double)100) + "% połączeń.";
+                this.Update();
+
+                for (int sk2 = sk1 + 1; sk2 < iloscPrzedmiotów; sk2++)
+                {
+                    // Dodaj wykorzystany "indeks" przedmiotu z listy
+                    indeksy.Add(sk2);
+
+                    int[] wynik = Polacz(przedmioty[sk1][0], przedmioty[sk1][1], przedmioty[sk1][2], przedmioty[sk2][0], przedmioty[sk2][1], przedmioty[sk2][2]);
+                    wynik[0] = SprawdzWyjatki(pref, przedmioty[sk1][0], przedmioty[sk2][0], wynik[0]);
+                    wynik[1] = SprawdzWyjatki(baza, przedmioty[sk1][1], przedmioty[sk2][1], wynik[1]);
+                    wynik[2] = SprawdzWyjatki(suf, przedmioty[sk1][2], przedmioty[sk2][2], wynik[2]);
+                    wyniki.Add(wynik);
+
+                    string skladnik1 = pref.ElementAt(przedmioty[sk1][0]).ToString() + " " + baza.ElementAt(przedmioty[sk1][1]).ToString() + " " + suf.ElementAt(przedmioty[sk1][2]).ToString();
+                    string skladnik2 = pref.ElementAt(przedmioty[sk2][0]).ToString() + " " + baza.ElementAt(przedmioty[sk2][1]).ToString() + " " + suf.ElementAt(przedmioty[sk2][2]).ToString();
+                    hist = skladnik1 + " + " + skladnik2;
+                    historia.Add(hist);
+
+                    if (iloscPrzedmiotów > iloscPetli) Test(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf, hist);
+
+                    // Usuń wykorzystany "indeks" przedmiotu z listy
+                    indeksy.RemoveAt(1);
+                }
+            }
+
+            znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
+
+            // Aktualizuj prefiksy, bazy i sufiksy filtra
+            switch (listaTypowPrzedmiotow.SelectedItem)
+            {
+                case "Hełm":
+                    AktualizujFiltr(PrefHelm, BazaHelm, SufHelm);
+                    break;
+                case "Zbroja":
+                    AktualizujFiltr(PrefZbroja, BazaZbroja, SufZbroja);
+                    break;
+                case "Spodnie":
+                    AktualizujFiltr(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    break;
+                case "Pierścień":
+                    AktualizujFiltr(PrefPierscien, BazaPierscien, SufPierscien);
+                    break;
+                case "Amulet":
+                    AktualizujFiltr(PrefAmulet, BazaAmulet, SufAmulet);
+                    break;
+                case "Biała 1h":
+                    AktualizujFiltr(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    break;
+                case "Biała 2h":
+                    AktualizujFiltr(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    break;
+                case "Palna 1h":
+                    AktualizujFiltr(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    break;
+                case "Palna 2h":
+                    AktualizujFiltr(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    break;
+                case "Dystans":
+                    AktualizujFiltr(PrefDystans, BazaDystans, SufDystans);
+                    break;
+            }
+
+            filtrUpdate.Enabled = true;
+            cbFiltrPref.Enabled = true;
+            cbFiltrBaza.Enabled = true;
+            cbFiltrSuf.Enabled = true;
+        }
+
+        private void AktualizujFiltr(List<string> pref, List<string> baza, List<string> suf)
+        {
+            cbFiltrPref.Items.Clear();
+            cbFiltrBaza.Items.Clear();
+            cbFiltrSuf.Items.Clear();
+
+            foreach (string p in pref) cbFiltrPref.Items.Add(p);
+            foreach (string b in baza) cbFiltrBaza.Items.Add(b);
+            foreach (string s in suf) cbFiltrSuf.Items.Add(s);
+        }
+
+        private void FiltrUpdate_Click(object sender, EventArgs e)
+        {
+            polaczonePrzedmioty.Items.Clear();
+
+            switch (listaTypowPrzedmiotow.SelectedItem)
+            {
+                case "Hełm":
+                    FiltrUpdate(PrefHelm, BazaHelm, SufHelm);
+                    break;
+                case "Zbroja":
+                    FiltrUpdate(PrefZbroja, BazaZbroja, SufZbroja);
+                    break;
+                case "Spodnie":
+                    FiltrUpdate(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    break;
+                case "Pierścień":
+                    FiltrUpdate(PrefPierscien, BazaPierscien, SufPierscien);
+                    break;
+                case "Amulet":
+                    FiltrUpdate(PrefAmulet, BazaAmulet, SufAmulet);
+                    break;
+                case "Biała 1h":
+                    FiltrUpdate(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    break;
+                case "Biała 2h":
+                    FiltrUpdate(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    break;
+                case "Palna 1h":
+                    FiltrUpdate(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    break;
+                case "Palna 2h":
+                    FiltrUpdate(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    break;
+                case "Dystans":
+                    FiltrUpdate(PrefDystans, BazaDystans, SufDystans);
+                    break;
+            }
+
+            polaczonePrzedmioty.Enabled = true;
+        }
+
+        private void FiltrUpdate(List<string> pref, List<string> baza, List<string> suf)
+        {
+            int filtrPref = pref.IndexOf(cbFiltrPref.Text);
+            int filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
+            int filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
+
+            filtrUpdate.Enabled = false;
+            filtrUpdate.Text = "Aktualizuję...";
+            this.Update();
+
+            for (int i = 0; i < wyniki.Count; i++)
+            {
+                if (wyniki[i][0] == filtrPref && filtrPref != 0)
+                {
+                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
+                    filtrPrzedmioty.Add(i);
+                    continue;
+                }
+                if (wyniki[i][1] == filtrBaza && filtrBaza != 0)
+                {
+                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
+                    filtrPrzedmioty.Add(i);
+                    continue;
+                }
+                if (wyniki[i][2] == filtrSuf && filtrSuf != 0)
+                {
+                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
+                    filtrPrzedmioty.Add(i);
+                    continue;
+                }
+                if (filtrPref == 0 && filtrBaza == 0 && filtrPref == 0)
+                {
+                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
+                    filtrPrzedmioty.Add(i);
+                    continue;
+                }
+            }
+
+            filtrUpdate.Text = "Aktualizuj filtr";
+            filtrUpdate.Enabled = true;
+        }
+
+        private void PolaczonePrzedmioty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //przedmiotyDoAnalizy.Text = historia[polaczonePrzedmioty.SelectedIndex];
+            int index = filtrPrzedmioty[polaczonePrzedmioty.SelectedIndex];
+            przedmiotyDoAnalizy.Text = historia[index];
+        }
+
+        private void przedmiotyDoAnalizy_Enter(object sender, EventArgs e)
+        {
+            if (doOnceAnalizator)
+            {
+                doOnceAnalizator = false;
+                przedmiotyDoAnalizy.Text = "";
+            }
         }
 
         private void BazaHelmow(List<string> pref, List<string> baza, List<string> suf)

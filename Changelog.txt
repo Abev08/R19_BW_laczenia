@@ -1,4 +1,7 @@
-﻿Version 1.10.1
+﻿Version 1.10.1 (Alpha 2.0)
+	- Dodano analizator łączeń umożliwiający wyszukanie możliwych połączeń przedmiotów z listy
+
+Version 1.10.1
 	- Bugfix: IndexOutOfRangeException - Kliknięcie "Oblicz" w analizatorze raportów bez wprowadzenia tekstu.
 
 Version 1.10

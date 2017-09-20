@@ -12,12 +12,14 @@ Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu
  - Możliwość cofnięcia przeprowadzonych łączeń,
  - Trzy elementowy schowek do przechowywania przedmiotów w trakcie sesji łączenia,
  - Możliwość wyświetlenia tabeli łączeń prefiksów / baz / sufiksów każdego typu przedmiotu,
- - Analizator raportów łączenia.
+ - Analizator raportów łączenia,
+ - __Alpha__: Analizator łączeń wyszukujący możliwe połączenia z listy przedmiotów,
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów),
    - Kopiowanie zaznaczonego tekstu,
    - Kopiowanie całego wyświetlanego tekstu,
    - Zapisywanie wyświetlanego tekstu do pliku,
    - Czyszczenie przebiegu łączeń / raportu w analizatorze raportów.
+
 
 [Changelog](Changelog.txt)

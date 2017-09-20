@@ -324,6 +324,23 @@
             this.AnalizatorRaportuPomoc = new System.Windows.Forms.Button();
             this.AnalizatorRaportuOblicz = new System.Windows.Forms.Button();
             this.AnalizatorRaportuTekst = new System.Windows.Forms.RichTextBox();
+            this.TabLaczenia = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.filtrUpdate = new System.Windows.Forms.Button();
+            this.cbFiltrSuf = new System.Windows.Forms.ComboBox();
+            this.cbFiltrBaza = new System.Windows.Forms.ComboBox();
+            this.cbFiltrPref = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.znalezionoPolaczen = new System.Windows.Forms.Label();
+            this.zaladujPrzedmioty = new System.Windows.Forms.Button();
+            this.polaczonePrzedmioty = new System.Windows.Forms.ComboBox();
+            this.zaladowanePrzedmioty = new System.Windows.Forms.ComboBox();
+            this.analizujPolaczenia = new System.Windows.Forms.Button();
+            this.zaladowanoPrzedmiotow = new System.Windows.Forms.Label();
+            this.przedmiotyDoAnalizy = new System.Windows.Forms.RichTextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.listaTypowPrzedmiotow = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.ByMe = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.wklejToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -335,6 +352,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label17 = new System.Windows.Forms.Label();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -387,6 +405,8 @@
             this.prefDystansPanel.SuspendLayout();
             this.DystansPanel.SuspendLayout();
             this.TabAnalizator.SuspendLayout();
+            this.TabLaczenia.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -403,7 +423,8 @@
             this.GlownyTab.Controls.Add(this.TabPalna2h);
             this.GlownyTab.Controls.Add(this.TabDystans);
             this.GlownyTab.Controls.Add(this.TabAnalizator);
-            this.GlownyTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GlownyTab.Controls.Add(this.TabLaczenia);
+            this.GlownyTab.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.GlownyTab.Location = new System.Drawing.Point(0, 0);
             this.GlownyTab.Margin = new System.Windows.Forms.Padding(4);
             this.GlownyTab.Name = "GlownyTab";
@@ -428,11 +449,10 @@
             this.TabHelm.Controls.Add(this.cbHelmPref);
             this.TabHelm.Controls.Add(this.helmWynik);
             this.TabHelm.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabHelm.Location = new System.Drawing.Point(4, 37);
+            this.TabHelm.Location = new System.Drawing.Point(4, 34);
             this.TabHelm.Margin = new System.Windows.Forms.Padding(4);
             this.TabHelm.Name = "TabHelm";
-            this.TabHelm.Padding = new System.Windows.Forms.Padding(4);
-            this.TabHelm.Size = new System.Drawing.Size(1164, 543);
+            this.TabHelm.Size = new System.Drawing.Size(1164, 546);
             this.TabHelm.TabIndex = 0;
             this.TabHelm.Text = "Hełm";
             // 
@@ -750,7 +770,6 @@
             this.TabZbroja.Location = new System.Drawing.Point(4, 37);
             this.TabZbroja.Margin = new System.Windows.Forms.Padding(4);
             this.TabZbroja.Name = "TabZbroja";
-            this.TabZbroja.Padding = new System.Windows.Forms.Padding(4);
             this.TabZbroja.Size = new System.Drawing.Size(1164, 543);
             this.TabZbroja.TabIndex = 1;
             this.TabZbroja.Text = "Zbroja";
@@ -2967,10 +2986,10 @@
             this.TabPalna2h.Controls.Add(this.cbPalna2hPref);
             this.TabPalna2h.Controls.Add(this.palna2hWynik);
             this.TabPalna2h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabPalna2h.Location = new System.Drawing.Point(4, 37);
+            this.TabPalna2h.Location = new System.Drawing.Point(4, 34);
             this.TabPalna2h.Margin = new System.Windows.Forms.Padding(4);
             this.TabPalna2h.Name = "TabPalna2h";
-            this.TabPalna2h.Size = new System.Drawing.Size(1164, 543);
+            this.TabPalna2h.Size = new System.Drawing.Size(1164, 546);
             this.TabPalna2h.TabIndex = 8;
             this.TabPalna2h.Text = "Palna 2h";
             // 
@@ -3284,10 +3303,10 @@
             this.TabDystans.Controls.Add(this.cbDystansPref);
             this.TabDystans.Controls.Add(this.dystansWynik);
             this.TabDystans.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabDystans.Location = new System.Drawing.Point(4, 37);
+            this.TabDystans.Location = new System.Drawing.Point(4, 34);
             this.TabDystans.Margin = new System.Windows.Forms.Padding(4);
             this.TabDystans.Name = "TabDystans";
-            this.TabDystans.Size = new System.Drawing.Size(1164, 543);
+            this.TabDystans.Size = new System.Drawing.Size(1164, 546);
             this.TabDystans.TabIndex = 9;
             this.TabDystans.Text = "Dystans";
             // 
@@ -3611,10 +3630,10 @@
             this.TabAnalizator.Controls.Add(this.AnalizatorRaportuOblicz);
             this.TabAnalizator.Controls.Add(this.AnalizatorRaportuTekst);
             this.TabAnalizator.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.TabAnalizator.Location = new System.Drawing.Point(4, 37);
+            this.TabAnalizator.Location = new System.Drawing.Point(4, 34);
             this.TabAnalizator.Margin = new System.Windows.Forms.Padding(4);
             this.TabAnalizator.Name = "TabAnalizator";
-            this.TabAnalizator.Size = new System.Drawing.Size(1164, 543);
+            this.TabAnalizator.Size = new System.Drawing.Size(1164, 546);
             this.TabAnalizator.TabIndex = 10;
             this.TabAnalizator.Text = "Analizator raportu";
             // 
@@ -3892,12 +3911,200 @@
             this.AnalizatorRaportuTekst.TabIndex = 36;
             this.AnalizatorRaportuTekst.Text = "";
             // 
+            // TabLaczenia
+            // 
+            this.TabLaczenia.Controls.Add(this.panel1);
+            this.TabLaczenia.Controls.Add(this.przedmiotyDoAnalizy);
+            this.TabLaczenia.Controls.Add(this.label16);
+            this.TabLaczenia.Controls.Add(this.listaTypowPrzedmiotow);
+            this.TabLaczenia.Controls.Add(this.label1);
+            this.TabLaczenia.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.TabLaczenia.Location = new System.Drawing.Point(4, 34);
+            this.TabLaczenia.Margin = new System.Windows.Forms.Padding(4);
+            this.TabLaczenia.Name = "TabLaczenia";
+            this.TabLaczenia.Size = new System.Drawing.Size(1164, 546);
+            this.TabLaczenia.TabIndex = 11;
+            this.TabLaczenia.Text = "Analizator łączeń";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.filtrUpdate);
+            this.panel1.Controls.Add(this.cbFiltrSuf);
+            this.panel1.Controls.Add(this.cbFiltrBaza);
+            this.panel1.Controls.Add(this.cbFiltrPref);
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.znalezionoPolaczen);
+            this.panel1.Controls.Add(this.zaladujPrzedmioty);
+            this.panel1.Controls.Add(this.polaczonePrzedmioty);
+            this.panel1.Controls.Add(this.zaladowanePrzedmioty);
+            this.panel1.Controls.Add(this.analizujPolaczenia);
+            this.panel1.Controls.Add(this.zaladowanoPrzedmiotow);
+            this.panel1.Location = new System.Drawing.Point(633, 74);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(528, 459);
+            this.panel1.TabIndex = 46;
+            // 
+            // filtrUpdate
+            // 
+            this.filtrUpdate.Enabled = false;
+            this.filtrUpdate.Location = new System.Drawing.Point(170, 303);
+            this.filtrUpdate.Margin = new System.Windows.Forms.Padding(4);
+            this.filtrUpdate.Name = "filtrUpdate";
+            this.filtrUpdate.Size = new System.Drawing.Size(180, 38);
+            this.filtrUpdate.TabIndex = 52;
+            this.filtrUpdate.Text = "Aktualizuj filtr";
+            this.filtrUpdate.UseVisualStyleBackColor = true;
+            this.filtrUpdate.Click += new System.EventHandler(this.FiltrUpdate_Click);
+            // 
+            // cbFiltrSuf
+            // 
+            this.cbFiltrSuf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltrSuf.Enabled = false;
+            this.cbFiltrSuf.FormattingEnabled = true;
+            this.cbFiltrSuf.Location = new System.Drawing.Point(364, 267);
+            this.cbFiltrSuf.Name = "cbFiltrSuf";
+            this.cbFiltrSuf.Size = new System.Drawing.Size(155, 29);
+            this.cbFiltrSuf.TabIndex = 51;
+            // 
+            // cbFiltrBaza
+            // 
+            this.cbFiltrBaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltrBaza.Enabled = false;
+            this.cbFiltrBaza.FormattingEnabled = true;
+            this.cbFiltrBaza.Location = new System.Drawing.Point(203, 267);
+            this.cbFiltrBaza.Name = "cbFiltrBaza";
+            this.cbFiltrBaza.Size = new System.Drawing.Size(155, 29);
+            this.cbFiltrBaza.TabIndex = 50;
+            // 
+            // cbFiltrPref
+            // 
+            this.cbFiltrPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltrPref.Enabled = false;
+            this.cbFiltrPref.FormattingEnabled = true;
+            this.cbFiltrPref.Location = new System.Drawing.Point(42, 267);
+            this.cbFiltrPref.Name = "cbFiltrPref";
+            this.cbFiltrPref.Size = new System.Drawing.Size(155, 29);
+            this.cbFiltrPref.TabIndex = 49;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(-2, 270);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(42, 23);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "Filtr:";
+            // 
+            // znalezionoPolaczen
+            // 
+            this.znalezionoPolaczen.Location = new System.Drawing.Point(0, 183);
+            this.znalezionoPolaczen.Name = "znalezionoPolaczen";
+            this.znalezionoPolaczen.Size = new System.Drawing.Size(528, 23);
+            this.znalezionoPolaczen.TabIndex = 46;
+            this.znalezionoPolaczen.Text = " ";
+            this.znalezionoPolaczen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // zaladujPrzedmioty
+            // 
+            this.zaladujPrzedmioty.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.zaladujPrzedmioty.Location = new System.Drawing.Point(170, 4);
+            this.zaladujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
+            this.zaladujPrzedmioty.Name = "zaladujPrzedmioty";
+            this.zaladujPrzedmioty.Size = new System.Drawing.Size(180, 41);
+            this.zaladujPrzedmioty.TabIndex = 41;
+            this.zaladujPrzedmioty.Text = "Załaduj przedmioty";
+            this.zaladujPrzedmioty.UseVisualStyleBackColor = true;
+            this.zaladujPrzedmioty.Click += new System.EventHandler(this.ZaladujPrzedmioty_Click);
+            // 
+            // polaczonePrzedmioty
+            // 
+            this.polaczonePrzedmioty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.polaczonePrzedmioty.Enabled = false;
+            this.polaczonePrzedmioty.FormattingEnabled = true;
+            this.polaczonePrzedmioty.Location = new System.Drawing.Point(239, 348);
+            this.polaczonePrzedmioty.Name = "polaczonePrzedmioty";
+            this.polaczonePrzedmioty.Size = new System.Drawing.Size(280, 29);
+            this.polaczonePrzedmioty.TabIndex = 45;
+            this.polaczonePrzedmioty.SelectedIndexChanged += new System.EventHandler(this.PolaczonePrzedmioty_SelectedIndexChanged);
+            // 
+            // zaladowanePrzedmioty
+            // 
+            this.zaladowanePrzedmioty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.zaladowanePrzedmioty.FormattingEnabled = true;
+            this.zaladowanePrzedmioty.Location = new System.Drawing.Point(239, 52);
+            this.zaladowanePrzedmioty.Name = "zaladowanePrzedmioty";
+            this.zaladowanePrzedmioty.Size = new System.Drawing.Size(280, 29);
+            this.zaladowanePrzedmioty.TabIndex = 42;
+            // 
+            // analizujPolaczenia
+            // 
+            this.analizujPolaczenia.Enabled = false;
+            this.analizujPolaczenia.Location = new System.Drawing.Point(170, 141);
+            this.analizujPolaczenia.Margin = new System.Windows.Forms.Padding(4);
+            this.analizujPolaczenia.Name = "analizujPolaczenia";
+            this.analizujPolaczenia.Size = new System.Drawing.Size(180, 38);
+            this.analizujPolaczenia.TabIndex = 44;
+            this.analizujPolaczenia.Text = "Analizuj połączenia";
+            this.analizujPolaczenia.UseVisualStyleBackColor = true;
+            this.analizujPolaczenia.Click += new System.EventHandler(this.AnalizujPolaczenia_Click);
+            // 
+            // zaladowanoPrzedmiotow
+            // 
+            this.zaladowanoPrzedmiotow.AutoSize = true;
+            this.zaladowanoPrzedmiotow.Location = new System.Drawing.Point(3, 55);
+            this.zaladowanoPrzedmiotow.Name = "zaladowanoPrzedmiotow";
+            this.zaladowanoPrzedmiotow.Size = new System.Drawing.Size(227, 23);
+            this.zaladowanoPrzedmiotow.TabIndex = 43;
+            this.zaladowanoPrzedmiotow.Text = "Załadowano 0 przedmiotów:";
+            // 
+            // przedmiotyDoAnalizy
+            // 
+            this.przedmiotyDoAnalizy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.przedmiotyDoAnalizy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.przedmiotyDoAnalizy.Location = new System.Drawing.Point(8, 74);
+            this.przedmiotyDoAnalizy.Margin = new System.Windows.Forms.Padding(4);
+            this.przedmiotyDoAnalizy.Name = "przedmiotyDoAnalizy";
+            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(618, 459);
+            this.przedmiotyDoAnalizy.TabIndex = 37;
+            this.przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.";
+            this.przedmiotyDoAnalizy.Enter += new System.EventHandler(this.przedmiotyDoAnalizy_Enter);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(4, 41);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(225, 23);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Typ przedmiotu do łączenia:";
+            // 
+            // listaTypowPrzedmiotow
+            // 
+            this.listaTypowPrzedmiotow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.listaTypowPrzedmiotow.FormattingEnabled = true;
+            this.listaTypowPrzedmiotow.Location = new System.Drawing.Point(235, 38);
+            this.listaTypowPrzedmiotow.Name = "listaTypowPrzedmiotow";
+            this.listaTypowPrzedmiotow.Size = new System.Drawing.Size(192, 29);
+            this.listaTypowPrzedmiotow.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1164, 35);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Analizator łączeń (ALPHA). Nie sprawdza wszystkich możliwych połączeń, zużywa bar" +
+    "dzo dużo pamięci komputera.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ByMe
             // 
-            this.ByMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ByMe.AutoSize = true;
+            this.ByMe.BackColor = System.Drawing.Color.Transparent;
             this.ByMe.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ByMe.Location = new System.Drawing.Point(1094, 9);
+            this.ByMe.Location = new System.Drawing.Point(1092, 5);
             this.ByMe.Margin = new System.Windows.Forms.Padding(12);
             this.ByMe.Name = "ByMe";
             this.ByMe.Size = new System.Drawing.Size(73, 23);
@@ -3970,6 +4177,15 @@
             this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
             this.wyczyscToolStripMenuItem.Text = "Wyczyść";
             this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(3, 351);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(227, 23);
+            this.label17.TabIndex = 53;
+            this.label17.Text = "Przefiltrowane wyniki łączeń:";
             // 
             // MainWindow
             // 
@@ -4048,6 +4264,10 @@
             this.DystansPanel.PerformLayout();
             this.TabAnalizator.ResumeLayout(false);
             this.TabAnalizator.PerformLayout();
+            this.TabLaczenia.ResumeLayout(false);
+            this.TabLaczenia.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -4362,6 +4582,24 @@
         private System.Windows.Forms.RichTextBox helmWynik;
         private System.Windows.Forms.ToolStripMenuItem wklejToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.TabPage TabLaczenia;
+        private System.Windows.Forms.RichTextBox przedmiotyDoAnalizy;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox listaTypowPrzedmiotow;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button zaladujPrzedmioty;
+        private System.Windows.Forms.ComboBox zaladowanePrzedmioty;
+        private System.Windows.Forms.Label zaladowanoPrzedmiotow;
+        private System.Windows.Forms.ComboBox polaczonePrzedmioty;
+        private System.Windows.Forms.Button analizujPolaczenia;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label znalezionoPolaczen;
+        private System.Windows.Forms.ComboBox cbFiltrSuf;
+        private System.Windows.Forms.ComboBox cbFiltrBaza;
+        private System.Windows.Forms.ComboBox cbFiltrPref;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button filtrUpdate;
+        private System.Windows.Forms.Label label17;
     }
 }
 
