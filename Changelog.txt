@@ -1,5 +1,17 @@
-﻿Version 1.10.1 (Alpha 2.0)
-	- Dodano analizator łączeń umożliwiający wyszukanie możliwych połączeń przedmiotów z listy
+﻿Version 1.10.2 (Beta 2.0)
+	- Bugfix: Literówka w tabeli łączeń sufiksów zbroji :)
+	- Analizator łączeń:
+		-- Poprawiono szybkość działania,
+		-- Poprawiono zużycie pamięci,
+		-- Poprawiono wyświetlanie historii łączenia,
+		-- Poprawiono filtrowanie wyników,
+		-- Dodano możliwość definicji maksymalnej ilości łączeń,
+		-- Dodano współpracę okienka analizatora łączeń z menu prawego przycisku myszy,
+		-- Dodano tło,
+		-- Przystosowano czcionki do współpracy z tłem.
+
+Version 1.10.1 (Alpha 2.0)
+	- Dodano analizator łączeń umożliwiający wyszukanie możliwych połączeń przedmiotów z listy.
 
 Version 1.10.1
 	- Bugfix: IndexOutOfRangeException - Kliknięcie "Oblicz" w analizatorze raportów bez wprowadzenia tekstu.

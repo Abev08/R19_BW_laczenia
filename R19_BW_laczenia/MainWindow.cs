@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading;
 
 namespace R19_BW_laczenia
 {
@@ -51,13 +50,6 @@ namespace R19_BW_laczenia
         List<string> BazaDystans = new List<string>();
         List<string> SufDystans = new List<string>();
 
-        // Zmienne do analizatora łączeń
-        List<int[]> przedmioty = new List<int[]>();
-        List<int[]> wyniki = new List<int[]>();
-        List<string> historia = new List<string>();
-        List<int> filtrPrzedmioty = new List<int>();
-        bool doOnceAnalizator = true;
-
         // Zmienne do łączenia
         int[] component1 = new int[4];
         int[] component2 = new int[4];
@@ -68,6 +60,34 @@ namespace R19_BW_laczenia
 
         // Utworzenie obiektu tabeli łączeń (nowego Form'a)
         TableWindow Tabela;
+
+        // Zmienne do analizatora łączeń
+        List<Item> przedmioty = new List<Item>();
+        List<Item> wyniki = new List<Item>();
+        List<int> filtrPrzedmioty = new List<int>();
+        bool doOnceAnalizator = true;
+
+        private class Item
+        {
+            // Klasa przedmiotu - Typ zmiennej przechowujący statystyki przedmiotu
+            public int p; // Prefix index
+            public int b; // Base index
+            public int s; // Sufix index
+            public string h; // History
+
+            public Item(int pref = 0, int baza = 0, int suf = 0)
+            {
+                p = pref;
+                b = baza;
+                s = suf;
+            }
+            public Item(int[] input)
+            {
+                p = input[0];
+                b = input[1];
+                s = input[2];
+            }
+        }
 
         public MainWindow()
         {
@@ -468,6 +488,9 @@ namespace R19_BW_laczenia
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): 0/0");
 
             // Analizator łączeń
+            TabLaczenia.BackColor = bckColorTab;
+            TabLaczenia.BackgroundImageLayout = imgLayoutTab;
+            TabLaczenia.BackgroundImage = bckPictureTab;
             listaTypowPrzedmiotow.Items.Add("Hełm");
             listaTypowPrzedmiotow.Items.Add("Zbroja");
             listaTypowPrzedmiotow.Items.Add("Spodnie");
@@ -481,10 +504,15 @@ namespace R19_BW_laczenia
             listaTypowPrzedmiotow.SelectedIndex = 0;
             przedmiotyDoAnalizy.WordWrap = true;
             przedmiotyDoAnalizy.ContextMenuStrip = contextMenuStrip1;
+            przedmiotyDoAnalizy.Font = fontRTB;
+            przedmiotyDoAnalizy.ForeColor = foreColorRTB;
+            przedmiotyDoAnalizy.BackColor = bckColorRTB;
+            przedmiotyDoAnalizy.ReadOnly = false;
             przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.\n";
+            iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.1 (Alpha 2.0)\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.2 (Beta 2.0)\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
@@ -884,6 +912,7 @@ namespace R19_BW_laczenia
         {
             Czyszczenie();
             if (GlownyTab.SelectedTab.Text == "Analizator raportu") wklejToolStripMenuItem1.Enabled = true;
+            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") wklejToolStripMenuItem1.Enabled = true;
             else
             {
                 wklejToolStripMenuItem1.Enabled = false;
@@ -892,7 +921,7 @@ namespace R19_BW_laczenia
 
         private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GlownyTab.SelectedTab.Text == "??") przedmiotyDoAnalizy.Clear();
+            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
             Czyszczenie();
         }
 
@@ -992,6 +1021,9 @@ namespace R19_BW_laczenia
                 case "Analizator raportu":
                     AnalizatorRaportuTekst.Copy();
                     break;
+                case "Analizator łączeń":
+                    przedmiotyDoAnalizy.Copy();
+                    break;
             }
         }
 
@@ -1044,6 +1076,10 @@ namespace R19_BW_laczenia
                     AnalizatorRaportuTekst.SelectAll();
                     AnalizatorRaportuTekst.Copy();
                     break;
+                case "Analizator łączeń":
+                    przedmiotyDoAnalizy.SelectAll();
+                    przedmiotyDoAnalizy.Copy();
+                    break;
             }
         }
 
@@ -1092,6 +1128,9 @@ namespace R19_BW_laczenia
                         case "Analizator raportu":
                             aa.Write(AnalizatorRaportuTekst.Text);
                             break;
+                        case "Analizator łączeń":
+                            aa.Write(przedmiotyDoAnalizy.Text);
+                            break;
                     }
                 }
             }
@@ -1103,6 +1142,11 @@ namespace R19_BW_laczenia
             {
                 AnalizatorRaportuTekst.Paste();
                 AnalizatorRaportuTekst.ScrollToCaret();
+            }
+            if (GlownyTab.SelectedTab.Text == "Analizator łączeń")
+            {
+                przedmiotyDoAnalizy.Paste();
+                przedmiotyDoAnalizy.ScrollToCaret();
             }
         }
 
@@ -1502,6 +1546,7 @@ namespace R19_BW_laczenia
             cbFiltrPref.Items.Clear();
             cbFiltrBaza.Items.Clear();
             cbFiltrSuf.Items.Clear();
+            iloscLaczen.Enabled = false;
 
             przedmioty.Clear();
 
@@ -1541,7 +1586,16 @@ namespace R19_BW_laczenia
 
             zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
             if (przedmioty.Count > 0) zaladowanePrzedmioty.SelectedIndex = 0;
-            if (przedmioty.Count > 1) analizujPolaczenia.Enabled = true;
+            if (przedmioty.Count > 1)
+            {
+                analizujPolaczenia.Enabled = true;
+                if (przedmioty.Count < 10) iloscLaczen.Value = przedmioty.Count;
+                else
+                {
+                    iloscLaczen.Enabled = true;
+                    iloscLaczen.Value = 1;
+                }
+            }
         }
 
         private void Zaladuj(List<string> pref, List<string> baza, List<string> suf)
@@ -1556,7 +1610,7 @@ namespace R19_BW_laczenia
 
             foreach (string line in linie)
             {
-                int[] przedmiot = new int[3] { 0, 0, 0 };
+                Item przedmiot = new Item();
                 string[] wyrazy = line.Split(' ');
 
                 for (int i = 0; i < wyrazy.Count(); i++)
@@ -1567,16 +1621,17 @@ namespace R19_BW_laczenia
                     // Przytnij końcówkę wyrazu - ułatwienie identyfikacji przedmiotów
                     wyrazy[i] = wyrazy[i].Substring(0, wyrazy[i].Length - 1);
 
-                    if (pref.Any(p => p.Contains(wyrazy[i]))) przedmiot[0] = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
-                    if (baza.Any(b => b.Contains(wyrazy[i]))) przedmiot[1] = baza.IndexOf(baza.Find(b => b.Contains(wyrazy[i])));
-                    if (suf.Any(s => s.Contains(wyrazy[i]))) przedmiot[2] = suf.IndexOf(suf.Find(s => s.Contains(wyrazy[i])));
+                    if (pref.Any(p => p.Contains(wyrazy[i]))) przedmiot.p = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
+                    if (baza.Any(b => b.Contains(wyrazy[i]))) przedmiot.b = baza.IndexOf(baza.Find(b => b.Contains(wyrazy[i])));
+                    if (suf.Any(s => s.Contains(wyrazy[i]))) przedmiot.s = suf.IndexOf(suf.Find(s => s.Contains(wyrazy[i])));
                 }
 
                 // Jeżeli znaleziono prefiks / bazę / sufiks to dodaj przedmiot do listy przedmiotów
-                if (przedmiot.Sum() > 0)
+                if (przedmiot.p + przedmiot.b + przedmiot.s > 0)
                 {
                     przedmioty.Add(przedmiot);
-                    zaladowanePrzedmioty.Items.Add(pref.ElementAt(przedmiot[0]) + " " + baza.ElementAt(przedmiot[1]) + " " + suf.ElementAt(przedmiot[2]));
+                    // TODO: lepsze dodawanie przedmiotu do CB - pomiń niepotrzebne spacje
+                    zaladowanePrzedmioty.Items.Add(pref.ElementAt(przedmiot.p) + " " + baza.ElementAt(przedmiot.b) + " " + suf.ElementAt(przedmiot.s));
                 }
             }
 
@@ -1585,7 +1640,7 @@ namespace R19_BW_laczenia
 
         private void AnalizujPolaczenia_Click(object sender, EventArgs e)
         {
-            historia.Clear();
+            iloscLaczen.Enabled = false;
             polaczonePrzedmioty.Items.Clear();
             wyniki.Clear();
 
@@ -1622,48 +1677,19 @@ namespace R19_BW_laczenia
                     AnalizujPolaczenia(PrefDystans, BazaDystans, SufDystans);
                     break;
             }
-        }
 
-        private void Test(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, int[] skladnik, List<string> pref, List<string> baza, List<string> suf, string prefHist = "")
-        {
-            int numerPetli = nrPetli + 1;
-            string hist = prefHist;
-
-            for (int i = 0; i < iloscPrzed; i++)
-            {
-                // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
-                if (indeksy.Contains(i)) continue;
-
-                // Dodaj wykorzystany "indeks" przedmiotu do listy
-                indeksy.Add(i);
-
-                int[] wynik = Polacz(skladnik[0], skladnik[1], skladnik[2], przedmioty[i][0], przedmioty[i][1], przedmioty[i][2]);
-                wynik[0] = SprawdzWyjatki(pref, skladnik[0], przedmioty[i][0], wynik[0]);
-                wynik[1] = SprawdzWyjatki(baza, skladnik[1], przedmioty[i][1], wynik[1]);
-                wynik[2] = SprawdzWyjatki(suf, skladnik[2], przedmioty[i][2], wynik[2]);
-                wyniki.Add(wynik);
-
-                // TODO: ulepszyć historię
-                string skladnik1 = pref.ElementAt(skladnik[0]).ToString() + " " + baza.ElementAt(skladnik[1]).ToString() + " " + suf.ElementAt(skladnik[2]).ToString();
-                string skladnik2 = pref.ElementAt(przedmioty[i][0]).ToString() + " " + baza.ElementAt(przedmioty[i][1]).ToString() + " " + suf.ElementAt(przedmioty[i][2]).ToString();
-                hist = hist + "\n= " + skladnik1 + " + " + skladnik2;
-                historia.Add(hist);
-
-                if (iloscPrzed > nrPetli) Test(indeksy, iloscPrzed, numerPetli, 2, wynik, pref, baza, suf, hist);
-
-                // Usuń wykorzystany "indeks" przedmiotu z listy
-                indeksy.RemoveAt(numerPetli - 1);
-            }
+            if (przedmioty.Count >= 10) iloscLaczen.Enabled = true;
         }
 
         private void AnalizujPolaczenia(List<string> pref, List<string> baza, List<string> suf)
         {
-            List<int> indeksy = new List<int>();
+            List<int> indeksy = new List<int>();    // Lista wykorzystanych indeksów przedmiotów
             int iloscPrzedmiotów = przedmioty.Count();
             int iloscPetli = 2;
             string hist = "";
+            int maxIloscPetli = (int)iloscLaczen.Value + 1;
 
-            for (int sk1 = 0; sk1 < iloscPrzedmiotów ; sk1++)
+            for (int sk1 = 0; sk1 < iloscPrzedmiotów; sk1++)
             {
                 indeksy.Clear();
                 indeksy.Add(sk1);
@@ -1675,27 +1701,27 @@ namespace R19_BW_laczenia
                     // Dodaj wykorzystany "indeks" przedmiotu z listy
                     indeksy.Add(sk2);
 
-                    int[] wynik = Polacz(przedmioty[sk1][0], przedmioty[sk1][1], przedmioty[sk1][2], przedmioty[sk2][0], przedmioty[sk2][1], przedmioty[sk2][2]);
-                    wynik[0] = SprawdzWyjatki(pref, przedmioty[sk1][0], przedmioty[sk2][0], wynik[0]);
-                    wynik[1] = SprawdzWyjatki(baza, przedmioty[sk1][1], przedmioty[sk2][1], wynik[1]);
-                    wynik[2] = SprawdzWyjatki(suf, przedmioty[sk1][2], przedmioty[sk2][2], wynik[2]);
+                    Item wynik = new Item(Polacz(przedmioty[sk1].p, przedmioty[sk1].b, przedmioty[sk1].s, przedmioty[sk2].p, przedmioty[sk2].b, przedmioty[sk2].s));
+                    wynik.p = SprawdzWyjatki(pref, przedmioty[sk1].p, przedmioty[sk2].p, wynik.p);
+                    wynik.b = SprawdzWyjatki(baza, przedmioty[sk1].b, przedmioty[sk2].b, wynik.b);
+                    wynik.s = SprawdzWyjatki(suf, przedmioty[sk1].s, przedmioty[sk2].s, wynik.s);
+
+                    string skladnik1 = pref.ElementAt(przedmioty[sk1].p).ToString() + " " + baza.ElementAt(przedmioty[sk1].b).ToString() + " " + suf.ElementAt(przedmioty[sk1].s).ToString();
+                    string skladnik2 = pref.ElementAt(przedmioty[sk2].p).ToString() + " " + baza.ElementAt(przedmioty[sk2].b).ToString() + " " + suf.ElementAt(przedmioty[sk2].s).ToString();
+                    string wyn = pref.ElementAt(wynik.p).ToString() + " " + baza.ElementAt(wynik.b).ToString() + " " + suf.ElementAt(wynik.s).ToString();
+                    wynik.h = skladnik1 + " + " + skladnik2 + "\n= " + wyn;
                     wyniki.Add(wynik);
 
-                    string skladnik1 = pref.ElementAt(przedmioty[sk1][0]).ToString() + " " + baza.ElementAt(przedmioty[sk1][1]).ToString() + " " + suf.ElementAt(przedmioty[sk1][2]).ToString();
-                    string skladnik2 = pref.ElementAt(przedmioty[sk2][0]).ToString() + " " + baza.ElementAt(przedmioty[sk2][1]).ToString() + " " + suf.ElementAt(przedmioty[sk2][2]).ToString();
-                    hist = skladnik1 + " + " + skladnik2;
-                    historia.Add(hist);
-
-                    if (iloscPrzedmiotów > iloscPetli) Test(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf, hist);
+                    if (iloscPrzedmiotów > iloscPetli && iloscPetli < maxIloscPetli) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf, hist);
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
-                    indeksy.RemoveAt(1);
+                    indeksy.Remove(sk2);
                 }
             }
 
             znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
 
-            // Aktualizuj prefiksy, bazy i sufiksy filtra
+            // Aktualizuj prefiksy, bazy i sufiksy filtru
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
@@ -1736,15 +1762,36 @@ namespace R19_BW_laczenia
             cbFiltrSuf.Enabled = true;
         }
 
-        private void AktualizujFiltr(List<string> pref, List<string> baza, List<string> suf)
+        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf, string prefHist = "")
         {
-            cbFiltrPref.Items.Clear();
-            cbFiltrBaza.Items.Clear();
-            cbFiltrSuf.Items.Clear();
+            int numerPetli = nrPetli + 1;
+            int iloscPetli = iloscPet + 1;
+            string hist = prefHist;
 
-            foreach (string p in pref) cbFiltrPref.Items.Add(p);
-            foreach (string b in baza) cbFiltrBaza.Items.Add(b);
-            foreach (string s in suf) cbFiltrSuf.Items.Add(s);
+            for (int i = 0; i < iloscPrzed; i++)
+            {
+                // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
+                if (indeksy.Contains(i)) continue;
+
+                // Dodaj wykorzystany "indeks" przedmiotu do listy
+                indeksy.Add(i);
+
+                Item wynik = new Item(Polacz(skladnik.p, skladnik.b, skladnik.s, przedmioty[i].p, przedmioty[i].b, przedmioty[i].s));
+                wynik.p = SprawdzWyjatki(pref, skladnik.p, przedmioty[i].p, wynik.p);
+                wynik.b = SprawdzWyjatki(baza, skladnik.b, przedmioty[i].b, wynik.b);
+                wynik.s = SprawdzWyjatki(suf, skladnik.s, przedmioty[i].s, wynik.s);
+
+                string skladnik2 = pref.ElementAt(przedmioty[i].p).ToString() + " " + baza.ElementAt(przedmioty[i].b).ToString() + " " + suf.ElementAt(przedmioty[i].s).ToString();
+                string wyn = pref.ElementAt(wynik.p).ToString() + " " + baza.ElementAt(wynik.b).ToString() + " " + suf.ElementAt(wynik.s).ToString();
+                wynik.h = skladnik.h + " + " + skladnik2 + "\n= " + wyn;
+                wyniki.Add(wynik);
+
+                // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
+                if (iloscPrzed > nrPetli && iloscPetli < iloscLaczen.Value + 1) AnalizujRekFunc(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf, hist);
+
+                // Usuń wykorzystany "indeks" przedmiotu z listy
+                indeksy.Remove(i);
+            }
         }
 
         private void FiltrUpdate_Click(object sender, EventArgs e)
@@ -1788,6 +1835,17 @@ namespace R19_BW_laczenia
             polaczonePrzedmioty.Enabled = true;
         }
 
+        private void AktualizujFiltr(List<string> pref, List<string> baza, List<string> suf)
+        {
+            cbFiltrPref.Items.Clear();
+            cbFiltrBaza.Items.Clear();
+            cbFiltrSuf.Items.Clear();
+
+            foreach (string p in pref) cbFiltrPref.Items.Add(p);
+            foreach (string b in baza) cbFiltrBaza.Items.Add(b);
+            foreach (string s in suf) cbFiltrSuf.Items.Add(s);
+        }
+
         private void FiltrUpdate(List<string> pref, List<string> baza, List<string> suf)
         {
             int filtrPref = pref.IndexOf(cbFiltrPref.Text);
@@ -1798,31 +1856,96 @@ namespace R19_BW_laczenia
             filtrUpdate.Text = "Aktualizuję...";
             this.Update();
 
+            filtrPrzedmioty.Clear();
+
             for (int i = 0; i < wyniki.Count; i++)
             {
-                if (wyniki[i][0] == filtrPref && filtrPref != 0)
+                if (filtrPref == 0 && filtrBaza == 0 && filtrSuf == 0)
                 {
-                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
+                    // Pref, baza i suf dowolny - pokaż wszystko
+                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
                     filtrPrzedmioty.Add(i);
                     continue;
                 }
-                if (wyniki[i][1] == filtrBaza && filtrBaza != 0)
+                else if (wyniki[i].p == filtrPref)
                 {
-                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
-                    filtrPrzedmioty.Add(i);
-                    continue;
+                    // Wybrano prefiks do filtrowania
+                    if (wyniki[i].b == filtrBaza)
+                    {
+                        // Wybrano prefiks i bazę do filtrowania
+                        if (wyniki[i].s == filtrSuf)
+                        {
+                            // Wybrano prefiks, bazę i sufiks do filtrowania
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                        else if (filtrSuf == 0)
+                        {
+                            // Wybrano prefiks i bazę do filtrowania, dowolny sufiks
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                    }
+                    else if (filtrBaza == 0)
+                    {
+                        // Wybrano prefiks do filtrowania i dowolną bazę
+                        if (wyniki[i].s == filtrSuf)
+                        {
+                            // Wybrano prefiks i sufiks do filtrowania
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                        else if (filtrSuf == 0)
+                        {
+                            // Wybrano prefiks do filtrowania, dowolna baza i sufiks
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                    }
                 }
-                if (wyniki[i][2] == filtrSuf && filtrSuf != 0)
+                else if (filtrPref == 0)
                 {
-                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
-                    filtrPrzedmioty.Add(i);
-                    continue;
-                }
-                if (filtrPref == 0 && filtrBaza == 0 && filtrPref == 0)
-                {
-                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i][0]) + " " + baza.ElementAt(wyniki[i][1]) + " " + suf.ElementAt(wyniki[i][2]));
-                    filtrPrzedmioty.Add(i);
-                    continue;
+                    // Dowolny prefiks
+                    if (wyniki[i].b == filtrBaza)
+                    {
+                        // Wybrano bazę do filtrowania, dowolny prefiks
+                        if (wyniki[i].s == filtrSuf)
+                        {
+                            // Wybrano bazę i sufiks do filtrowania, dowolny prefiks
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                        else if (filtrSuf == 0)
+                        {
+                            // Wybrano bazę do filtrowania, dowolny prefiks i sufiks
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                    }
+                    else if (filtrBaza == 0)
+                    {
+                        // Dowolny prefiks i baza
+                        if (wyniki[i].s == filtrSuf)
+                        {
+                            // Wybrano sufiks do filtrowania, dowolny prefiks i baza
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                        else if (filtrSuf == 0)
+                        {
+                            // Dowolny prefiks, baza i sufiks
+                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            filtrPrzedmioty.Add(i);
+                            continue;
+                        }
+                    }
                 }
             }
 
@@ -1832,13 +1955,14 @@ namespace R19_BW_laczenia
 
         private void PolaczonePrzedmioty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //przedmiotyDoAnalizy.Text = historia[polaczonePrzedmioty.SelectedIndex];
+            // Aktualizacja historii łączeń po zmianie wybranego wyniku połączenia
             int index = filtrPrzedmioty[polaczonePrzedmioty.SelectedIndex];
-            przedmiotyDoAnalizy.Text = historia[index];
+            przedmiotyDoAnalizy.Text = wyniki[index].h;
         }
 
         private void przedmiotyDoAnalizy_Enter(object sender, EventArgs e)
         {
+            // Usuń "startowy" tekst w okienku analizatora łączeń po kliknięciu w nie
             if (doOnceAnalizator)
             {
                 doOnceAnalizator = false;
@@ -1945,7 +2069,7 @@ namespace R19_BW_laczenia
             suf.Add("Strażnika");
             suf.Add("Złodzieja");
             suf.Add("Siłacza");
-            suf.Add("Naromana");
+            suf.Add("Narkomana");
             suf.Add("Szermierza");
             suf.Add("Zabójcy");
             suf.Add("Gwardzisty");
