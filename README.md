@@ -3,7 +3,7 @@
 Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars.interia.pl).  
 Listy przedmiotów przystosowano do serwera R19.
   
-Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](R19_BW_laczenia.zip) - Wystarczy to pobrać).
+Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](R19_BW_laczenia.zip) - wystarczy to pobrać).
   
 
 ## Funkcje programu
@@ -14,11 +14,11 @@ Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu
  - Możliwość wyświetlenia tabeli łączeń prefiksów / baz / sufiksów każdego typu przedmiotu,
  - Analizator raportów łączenia,
  - __Beta__: Analizator łączeń wyszukujący możliwe połączenia z listy przedmiotów:
-             - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
-             - Brak ograniczenia ilości łączonych przedmiotów,
-			 - Możliwość ustawienia maksymalnej ilości wyszukiwanych łączeń,
-			 - Możliwość filtrowania przeanalizowanych połączeń,
-			 - Możliwość wyświetlenia historii połączeń.
+   - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
+   - Brak ograniczenia ilości łączonych przedmiotów,
+   - Możliwość ustawienia maksymalnej ilości wyszukiwanych łączeń,
+   - Możliwość filtrowania przeanalizowanych połączeń,
+   - Możliwość wyświetlenia historii połączeń.
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów),
    - Kopiowanie zaznaczonego tekstu,
