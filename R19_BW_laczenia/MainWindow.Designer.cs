@@ -325,6 +325,7 @@
             this.AnalizatorRaportuOblicz = new System.Windows.Forms.Button();
             this.AnalizatorRaportuTekst = new System.Windows.Forms.RichTextBox();
             this.TabLaczenia = new System.Windows.Forms.TabPage();
+            this.analizatorLaczenPomoc = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.cbFiltrPref = new System.Windows.Forms.ComboBox();
@@ -335,11 +336,12 @@
             this.cbFiltrSuf = new System.Windows.Forms.ComboBox();
             this.cbFiltrBaza = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
+            this.iloscLaczen = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
             this.analizujPolaczenia = new System.Windows.Forms.Button();
             this.znalezionoPolaczen = new System.Windows.Forms.Label();
-            this.iloscLaczen = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
             this.zaladujPrzedmioty = new System.Windows.Forms.Button();
             this.zaladowanePrzedmioty = new System.Windows.Forms.ComboBox();
@@ -359,7 +361,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.dodatkoweLaczenia = new System.Windows.Forms.CheckBox();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -415,10 +417,10 @@
             this.TabLaczenia.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iloscLaczen)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // GlownyTab
@@ -3924,6 +3926,7 @@
             // 
             // TabLaczenia
             // 
+            this.TabLaczenia.Controls.Add(this.analizatorLaczenPomoc);
             this.TabLaczenia.Controls.Add(this.panel3);
             this.TabLaczenia.Controls.Add(this.panel2);
             this.TabLaczenia.Controls.Add(this.panel1);
@@ -3938,6 +3941,18 @@
             this.TabLaczenia.Size = new System.Drawing.Size(1164, 546);
             this.TabLaczenia.TabIndex = 11;
             this.TabLaczenia.Text = "Analizator łączeń";
+            // 
+            // analizatorLaczenPomoc
+            // 
+            this.analizatorLaczenPomoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.analizatorLaczenPomoc.Location = new System.Drawing.Point(1069, 4);
+            this.analizatorLaczenPomoc.Margin = new System.Windows.Forms.Padding(4);
+            this.analizatorLaczenPomoc.Name = "analizatorLaczenPomoc";
+            this.analizatorLaczenPomoc.Size = new System.Drawing.Size(90, 32);
+            this.analizatorLaczenPomoc.TabIndex = 44;
+            this.analizatorLaczenPomoc.Text = "Pomoc";
+            this.analizatorLaczenPomoc.UseVisualStyleBackColor = true;
+            this.analizatorLaczenPomoc.Click += new System.EventHandler(this.AnalizatorLaczenPomoc_Click);
             // 
             // panel3
             // 
@@ -4045,14 +4060,44 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.dodatkoweLaczenia);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.analizujPolaczenia);
             this.panel2.Controls.Add(this.znalezionoPolaczen);
-            this.panel2.Location = new System.Drawing.Point(615, 209);
+            this.panel2.Location = new System.Drawing.Point(615, 193);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(537, 134);
+            this.panel2.Size = new System.Drawing.Size(537, 164);
             this.panel2.TabIndex = 47;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.Controls.Add(this.label18);
+            this.panel4.Controls.Add(this.iloscLaczen);
+            this.panel4.Location = new System.Drawing.Point(181, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(175, 33);
+            this.panel4.TabIndex = 59;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.Location = new System.Drawing.Point(3, 2);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(102, 23);
+            this.label18.TabIndex = 56;
+            this.label18.Text = "Ilość łączeń:";
+            // 
+            // iloscLaczen
+            // 
+            this.iloscLaczen.Enabled = false;
+            this.iloscLaczen.Location = new System.Drawing.Point(111, 0);
+            this.iloscLaczen.Name = "iloscLaczen";
+            this.iloscLaczen.Size = new System.Drawing.Size(60, 29);
+            this.iloscLaczen.TabIndex = 55;
             // 
             // label20
             // 
@@ -4066,21 +4111,10 @@
             this.label20.Text = "Duża wartość przy wielu przedmiotach znacząco wydłuża czas obliczeń!";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label18.Location = new System.Drawing.Point(3, 2);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(102, 23);
-            this.label18.TabIndex = 56;
-            this.label18.Text = "Ilość łączeń:";
-            // 
             // analizujPolaczenia
             // 
             this.analizujPolaczenia.Enabled = false;
-            this.analizujPolaczenia.Location = new System.Drawing.Point(178, 63);
+            this.analizujPolaczenia.Location = new System.Drawing.Point(178, 93);
             this.analizujPolaczenia.Margin = new System.Windows.Forms.Padding(4);
             this.analizujPolaczenia.Name = "analizujPolaczenia";
             this.analizujPolaczenia.Size = new System.Drawing.Size(180, 40);
@@ -4093,20 +4127,12 @@
             // 
             this.znalezionoPolaczen.BackColor = System.Drawing.Color.Transparent;
             this.znalezionoPolaczen.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.znalezionoPolaczen.Location = new System.Drawing.Point(0, 107);
+            this.znalezionoPolaczen.Location = new System.Drawing.Point(0, 137);
             this.znalezionoPolaczen.Name = "znalezionoPolaczen";
             this.znalezionoPolaczen.Size = new System.Drawing.Size(537, 23);
             this.znalezionoPolaczen.TabIndex = 46;
             this.znalezionoPolaczen.Text = " ";
             this.znalezionoPolaczen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // iloscLaczen
-            // 
-            this.iloscLaczen.Enabled = false;
-            this.iloscLaczen.Location = new System.Drawing.Point(111, 0);
-            this.iloscLaczen.Name = "iloscLaczen";
-            this.iloscLaczen.Size = new System.Drawing.Size(60, 29);
-            this.iloscLaczen.TabIndex = 55;
             // 
             // panel1
             // 
@@ -4189,7 +4215,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1164, 35);
+            this.label1.Size = new System.Drawing.Size(1063, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "Analizator łączeń (Beta). Nie sprawdza wszystkich możliwych połączeń, zużywa dużo" +
     " pamięci komputera.";
@@ -4274,15 +4300,18 @@
             this.wyczyscToolStripMenuItem.Text = "Wyczyść";
             this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
             // 
-            // panel4
+            // dodatkoweLaczenia
             // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.label18);
-            this.panel4.Controls.Add(this.iloscLaczen);
-            this.panel4.Location = new System.Drawing.Point(181, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(175, 33);
-            this.panel4.TabIndex = 59;
+            this.dodatkoweLaczenia.AutoSize = true;
+            this.dodatkoweLaczenia.BackColor = System.Drawing.Color.Transparent;
+            this.dodatkoweLaczenia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dodatkoweLaczenia.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dodatkoweLaczenia.Location = new System.Drawing.Point(89, 62);
+            this.dodatkoweLaczenia.Name = "dodatkoweLaczenia";
+            this.dodatkoweLaczenia.Size = new System.Drawing.Size(358, 24);
+            this.dodatkoweLaczenia.TabIndex = 60;
+            this.dodatkoweLaczenia.Text = "Wykorzystuj dodatkowe łączenia - (A+B) + (C+D)";
+            this.dodatkoweLaczenia.UseVisualStyleBackColor = false;
             // 
             // MainWindow
             // 
@@ -4365,11 +4394,12 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iloscLaczen)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4708,6 +4738,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button analizatorLaczenPomoc;
+        private System.Windows.Forms.CheckBox dodatkoweLaczenia;
     }
 }
 

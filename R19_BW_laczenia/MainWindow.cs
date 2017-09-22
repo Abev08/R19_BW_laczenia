@@ -61,6 +61,9 @@ namespace R19_BW_laczenia
         // Utworzenie obiektu tabeli łączeń (nowego Form'a)
         TableWindow Tabela;
 
+        // Obiekt okienka pomocy;
+        Pomoc pomoc;
+
         // Zmienne do analizatora łączeń
         List<Item> przedmioty = new List<Item>();
         List<Item> wyniki = new List<Item>();
@@ -92,6 +95,8 @@ namespace R19_BW_laczenia
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DoubleBuffered = true;
 
             // Zmiana ikony Form'a
             this.Icon = Properties.Resources.Icon;
@@ -512,12 +517,12 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.2 (Beta 2.0)\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.2 (Beta 2.0.1)\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
         {
-            // Dodaj snak sumy jeżeli dodano drugi przedmiot do łączenia
+            // Dodaj znak sumy jeżeli dodano drugi przedmiot do łączenia
             if ((PrefCB.Text != "") || (BazaCB.Text != "") || (SufCB.Text != ""))
             {
                 if (component1[3] == 1) Wynik.AppendText(" + ");
@@ -598,7 +603,7 @@ namespace R19_BW_laczenia
 
             // Przesuń kursor na koniec tekstu (jeżeli dodano tekst poniżej widocznego pola, "przescrolluj na sam dół")
             Wynik.ScrollToCaret();
-            // Uaktualnij "wynik łączenia aktualizowany na bierząco"
+            // Uaktualnij "wynik łączenia aktualizowany na bieżąco"
             ZmienLabel();
         }
 
@@ -1372,21 +1377,35 @@ namespace R19_BW_laczenia
         private void AnalizatorRaportuPomoc_Click(object sender, EventArgs e)
         {
             // Szybka pomoc jak korzystać z analizatora ulepszeń
-            System.Windows.Forms.MessageBox.Show("1. Skopiuj zawartość raportu z ulepszania.\n" +
-                "    Możesz zaznaczyć wszystko (CTRL+A) i skopiować (CTRL+C).\n" +
-                "2. Wlej skopiowaną zawartość raportu do okienka obok.\n" +
-                "3. Kliknij 'Oblicz'.");
+            if (pomoc != null)
+            {
+                if (pomoc.wyswietl == "Analizator raportów") pomoc.BringToFront();
+                else
+                {
+                    pomoc.wyswietl = "";
+                    pomoc.Dispose();
+                    pomoc.Close();
+
+                    pomoc = new Pomoc("Analizator raportów");
+                    pomoc.ShowDialog(this);
+                }
+            }
+            if (pomoc == null)
+            {
+                pomoc = new Pomoc("Analizator raportów");
+                pomoc.ShowDialog(this);
+            }
         }
 
         private void CB_TextChanged(object sender, EventArgs e)
         {
-            // Zmiana wybranego prefiksu / bazy / sufiksu wywołuje funkcję zmiany labeli (aktualizacji "na bierząco" wyniku łączenia)
+            // Zmiana wybranego prefiksu / bazy / sufiksu wywołuje funkcję zmiany labeli (aktualizacji "na bieżąco" wyniku łączenia)
             ZmienLabel();
         }
 
         private void ZmienLabelObliczenia(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, List<string> Pref, List<string> Baza, List<string> Suf, Label PrefLab, Label BazaLab, Label SufLab)
         {
-            // Funkcja do zmiany labeli - aktualizacji "na bierząco" wyniku łączenia
+            // Funkcja do zmiany labeli - aktualizacji "na bieżąco" wyniku łączenia
             int[] componentTemp = new int[3];
             int[] resultTemp = new int[3];
 
@@ -1584,7 +1603,9 @@ namespace R19_BW_laczenia
                     break;
             }
 
-            zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
+            if (przedmioty.Count == 1) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiot:";
+            if (przedmioty.Count > 1 && przedmioty.Count < 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmioty:";
+            if (przedmioty.Count >= 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
             if (przedmioty.Count > 0) zaladowanePrzedmioty.SelectedIndex = 0;
             if (przedmioty.Count > 1)
             {
@@ -1595,6 +1616,11 @@ namespace R19_BW_laczenia
                     iloscLaczen.Enabled = true;
                     iloscLaczen.Value = 1;
                 }
+            }
+            if (przedmioty.Count < 2)
+            {
+                analizujPolaczenia.Enabled = false;
+                iloscLaczen.Value = 1;
             }
         }
 
@@ -1621,7 +1647,7 @@ namespace R19_BW_laczenia
                     // Przytnij końcówkę wyrazu - ułatwienie identyfikacji przedmiotów
                     wyrazy[i] = wyrazy[i].Substring(0, wyrazy[i].Length - 1);
 
-                    if (pref.Any(p => p.Contains(wyrazy[i]))) przedmiot.p = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
+                    if (pref.Any(p => p.Contains(wyrazy[i])) && przedmiot.p == 0) przedmiot.p = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
                     if (baza.Any(b => b.Contains(wyrazy[i]))) przedmiot.b = baza.IndexOf(baza.Find(b => b.Contains(wyrazy[i])));
                     if (suf.Any(s => s.Contains(wyrazy[i]))) przedmiot.s = suf.IndexOf(suf.Find(s => s.Contains(wyrazy[i])));
                 }
@@ -1630,8 +1656,7 @@ namespace R19_BW_laczenia
                 if (przedmiot.p + przedmiot.b + przedmiot.s > 0)
                 {
                     przedmioty.Add(przedmiot);
-                    // TODO: lepsze dodawanie przedmiotu do CB - pomiń niepotrzebne spacje
-                    zaladowanePrzedmioty.Items.Add(pref.ElementAt(przedmiot.p) + " " + baza.ElementAt(przedmiot.b) + " " + suf.ElementAt(przedmiot.s));
+                    zaladowanePrzedmioty.Items.Add(UsunSpacje(przedmiot, pref, baza, suf));
                 }
             }
 
@@ -1686,7 +1711,6 @@ namespace R19_BW_laczenia
             List<int> indeksy = new List<int>();    // Lista wykorzystanych indeksów przedmiotów
             int iloscPrzedmiotów = przedmioty.Count();
             int iloscPetli = 2;
-            string hist = "";
             int maxIloscPetli = (int)iloscLaczen.Value + 1;
 
             for (int sk1 = 0; sk1 < iloscPrzedmiotów; sk1++)
@@ -1706,20 +1730,28 @@ namespace R19_BW_laczenia
                     wynik.b = SprawdzWyjatki(baza, przedmioty[sk1].b, przedmioty[sk2].b, wynik.b);
                     wynik.s = SprawdzWyjatki(suf, przedmioty[sk1].s, przedmioty[sk2].s, wynik.s);
 
-                    string skladnik1 = pref.ElementAt(przedmioty[sk1].p).ToString() + " " + baza.ElementAt(przedmioty[sk1].b).ToString() + " " + suf.ElementAt(przedmioty[sk1].s).ToString();
-                    string skladnik2 = pref.ElementAt(przedmioty[sk2].p).ToString() + " " + baza.ElementAt(przedmioty[sk2].b).ToString() + " " + suf.ElementAt(przedmioty[sk2].s).ToString();
-                    string wyn = pref.ElementAt(wynik.p).ToString() + " " + baza.ElementAt(wynik.b).ToString() + " " + suf.ElementAt(wynik.s).ToString();
+                    string skladnik1 = UsunSpacje(przedmioty[sk1], pref, baza, suf);
+                    string skladnik2 = UsunSpacje(przedmioty[sk2], pref, baza, suf);
+                    string wyn = UsunSpacje(wynik, pref, baza, suf);
                     wynik.h = skladnik1 + " + " + skladnik2 + "\n= " + wyn;
                     wyniki.Add(wynik);
 
-                    if (iloscPrzedmiotów > iloscPetli && iloscPetli < maxIloscPetli) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf, hist);
+                    // Połączenia (((A+B)+C)+D) itd.
+                    if (iloscPrzedmiotów > iloscPetli && iloscPetli < maxIloscPetli) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf);
+                    if (dodatkoweLaczenia.Checked)
+                    {
+                        // Połączenia ((A+B)+(C+D)) itd.
+                        if (iloscPrzedmiotów >= iloscPetli + 2 && iloscPetli < maxIloscPetli) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf);
+                    }
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(sk2);
                 }
             }
 
-            znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
+            if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie.";
+            if (wyniki.Count > 1 && wyniki.Count < 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenia.";
+            if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
 
             // Aktualizuj prefiksy, bazy i sufiksy filtru
             switch (listaTypowPrzedmiotow.SelectedItem)
@@ -1760,13 +1792,65 @@ namespace R19_BW_laczenia
             cbFiltrPref.Enabled = true;
             cbFiltrBaza.Enabled = true;
             cbFiltrSuf.Enabled = true;
+
+            // Sortowanie wyników: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość łączeń
+            wyniki = wyniki.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ThenBy(x => x.h.Length).ToList();
         }
 
-        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf, string prefHist = "")
+        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        {
+            int numerPetli = nrPetli + 2;
+            int iloscPetli = iloscPet + 2;
+
+            for (int i = 0; i < iloscPrzed; i++)
+            {
+                // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
+                if (indeksy.Contains(i)) continue;
+
+                // Dodaj wykorzystany "indeks" przedmiotu do listy
+                indeksy.Add(i);
+
+                for (int j = 0; j < iloscPrzed; j++)
+                {
+                    // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
+                    if (indeksy.Contains(j)) continue;
+
+                    // Dodaj wykorzystany "indeks" przedmiotu do listy
+                    indeksy.Add(j);
+
+                    Item skladnikTemp = new Item(Polacz(przedmioty[i].p, przedmioty[i].b, przedmioty[i].s, przedmioty[j].p, przedmioty[j].b, przedmioty[j].s));
+                    skladnikTemp.p = SprawdzWyjatki(pref, przedmioty[i].p, przedmioty[j].p, skladnikTemp.p);
+                    skladnikTemp.b = SprawdzWyjatki(baza, przedmioty[i].b, przedmioty[j].b, skladnikTemp.b);
+                    skladnikTemp.s = SprawdzWyjatki(suf, przedmioty[i].s, przedmioty[j].s, skladnikTemp.s);
+                    string sk1 = UsunSpacje(przedmioty[i], pref, baza, suf);
+                    string sk2 = UsunSpacje(przedmioty[j], pref, baza, suf);
+                    skladnikTemp.h = "(" + sk1 + " + " + sk2 + ")";
+
+                    Item wynik = new Item(Polacz(skladnik.p, skladnik.b, skladnik.s, skladnikTemp.p, skladnikTemp.b, skladnikTemp.s));
+                    wynik.p = SprawdzWyjatki(pref, skladnik.p, skladnikTemp.p, wynik.p);
+                    wynik.b = SprawdzWyjatki(baza, skladnik.b, skladnikTemp.b, wynik.b);
+                    wynik.s = SprawdzWyjatki(suf, skladnik.s, skladnikTemp.s, wynik.s);
+                    string wyn = UsunSpacje(wynik, pref, baza, suf);
+                    wynik.h = skladnik.h + " + " + skladnikTemp.h + "\n= " + wyn;
+
+                    wyniki.Add(wynik);
+
+                    // Wywołaj sam siebie jeżeli ilość itemów > ilości pętli + 2
+                    if (iloscPrzed >= iloscPetli + 2 && iloscPetli < iloscLaczen.Value + 2) AnalizujRekFunc2(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
+                    
+                    // Usuń wykorzystany "indeks" przedmiotu z listy
+                    indeksy.Remove(j);
+                }
+
+                // Usuń wykorzystany "indeks" przedmiotu z listy
+                indeksy.Remove(i);
+            }
+        }
+
+        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
         {
             int numerPetli = nrPetli + 1;
             int iloscPetli = iloscPet + 1;
-            string hist = prefHist;
 
             for (int i = 0; i < iloscPrzed; i++)
             {
@@ -1781,13 +1865,13 @@ namespace R19_BW_laczenia
                 wynik.b = SprawdzWyjatki(baza, skladnik.b, przedmioty[i].b, wynik.b);
                 wynik.s = SprawdzWyjatki(suf, skladnik.s, przedmioty[i].s, wynik.s);
 
-                string skladnik2 = pref.ElementAt(przedmioty[i].p).ToString() + " " + baza.ElementAt(przedmioty[i].b).ToString() + " " + suf.ElementAt(przedmioty[i].s).ToString();
-                string wyn = pref.ElementAt(wynik.p).ToString() + " " + baza.ElementAt(wynik.b).ToString() + " " + suf.ElementAt(wynik.s).ToString();
+                string skladnik2 = UsunSpacje(przedmioty[i], pref, baza, suf);
+                string wyn = UsunSpacje(wynik, pref, baza, suf);
                 wynik.h = skladnik.h + " + " + skladnik2 + "\n= " + wyn;
                 wyniki.Add(wynik);
 
                 // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
-                if (iloscPrzed > nrPetli && iloscPetli < iloscLaczen.Value + 1) AnalizujRekFunc(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf, hist);
+                if (iloscPrzed > nrPetli && iloscPetli < iloscLaczen.Value + 1) AnalizujRekFunc(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
 
                 // Usuń wykorzystany "indeks" przedmiotu z listy
                 indeksy.Remove(i);
@@ -1863,7 +1947,7 @@ namespace R19_BW_laczenia
                 if (filtrPref == 0 && filtrBaza == 0 && filtrSuf == 0)
                 {
                     // Pref, baza i suf dowolny - pokaż wszystko
-                    polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                    polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                     filtrPrzedmioty.Add(i);
                     continue;
                 }
@@ -1876,14 +1960,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano prefiks, bazę i sufiks do filtrowania
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano prefiks i bazę do filtrowania, dowolny sufiks
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1894,14 +1978,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano prefiks i sufiks do filtrowania
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano prefiks do filtrowania, dowolna baza i sufiks
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1916,14 +2000,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano bazę i sufiks do filtrowania, dowolny prefiks
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano bazę do filtrowania, dowolny prefiks i sufiks
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1934,14 +2018,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano sufiks do filtrowania, dowolny prefiks i baza
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Dowolny prefiks, baza i sufiks
-                            polaczonePrzedmioty.Items.Add(pref.ElementAt(wyniki[i].p) + " " + baza.ElementAt(wyniki[i].b) + " " + suf.ElementAt(wyniki[i].s));
+                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1968,6 +2052,41 @@ namespace R19_BW_laczenia
                 doOnceAnalizator = false;
                 przedmiotyDoAnalizy.Text = "";
             }
+        }
+
+        private void AnalizatorLaczenPomoc_Click(object sender, EventArgs e)
+        {
+            // Szybka pomoc jak korzystać z analizatora łączeń
+            if (pomoc != null)
+            {
+                if (pomoc.wyswietl == "Analizator łączeń") pomoc.BringToFront();
+                else
+                {
+                    pomoc.wyswietl = "";
+                    pomoc.Dispose();
+                    pomoc.Close();
+
+                    pomoc = new Pomoc("Analizator łączeń");
+                    pomoc.ShowDialog(this);
+                }
+            }
+            if (pomoc == null)
+            {
+                pomoc = new Pomoc("Analizator łączeń");
+                pomoc.ShowDialog(this);
+            }
+        }
+
+        private string UsunSpacje(Item i, List<string> pref, List<string> baza, List<string> suf)
+        {
+            // Funkcja zwracająca prefiks, bazę i sufiks przedmiotu w postaci stringa bez niepotrzebnych spacji
+            string s = "";
+            if (i.p != 0) s += pref.ElementAt(i.p);
+            if (i.p != 0 && i.b != 0) s += " ";
+            if (i.b != 0) s += baza.ElementAt(i.b);
+            if ((i.p != 0 || i.b != 0) && i.s != 0) s += " ";
+            if (i.s != 0) s += suf.ElementAt(i.s);
+            return s;
         }
 
         private void BazaHelmow(List<string> pref, List<string> baza, List<string> suf)

@@ -103,6 +103,12 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pomoc.Designer.cs">
+      <DependentUpon>Pomoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pomoc.resx">
+      <DependentUpon>Pomoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableWindow.resx">
       <DependentUpon>TableWindow.cs</DependentUpon>

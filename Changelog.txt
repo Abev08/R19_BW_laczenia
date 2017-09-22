@@ -1,5 +1,18 @@
-﻿Version 1.10.2 (Beta 2.0)
-	- Bugfix: Literówka w tabeli łączeń sufiksów zbroji :)
+﻿Version 1.10.2 (Beta 2.0.1)
+	- Analizator łączeń:
+		-- Dodano okienko pomocy,
+		-- Poprawiono dodawanie przedmiotów do listy załadowanych przedmiotów (usunięto niepotrzebne spacje),
+		-- Poprawiono dodawanie przedmiotów do histori łączeń (usunięto niepotrzebne spacje),
+		-- Poprawiono dodawanie przedmiotów do listy przefiltrowanych wyników (usunięto niepotrzebne spacje),
+		-- Dodano sortowanie wyników - jako pierwsze sortuje według jakości prefiksu, następnie według jakości bazy, następnie według jakości sufiksu, następnie według ilości łączeń,
+		-- Dodano odmianę wyrazów: "1 przedmiot", "2 przedmioty", "20 przedmiotów", itp.,
+		-- Dodano odmianę wyrazów: "1 połączenie", "2 połączenia", "20 połączeń", itp.,
+		-- Dodano dodatkową opcję wyszukiwania połączeń - (A+B) + (C+D) + (D+E) + itd.,
+		-- Bugfix: Poprawiono błąd z identyfikacją przedmiotów,
+		-- Bugfix: Poprawiono zachowanie przycisku "Analizuj połączenia" w zależności od ilości załadowanych przedmiotów.
+
+Version 1.10.2 (Beta 2.0)
+	- Bugfix: Literówka w tabeli łączeń sufiksów zbroi :)
 	- Analizator łączeń:
 		-- Poprawiono szybkość działania,
 		-- Poprawiono zużycie pamięci,
@@ -18,7 +31,7 @@ Version 1.10.1
 
 Version 1.10
 	- Zmieniono kolor tła okienek z tekstem,
-	- Dopasowano kolor czcionek do wspołpracy z tłami,
+	- Dopasowano kolor czcionek do współpracy z tłami,
 	- Dodano kolorowanie tekstu w analizatorze raportów,
 	- Dodano opcję "Wklej" do menu prawego przycisku myszy.
 
@@ -36,7 +49,7 @@ Version 1.08
 	- Dodano opcję zapisu do pliku przeprowadzonych łączeń w menu prawego przycisku myszy.
 
 Version 1.07
-	- Dodano wynik łączenia aktualizowany na bierząco.
+	- Dodano wynik łączenia aktualizowany na bieżąco.
 
 Version 1.06
 	- Dodano quality of life features:
