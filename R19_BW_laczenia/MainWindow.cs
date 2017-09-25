@@ -286,7 +286,7 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.3 (Beta 2.0.1)\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.4 (Beta 2.0.1)\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
@@ -1182,7 +1182,7 @@ namespace R19_BW_laczenia
             analizujPolaczenia.Enabled = false;
             analizujPolaczenia.Text = "Analizuję...";
             iloscLaczen.Enabled = false;
-            polaczonePrzedmioty.Items.Clear();
+            polaczonePrzedmioty.DataSource = null;
             wyniki.Clear();
 
             switch (listaTypowPrzedmiotow.SelectedItem)

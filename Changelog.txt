@@ -1,5 +1,9 @@
-﻿Version 1.10.3 (Beta 2.0.1)
-	- Analizator łąćzeń:
+﻿Version 1.10.4 (Beta 2.0.1)
+	- Analizator łączeń:
+		-- Bugfix: Naprawiono crash programu przy kliknięciu "Analizuj połączenia" po kliknięciu "Aktualizuj filtr".
+
+Version 1.10.3 (Beta 2.0.1)
+	- Analizator łączeń:
 		-- Poprawiono szybkość aktualizowania wyników filtru.
 	- Poprawki kodu.
 
