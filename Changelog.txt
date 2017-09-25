@@ -1,4 +1,9 @@
-﻿Version 1.10.2 (Beta 2.0.1)
+﻿Version 1.10.3 (Beta 2.0.1)
+	- Analizator łąćzeń:
+		-- Poprawiono szybkość aktualizowania wyników filtru.
+	- Poprawki kodu.
+
+Version 1.10.2 (Beta 2.0.1)
 	- Analizator łączeń:
 		-- Dodano okienko pomocy,
 		-- Poprawiono dodawanie przedmiotów do listy załadowanych przedmiotów (usunięto niepotrzebne spacje),

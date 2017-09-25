@@ -47,11 +47,12 @@ namespace R19_BW_laczenia
                 "5. Wybierz ilość łączeń do sprawdzania (ilość łączeń określa ilość sprawdzanych połączeń \"w głąb\").\n" +
                 "Dla dużej ilości przedmiotów warto zacząć od niskiej wartości (1-2) i zwiększać o 1 jeżeli komputer daje radę z obliczeniami :).\n" +
                 "6. Kliknij \"Analizuj połączenia\".\n" +
-                "7. Wybierz filtr (dla dużej ilości wyników - powyżej kilkudziesięciu tysięcy - dodawanie ich do listy przefiltrowanych wyników trwa bardzo długo).\n" +
+                "7. Wybierz filtr (dla dużej ilości wyników - powyżej kilkuset tysięcy - dodawanie ich do listy przefiltrowanych wyników trwa bardzo długo).\n" +
+                "Lista wyników powyżej kilkudziesięciu tysięcy nie scrolluje się za dobrze - możliwe jest wyświetlenie każdego wyniku lecz chwycenie za pasek przewijania po prawej stronie i przeciągnięcie w dół nie przescrolluje listy (możliwe jest szybkie skakanie pomiędzy pierwszym i ostatnim wynikiem listy używając klawiszy \"Home\" i \"End\").\n" +
                 "8. Kliknij \"Aktualizuj filtr\".\n" +
                 "9. Po wyborze wyniku łączenia z listy przefiltrowanych wyników w okienku po lewej stronie pokaże się lista wymaganych łączeń.\n" +
                 "\n\n" +
-                "Jeżeli program nie odpowiada (na pasku tytułowym jest napisane \"Brak odpowiedzi\" lub \"Not responding\" nie oznacza to, że program się zawiesił - program działa i zajęty jest obliczeniami :) Gdy obliczenia trwają za długo polecam zabicie procesu programu - wyłączenie go :) ).";
+                "Jeżeli program nie odpowiada (na pasku tytułowym jest napisane \"brak odpowiedzi\" lub \"not responding\" nie oznacza to, że program się zawiesił - program działa i zajęty jest obliczeniami :), gdy obliczenia trwają za długo polecam zabicie procesu programu - wyłączenie go :)).";
                     break;
             }
         }

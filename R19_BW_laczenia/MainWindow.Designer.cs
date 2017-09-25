@@ -336,6 +336,7 @@
             this.cbFiltrSuf = new System.Windows.Forms.ComboBox();
             this.cbFiltrBaza = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dodatkoweLaczenia = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.iloscLaczen = new System.Windows.Forms.NumericUpDown();
@@ -351,17 +352,20 @@
             this.listaTypowPrzedmiotow = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ByMe = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.wklejToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.wklejToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.kopiujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopiujWszystkoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ZapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.dodatkoweLaczenia = new System.Windows.Forms.CheckBox();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -536,7 +540,7 @@
             this.sufHelmPanelLabel.TabIndex = 0;
             this.sufHelmPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufHelmPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufHelmPanelLabel.Click += new System.EventHandler(this.sufHelmPanelLabel_Click);
+            this.sufHelmPanelLabel.Click += new System.EventHandler(this.SufHelmPanelLabel_Click);
             // 
             // bazaHelmPanel
             // 
@@ -560,7 +564,7 @@
             this.bazaHelmPanelLabel.TabIndex = 0;
             this.bazaHelmPanelLabel.Text = "Tabela łączeń baz";
             this.bazaHelmPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaHelmPanelLabel.Click += new System.EventHandler(this.bazaHelmPanelLabel_Click);
+            this.bazaHelmPanelLabel.Click += new System.EventHandler(this.BazaHelmPanelLabel_Click);
             // 
             // prefHelmPanel
             // 
@@ -584,7 +588,7 @@
             this.prefHelmPanelLabel.TabIndex = 0;
             this.prefHelmPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefHelmPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefHelmPanelLabel.Click += new System.EventHandler(this.prefHelmPanelLabel_Click);
+            this.prefHelmPanelLabel.Click += new System.EventHandler(this.PrefHelmPanelLabel_Click);
             // 
             // HelmPanel
             // 
@@ -728,7 +732,7 @@
             this.cbHelmSuf.Name = "cbHelmSuf";
             this.cbHelmSuf.Size = new System.Drawing.Size(150, 29);
             this.cbHelmSuf.TabIndex = 3;
-            this.cbHelmSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbHelmSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbHelmBaza
             // 
@@ -739,7 +743,7 @@
             this.cbHelmBaza.Name = "cbHelmBaza";
             this.cbHelmBaza.Size = new System.Drawing.Size(150, 29);
             this.cbHelmBaza.TabIndex = 2;
-            this.cbHelmBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbHelmBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbHelmPref
             // 
@@ -750,7 +754,7 @@
             this.cbHelmPref.Name = "cbHelmPref";
             this.cbHelmPref.Size = new System.Drawing.Size(150, 29);
             this.cbHelmPref.TabIndex = 1;
-            this.cbHelmPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbHelmPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // helmWynik
             // 
@@ -854,7 +858,7 @@
             this.sufZbrojaPanelLabel.TabIndex = 0;
             this.sufZbrojaPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufZbrojaPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufZbrojaPanelLabel.Click += new System.EventHandler(this.sufZbrojaPanelLabel_Click);
+            this.sufZbrojaPanelLabel.Click += new System.EventHandler(this.SufZbrojaPanelLabel_Click);
             // 
             // bazaZbrojaPanel
             // 
@@ -878,7 +882,7 @@
             this.bazaZbrojaPanelLabel.TabIndex = 0;
             this.bazaZbrojaPanelLabel.Text = "Tabela łączeń baz";
             this.bazaZbrojaPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaZbrojaPanelLabel.Click += new System.EventHandler(this.bazaZbrojaPanelLabel_Click);
+            this.bazaZbrojaPanelLabel.Click += new System.EventHandler(this.BazaZbrojaPanelLabel_Click);
             // 
             // prefZbrojaPanel
             // 
@@ -902,7 +906,7 @@
             this.prefZbrojaPanelLabel.TabIndex = 0;
             this.prefZbrojaPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefZbrojaPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefZbrojaPanelLabel.Click += new System.EventHandler(this.prefZbrojaPanelLabel_Click);
+            this.prefZbrojaPanelLabel.Click += new System.EventHandler(this.PrefZbrojaPanelLabel_Click);
             // 
             // ZbrojaPanel
             // 
@@ -1045,7 +1049,7 @@
             this.cbZbrojaSuf.Name = "cbZbrojaSuf";
             this.cbZbrojaSuf.Size = new System.Drawing.Size(150, 29);
             this.cbZbrojaSuf.TabIndex = 8;
-            this.cbZbrojaSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbZbrojaSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbZbrojaBaza
             // 
@@ -1056,7 +1060,7 @@
             this.cbZbrojaBaza.Name = "cbZbrojaBaza";
             this.cbZbrojaBaza.Size = new System.Drawing.Size(150, 29);
             this.cbZbrojaBaza.TabIndex = 7;
-            this.cbZbrojaBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbZbrojaBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbZbrojaPref
             // 
@@ -1067,7 +1071,7 @@
             this.cbZbrojaPref.Name = "cbZbrojaPref";
             this.cbZbrojaPref.Size = new System.Drawing.Size(150, 29);
             this.cbZbrojaPref.TabIndex = 6;
-            this.cbZbrojaPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbZbrojaPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // zbrojaWynik
             // 
@@ -1171,7 +1175,7 @@
             this.sufSpodniePanelLabel.TabIndex = 0;
             this.sufSpodniePanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufSpodniePanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufSpodniePanelLabel.Click += new System.EventHandler(this.sufSpodniePanelLabel_Click);
+            this.sufSpodniePanelLabel.Click += new System.EventHandler(this.SufSpodniePanelLabel_Click);
             // 
             // bazaSpodniePanel
             // 
@@ -1195,7 +1199,7 @@
             this.bazaSpodniePanelLabel.TabIndex = 0;
             this.bazaSpodniePanelLabel.Text = "Tabela łączeń baz";
             this.bazaSpodniePanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaSpodniePanelLabel.Click += new System.EventHandler(this.bazaSpodniePanelLabel_Click);
+            this.bazaSpodniePanelLabel.Click += new System.EventHandler(this.BazaSpodniePanelLabel_Click);
             // 
             // prefSpodniePanel
             // 
@@ -1219,7 +1223,7 @@
             this.prefSpodniePanelLabel.TabIndex = 0;
             this.prefSpodniePanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefSpodniePanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefSpodniePanelLabel.Click += new System.EventHandler(this.prefSpodniePanelLabel_Click);
+            this.prefSpodniePanelLabel.Click += new System.EventHandler(this.PrefSpodniePanelLabel_Click);
             // 
             // SpodniePanel
             // 
@@ -1362,7 +1366,7 @@
             this.cbSpodnieSuf.Name = "cbSpodnieSuf";
             this.cbSpodnieSuf.Size = new System.Drawing.Size(150, 29);
             this.cbSpodnieSuf.TabIndex = 13;
-            this.cbSpodnieSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbSpodnieSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbSpodnieBaza
             // 
@@ -1373,7 +1377,7 @@
             this.cbSpodnieBaza.Name = "cbSpodnieBaza";
             this.cbSpodnieBaza.Size = new System.Drawing.Size(150, 29);
             this.cbSpodnieBaza.TabIndex = 12;
-            this.cbSpodnieBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbSpodnieBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbSpodniePref
             // 
@@ -1384,7 +1388,7 @@
             this.cbSpodniePref.Name = "cbSpodniePref";
             this.cbSpodniePref.Size = new System.Drawing.Size(150, 29);
             this.cbSpodniePref.TabIndex = 11;
-            this.cbSpodniePref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbSpodniePref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // spodnieWynik
             // 
@@ -1488,7 +1492,7 @@
             this.sufPierscienPanelLabel.TabIndex = 0;
             this.sufPierscienPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufPierscienPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufPierscienPanelLabel.Click += new System.EventHandler(this.sufPierscienPanelLabel_Click);
+            this.sufPierscienPanelLabel.Click += new System.EventHandler(this.SufPierscienPanelLabel_Click);
             // 
             // bazaPierscienPanel
             // 
@@ -1512,7 +1516,7 @@
             this.bazaPierscienPanelLabel.TabIndex = 0;
             this.bazaPierscienPanelLabel.Text = "Tabela łączeń baz";
             this.bazaPierscienPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaPierscienPanelLabel.Click += new System.EventHandler(this.bazaPierscienPanelLabel_Click);
+            this.bazaPierscienPanelLabel.Click += new System.EventHandler(this.BazaPierscienPanelLabel_Click);
             // 
             // prefPierscienPanel
             // 
@@ -1536,7 +1540,7 @@
             this.prefPierscienPanelLabel.TabIndex = 0;
             this.prefPierscienPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefPierscienPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefPierscienPanelLabel.Click += new System.EventHandler(this.prefPierscienPanelLabel_Click);
+            this.prefPierscienPanelLabel.Click += new System.EventHandler(this.PrefPierscienPanelLabel_Click);
             // 
             // PierscienPanel
             // 
@@ -1679,7 +1683,7 @@
             this.cbPierscienSuf.Name = "cbPierscienSuf";
             this.cbPierscienSuf.Size = new System.Drawing.Size(150, 29);
             this.cbPierscienSuf.TabIndex = 18;
-            this.cbPierscienSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPierscienSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPierscienBaza
             // 
@@ -1690,7 +1694,7 @@
             this.cbPierscienBaza.Name = "cbPierscienBaza";
             this.cbPierscienBaza.Size = new System.Drawing.Size(150, 29);
             this.cbPierscienBaza.TabIndex = 17;
-            this.cbPierscienBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPierscienBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPierscienPref
             // 
@@ -1701,7 +1705,7 @@
             this.cbPierscienPref.Name = "cbPierscienPref";
             this.cbPierscienPref.Size = new System.Drawing.Size(150, 29);
             this.cbPierscienPref.TabIndex = 16;
-            this.cbPierscienPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPierscienPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // pierscienWynik
             // 
@@ -1805,7 +1809,7 @@
             this.sufAmuletPanelLabel.TabIndex = 0;
             this.sufAmuletPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufAmuletPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufAmuletPanelLabel.Click += new System.EventHandler(this.sufAmuletPanelLabel_Click);
+            this.sufAmuletPanelLabel.Click += new System.EventHandler(this.SufAmuletPanelLabel_Click);
             // 
             // bazaAmuletPanel
             // 
@@ -1829,7 +1833,7 @@
             this.bazaAmuletPanelLabel.TabIndex = 0;
             this.bazaAmuletPanelLabel.Text = "Tabela łączeń baz";
             this.bazaAmuletPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaAmuletPanelLabel.Click += new System.EventHandler(this.bazaAmuletPanelLabel_Click);
+            this.bazaAmuletPanelLabel.Click += new System.EventHandler(this.BazaAmuletPanelLabel_Click);
             // 
             // prefAmuletPanel
             // 
@@ -1853,7 +1857,7 @@
             this.prefAmuletPanelLabel.TabIndex = 0;
             this.prefAmuletPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefAmuletPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefAmuletPanelLabel.Click += new System.EventHandler(this.prefAmuletPanelLabel_Click);
+            this.prefAmuletPanelLabel.Click += new System.EventHandler(this.PrefAmuletPanelLabel_Click);
             // 
             // AmuletPanel
             // 
@@ -1996,7 +2000,7 @@
             this.cbAmuletSuf.Name = "cbAmuletSuf";
             this.cbAmuletSuf.Size = new System.Drawing.Size(150, 29);
             this.cbAmuletSuf.TabIndex = 23;
-            this.cbAmuletSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbAmuletSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbAmuletBaza
             // 
@@ -2007,7 +2011,7 @@
             this.cbAmuletBaza.Name = "cbAmuletBaza";
             this.cbAmuletBaza.Size = new System.Drawing.Size(150, 29);
             this.cbAmuletBaza.TabIndex = 22;
-            this.cbAmuletBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbAmuletBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbAmuletPref
             // 
@@ -2018,7 +2022,7 @@
             this.cbAmuletPref.Name = "cbAmuletPref";
             this.cbAmuletPref.Size = new System.Drawing.Size(150, 29);
             this.cbAmuletPref.TabIndex = 21;
-            this.cbAmuletPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbAmuletPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // amuletWynik
             // 
@@ -2122,7 +2126,7 @@
             this.sufBiala1hPanelLabel.TabIndex = 0;
             this.sufBiala1hPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufBiala1hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufBiala1hPanelLabel.Click += new System.EventHandler(this.sufBiala1hPanelLabel_Click);
+            this.sufBiala1hPanelLabel.Click += new System.EventHandler(this.SufBiala1hPanelLabel_Click);
             // 
             // bazaBiala1hPanel
             // 
@@ -2146,7 +2150,7 @@
             this.bazaBiala1hPanelLabel.TabIndex = 0;
             this.bazaBiala1hPanelLabel.Text = "Tabela łączeń baz";
             this.bazaBiala1hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaBiala1hPanelLabel.Click += new System.EventHandler(this.bazaBiala1hPanelLabel_Click);
+            this.bazaBiala1hPanelLabel.Click += new System.EventHandler(this.BazaBiala1hPanelLabel_Click);
             // 
             // prefBiala1hPanel
             // 
@@ -2170,7 +2174,7 @@
             this.prefBiala1hPanelLabel.TabIndex = 0;
             this.prefBiala1hPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefBiala1hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefBiala1hPanelLabel.Click += new System.EventHandler(this.prefBiala1hPanelLabel_Click);
+            this.prefBiala1hPanelLabel.Click += new System.EventHandler(this.PrefBiala1hPanelLabel_Click);
             // 
             // Biala1hPanel
             // 
@@ -2313,7 +2317,7 @@
             this.cbBiala1hSuf.Name = "cbBiala1hSuf";
             this.cbBiala1hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbBiala1hSuf.TabIndex = 28;
-            this.cbBiala1hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbBiala1hSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala1hBaza
             // 
@@ -2324,7 +2328,7 @@
             this.cbBiala1hBaza.Name = "cbBiala1hBaza";
             this.cbBiala1hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbBiala1hBaza.TabIndex = 27;
-            this.cbBiala1hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbBiala1hBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala1hPref
             // 
@@ -2335,7 +2339,7 @@
             this.cbBiala1hPref.Name = "cbBiala1hPref";
             this.cbBiala1hPref.Size = new System.Drawing.Size(150, 29);
             this.cbBiala1hPref.TabIndex = 26;
-            this.cbBiala1hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbBiala1hPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // biala1hWynik
             // 
@@ -2439,7 +2443,7 @@
             this.sufBiala2hPanelLabel.TabIndex = 0;
             this.sufBiala2hPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufBiala2hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufBiala2hPanelLabel.Click += new System.EventHandler(this.sufBiala2hPanelLabel_Click);
+            this.sufBiala2hPanelLabel.Click += new System.EventHandler(this.SufBiala2hPanelLabel_Click);
             // 
             // bazaBiala2hPanel
             // 
@@ -2463,7 +2467,7 @@
             this.bazaBiala2hPanelLabel.TabIndex = 0;
             this.bazaBiala2hPanelLabel.Text = "Tabela łączeń baz";
             this.bazaBiala2hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaBiala2hPanelLabel.Click += new System.EventHandler(this.bazaBiala2hPanelLabel_Click);
+            this.bazaBiala2hPanelLabel.Click += new System.EventHandler(this.BazaBiala2hPanelLabel_Click);
             // 
             // prefBiala2hPanel
             // 
@@ -2487,7 +2491,7 @@
             this.prefBiala2hPanelLabel.TabIndex = 0;
             this.prefBiala2hPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefBiala2hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefBiala2hPanelLabel.Click += new System.EventHandler(this.prefBiala2hPanelLabel_Click);
+            this.prefBiala2hPanelLabel.Click += new System.EventHandler(this.PrefBiala2hPanelLabel_Click);
             // 
             // Biala2hPanel
             // 
@@ -2630,7 +2634,7 @@
             this.cbBiala2hSuf.Name = "cbBiala2hSuf";
             this.cbBiala2hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbBiala2hSuf.TabIndex = 33;
-            this.cbBiala2hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbBiala2hSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala2hBaza
             // 
@@ -2641,7 +2645,7 @@
             this.cbBiala2hBaza.Name = "cbBiala2hBaza";
             this.cbBiala2hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbBiala2hBaza.TabIndex = 32;
-            this.cbBiala2hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbBiala2hBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbBiala2hPref
             // 
@@ -2652,7 +2656,7 @@
             this.cbBiala2hPref.Name = "cbBiala2hPref";
             this.cbBiala2hPref.Size = new System.Drawing.Size(150, 29);
             this.cbBiala2hPref.TabIndex = 31;
-            this.cbBiala2hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbBiala2hPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // biala2hWynik
             // 
@@ -2756,7 +2760,7 @@
             this.sufPalna1hPanelLabel.TabIndex = 0;
             this.sufPalna1hPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufPalna1hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufPalna1hPanelLabel.Click += new System.EventHandler(this.sufPalna1hPanelLabel_Click);
+            this.sufPalna1hPanelLabel.Click += new System.EventHandler(this.SufPalna1hPanelLabel_Click);
             // 
             // bazaPalna1hPanel
             // 
@@ -2780,7 +2784,7 @@
             this.bazaPalna1hPanelLabel.TabIndex = 0;
             this.bazaPalna1hPanelLabel.Text = "Tabela łączeń baz";
             this.bazaPalna1hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaPalna1hPanelLabel.Click += new System.EventHandler(this.bazaPalna1hPanelLabel_Click);
+            this.bazaPalna1hPanelLabel.Click += new System.EventHandler(this.BazaPalna1hPanelLabel_Click);
             // 
             // prefPalna1hPanel
             // 
@@ -2804,7 +2808,7 @@
             this.prefPalna1hPanelLabel.TabIndex = 0;
             this.prefPalna1hPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefPalna1hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefPalna1hPanelLabel.Click += new System.EventHandler(this.prefPalna1hPanelLabel_Click);
+            this.prefPalna1hPanelLabel.Click += new System.EventHandler(this.PrefPalna1hPanelLabel_Click);
             // 
             // Palna1hPanel
             // 
@@ -2947,7 +2951,7 @@
             this.cbPalna1hSuf.Name = "cbPalna1hSuf";
             this.cbPalna1hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbPalna1hSuf.TabIndex = 38;
-            this.cbPalna1hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPalna1hSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna1hBaza
             // 
@@ -2958,7 +2962,7 @@
             this.cbPalna1hBaza.Name = "cbPalna1hBaza";
             this.cbPalna1hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbPalna1hBaza.TabIndex = 37;
-            this.cbPalna1hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPalna1hBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna1hPref
             // 
@@ -2969,7 +2973,7 @@
             this.cbPalna1hPref.Name = "cbPalna1hPref";
             this.cbPalna1hPref.Size = new System.Drawing.Size(150, 29);
             this.cbPalna1hPref.TabIndex = 36;
-            this.cbPalna1hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPalna1hPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // palna1hWynik
             // 
@@ -3073,7 +3077,7 @@
             this.sufPalna2hPanelLabel.TabIndex = 0;
             this.sufPalna2hPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufPalna2hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufPalna2hPanelLabel.Click += new System.EventHandler(this.sufPalna2hPanelLabel_Click);
+            this.sufPalna2hPanelLabel.Click += new System.EventHandler(this.SufPalna2hPanelLabel_Click);
             // 
             // bazaPalna2hPanel
             // 
@@ -3097,7 +3101,7 @@
             this.bazaPalna2hPanelLabel.TabIndex = 0;
             this.bazaPalna2hPanelLabel.Text = "Tabela łączeń baz";
             this.bazaPalna2hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaPalna2hPanelLabel.Click += new System.EventHandler(this.bazaPalna2hPanelLabel_Click);
+            this.bazaPalna2hPanelLabel.Click += new System.EventHandler(this.BazaPalna2hPanelLabel_Click);
             // 
             // prefPalna2hPanel
             // 
@@ -3121,7 +3125,7 @@
             this.prefPalna2hPanelLabel.TabIndex = 0;
             this.prefPalna2hPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefPalna2hPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefPalna2hPanelLabel.Click += new System.EventHandler(this.prefPalna2hPanelLabel_Click);
+            this.prefPalna2hPanelLabel.Click += new System.EventHandler(this.PrefPalna2hPanelLabel_Click);
             // 
             // Palna2hPanel
             // 
@@ -3264,7 +3268,7 @@
             this.cbPalna2hSuf.Name = "cbPalna2hSuf";
             this.cbPalna2hSuf.Size = new System.Drawing.Size(150, 29);
             this.cbPalna2hSuf.TabIndex = 43;
-            this.cbPalna2hSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPalna2hSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna2hBaza
             // 
@@ -3275,7 +3279,7 @@
             this.cbPalna2hBaza.Name = "cbPalna2hBaza";
             this.cbPalna2hBaza.Size = new System.Drawing.Size(150, 29);
             this.cbPalna2hBaza.TabIndex = 42;
-            this.cbPalna2hBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPalna2hBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbPalna2hPref
             // 
@@ -3286,7 +3290,7 @@
             this.cbPalna2hPref.Name = "cbPalna2hPref";
             this.cbPalna2hPref.Size = new System.Drawing.Size(150, 29);
             this.cbPalna2hPref.TabIndex = 41;
-            this.cbPalna2hPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbPalna2hPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // palna2hWynik
             // 
@@ -3390,7 +3394,7 @@
             this.sufDystansPanelLabel.TabIndex = 0;
             this.sufDystansPanelLabel.Text = "Tabela łączeń sufiksów";
             this.sufDystansPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.sufDystansPanelLabel.Click += new System.EventHandler(this.sufDystansPanelLabel_Click);
+            this.sufDystansPanelLabel.Click += new System.EventHandler(this.SufDystansPanelLabel_Click);
             // 
             // bazaDystansPanel
             // 
@@ -3414,7 +3418,7 @@
             this.bazaDystansPanelLabel.TabIndex = 0;
             this.bazaDystansPanelLabel.Text = "Tabela łączeń baz";
             this.bazaDystansPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bazaDystansPanelLabel.Click += new System.EventHandler(this.bazaDystansPanelLabel_Click);
+            this.bazaDystansPanelLabel.Click += new System.EventHandler(this.BazaDystansPanelLabel_Click);
             // 
             // prefDystansPanel
             // 
@@ -3438,7 +3442,7 @@
             this.prefDystansPanelLabel.TabIndex = 0;
             this.prefDystansPanelLabel.Text = "Tabela łączeń prefiksów";
             this.prefDystansPanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.prefDystansPanelLabel.Click += new System.EventHandler(this.prefDystansPanelLabel_Click);
+            this.prefDystansPanelLabel.Click += new System.EventHandler(this.PrefDystansPanelLabel_Click);
             // 
             // DystansPanel
             // 
@@ -3581,7 +3585,7 @@
             this.cbDystansSuf.Name = "cbDystansSuf";
             this.cbDystansSuf.Size = new System.Drawing.Size(150, 29);
             this.cbDystansSuf.TabIndex = 38;
-            this.cbDystansSuf.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbDystansSuf.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbDystansBaza
             // 
@@ -3592,7 +3596,7 @@
             this.cbDystansBaza.Name = "cbDystansBaza";
             this.cbDystansBaza.Size = new System.Drawing.Size(150, 29);
             this.cbDystansBaza.TabIndex = 37;
-            this.cbDystansBaza.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbDystansBaza.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // cbDystansPref
             // 
@@ -3603,7 +3607,7 @@
             this.cbDystansPref.Name = "cbDystansPref";
             this.cbDystansPref.Size = new System.Drawing.Size(150, 29);
             this.cbDystansPref.TabIndex = 36;
-            this.cbDystansPref.TextChanged += new System.EventHandler(this.CB_TextChanged);
+            this.cbDystansPref.SelectedIndexChanged += new System.EventHandler(this.CB_TextChanged);
             // 
             // dystansWynik
             // 
@@ -4008,7 +4012,6 @@
             // 
             this.polaczonePrzedmioty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.polaczonePrzedmioty.Enabled = false;
-            this.polaczonePrzedmioty.FormattingEnabled = true;
             this.polaczonePrzedmioty.Location = new System.Drawing.Point(236, 105);
             this.polaczonePrzedmioty.Name = "polaczonePrzedmioty";
             this.polaczonePrzedmioty.Size = new System.Drawing.Size(298, 29);
@@ -4069,6 +4072,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(537, 164);
             this.panel2.TabIndex = 47;
+            // 
+            // dodatkoweLaczenia
+            // 
+            this.dodatkoweLaczenia.AutoSize = true;
+            this.dodatkoweLaczenia.BackColor = System.Drawing.Color.Transparent;
+            this.dodatkoweLaczenia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dodatkoweLaczenia.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dodatkoweLaczenia.Location = new System.Drawing.Point(89, 62);
+            this.dodatkoweLaczenia.Name = "dodatkoweLaczenia";
+            this.dodatkoweLaczenia.Size = new System.Drawing.Size(358, 24);
+            this.dodatkoweLaczenia.TabIndex = 60;
+            this.dodatkoweLaczenia.Text = "Wykorzystuj dodatkowe łączenia - (A+B) + (C+D)";
+            this.dodatkoweLaczenia.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
@@ -4186,7 +4202,7 @@
             this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(600, 459);
             this.przedmiotyDoAnalizy.TabIndex = 37;
             this.przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.";
-            this.przedmiotyDoAnalizy.Enter += new System.EventHandler(this.przedmiotyDoAnalizy_Enter);
+            this.przedmiotyDoAnalizy.Enter += new System.EventHandler(this.PrzedmiotyDoAnalizy_Enter);
             // 
             // label16
             // 
@@ -4232,35 +4248,62 @@
             this.ByMe.Size = new System.Drawing.Size(73, 23);
             this.ByMe.TabIndex = 1;
             this.ByMe.Text = "by Abev";
-            this.ByMe.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wklejToolStripMenuItem1,
-            this.toolStripSeparator3,
-            this.kopiujToolStripMenuItem,
-            this.kopiujWszystkoToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.ZapiszToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.wyczyscToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 142);
+            this.ByMe.Click += new System.EventHandler(this.Label1_Click);
             // 
             // wklejToolStripMenuItem1
             // 
-            this.wklejToolStripMenuItem1.Enabled = false;
             this.wklejToolStripMenuItem1.Name = "wklejToolStripMenuItem1";
-            this.wklejToolStripMenuItem1.Size = new System.Drawing.Size(183, 24);
-            this.wklejToolStripMenuItem1.Text = "Wklej";
-            this.wklejToolStripMenuItem1.Click += new System.EventHandler(this.wklejToolStripMenuItem1_Click);
+            this.wklejToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
+            // 
+            // zapiszToolStripMenuItem
+            // 
+            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
+            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.zapiszToolStripMenuItem.Text = "Zapisz";
+            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wklejToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.kopiujToolStripMenuItem,
+            this.kopiujWszystkoToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.zapiszToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.wyczyscToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 142);
+            // 
+            // wklejToolStripMenuItem
+            // 
+            this.wklejToolStripMenuItem.Enabled = false;
+            this.wklejToolStripMenuItem.Name = "wklejToolStripMenuItem";
+            this.wklejToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.wklejToolStripMenuItem.Text = "Wklej";
+            this.wklejToolStripMenuItem.Click += new System.EventHandler(this.WklejToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(180, 6);
             // 
             // kopiujToolStripMenuItem
             // 
@@ -4276,22 +4319,15 @@
             this.kopiujWszystkoToolStripMenuItem.Text = "Kopiuj wszystko";
             this.kopiujWszystkoToolStripMenuItem.Click += new System.EventHandler(this.KopiujWszystkoToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator5
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(180, 6);
             // 
-            // ZapiszToolStripMenuItem
+            // toolStripSeparator6
             // 
-            this.ZapiszToolStripMenuItem.Name = "ZapiszToolStripMenuItem";
-            this.ZapiszToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
-            this.ZapiszToolStripMenuItem.Text = "Zapisz";
-            this.ZapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(180, 6);
             // 
             // wyczyscToolStripMenuItem
             // 
@@ -4299,19 +4335,6 @@
             this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
             this.wyczyscToolStripMenuItem.Text = "Wyczyść";
             this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
-            // 
-            // dodatkoweLaczenia
-            // 
-            this.dodatkoweLaczenia.AutoSize = true;
-            this.dodatkoweLaczenia.BackColor = System.Drawing.Color.Transparent;
-            this.dodatkoweLaczenia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dodatkoweLaczenia.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dodatkoweLaczenia.Location = new System.Drawing.Point(89, 62);
-            this.dodatkoweLaczenia.Name = "dodatkoweLaczenia";
-            this.dodatkoweLaczenia.Size = new System.Drawing.Size(358, 24);
-            this.dodatkoweLaczenia.TabIndex = 60;
-            this.dodatkoweLaczenia.Text = "Wykorzystuj dodatkowe łączenia - (A+B) + (C+D)";
-            this.dodatkoweLaczenia.UseVisualStyleBackColor = false;
             // 
             // MainWindow
             // 
@@ -4638,10 +4661,6 @@
         private System.Windows.Forms.Label bazaDystansPanelLabel;
         private System.Windows.Forms.Panel prefDystansPanel;
         private System.Windows.Forms.Label prefDystansPanelLabel;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem kopiujToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wyczyscToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kopiujWszystkoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TabPage TabAnalizator;
         private System.Windows.Forms.RichTextBox AnalizatorRaportuTekst;
@@ -4708,7 +4727,6 @@
         private System.Windows.Forms.Button Palna1hCofnij;
         private System.Windows.Forms.Button Palna2hCofnij;
         private System.Windows.Forms.Button DystansCofnij;
-        private System.Windows.Forms.ToolStripMenuItem ZapiszToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.RichTextBox helmWynik;
         private System.Windows.Forms.ToolStripMenuItem wklejToolStripMenuItem1;
@@ -4740,6 +4758,15 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button analizatorLaczenPomoc;
         private System.Windows.Forms.CheckBox dodatkoweLaczenia;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem wklejToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem kopiujToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kopiujWszystkoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem wyczyscToolStripMenuItem;
     }
 }
 

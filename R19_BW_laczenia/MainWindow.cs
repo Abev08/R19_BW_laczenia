@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Data;
 
 namespace R19_BW_laczenia
 {
@@ -51,11 +52,11 @@ namespace R19_BW_laczenia
         List<string> SufDystans = new List<string>();
 
         // Zmienne do łączenia
-        int[] component1 = new int[4];
-        int[] component2 = new int[4];
-        int[] result = new int[4];
+        Item component1 = new Item();
+        Item component2 = new Item();
+        Item result = new Item();
         bool added = false;
-        List<int[]> HistoriaPrzedmiotow = new List<int[]>();
+        List<Item> HistoriaPrzedmiotow = new List<Item>();
         List<string> HistoriaLaczen = new List<string>();
 
         // Utworzenie obiektu tabeli łączeń (nowego Form'a)
@@ -69,28 +70,6 @@ namespace R19_BW_laczenia
         List<Item> wyniki = new List<Item>();
         List<int> filtrPrzedmioty = new List<int>();
         bool doOnceAnalizator = true;
-
-        private class Item
-        {
-            // Klasa przedmiotu - Typ zmiennej przechowujący statystyki przedmiotu
-            public int p; // Prefix index
-            public int b; // Base index
-            public int s; // Sufix index
-            public string h; // History
-
-            public Item(int pref = 0, int baza = 0, int suf = 0)
-            {
-                p = pref;
-                b = baza;
-                s = suf;
-            }
-            public Item(int[] input)
-            {
-                p = input[0];
-                b = input[1];
-                s = input[2];
-            }
-        }
 
         public MainWindow()
         {
@@ -134,30 +113,9 @@ namespace R19_BW_laczenia
             helmWynik.BackColor = bckColorRTB;
             helmWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             helmWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefHelm)
-            {
-                cbHelmPref.Items.Add(s);
-                cbHelmPref_sh1.Items.Add(s);
-                cbHelmPref_sh2.Items.Add(s);
-                cbHelmPref_sh3.Items.Add(s);
-            }
-            cbHelmPref.SelectedIndex = 0;
-            foreach (string s in BazaHelm)
-            {
-                cbHelmBaza.Items.Add(s);
-                cbHelmBaza_sh1.Items.Add(s);
-                cbHelmBaza_sh2.Items.Add(s);
-                cbHelmBaza_sh3.Items.Add(s);
-            }
-            cbHelmBaza.SelectedIndex = 0;
-            foreach (string s in SufHelm)
-            {
-                cbHelmSuf.Items.Add(s);
-                cbHelmSuf_sh1.Items.Add(s);
-                cbHelmSuf_sh2.Items.Add(s);
-                cbHelmSuf_sh3.Items.Add(s);
-            }
-            cbHelmSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefHelm, cbHelmPref, cbHelmPref_sh1, cbHelmPref_sh2, cbHelmPref_sh3);
+            DodajElementyCB(BazaHelm, cbHelmBaza, cbHelmBaza_sh1, cbHelmBaza_sh2, cbHelmBaza_sh3);
+            DodajElementyCB(SufHelm, cbHelmSuf, cbHelmSuf_sh1, cbHelmSuf_sh2, cbHelmSuf_sh3);
 
             // Zbroja
             TabZbroja.BackColor = bckColorTab;
@@ -168,30 +126,9 @@ namespace R19_BW_laczenia
             zbrojaWynik.BackColor = bckColorRTB;
             zbrojaWynik.ReadOnly = true;    // Ustawienie flagi Read Only
             zbrojaWynik.ContextMenuStrip = contextMenuStrip1;   // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefZbroja)
-            {
-                cbZbrojaPref.Items.Add(s);
-                cbZbrojaPref_sh1.Items.Add(s);
-                cbZbrojaPref_sh2.Items.Add(s);
-                cbZbrojaPref_sh3.Items.Add(s);
-            }
-            cbZbrojaPref.SelectedIndex = 0;
-            foreach (string s in BazaZbroja)
-            {
-                cbZbrojaBaza.Items.Add(s);
-                cbZbrojaBaza_sh1.Items.Add(s);
-                cbZbrojaBaza_sh2.Items.Add(s);
-                cbZbrojaBaza_sh3.Items.Add(s);
-            }
-            cbZbrojaBaza.SelectedIndex = 0;
-            foreach (string s in SufZbroja)
-            {
-                cbZbrojaSuf.Items.Add(s);
-                cbZbrojaSuf_sh1.Items.Add(s);
-                cbZbrojaSuf_sh2.Items.Add(s);
-                cbZbrojaSuf_sh3.Items.Add(s);
-            }
-            cbZbrojaSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefZbroja, cbZbrojaPref, cbZbrojaPref_sh1, cbZbrojaPref_sh2, cbZbrojaPref_sh3);
+            DodajElementyCB(BazaZbroja, cbZbrojaBaza, cbZbrojaBaza_sh1, cbZbrojaBaza_sh2, cbZbrojaBaza_sh3);
+            DodajElementyCB(SufZbroja, cbZbrojaSuf, cbZbrojaSuf_sh1, cbZbrojaSuf_sh2, cbZbrojaSuf_sh3);
 
             // Spodnie
             TabSpodnie.BackColor = bckColorTab;
@@ -202,30 +139,9 @@ namespace R19_BW_laczenia
             spodnieWynik.BackColor = bckColorRTB;
             spodnieWynik.ReadOnly = true;   // Ustawienie flagi Read Only
             spodnieWynik.ContextMenuStrip = contextMenuStrip1;  // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefSpodnie)
-            {
-                cbSpodniePref.Items.Add(s);
-                cbSpodniePref_sh1.Items.Add(s);
-                cbSpodniePref_sh2.Items.Add(s);
-                cbSpodniePref_sh3.Items.Add(s);
-            }
-            cbSpodniePref.SelectedIndex = 0;
-            foreach (string s in BazaSpodnie)
-            {
-                cbSpodnieBaza.Items.Add(s);
-                cbSpodnieBaza_sh1.Items.Add(s);
-                cbSpodnieBaza_sh2.Items.Add(s);
-                cbSpodnieBaza_sh3.Items.Add(s);
-            }
-            cbSpodnieBaza.SelectedIndex = 0;
-            foreach (string s in SufSpodnie)
-            {
-                cbSpodnieSuf.Items.Add(s);
-                cbSpodnieSuf_sh1.Items.Add(s);
-                cbSpodnieSuf_sh2.Items.Add(s);
-                cbSpodnieSuf_sh3.Items.Add(s);
-            }
-            cbSpodnieSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefSpodnie, cbSpodniePref, cbSpodniePref_sh1, cbSpodniePref_sh2, cbSpodniePref_sh3);
+            DodajElementyCB(BazaSpodnie, cbSpodnieBaza, cbSpodnieBaza_sh1, cbSpodnieBaza_sh2, cbSpodnieBaza_sh3);
+            DodajElementyCB(SufSpodnie, cbSpodnieSuf, cbSpodnieSuf_sh1, cbSpodnieSuf_sh2, cbSpodnieSuf_sh3);
 
             // Pierścień
             TabPierscien.BackColor = bckColorTab;
@@ -236,30 +152,9 @@ namespace R19_BW_laczenia
             pierscienWynik.BackColor = bckColorRTB;
             pierscienWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             pierscienWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefPierscien)
-            {
-                cbPierscienPref.Items.Add(s);
-                cbPierscienPref_sh1.Items.Add(s);
-                cbPierscienPref_sh2.Items.Add(s);
-                cbPierscienPref_sh3.Items.Add(s);
-            }
-            cbPierscienPref.SelectedIndex = 0;
-            foreach (string s in BazaPierscien)
-            {
-                cbPierscienBaza.Items.Add(s);
-                cbPierscienBaza_sh1.Items.Add(s);
-                cbPierscienBaza_sh2.Items.Add(s);
-                cbPierscienBaza_sh3.Items.Add(s);
-            }
-            cbPierscienBaza.SelectedIndex = 0;
-            foreach (string s in SufPierscien)
-            {
-                cbPierscienSuf.Items.Add(s);
-                cbPierscienSuf_sh1.Items.Add(s);
-                cbPierscienSuf_sh2.Items.Add(s);
-                cbPierscienSuf_sh3.Items.Add(s);
-            }
-            cbPierscienSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefPierscien, cbPierscienPref, cbPierscienPref_sh1, cbPierscienPref_sh2, cbPierscienPref_sh3);
+            DodajElementyCB(BazaPierscien, cbPierscienBaza, cbPierscienBaza_sh1, cbPierscienBaza_sh2, cbPierscienBaza_sh3);
+            DodajElementyCB(SufPierscien, cbPierscienSuf, cbPierscienSuf_sh1, cbPierscienSuf_sh2, cbPierscienSuf_sh3);
 
             // Amulet
             TabAmulet.BackColor = bckColorTab;
@@ -270,30 +165,9 @@ namespace R19_BW_laczenia
             amuletWynik.BackColor = bckColorRTB;
             amuletWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             amuletWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefAmulet)
-            {
-                cbAmuletPref.Items.Add(s);
-                cbAmuletPref_sh1.Items.Add(s);
-                cbAmuletPref_sh2.Items.Add(s);
-                cbAmuletPref_sh3.Items.Add(s);
-            }
-            cbAmuletPref.SelectedIndex = 0;
-            foreach (string s in BazaAmulet)
-            {
-                cbAmuletBaza.Items.Add(s);
-                cbAmuletBaza_sh1.Items.Add(s);
-                cbAmuletBaza_sh2.Items.Add(s);
-                cbAmuletBaza_sh3.Items.Add(s);
-            }
-            cbAmuletBaza.SelectedIndex = 0;
-            foreach (string s in SufAmulet)
-            {
-                cbAmuletSuf.Items.Add(s);
-                cbAmuletSuf_sh1.Items.Add(s);
-                cbAmuletSuf_sh2.Items.Add(s);
-                cbAmuletSuf_sh3.Items.Add(s);
-            }
-            cbAmuletSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefAmulet, cbAmuletPref, cbAmuletPref_sh1, cbAmuletPref_sh2, cbAmuletPref_sh3);
+            DodajElementyCB(BazaAmulet, cbAmuletBaza, cbAmuletBaza_sh1, cbAmuletBaza_sh2, cbAmuletBaza_sh3);
+            DodajElementyCB(SufAmulet, cbAmuletSuf, cbAmuletSuf_sh1, cbAmuletSuf_sh2, cbAmuletSuf_sh3);
 
             // Biała 1h
             TabBiala1h.BackColor = bckColorTab;
@@ -304,30 +178,9 @@ namespace R19_BW_laczenia
             biala1hWynik.BackColor = bckColorRTB;
             biala1hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             biala1hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefBiala1h)
-            {
-                cbBiala1hPref.Items.Add(s);
-                cbBiala1hPref_sh1.Items.Add(s);
-                cbBiala1hPref_sh2.Items.Add(s);
-                cbBiala1hPref_sh3.Items.Add(s);
-            }
-            cbBiala1hPref.SelectedIndex = 0;
-            foreach (string s in BazaBiala1h)
-            {
-                cbBiala1hBaza.Items.Add(s);
-                cbBiala1hBaza_sh1.Items.Add(s);
-                cbBiala1hBaza_sh2.Items.Add(s);
-                cbBiala1hBaza_sh3.Items.Add(s);
-            }
-            cbBiala1hBaza.SelectedIndex = 0;
-            foreach (string s in SufBiala1h)
-            {
-                cbBiala1hSuf.Items.Add(s);
-                cbBiala1hSuf_sh1.Items.Add(s);
-                cbBiala1hSuf_sh2.Items.Add(s);
-                cbBiala1hSuf_sh3.Items.Add(s);
-            }
-            cbBiala1hSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefBiala1h, cbBiala1hPref, cbBiala1hPref_sh1, cbBiala1hPref_sh2, cbBiala1hPref_sh3);
+            DodajElementyCB(BazaBiala1h, cbBiala1hBaza, cbBiala1hBaza_sh1, cbBiala1hBaza_sh2, cbBiala1hBaza_sh3);
+            DodajElementyCB(SufBiala1h, cbBiala1hSuf, cbBiala1hSuf_sh1, cbBiala1hSuf_sh2, cbBiala1hSuf_sh3);
 
             // Biała 2h
             TabBiala2h.BackColor = bckColorTab;
@@ -338,30 +191,9 @@ namespace R19_BW_laczenia
             biala2hWynik.BackColor = bckColorRTB;
             biala2hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             biala2hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefBiala2h)
-            {
-                cbBiala2hPref.Items.Add(s);
-                cbBiala2hPref_sh1.Items.Add(s);
-                cbBiala2hPref_sh2.Items.Add(s);
-                cbBiala2hPref_sh3.Items.Add(s);
-            }
-            cbBiala2hPref.SelectedIndex = 0;
-            foreach (string s in BazaBiala2h)
-            {
-                cbBiala2hBaza.Items.Add(s);
-                cbBiala2hBaza_sh1.Items.Add(s);
-                cbBiala2hBaza_sh2.Items.Add(s);
-                cbBiala2hBaza_sh3.Items.Add(s);
-            }
-            cbBiala2hBaza.SelectedIndex = 0;
-            foreach (string s in SufBiala2h)
-            {
-                cbBiala2hSuf.Items.Add(s);
-                cbBiala2hSuf_sh1.Items.Add(s);
-                cbBiala2hSuf_sh2.Items.Add(s);
-                cbBiala2hSuf_sh3.Items.Add(s);
-            }
-            cbBiala2hSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefBiala2h, cbBiala2hPref, cbBiala2hPref_sh1, cbBiala2hPref_sh2, cbBiala2hPref_sh3);
+            DodajElementyCB(BazaBiala2h, cbBiala2hBaza, cbBiala2hBaza_sh1, cbBiala2hBaza_sh2, cbBiala2hBaza_sh3);
+            DodajElementyCB(SufBiala2h, cbBiala2hSuf, cbBiala2hSuf_sh1, cbBiala2hSuf_sh2, cbBiala2hSuf_sh3);
 
             // Palna 1h
             TabPalna1h.BackColor = bckColorTab;
@@ -372,30 +204,9 @@ namespace R19_BW_laczenia
             palna1hWynik.BackColor = bckColorRTB;
             palna1hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             palna1hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefPalan1h)
-            {
-                cbPalna1hPref.Items.Add(s);
-                cbPalna1hPref_sh1.Items.Add(s);
-                cbPalna1hPref_sh2.Items.Add(s);
-                cbPalna1hPref_sh3.Items.Add(s);
-            }
-            cbPalna1hPref.SelectedIndex = 0;
-            foreach (string s in BazaPalna1h)
-            {
-                cbPalna1hBaza.Items.Add(s);
-                cbPalna1hBaza_sh1.Items.Add(s);
-                cbPalna1hBaza_sh2.Items.Add(s);
-                cbPalna1hBaza_sh3.Items.Add(s);
-            }
-            cbPalna1hBaza.SelectedIndex = 0;
-            foreach (string s in SufPalna1h)
-            {
-                cbPalna1hSuf.Items.Add(s);
-                cbPalna1hSuf_sh1.Items.Add(s);
-                cbPalna1hSuf_sh2.Items.Add(s);
-                cbPalna1hSuf_sh3.Items.Add(s);
-            }
-            cbPalna1hSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefPalan1h, cbPalna1hPref, cbPalna1hPref_sh1, cbPalna1hPref_sh2, cbPalna1hPref_sh3);
+            DodajElementyCB(BazaPalna1h, cbPalna1hBaza, cbPalna1hBaza_sh1, cbPalna1hBaza_sh2, cbPalna1hBaza_sh3);
+            DodajElementyCB(SufPalna1h, cbPalna1hSuf, cbPalna1hSuf_sh1, cbPalna1hSuf_sh2, cbPalna1hSuf_sh3);
 
             // Palna 2h
             TabPalna2h.BackColor = bckColorTab;
@@ -406,30 +217,9 @@ namespace R19_BW_laczenia
             palna2hWynik.BackColor = bckColorRTB;
             palna2hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             palna2hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefPalna2h)
-            {
-                cbPalna2hPref.Items.Add(s);
-                cbPalna2hPref_sh1.Items.Add(s);
-                cbPalna2hPref_sh2.Items.Add(s);
-                cbPalna2hPref_sh3.Items.Add(s);
-            }
-            cbPalna2hPref.SelectedIndex = 0;
-            foreach (string s in BazaPalna2h)
-            {
-                cbPalna2hBaza.Items.Add(s);
-                cbPalna2hBaza_sh1.Items.Add(s);
-                cbPalna2hBaza_sh2.Items.Add(s);
-                cbPalna2hBaza_sh3.Items.Add(s);
-            }
-            cbPalna2hBaza.SelectedIndex = 0;
-            foreach (string s in SufPalna2h)
-            {
-                cbPalna2hSuf.Items.Add(s);
-                cbPalna2hSuf_sh1.Items.Add(s);
-                cbPalna2hSuf_sh2.Items.Add(s);
-                cbPalna2hSuf_sh3.Items.Add(s);
-            }
-            cbPalna2hSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefPalna2h, cbPalna2hPref, cbPalna2hPref_sh1, cbPalna2hPref_sh2, cbPalna2hPref_sh3);
+            DodajElementyCB(BazaPalna2h, cbPalna2hBaza, cbPalna2hBaza_sh1, cbPalna2hBaza_sh2, cbPalna2hBaza_sh3);
+            DodajElementyCB(SufPalna2h, cbPalna2hSuf, cbPalna2hSuf_sh1, cbPalna2hSuf_sh2, cbPalna2hSuf_sh3);
 
             // Dystans
             TabDystans.BackColor = bckColorTab;
@@ -440,30 +230,9 @@ namespace R19_BW_laczenia
             dystansWynik.BackColor = bckColorRTB;
             dystansWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             dystansWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            foreach (string s in PrefDystans)
-            {
-                cbDystansPref.Items.Add(s);
-                cbDystansPref_sh1.Items.Add(s);
-                cbDystansPref_sh2.Items.Add(s);
-                cbDystansPref_sh3.Items.Add(s);
-            }
-            cbDystansPref.SelectedIndex = 0;
-            foreach (string s in BazaDystans)
-            {
-                cbDystansBaza.Items.Add(s);
-                cbDystansBaza_sh1.Items.Add(s);
-                cbDystansBaza_sh2.Items.Add(s);
-                cbDystansBaza_sh3.Items.Add(s);
-            }
-            cbDystansBaza.SelectedIndex = 0;
-            foreach (string s in SufDystans)
-            {
-                cbDystansSuf.Items.Add(s);
-                cbDystansSuf_sh1.Items.Add(s);
-                cbDystansSuf_sh2.Items.Add(s);
-                cbDystansSuf_sh3.Items.Add(s);
-            }
-            cbDystansSuf.SelectedIndex = 0;
+            DodajElementyCB(PrefDystans, cbDystansPref, cbDystansPref_sh1, cbDystansPref_sh2, cbDystansPref_sh3);
+            DodajElementyCB(BazaDystans, cbDystansBaza, cbDystansBaza_sh1, cbDystansBaza_sh2, cbDystansBaza_sh3);
+            DodajElementyCB(SufDystans, cbDystansSuf, cbDystansSuf_sh1, cbDystansSuf_sh2, cbDystansSuf_sh3);
 
             // Analizator raportu
             TabAnalizator.BackColor = bckColorTab;
@@ -517,125 +286,22 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.2 (Beta 2.0.1)\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.3 (Beta 2.0.1)\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
-        private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
+        private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
         {
-            // Dodaj znak sumy jeżeli dodano drugi przedmiot do łączenia
-            if ((PrefCB.Text != "") || (BazaCB.Text != "") || (SufCB.Text != ""))
+            foreach (string s in Baza)
             {
-                if (component1[3] == 1) Wynik.AppendText(" + ");
+                cb1.Items.Add(s);
+                cb2.Items.Add(s);
+                cb3.Items.Add(s);
+                cb4.Items.Add(s);
             }
-            // Dodaj wybrany prefiks / bazę / sufiks do okienka z wynikiem
-            if (PrefCB.Text != "")
-            {
-                Wynik.AppendText(PrefCB.Text);
-                added = true;
-            }
-            if (BazaCB.Text != "")
-            {
-                if (PrefCB.Text != "") Wynik.AppendText(" ");
-                Wynik.AppendText(BazaCB.Text);
-                added = true;
-            }
-            if (SufCB.Text != "")
-            {
-                if (BazaCB.Text != "") Wynik.AppendText(" ");
-                else if (PrefCB.Text != "") Wynik.AppendText(" ");
-                Wynik.AppendText(SufCB.Text);
-                added = true;
-            }
-
-            if (added)
-            {
-                added = false;
-
-                if (component1[3] == 0)
-                {
-                    // Pierwszy składnik
-                    component1[0] = Pref.IndexOf(PrefCB.Text);
-                    component1[1] = Baza.IndexOf(BazaCB.Text);
-                    component1[2] = Suf.IndexOf(SufCB.Text);
-                    component1[3] = 1;
-                    // Dodaj składnik do histori składników
-                    HistoriaPrzedmiotow.Add(new int[] { component1[0], component1[1], component1[2], component1[3] });
-                }
-                else
-                {
-                    // Drugi składnik
-                    component2[0] = Pref.IndexOf(PrefCB.Text);
-                    component2[1] = Baza.IndexOf(BazaCB.Text);
-                    component2[2] = Suf.IndexOf(SufCB.Text);
-                    component2[3] = 1;
-                    // Dodaj składnik do histori składników
-                    HistoriaPrzedmiotow.Add(new int[] { component2[0], component2[1], component2[2], component2[3] });
-
-                    // Połącz składniki
-                    result = Polacz(component1[0], component1[1], component1[2], component2[0], component2[1], component2[2]);
-
-                    // Sprawdź wyjątki przy łączeniu przy końcu tabeli łączeń
-                    result[0] = SprawdzWyjatki(Pref, component1[0], component2[0], result[0]);
-                    result[1] = SprawdzWyjatki(Baza, component1[1], component2[1], result[1]);
-                    result[2] = SprawdzWyjatki(Suf, component1[2], component2[2], result[2]);
-
-                    // Potraktuj wynik jako pierwszy składnik
-                    component1 = new int[] { result[0], result[1], result[2], 1 };
-
-                    // Dodaj składnik do histori składników
-                    HistoriaPrzedmiotow.Add(new int[] { component1[0], component1[1], component1[2], component1[3] });
-                    // Wyświetl wynik łączenia
-                    Wynik.AppendText("\r= ");
-                    if (result[0] != 0) Wynik.AppendText(Pref.ElementAt(result[0]));
-                    if (result[0] != 0 && result[1] != 0) Wynik.AppendText(" ");
-                    if (result[1] != 0) Wynik.AppendText(Baza.ElementAt(result[1]));
-                    if (true)
-                    {
-                        if (result[1] != 0 && result[2] != 0) Wynik.AppendText(" ");
-                        else if (result[0] != 0 && result[2] != 0) Wynik.AppendText(" ");
-                    }
-                    if (result[2] != 0) Wynik.AppendText(Suf.ElementAt(result[2]));
-                }
-
-                // Dodaj łączenie do historii łączeń 
-                HistoriaLaczen.Add(Wynik.Text);
-            }
-
-            // Przesuń kursor na koniec tekstu (jeżeli dodano tekst poniżej widocznego pola, "przescrolluj na sam dół")
-            Wynik.ScrollToCaret();
-            // Uaktualnij "wynik łączenia aktualizowany na bieżąco"
-            ZmienLabel();
-        }
-
-        private int[] Polacz(int pref1, int baza1, int suf1, int pref2, int baza2, int suf2)
-        {
-            int[] wynik = new int[4];
-            double x = 0, y = 0;
-
-            for (int i = 0; i < 3; i++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        x = pref1;
-                        y = pref2;
-                        break;
-                    case 1:
-                        x = baza1;
-                        y = baza2;
-                        break;
-                    case 2:
-                        x = suf1;
-                        y = suf2;
-                        break;
-                }
-
-                if ((int)x == 0 || (int)y == 0) wynik[i] = 0;
-                else if (x == y) wynik[i] = (int)x;
-                else if (true) wynik[i] = Convert.ToInt32(Math.Ceiling((x + y) / 2) + 1);
-            }
-
-            return wynik;
+            cb1.SelectedIndex = 0;
+            cb2.SelectedIndex = 0;
+            cb3.SelectedIndex = 0;
+            cb4.SelectedIndex = 0;
         }
 
         private void HelmDodaj_Click(object sender, EventArgs e)
@@ -688,9 +354,356 @@ namespace R19_BW_laczenia
             Dodaj(cbDystansPref, cbDystansBaza, cbDystansSuf, dystansWynik, PrefDystans, BazaDystans, SufDystans);
         }
 
+        private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
+        {
+            Item temp = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
+
+            // Dodaj znak sumy jeżeli dodano drugi przedmiot do łączenia
+            if (temp.Sum() > 0)
+            {
+                if (component1.Sum() > 0) Wynik.AppendText(" + ");
+
+                // Dodaj wybrany prefiks / bazę / sufiks do okienka z wynikiem
+                Wynik.AppendText(UsunSpacje(temp, Pref, Baza, Suf));
+                added = true;
+            }
+
+            if (added)
+            {
+                added = false;
+
+                if (component1.Sum() == 0)
+                {
+                    // Pierwszy składnik - indeks prefiksu + indeks bazy + indeks sufiksu = 0
+                    component1.Set(temp);
+                    // Dodaj składnik do histori składników
+                    HistoriaPrzedmiotow.Add(new Item(component1));
+                }
+                else
+                {
+                    // Drugi składnik
+                    component2.Set(temp);
+                    // Dodaj składnik do histori składników
+                    HistoriaPrzedmiotow.Add(new Item(component2));
+
+                    // Połącz składniki
+                    result.Set(Polacz(component1, component2));
+                    
+                    // Sprawdź wyjątki przy łączeniu przy końcu tabeli łączeń
+                    result.p = SprawdzWyjatki(Pref, component1.p, component2.p, result.p);
+                    result.b = SprawdzWyjatki(Baza, component1.b, component2.b, result.b);
+                    result.s = SprawdzWyjatki(Suf, component1.s, component2.s, result.s);
+
+                    // Potraktuj wynik jako pierwszy składnik
+                    component1 = new Item(result);
+
+                    // Dodaj składnik do histori składników
+                    HistoriaPrzedmiotow.Add(new Item(component1));
+                    // Wyświetl wynik łączenia
+                    Wynik.AppendText("\n= " + UsunSpacje(result, Pref, Baza, Suf));
+                }
+
+                // Dodaj łączenie do historii łączeń 
+                HistoriaLaczen.Add(Wynik.Text);
+            }
+
+            // Przesuń kursor na koniec tekstu (jeżeli dodano tekst poniżej widocznego pola, "przescrolluj na sam dół")
+            Wynik.ScrollToCaret();
+            // Uaktualnij "wynik łączenia aktualizowany na bieżąco"
+            ZmienLabel();
+        }
+
+        //private int[] Polacz(int pref1, int baza1, int suf1, int pref2, int baza2, int suf2)
+        private Item Polacz(Item sk1, Item sk2)
+        {
+            int[] wynik = new int[] { 0, 0, 0 };
+            double x = 0d, y = 0d;
+
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        // Prefiksy
+                        x = sk1.p;
+                        y = sk2.p;
+                        break;
+                    case 1:
+                        // Bazy
+                        x = sk1.b;
+                        y = sk2.b;
+                        break;
+                    case 2:
+                        // Sufiksy
+                        x = sk1.s;
+                        y = sk2.s;
+                        break;
+                }
+
+                if ((int)x == 0 || (int)y == 0) wynik[i] = 0;
+                else if (x == y) wynik[i] = (int)x;
+                else wynik[i] = Convert.ToInt32(Math.Ceiling((x + y) / 2d) + 1d);
+            }
+
+            return new Item(wynik[0], wynik[1], wynik[2]);
+        }
+
+        private void HelmCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(helmWynik);
+        }
+
+        private void ZbrojaCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(zbrojaWynik);
+        }
+
+        private void SpodnieCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(spodnieWynik);
+        }
+
+        private void PierscienCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(pierscienWynik);
+        }
+
+        private void AmuletCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(amuletWynik);
+        }
+
+        private void Biala1hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(biala1hWynik);
+        }
+
+        private void Biala2hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(biala2hWynik);
+        }
+
+        private void Palna1hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(palna1hWynik);
+        }
+
+        private void Palna2hCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(palna2hWynik);
+        }
+
+        private void DystansCofnij_Click(object sender, EventArgs e)
+        {
+            Cofnij(dystansWynik);
+        }
+
+        private void Cofnij(RichTextBox RTB)
+        {
+            if (HistoriaLaczen.Count > 1)
+            {
+                // Usuń ostatnie łączenie i zaktualizuj tekst
+                HistoriaLaczen.RemoveAt(HistoriaLaczen.Count - 1);
+                RTB.Text = HistoriaLaczen[HistoriaLaczen.Count - 1];
+
+                // Usuń drugi składnik i wynik łączenia
+                if (HistoriaPrzedmiotow.Count > 1) HistoriaPrzedmiotow.RemoveAt(HistoriaPrzedmiotow.Count - 1);
+                if (HistoriaPrzedmiotow.Count > 1) HistoriaPrzedmiotow.RemoveAt(HistoriaPrzedmiotow.Count - 1);
+
+                component1 = HistoriaPrzedmiotow[HistoriaPrzedmiotow.Count - 1];
+                component2 = new Item();
+
+                if (HistoriaLaczen.Count == 1) Czyszczenie();
+            }
+
+            if (RTB.Text.Length > 1) RTB.Select(RTB.Text.Length - 1, 0);
+            RTB.ScrollToCaret();
+            ZmienLabel();
+        }
+
+        private void PrefHelmPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefHelm") InicjalizacjaTabeli(Tabela, PrefHelm, "PrefHelm");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaHelmPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaHelm") InicjalizacjaTabeli(Tabela, BazaHelm, "BazaHelm");
+            else Tabela.BringToFront();
+        }
+
+        private void SufHelmPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufHelm") InicjalizacjaTabeli(Tabela, SufHelm, "SufHelm");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefZbrojaPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefZbroja") InicjalizacjaTabeli(Tabela, PrefZbroja, "PrefZbroja");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaZbrojaPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaZbroja") InicjalizacjaTabeli(Tabela, BazaZbroja, "BazaZbroja");
+            else Tabela.BringToFront();
+        }
+
+        private void SufZbrojaPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufZbroja") InicjalizacjaTabeli(Tabela, SufZbroja, "SufZbroja");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefSpodniePanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefSpodnie") InicjalizacjaTabeli(Tabela, PrefSpodnie, "PrefSpodnie");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaSpodniePanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaSpodnie") InicjalizacjaTabeli(Tabela, BazaSpodnie, "BazaSpodnie");
+            else Tabela.BringToFront();
+        }
+
+        private void SufSpodniePanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufSpodnie") InicjalizacjaTabeli(Tabela, SufSpodnie, "SufSpodnie");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefPierscienPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPierscien") InicjalizacjaTabeli(Tabela, PrefPierscien, "PrefPierscien");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaPierscienPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPierscien") InicjalizacjaTabeli(Tabela, BazaPierscien, "BazaPierscien");
+            else Tabela.BringToFront();
+        }
+
+        private void SufPierscienPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPierscien") InicjalizacjaTabeli(Tabela, SufPierscien, "SufPierscien");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefAmuletPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefAmulet") InicjalizacjaTabeli(Tabela, PrefAmulet, "PrefAmulet");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaAmuletPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaAmulet") InicjalizacjaTabeli(Tabela, BazaAmulet, "BazaAmulet");
+            else Tabela.BringToFront();
+        }
+
+        private void SufAmuletPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufAmulet") InicjalizacjaTabeli(Tabela, SufAmulet, "SufAmulet");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefBiala1hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefBiala1h") InicjalizacjaTabeli(Tabela, PrefBiala1h, "PrefBiala1h");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaBiala1hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaBiala1h") InicjalizacjaTabeli(Tabela, BazaBiala1h, "BazaBiala1h");
+            else Tabela.BringToFront();
+        }
+
+        private void SufBiala1hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufBiala1h") InicjalizacjaTabeli(Tabela, SufBiala1h, "SufBiala1h");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefBiala2hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefBiala2h") InicjalizacjaTabeli(Tabela, PrefBiala2h, "PrefBiala2h");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaBiala2hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaBiala2h") InicjalizacjaTabeli(Tabela, BazaBiala2h, "BazaBiala2h");
+            else Tabela.BringToFront();
+        }
+
+        private void SufBiala2hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufBiala2h") InicjalizacjaTabeli(Tabela, SufBiala2h, "SufBiala2h");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefPalna1hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPalna1h") InicjalizacjaTabeli(Tabela, PrefPalan1h, "PrefPalna1h");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaPalna1hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPalna1h") InicjalizacjaTabeli(Tabela, BazaPalna1h, "BazaPalna1h");
+            else Tabela.BringToFront();
+        }
+
+        private void SufPalna1hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPalna1h") InicjalizacjaTabeli(Tabela, SufPalna1h, "SufPalna1h");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefPalna2hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPalna2h") InicjalizacjaTabeli(Tabela, PrefPalna2h, "PrefPalna2h");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaPalna2hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPalna2h") InicjalizacjaTabeli(Tabela, BazaPalna2h, "BazaPalna2h");
+            else Tabela.BringToFront();
+        }
+
+        private void SufPalna2hPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPalna2h") InicjalizacjaTabeli(Tabela, SufPalna2h, "SufPalna2h");
+            else Tabela.BringToFront();
+        }
+
+        private void PrefDystansPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefDystans") InicjalizacjaTabeli(Tabela, PrefDystans, "PrefDystans");
+            else Tabela.BringToFront();
+        }
+
+        private void BazaDystansPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaDystans") InicjalizacjaTabeli(Tabela, BazaDystans, "BazaDystans");
+            else Tabela.BringToFront();
+        }
+
+        private void SufDystansPanelLabel_Click(object sender, EventArgs e)
+        {
+            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufDystans") InicjalizacjaTabeli(Tabela, SufDystans, "SufDystans");
+            else Tabela.BringToFront();
+        }
+
         private void InicjalizacjaTabeli(TableWindow Tab, List<string> baza, string disp)
         {
-            int[] resultTable = new int[4];
+            int wynik;
 
             if (Tab != null)
             {
@@ -720,439 +733,14 @@ namespace R19_BW_laczenia
 
                     for (int j = 1; j < baza.Count(); j++)
                     {
-                        if ((i == (baza.Count - 1)) & (j == (baza.Count - 2))) resultTable[0] = baza.Count - 3; // wyjątki
-                        else if ((i == (baza.Count - 2)) & (j == (baza.Count - 1))) resultTable[0] = baza.Count - 3;
-                        else if ((i == (baza.Count - 3)) & (j == (baza.Count - 1))) resultTable[0] = baza.Count - 2;
-                        else if ((i == (baza.Count - 1)) & (j == (baza.Count - 3))) resultTable[0] = baza.Count - 2;
-                        else if (true) resultTable = Polacz(i, 0, 0, j, 0, 0);
+                        wynik = Polacz(new Item(i, 0, 0), new Item(j, 0, 0)).Sum();
+                        wynik = SprawdzWyjatki(baza, i, j, wynik);
 
-                        Tabela.DataGridView.Rows[i].Cells[j].Value = baza.ElementAt(resultTable[0]);
+                        Tabela.DataGridView.Rows[i].Cells[j].Value = baza.ElementAt(wynik);
                     }
                 }
             }
             Tabela.Show();
-        }
-
-        private void prefHelmPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefHelm") InicjalizacjaTabeli(Tabela, PrefHelm, "PrefHelm");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaHelmPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaHelm") InicjalizacjaTabeli(Tabela, BazaHelm, "BazaHelm");
-            else Tabela.BringToFront();
-        }
-
-        private void sufHelmPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufHelm") InicjalizacjaTabeli(Tabela, SufHelm, "SufHelm");
-            else Tabela.BringToFront();
-        }
-
-        private void prefZbrojaPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefZbroja") InicjalizacjaTabeli(Tabela, PrefZbroja, "PrefZbroja");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaZbrojaPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaZbroja") InicjalizacjaTabeli(Tabela, BazaZbroja, "BazaZbroja");
-            else Tabela.BringToFront();
-        }
-
-        private void sufZbrojaPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufZbroja") InicjalizacjaTabeli(Tabela, SufZbroja, "SufZbroja");
-            else Tabela.BringToFront();
-        }
-
-        private void prefSpodniePanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefSpodnie") InicjalizacjaTabeli(Tabela, PrefSpodnie, "PrefSpodnie");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaSpodniePanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaSpodnie") InicjalizacjaTabeli(Tabela, BazaSpodnie, "BazaSpodnie");
-            else Tabela.BringToFront();
-        }
-
-        private void sufSpodniePanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufSpodnie") InicjalizacjaTabeli(Tabela, SufSpodnie, "SufSpodnie");
-            else Tabela.BringToFront();
-        }
-
-        private void prefPierscienPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPierscien") InicjalizacjaTabeli(Tabela, PrefPierscien, "PrefPierscien");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaPierscienPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPierscien") InicjalizacjaTabeli(Tabela, BazaPierscien, "BazaPierscien");
-            else Tabela.BringToFront();
-        }
-
-        private void sufPierscienPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPierscien") InicjalizacjaTabeli(Tabela, SufPierscien, "SufPierscien");
-            else Tabela.BringToFront();
-        }
-
-        private void prefAmuletPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefAmulet") InicjalizacjaTabeli(Tabela, PrefAmulet, "PrefAmulet");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaAmuletPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaAmulet") InicjalizacjaTabeli(Tabela, BazaAmulet, "BazaAmulet");
-            else Tabela.BringToFront();
-        }
-
-        private void sufAmuletPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufAmulet") InicjalizacjaTabeli(Tabela, SufAmulet, "SufAmulet");
-            else Tabela.BringToFront();
-        }
-
-        private void prefBiala1hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefBiala1h") InicjalizacjaTabeli(Tabela, PrefBiala1h, "PrefBiala1h");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaBiala1hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaBiala1h") InicjalizacjaTabeli(Tabela, BazaBiala1h, "BazaBiala1h");
-            else Tabela.BringToFront();
-        }
-
-        private void sufBiala1hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufBiala1h") InicjalizacjaTabeli(Tabela, SufBiala1h, "SufBiala1h");
-            else Tabela.BringToFront();
-        }
-
-        private void prefBiala2hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefBiala2h") InicjalizacjaTabeli(Tabela, PrefBiala2h, "PrefBiala2h");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaBiala2hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaBiala2h") InicjalizacjaTabeli(Tabela, BazaBiala2h, "BazaBiala2h");
-            else Tabela.BringToFront();
-        }
-
-        private void sufBiala2hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufBiala2h") InicjalizacjaTabeli(Tabela, SufBiala2h, "SufBiala2h");
-            else Tabela.BringToFront();
-        }
-
-        private void prefPalna1hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPalna1h") InicjalizacjaTabeli(Tabela, PrefPalan1h, "PrefPalna1h");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaPalna1hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPalna1h") InicjalizacjaTabeli(Tabela, BazaPalna1h, "BazaPalna1h");
-            else Tabela.BringToFront();
-        }
-
-        private void sufPalna1hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPalna1h") InicjalizacjaTabeli(Tabela, SufPalna1h, "SufPalna1h");
-            else Tabela.BringToFront();
-        }
-
-        private void prefPalna2hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPalna2h") InicjalizacjaTabeli(Tabela, PrefPalna2h, "PrefPalna2h");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaPalna2hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPalna2h") InicjalizacjaTabeli(Tabela, BazaPalna2h, "BazaPalna2h");
-            else Tabela.BringToFront();
-        }
-
-        private void sufPalna2hPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPalna2h") InicjalizacjaTabeli(Tabela, SufPalna2h, "SufPalna2h");
-            else Tabela.BringToFront();
-        }
-
-        private void prefDystansPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefDystans") InicjalizacjaTabeli(Tabela, PrefDystans, "PrefDystans");
-            else Tabela.BringToFront();
-        }
-
-        private void bazaDystansPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaDystans") InicjalizacjaTabeli(Tabela, BazaDystans, "BazaDystans");
-            else Tabela.BringToFront();
-        }
-
-        private void sufDystansPanelLabel_Click(object sender, EventArgs e)
-        {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufDystans") InicjalizacjaTabeli(Tabela, SufDystans, "SufDystans");
-            else Tabela.BringToFront();
-        }
-
-        private void GlownyTab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Czyszczenie();
-            if (GlownyTab.SelectedTab.Text == "Analizator raportu") wklejToolStripMenuItem1.Enabled = true;
-            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") wklejToolStripMenuItem1.Enabled = true;
-            else
-            {
-                wklejToolStripMenuItem1.Enabled = false;
-            }
-        }
-
-        private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
-            Czyszczenie();
-        }
-
-        private void Czyszczenie()
-        {
-            // Czyszczenie składników i okienek wyników po przepłączeniu zakładki
-            component1 = new int[] { 0, 0, 0, 0 };
-            component2 = new int[] { 0, 0, 0, 0 };
-            result = new int[] { 0, 0, 0, 0 };
-            added = false;
-
-            helmWynik.Clear();
-            zbrojaWynik.Clear();
-            spodnieWynik.Clear();
-            pierscienWynik.Clear();
-            amuletWynik.Clear();
-            biala1hWynik.Clear();
-            biala2hWynik.Clear();
-            palna1hWynik.Clear();
-            palna2hWynik.Clear();
-            dystansWynik.Clear();
-            AnalizatorRaportuTekst.Clear();
-
-            // czyszczenie labeli
-            PrefHelmL.Text = "";
-            BazaHelmL.Text = "";
-            SufHelmL.Text = "";
-            PrefZbrojaL.Text = "";
-            BazaZbrojaL.Text = "";
-            SufZbrojaL.Text = "";
-            PrefSpodnieL.Text = "";
-            BazaSpodnieL.Text = "";
-            SufSpodnieL.Text = "";
-            PrefPierscienL.Text = "";
-            BazaPierscienL.Text = "";
-            SufPierscienL.Text = "";
-            PrefAmuletL.Text = "";
-            BazaAmuletL.Text = "";
-            SufAmuletL.Text = "";
-            PrefBiala1hL.Text = "";
-            BazaBiala1hL.Text = "";
-            SufBiala1hL.Text = "";
-            PrefBiala2hL.Text = "";
-            BazaBiala2hL.Text = "";
-            SufBiala2hL.Text = "";
-            PrefPalna1hL.Text = "";
-            BazaPalna1hL.Text = "";
-            SufPalna1hL.Text = "";
-            PrefPalna2hL.Text = "";
-            BazaPalna2hL.Text = "";
-            SufPalna2hL.Text = "";
-            PrefDystansL.Text = "";
-            BazaDystansL.Text = "";
-            SufDystansL.Text = "";
-
-            // Czyszczenie historii
-            HistoriaLaczen.Clear();
-            HistoriaLaczen.Add("");
-            HistoriaPrzedmiotow.Clear();
-        }
-
-        private void KopiujToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Kopiuj zaznaczony tekst do schowka systemowego
-            switch (GlownyTab.SelectedTab.Text)
-            {
-                case "Hełm":
-                    helmWynik.Copy();
-                    break;
-                case "Zbroja":
-                    zbrojaWynik.Copy();
-                    break;
-                case "Spodnie":
-                    spodnieWynik.Copy();
-                    break;
-                case "Pierścień":
-                    pierscienWynik.Copy();
-                    break;
-                case "Amulet":
-                    amuletWynik.Copy();
-                    break;
-                case "Biała 1h":
-                    biala1hWynik.Copy();
-                    break;
-                case "Biała 2h":
-                    biala2hWynik.Copy();
-                    break;
-                case "Palna 1h":
-                    palna1hWynik.Copy();
-                    break;
-                case "Palna 2h":
-                    palna2hWynik.Copy();
-                    break;
-                case "Dystans":
-                    dystansWynik.Copy();
-                    break;
-                case "Analizator raportu":
-                    AnalizatorRaportuTekst.Copy();
-                    break;
-                case "Analizator łączeń":
-                    przedmiotyDoAnalizy.Copy();
-                    break;
-            }
-        }
-
-        private void KopiujWszystkoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Kopiuj wszystko do schowka systemowego
-            switch (GlownyTab.SelectedTab.Text)
-            {
-                case "Hełm":
-                    helmWynik.SelectAll();
-                    helmWynik.Copy();
-                    break;
-                case "Zbroja":
-                    zbrojaWynik.SelectAll();
-                    zbrojaWynik.Copy();
-                    break;
-                case "Spodnie":
-                    spodnieWynik.SelectAll();
-                    spodnieWynik.Copy();
-                    break;
-                case "Pierścień":
-                    pierscienWynik.SelectAll();
-                    pierscienWynik.Copy();
-                    break;
-                case "Amulet":
-                    amuletWynik.SelectAll();
-                    amuletWynik.Copy();
-                    break;
-                case "Biała 1h":
-                    biala1hWynik.SelectAll();
-                    biala1hWynik.Copy();
-                    break;
-                case "Biała 2h":
-                    biala2hWynik.SelectAll();
-                    biala2hWynik.Copy();
-                    break;
-                case "Palna 1h":
-                    palna1hWynik.SelectAll();
-                    palna1hWynik.Copy();
-                    break;
-                case "Palna 2h":
-                    palna2hWynik.SelectAll();
-                    palna2hWynik.Copy();
-                    break;
-                case "Dystans":
-                    dystansWynik.SelectAll();
-                    dystansWynik.Copy();
-                    break;
-                case "Analizator raportu":
-                    AnalizatorRaportuTekst.SelectAll();
-                    AnalizatorRaportuTekst.Copy();
-                    break;
-                case "Analizator łączeń":
-                    przedmiotyDoAnalizy.SelectAll();
-                    przedmiotyDoAnalizy.Copy();
-                    break;
-            }
-        }
-
-        private void ZapiszToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Zapisz zaznaczony tekst do pliku, domyślnie format .txt
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Text Files (*.txt)|*.txt|All Files|*.*";
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                using (Stream a = File.Open(saveFile.FileName, FileMode.Create))
-                using (StreamWriter aa = new StreamWriter(a))
-                {
-                    switch (GlownyTab.SelectedTab.Text)
-                    {
-                        case "Hełm":
-                            aa.Write(helmWynik.Text);
-                            break;
-                        case "Zbroja":
-                            aa.Write(zbrojaWynik.Text);
-                            break;
-                        case "Spodnie":
-                            aa.Write(spodnieWynik.Text);
-                            break;
-                        case "Pierścień":
-                            aa.Write(pierscienWynik.Text);
-                            break;
-                        case "Amulet":
-                            aa.Write(amuletWynik.Text);
-                            break;
-                        case "Biała 1h":
-                            aa.Write(biala1hWynik.Text);
-                            break;
-                        case "Biała 2h":
-                            aa.Write(biala2hWynik.Text);
-                            break;
-                        case "Palna 1h":
-                            aa.Write(palna1hWynik.Text);
-                            break;
-                        case "Palna 2h":
-                            aa.Write(palna2hWynik.Text);
-                            break;
-                        case "Dystans":
-                            aa.Write(dystansWynik.Text);
-                            break;
-                        case "Analizator raportu":
-                            aa.Write(AnalizatorRaportuTekst.Text);
-                            break;
-                        case "Analizator łączeń":
-                            aa.Write(przedmiotyDoAnalizy.Text);
-                            break;
-                    }
-                }
-            }
-        }
-
-        private void wklejToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (GlownyTab.SelectedTab.Text == "Analizator raportu")
-            {
-                AnalizatorRaportuTekst.Paste();
-                AnalizatorRaportuTekst.ScrollToCaret();
-            }
-            if (GlownyTab.SelectedTab.Text == "Analizator łączeń")
-            {
-                przedmiotyDoAnalizy.Paste();
-                przedmiotyDoAnalizy.ScrollToCaret();
-            }
         }
 
         private void AnalizatorRaportuOblicz_Click(object sender, EventArgs e)
@@ -1182,15 +770,10 @@ namespace R19_BW_laczenia
 
             // Podziel tekst na wiersze
             string[] ulepszenia = AnalizatorRaportuTekst.Text.Split('\n');
-            
-            // W każdym wierszu spróbuj wyszukać odpowiedni ciąg znaków (odpowiednie słowa)
-            // i na ich podstawie zwiększ odpowiednie zmienne
+
+            // W każdym wierszu spróbuj wyszukać odpowiedni ciąg znaków (odpowiednie słowa) i na ich podstawie zwiększ odpowiednie zmienne
             for (int i = 0; i < ulepszenia.Count(); i++)
             {
-                // Zmiana koloru nieprzydatnego tekstu na szary
-                if (AnalizatorRaportuTekst.Text != "") AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
-                AnalizatorRaportuTekst.SelectionColor = Color.FromArgb(40, 40, 40);
-
                 if (ulepszenia[i].Contains("Ulepszono przedmiot"))
                 {
                     // Zmiana koloru tekstu pomyślnego ulepszenia na zielony
@@ -1313,7 +896,7 @@ namespace R19_BW_laczenia
                     }
                 }
 
-                if (ulepszenia[i].Contains("nie został ulepszony"))
+                else if (ulepszenia[i].Contains("nie został ulepszony"))
                 {
                     // Zmiana koloru tekstu na czerwony przy niepowodzeniu
                     AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
@@ -1347,6 +930,15 @@ namespace R19_BW_laczenia
                         else if (ulepszenia[i].Contains("(+2)")) zw2zw3c++;
                         else if (ulepszenia[i].Contains("(+1)")) zw1zw2c++;
                         else if (!ulepszenia[i].Contains("(+1)")) zw0zw1c++;
+                    }
+                }
+                else
+                {
+                    // Zmiana koloru nieprzydatnego tekstu na szary
+                    if (AnalizatorRaportuTekst.Text != "")
+                    {
+                        AnalizatorRaportuTekst.Select(AnalizatorRaportuTekst.GetFirstCharIndexFromLine(i), AnalizatorRaportuTekst.Lines[i].Length);
+                        AnalizatorRaportuTekst.SelectionColor = Color.FromArgb(40, 40, 40);
                     }
                 }
             }
@@ -1403,33 +995,9 @@ namespace R19_BW_laczenia
             ZmienLabel();
         }
 
-        private void ZmienLabelObliczenia(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, List<string> Pref, List<string> Baza, List<string> Suf, Label PrefLab, Label BazaLab, Label SufLab)
-        {
-            // Funkcja do zmiany labeli - aktualizacji "na bieżąco" wyniku łączenia
-            int[] componentTemp = new int[3];
-            int[] resultTemp = new int[3];
-
-            componentTemp[0] = Pref.IndexOf(PrefCB.Text);
-            componentTemp[1] = Baza.IndexOf(BazaCB.Text);
-            componentTemp[2] = Suf.IndexOf(SufCB.Text);
-
-            resultTemp = Polacz(component1[0], component1[1], component1[2], componentTemp[0], componentTemp[1], componentTemp[2]);
-
-            resultTemp[0] = SprawdzWyjatki(Pref, component1[0], componentTemp[0], resultTemp[0]);
-            resultTemp[1] = SprawdzWyjatki(Baza, component1[1], componentTemp[1], resultTemp[1]);
-            resultTemp[2] = SprawdzWyjatki(Suf, component1[2], componentTemp[2], resultTemp[2]);
-
-            if (PrefCB.Text != "") PrefLab.Text = Pref.ElementAt(resultTemp[0]);
-            if (PrefCB.Text == "") PrefLab.Text = "";
-            if (BazaCB.Text != "") BazaLab.Text = Baza.ElementAt(resultTemp[1]);
-            if (BazaCB.Text == "") BazaLab.Text = "";
-            if (SufCB.Text != "") SufLab.Text = Suf.ElementAt(resultTemp[2]);
-            if (SufCB.Text == "") SufLab.Text = "";
-        }
-
         private void ZmienLabel()
         {
-            if (component1[3] != 0)
+            if (component1.Sum() > 0)
             {
                 switch (GlownyTab.SelectedTab.Text)
                 {
@@ -1467,10 +1035,22 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void ZmienLabelObliczenia(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, List<string> Pref, List<string> Baza, List<string> Suf, Label PrefLab, Label BazaLab, Label SufLab)
         {
-            // Odsyłacz do mojej postaci
-            System.Diagnostics.Process.Start("https://r19.bloodwars.interia.pl/showmsg.php?a=profile&uid=2755");
+            // Funkcja do zmiany labeli - aktualizacji "na bieżąco" wyniku łączenia
+            Item skladnik = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
+            Item wynik = new Item(Polacz(component1, skladnik));
+
+            wynik.p = SprawdzWyjatki(Pref, component1.p, skladnik.p, wynik.p);
+            wynik.b = SprawdzWyjatki(Baza, component1.b, skladnik.b, wynik.b);
+            wynik.s = SprawdzWyjatki(Suf, component1.s, skladnik.s, wynik.s);
+
+            PrefLab.Text = "";
+            if (PrefCB.Text != "") PrefLab.Text = Pref.ElementAt(wynik.p);
+            BazaLab.Text = "";
+            if (BazaCB.Text != "") BazaLab.Text = Baza.ElementAt(wynik.b);
+            SufLab.Text = "";
+            if (SufCB.Text != "") SufLab.Text = Suf.ElementAt(wynik.s);
         }
 
         private int SprawdzWyjatki(List<string> B, int sk1, int sk2, int w)
@@ -1483,89 +1063,21 @@ namespace R19_BW_laczenia
             return w;
         }
 
-        private void Cofnij(RichTextBox R)
-        {
-            if (HistoriaLaczen.Count > 1)
-            {
-                // Usuń ostatnie łączenie i zaktualizuj tekst
-                HistoriaLaczen.RemoveAt(HistoriaLaczen.Count - 1);
-                R.Text = HistoriaLaczen[HistoriaLaczen.Count - 1];
-
-                // Usuń drugi składnik i wynik łączenia
-                if (HistoriaPrzedmiotow.Count > 1) HistoriaPrzedmiotow.RemoveAt(HistoriaPrzedmiotow.Count - 1);
-                if (HistoriaPrzedmiotow.Count > 1) HistoriaPrzedmiotow.RemoveAt(HistoriaPrzedmiotow.Count - 1);
-
-                component1 = HistoriaPrzedmiotow[HistoriaPrzedmiotow.Count - 1];
-                component2 = new int[] { 0, 0, 0, 0 };
-
-                if (HistoriaLaczen.Count == 1) Czyszczenie();
-            }
-
-            if (R.Text.Length > 1) R.Select(R.Text.Length - 1, 0);
-            R.ScrollToCaret();
-            ZmienLabel();
-        }
-
-        private void HelmCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(helmWynik);
-        }
-
-        private void ZbrojaCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(zbrojaWynik);
-        }
-
-        private void SpodnieCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(spodnieWynik);
-        }
-
-        private void PierscienCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(pierscienWynik);
-        }
-
-        private void AmuletCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(amuletWynik);
-        }
-
-        private void Biala1hCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(biala1hWynik);
-        }
-
-        private void Biala2hCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(biala2hWynik);
-        }
-
-        private void Palna1hCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(palna1hWynik);
-        }
-
-        private void Palna2hCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(palna2hWynik);
-        }
-
-        private void DystansCofnij_Click(object sender, EventArgs e)
-        {
-            Cofnij(dystansWynik);
-        }
-
         private void ZaladujPrzedmioty_Click(object sender, EventArgs e)
         {
             // Wyczyść listy załadowanych przedmiotów
             zaladowanePrzedmioty.Items.Clear();
-            polaczonePrzedmioty.Items.Clear();
+            polaczonePrzedmioty.DataSource = null;
             znalezionoPolaczen.Text = " ";
             cbFiltrPref.Items.Clear();
             cbFiltrBaza.Items.Clear();
             cbFiltrSuf.Items.Clear();
             iloscLaczen.Enabled = false;
+            filtrUpdate.Enabled = false;
+            polaczonePrzedmioty.Enabled = false;
+            cbFiltrPref.Enabled = false;
+            cbFiltrBaza.Enabled = false;
+            cbFiltrSuf.Enabled = false;
 
             przedmioty.Clear();
 
@@ -1634,9 +1146,11 @@ namespace R19_BW_laczenia
             // Podziel wklejony tekst na linie
             string[] linie = przedmiotyDoAnalizy.Text.Split('\n');
 
+            Item przedmiot = new Item();
+
             foreach (string line in linie)
             {
-                Item przedmiot = new Item();
+                przedmiot = new Item();
                 string[] wyrazy = line.Split(' ');
 
                 for (int i = 0; i < wyrazy.Count(); i++)
@@ -1653,7 +1167,7 @@ namespace R19_BW_laczenia
                 }
 
                 // Jeżeli znaleziono prefiks / bazę / sufiks to dodaj przedmiot do listy przedmiotów
-                if (przedmiot.p + przedmiot.b + przedmiot.s > 0)
+                if (przedmiot.Sum() > 0)
                 {
                     przedmioty.Add(przedmiot);
                     zaladowanePrzedmioty.Items.Add(UsunSpacje(przedmiot, pref, baza, suf));
@@ -1665,6 +1179,8 @@ namespace R19_BW_laczenia
 
         private void AnalizujPolaczenia_Click(object sender, EventArgs e)
         {
+            analizujPolaczenia.Enabled = false;
+            analizujPolaczenia.Text = "Analizuję...";
             iloscLaczen.Enabled = false;
             polaczonePrzedmioty.Items.Clear();
             wyniki.Clear();
@@ -1704,11 +1220,14 @@ namespace R19_BW_laczenia
             }
 
             if (przedmioty.Count >= 10) iloscLaczen.Enabled = true;
+            analizujPolaczenia.Text = "Analizuj połączenia";
+            analizujPolaczenia.Enabled = true;
         }
 
         private void AnalizujPolaczenia(List<string> pref, List<string> baza, List<string> suf)
         {
             List<int> indeksy = new List<int>();    // Lista wykorzystanych indeksów przedmiotów
+            Item wynik = new Item();
             int iloscPrzedmiotów = przedmioty.Count();
             int iloscPetli = 2;
             int maxIloscPetli = (int)iloscLaczen.Value + 1;
@@ -1717,7 +1236,7 @@ namespace R19_BW_laczenia
             {
                 indeksy.Clear();
                 indeksy.Add(sk1);
-                znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / (double)iloscPrzedmiotów) * (double)100) + "% połączeń.";
+                znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / (double)iloscPrzedmiotów) * 100d) + "% połączeń.";
                 this.Update();
 
                 for (int sk2 = sk1 + 1; sk2 < iloscPrzedmiotów; sk2++)
@@ -1725,15 +1244,11 @@ namespace R19_BW_laczenia
                     // Dodaj wykorzystany "indeks" przedmiotu z listy
                     indeksy.Add(sk2);
 
-                    Item wynik = new Item(Polacz(przedmioty[sk1].p, przedmioty[sk1].b, przedmioty[sk1].s, przedmioty[sk2].p, przedmioty[sk2].b, przedmioty[sk2].s));
+                    wynik = new Item(Polacz(przedmioty[sk1], przedmioty[sk2]));
                     wynik.p = SprawdzWyjatki(pref, przedmioty[sk1].p, przedmioty[sk2].p, wynik.p);
                     wynik.b = SprawdzWyjatki(baza, przedmioty[sk1].b, przedmioty[sk2].b, wynik.b);
                     wynik.s = SprawdzWyjatki(suf, przedmioty[sk1].s, przedmioty[sk2].s, wynik.s);
-
-                    string skladnik1 = UsunSpacje(przedmioty[sk1], pref, baza, suf);
-                    string skladnik2 = UsunSpacje(przedmioty[sk2], pref, baza, suf);
-                    string wyn = UsunSpacje(wynik, pref, baza, suf);
-                    wynik.h = skladnik1 + " + " + skladnik2 + "\n= " + wyn;
+                    wynik.h = UsunSpacje(przedmioty[sk1], pref, baza, suf) + " + " + UsunSpacje(przedmioty[sk2], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
                     wyniki.Add(wynik);
 
                     // Połączenia (((A+B)+C)+D) itd.
@@ -1757,34 +1272,34 @@ namespace R19_BW_laczenia
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    AktualizujFiltr(PrefHelm, BazaHelm, SufHelm);
+                    AktualizujPozyjcieFiltr(PrefHelm, BazaHelm, SufHelm);
                     break;
                 case "Zbroja":
-                    AktualizujFiltr(PrefZbroja, BazaZbroja, SufZbroja);
+                    AktualizujPozyjcieFiltr(PrefZbroja, BazaZbroja, SufZbroja);
                     break;
                 case "Spodnie":
-                    AktualizujFiltr(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    AktualizujPozyjcieFiltr(PrefSpodnie, BazaSpodnie, SufSpodnie);
                     break;
                 case "Pierścień":
-                    AktualizujFiltr(PrefPierscien, BazaPierscien, SufPierscien);
+                    AktualizujPozyjcieFiltr(PrefPierscien, BazaPierscien, SufPierscien);
                     break;
                 case "Amulet":
-                    AktualizujFiltr(PrefAmulet, BazaAmulet, SufAmulet);
+                    AktualizujPozyjcieFiltr(PrefAmulet, BazaAmulet, SufAmulet);
                     break;
                 case "Biała 1h":
-                    AktualizujFiltr(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    AktualizujPozyjcieFiltr(PrefBiala1h, BazaBiala1h, SufBiala1h);
                     break;
                 case "Biała 2h":
-                    AktualizujFiltr(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    AktualizujPozyjcieFiltr(PrefBiala2h, BazaBiala2h, SufBiala2h);
                     break;
                 case "Palna 1h":
-                    AktualizujFiltr(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    AktualizujPozyjcieFiltr(PrefPalan1h, BazaPalna1h, SufPalna1h);
                     break;
                 case "Palna 2h":
-                    AktualizujFiltr(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    AktualizujPozyjcieFiltr(PrefPalna2h, BazaPalna2h, SufPalna2h);
                     break;
                 case "Dystans":
-                    AktualizujFiltr(PrefDystans, BazaDystans, SufDystans);
+                    AktualizujPozyjcieFiltr(PrefDystans, BazaDystans, SufDystans);
                     break;
             }
 
@@ -1797,8 +1312,39 @@ namespace R19_BW_laczenia
             wyniki = wyniki.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ThenBy(x => x.h.Length).ToList();
         }
 
+        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        {
+            Item wynik = new Item();
+            int numerPetli = nrPetli + 1;
+            int iloscPetli = iloscPet + 1;
+
+            for (int i = 0; i < iloscPrzed; i++)
+            {
+                // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
+                if (indeksy.Contains(i)) continue;
+
+                // Dodaj wykorzystany "indeks" przedmiotu do listy
+                indeksy.Add(i);
+
+                wynik = new Item(Polacz(skladnik, przedmioty[i]));
+                wynik.p = SprawdzWyjatki(pref, skladnik.p, przedmioty[i].p, wynik.p);
+                wynik.b = SprawdzWyjatki(baza, skladnik.b, przedmioty[i].b, wynik.b);
+                wynik.s = SprawdzWyjatki(suf, skladnik.s, przedmioty[i].s, wynik.s);
+                wynik.h = skladnik.h + " + " + UsunSpacje(przedmioty[i], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                wyniki.Add(wynik);
+
+                // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
+                if (iloscPrzed > nrPetli && iloscPetli < iloscLaczen.Value + 1) AnalizujRekFunc(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
+
+                // Usuń wykorzystany "indeks" przedmiotu z listy
+                indeksy.Remove(i);
+            }
+        }
+
         private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
         {
+            Item skladnikTemp = new Item();
+            Item wynik = new Item();
             int numerPetli = nrPetli + 2;
             int iloscPetli = iloscPet + 2;
 
@@ -1818,26 +1364,23 @@ namespace R19_BW_laczenia
                     // Dodaj wykorzystany "indeks" przedmiotu do listy
                     indeksy.Add(j);
 
-                    Item skladnikTemp = new Item(Polacz(przedmioty[i].p, przedmioty[i].b, przedmioty[i].s, przedmioty[j].p, przedmioty[j].b, przedmioty[j].s));
+                    skladnikTemp = new Item(Polacz(przedmioty[i], przedmioty[j]));
                     skladnikTemp.p = SprawdzWyjatki(pref, przedmioty[i].p, przedmioty[j].p, skladnikTemp.p);
                     skladnikTemp.b = SprawdzWyjatki(baza, przedmioty[i].b, przedmioty[j].b, skladnikTemp.b);
                     skladnikTemp.s = SprawdzWyjatki(suf, przedmioty[i].s, przedmioty[j].s, skladnikTemp.s);
-                    string sk1 = UsunSpacje(przedmioty[i], pref, baza, suf);
-                    string sk2 = UsunSpacje(przedmioty[j], pref, baza, suf);
-                    skladnikTemp.h = "(" + sk1 + " + " + sk2 + ")";
+                    skladnikTemp.h = "(" + UsunSpacje(przedmioty[i], pref, baza, suf) + " + " + UsunSpacje(przedmioty[j], pref, baza, suf) + ")";
 
-                    Item wynik = new Item(Polacz(skladnik.p, skladnik.b, skladnik.s, skladnikTemp.p, skladnikTemp.b, skladnikTemp.s));
+                    wynik = new Item(Polacz(skladnik, skladnikTemp));
                     wynik.p = SprawdzWyjatki(pref, skladnik.p, skladnikTemp.p, wynik.p);
                     wynik.b = SprawdzWyjatki(baza, skladnik.b, skladnikTemp.b, wynik.b);
                     wynik.s = SprawdzWyjatki(suf, skladnik.s, skladnikTemp.s, wynik.s);
-                    string wyn = UsunSpacje(wynik, pref, baza, suf);
-                    wynik.h = skladnik.h + " + " + skladnikTemp.h + "\n= " + wyn;
+                    wynik.h = skladnik.h + " + " + skladnikTemp.h + "\n= " + UsunSpacje(wynik, pref, baza, suf);
 
                     wyniki.Add(wynik);
 
                     // Wywołaj sam siebie jeżeli ilość itemów > ilości pętli + 2
                     if (iloscPrzed >= iloscPetli + 2 && iloscPetli < iloscLaczen.Value + 2) AnalizujRekFunc2(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
-                    
+
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(j);
                 }
@@ -1847,40 +1390,21 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        private void AktualizujPozyjcieFiltr(List<string> pref, List<string> baza, List<string> suf)
         {
-            int numerPetli = nrPetli + 1;
-            int iloscPetli = iloscPet + 1;
+            cbFiltrPref.Items.Clear();
+            cbFiltrBaza.Items.Clear();
+            cbFiltrSuf.Items.Clear();
 
-            for (int i = 0; i < iloscPrzed; i++)
-            {
-                // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
-                if (indeksy.Contains(i)) continue;
-
-                // Dodaj wykorzystany "indeks" przedmiotu do listy
-                indeksy.Add(i);
-
-                Item wynik = new Item(Polacz(skladnik.p, skladnik.b, skladnik.s, przedmioty[i].p, przedmioty[i].b, przedmioty[i].s));
-                wynik.p = SprawdzWyjatki(pref, skladnik.p, przedmioty[i].p, wynik.p);
-                wynik.b = SprawdzWyjatki(baza, skladnik.b, przedmioty[i].b, wynik.b);
-                wynik.s = SprawdzWyjatki(suf, skladnik.s, przedmioty[i].s, wynik.s);
-
-                string skladnik2 = UsunSpacje(przedmioty[i], pref, baza, suf);
-                string wyn = UsunSpacje(wynik, pref, baza, suf);
-                wynik.h = skladnik.h + " + " + skladnik2 + "\n= " + wyn;
-                wyniki.Add(wynik);
-
-                // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
-                if (iloscPrzed > nrPetli && iloscPetli < iloscLaczen.Value + 1) AnalizujRekFunc(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
-
-                // Usuń wykorzystany "indeks" przedmiotu z listy
-                indeksy.Remove(i);
-            }
+            foreach (string p in pref) cbFiltrPref.Items.Add(p);
+            foreach (string b in baza) cbFiltrBaza.Items.Add(b);
+            foreach (string s in suf) cbFiltrSuf.Items.Add(s);
         }
 
         private void FiltrUpdate_Click(object sender, EventArgs e)
         {
-            polaczonePrzedmioty.Items.Clear();
+            polaczonePrzedmioty.SelectedIndexChanged -= new EventHandler(PolaczonePrzedmioty_SelectedIndexChanged);
+            polaczonePrzedmioty.DataSource = null;
 
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
@@ -1917,21 +1441,13 @@ namespace R19_BW_laczenia
             }
 
             polaczonePrzedmioty.Enabled = true;
+            polaczonePrzedmioty.SelectedIndexChanged += new EventHandler(PolaczonePrzedmioty_SelectedIndexChanged);
+            polaczonePrzedmioty.SelectedIndex = -1;
         }
-
-        private void AktualizujFiltr(List<string> pref, List<string> baza, List<string> suf)
-        {
-            cbFiltrPref.Items.Clear();
-            cbFiltrBaza.Items.Clear();
-            cbFiltrSuf.Items.Clear();
-
-            foreach (string p in pref) cbFiltrPref.Items.Add(p);
-            foreach (string b in baza) cbFiltrBaza.Items.Add(b);
-            foreach (string s in suf) cbFiltrSuf.Items.Add(s);
-        }
-
+        
         private void FiltrUpdate(List<string> pref, List<string> baza, List<string> suf)
         {
+            List<string> wynikiTekst = new List<string>();
             int filtrPref = pref.IndexOf(cbFiltrPref.Text);
             int filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
             int filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
@@ -1947,7 +1463,7 @@ namespace R19_BW_laczenia
                 if (filtrPref == 0 && filtrBaza == 0 && filtrSuf == 0)
                 {
                     // Pref, baza i suf dowolny - pokaż wszystko
-                    polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                    wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                     filtrPrzedmioty.Add(i);
                     continue;
                 }
@@ -1960,14 +1476,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano prefiks, bazę i sufiks do filtrowania
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano prefiks i bazę do filtrowania, dowolny sufiks
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1978,14 +1494,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano prefiks i sufiks do filtrowania
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano prefiks do filtrowania, dowolna baza i sufiks
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -2000,14 +1516,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano bazę i sufiks do filtrowania, dowolny prefiks
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano bazę do filtrowania, dowolny prefiks i sufiks
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -2018,14 +1534,14 @@ namespace R19_BW_laczenia
                         if (wyniki[i].s == filtrSuf)
                         {
                             // Wybrano sufiks do filtrowania, dowolny prefiks i baza
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Dowolny prefiks, baza i sufiks
-                            polaczonePrzedmioty.Items.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -2033,18 +1549,22 @@ namespace R19_BW_laczenia
                 }
             }
 
+            polaczonePrzedmioty.DataSource = wynikiTekst;
             filtrUpdate.Text = "Aktualizuj filtr";
             filtrUpdate.Enabled = true;
         }
 
         private void PolaczonePrzedmioty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Aktualizacja historii łączeń po zmianie wybranego wyniku połączenia
-            int index = filtrPrzedmioty[polaczonePrzedmioty.SelectedIndex];
-            przedmiotyDoAnalizy.Text = wyniki[index].h;
+            if (polaczonePrzedmioty.SelectedIndex >= 0)
+            {
+                // Aktualizacja historii łączeń po zmianie wybranego wyniku połączenia
+                int index = filtrPrzedmioty[polaczonePrzedmioty.SelectedIndex];
+                przedmiotyDoAnalizy.Text = wyniki[index].h;
+            }
         }
 
-        private void przedmiotyDoAnalizy_Enter(object sender, EventArgs e)
+        private void PrzedmiotyDoAnalizy_Enter(object sender, EventArgs e)
         {
             // Usuń "startowy" tekst w okienku analizatora łączeń po kliknięciu w nie
             if (doOnceAnalizator)
@@ -2087,6 +1607,248 @@ namespace R19_BW_laczenia
             if ((i.p != 0 || i.b != 0) && i.s != 0) s += " ";
             if (i.s != 0) s += suf.ElementAt(i.s);
             return s;
+        }
+
+        private void GlownyTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Czyszczenie();
+            if (GlownyTab.SelectedTab.Text == "Analizator raportu") wklejToolStripMenuItem1.Enabled = true;
+            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") wklejToolStripMenuItem1.Enabled = true;
+            else
+            {
+                wklejToolStripMenuItem1.Enabled = false;
+            }
+        }
+
+        private void Czyszczenie()
+        {
+            // Czyszczenie składników i okienek wyników po przepłączeniu zakładki
+            component1 = new Item();
+            component2 = new Item();
+            result = new Item();
+            added = false;
+
+            helmWynik.Clear();
+            zbrojaWynik.Clear();
+            spodnieWynik.Clear();
+            pierscienWynik.Clear();
+            amuletWynik.Clear();
+            biala1hWynik.Clear();
+            biala2hWynik.Clear();
+            palna1hWynik.Clear();
+            palna2hWynik.Clear();
+            dystansWynik.Clear();
+            AnalizatorRaportuTekst.Clear();
+
+            // czyszczenie labeli
+            PrefHelmL.Text = "";
+            BazaHelmL.Text = "";
+            SufHelmL.Text = "";
+            PrefZbrojaL.Text = "";
+            BazaZbrojaL.Text = "";
+            SufZbrojaL.Text = "";
+            PrefSpodnieL.Text = "";
+            BazaSpodnieL.Text = "";
+            SufSpodnieL.Text = "";
+            PrefPierscienL.Text = "";
+            BazaPierscienL.Text = "";
+            SufPierscienL.Text = "";
+            PrefAmuletL.Text = "";
+            BazaAmuletL.Text = "";
+            SufAmuletL.Text = "";
+            PrefBiala1hL.Text = "";
+            BazaBiala1hL.Text = "";
+            SufBiala1hL.Text = "";
+            PrefBiala2hL.Text = "";
+            BazaBiala2hL.Text = "";
+            SufBiala2hL.Text = "";
+            PrefPalna1hL.Text = "";
+            BazaPalna1hL.Text = "";
+            SufPalna1hL.Text = "";
+            PrefPalna2hL.Text = "";
+            BazaPalna2hL.Text = "";
+            SufPalna2hL.Text = "";
+            PrefDystansL.Text = "";
+            BazaDystansL.Text = "";
+            SufDystansL.Text = "";
+
+            // Czyszczenie historii
+            HistoriaLaczen.Clear();
+            HistoriaLaczen.Add("");
+            HistoriaPrzedmiotow.Clear();
+        }
+
+        private void WklejToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GlownyTab.SelectedTab.Text == "Analizator raportu")
+            {
+                AnalizatorRaportuTekst.Paste();
+                AnalizatorRaportuTekst.ScrollToCaret();
+            }
+            if (GlownyTab.SelectedTab.Text == "Analizator łączeń")
+            {
+                przedmiotyDoAnalizy.Paste();
+                przedmiotyDoAnalizy.ScrollToCaret();
+            }
+        }
+
+        private void KopiujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Kopiuj zaznaczony tekst do schowka systemowego
+            switch (GlownyTab.SelectedTab.Text)
+            {
+                case "Hełm":
+                    helmWynik.Copy();
+                    break;
+                case "Zbroja":
+                    zbrojaWynik.Copy();
+                    break;
+                case "Spodnie":
+                    spodnieWynik.Copy();
+                    break;
+                case "Pierścień":
+                    pierscienWynik.Copy();
+                    break;
+                case "Amulet":
+                    amuletWynik.Copy();
+                    break;
+                case "Biała 1h":
+                    biala1hWynik.Copy();
+                    break;
+                case "Biała 2h":
+                    biala2hWynik.Copy();
+                    break;
+                case "Palna 1h":
+                    palna1hWynik.Copy();
+                    break;
+                case "Palna 2h":
+                    palna2hWynik.Copy();
+                    break;
+                case "Dystans":
+                    dystansWynik.Copy();
+                    break;
+                case "Analizator raportu":
+                    AnalizatorRaportuTekst.Copy();
+                    break;
+                case "Analizator łączeń":
+                    przedmiotyDoAnalizy.Copy();
+                    break;
+            }
+        }
+
+        private void KopiujWszystkoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Kopiuj wszystko do schowka systemowego
+            switch (GlownyTab.SelectedTab.Text)
+            {
+                case "Hełm":
+                    helmWynik.SelectAll();
+                    helmWynik.Copy();
+                    break;
+                case "Zbroja":
+                    zbrojaWynik.SelectAll();
+                    zbrojaWynik.Copy();
+                    break;
+                case "Spodnie":
+                    spodnieWynik.SelectAll();
+                    spodnieWynik.Copy();
+                    break;
+                case "Pierścień":
+                    pierscienWynik.SelectAll();
+                    pierscienWynik.Copy();
+                    break;
+                case "Amulet":
+                    amuletWynik.SelectAll();
+                    amuletWynik.Copy();
+                    break;
+                case "Biała 1h":
+                    biala1hWynik.SelectAll();
+                    biala1hWynik.Copy();
+                    break;
+                case "Biała 2h":
+                    biala2hWynik.SelectAll();
+                    biala2hWynik.Copy();
+                    break;
+                case "Palna 1h":
+                    palna1hWynik.SelectAll();
+                    palna1hWynik.Copy();
+                    break;
+                case "Palna 2h":
+                    palna2hWynik.SelectAll();
+                    palna2hWynik.Copy();
+                    break;
+                case "Dystans":
+                    dystansWynik.SelectAll();
+                    dystansWynik.Copy();
+                    break;
+                case "Analizator raportu":
+                    AnalizatorRaportuTekst.SelectAll();
+                    AnalizatorRaportuTekst.Copy();
+                    break;
+                case "Analizator łączeń":
+                    przedmiotyDoAnalizy.SelectAll();
+                    przedmiotyDoAnalizy.Copy();
+                    break;
+            }
+        }
+
+        private void ZapiszToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Zapisz tekst do pliku, domyślnie format .txt
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "Text Files (*.txt)|*.txt|All Files|*.*";
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream a = File.Open(saveFile.FileName, FileMode.Create))
+                using (StreamWriter aa = new StreamWriter(a))
+                {
+                    switch (GlownyTab.SelectedTab.Text)
+                    {
+                        case "Hełm":
+                            aa.Write(helmWynik.Text);
+                            break;
+                        case "Zbroja":
+                            aa.Write(zbrojaWynik.Text);
+                            break;
+                        case "Spodnie":
+                            aa.Write(spodnieWynik.Text);
+                            break;
+                        case "Pierścień":
+                            aa.Write(pierscienWynik.Text);
+                            break;
+                        case "Amulet":
+                            aa.Write(amuletWynik.Text);
+                            break;
+                        case "Biała 1h":
+                            aa.Write(biala1hWynik.Text);
+                            break;
+                        case "Biała 2h":
+                            aa.Write(biala2hWynik.Text);
+                            break;
+                        case "Palna 1h":
+                            aa.Write(palna1hWynik.Text);
+                            break;
+                        case "Palna 2h":
+                            aa.Write(palna2hWynik.Text);
+                            break;
+                        case "Dystans":
+                            aa.Write(dystansWynik.Text);
+                            break;
+                        case "Analizator raportu":
+                            aa.Write(AnalizatorRaportuTekst.Text);
+                            break;
+                        case "Analizator łączeń":
+                            aa.Write(przedmiotyDoAnalizy.Text);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
+            Czyszczenie();
         }
 
         private void BazaHelmow(List<string> pref, List<string> baza, List<string> suf)
@@ -2574,6 +2336,12 @@ namespace R19_BW_laczenia
             suf.Add("Driady");
             suf.Add("Szybkostrzelności");
             suf.Add("Wilka");
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+            // Odsyłacz do mojej postaci
+            System.Diagnostics.Process.Start("https://r19.bloodwars.interia.pl/showmsg.php?a=profile&uid=2755");
         }
     }
 }
