@@ -21,7 +21,7 @@ Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu
    - Możliwość wyświetlenia historii połączeń,
    - Sortowanie wyszukanych połączeń według: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość połączeń,
    - Domyślnie wyszukiwane połączenia: ((A+B) + C) + D itd.,
-   - Możliwość włączenia wyszukiwania dodatkowych połączeń: (A+B) + (C+D) + (D+E) + itd..
+   - Możliwość włączenia wyszukiwania dodatkowych połączeń: (A+B) + (C+D) + (E+F) + itd..
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów i analizatorze łączeń),
    - Kopiowanie zaznaczonego tekstu,
