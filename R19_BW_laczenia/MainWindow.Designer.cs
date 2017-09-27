@@ -344,6 +344,8 @@
             this.analizujPolaczenia = new System.Windows.Forms.Button();
             this.znalezionoPolaczen = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.edytujPrzedmioty = new System.Windows.Forms.Button();
             this.zaladujPrzedmioty = new System.Windows.Forms.Button();
             this.zaladowanePrzedmioty = new System.Windows.Forms.ComboBox();
             this.zaladowanoPrzedmiotow = new System.Windows.Forms.Label();
@@ -352,7 +354,6 @@
             this.listaTypowPrzedmiotow = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ByMe = new System.Windows.Forms.Label();
-            this.wklejToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -366,6 +367,11 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.wyczyscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.schowekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schowekPoz1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schowekPoz2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schowekPoz3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -424,6 +430,7 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iloscLaczen)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -4153,7 +4160,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.zaladujPrzedmioty);
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.zaladowanePrzedmioty);
             this.panel1.Controls.Add(this.zaladowanoPrzedmiotow);
             this.panel1.Location = new System.Drawing.Point(615, 74);
@@ -4161,9 +4168,31 @@
             this.panel1.Size = new System.Drawing.Size(537, 84);
             this.panel1.TabIndex = 46;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.Controls.Add(this.edytujPrzedmioty);
+            this.panel5.Controls.Add(this.zaladujPrzedmioty);
+            this.panel5.Location = new System.Drawing.Point(84, 5);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(368, 40);
+            this.panel5.TabIndex = 59;
+            // 
+            // edytujPrzedmioty
+            // 
+            this.edytujPrzedmioty.Enabled = false;
+            this.edytujPrzedmioty.Location = new System.Drawing.Point(188, 0);
+            this.edytujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
+            this.edytujPrzedmioty.Name = "edytujPrzedmioty";
+            this.edytujPrzedmioty.Size = new System.Drawing.Size(180, 40);
+            this.edytujPrzedmioty.TabIndex = 44;
+            this.edytujPrzedmioty.Text = "Edytuj przedmioty";
+            this.edytujPrzedmioty.UseVisualStyleBackColor = true;
+            this.edytujPrzedmioty.Click += new System.EventHandler(this.EdytujPrzedmioty_Click);
+            // 
             // zaladujPrzedmioty
             // 
-            this.zaladujPrzedmioty.Location = new System.Drawing.Point(178, 4);
+            this.zaladujPrzedmioty.Location = new System.Drawing.Point(0, 0);
             this.zaladujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
             this.zaladujPrzedmioty.Name = "zaladujPrzedmioty";
             this.zaladujPrzedmioty.Size = new System.Drawing.Size(180, 40);
@@ -4233,8 +4262,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1063, 35);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Analizator łączeń (Beta). Nie sprawdza wszystkich możliwych połączeń, zużywa dużo" +
-    " pamięci komputera.";
+            this.label1.Text = "Nie sprawdza wszystkich możliwych połączeń (lecz dużą ich część) i zużywa dużo pa" +
+    "mięci komputera.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ByMe
@@ -4250,11 +4279,6 @@
             this.ByMe.Text = "by Abev";
             this.ByMe.Click += new System.EventHandler(this.Label1_Click);
             // 
-            // wklejToolStripMenuItem1
-            // 
-            this.wklejToolStripMenuItem1.Name = "wklejToolStripMenuItem1";
-            this.wklejToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -4268,7 +4292,7 @@
             // zapiszToolStripMenuItem
             // 
             this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(352, 24);
             this.zapiszToolStripMenuItem.Text = "Zapisz";
             this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click);
             // 
@@ -4288,53 +4312,91 @@
             this.toolStripSeparator5,
             this.zapiszToolStripMenuItem,
             this.toolStripSeparator6,
-            this.wyczyscToolStripMenuItem});
+            this.wyczyscToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.schowekToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 142);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(353, 200);
             // 
             // wklejToolStripMenuItem
             // 
             this.wklejToolStripMenuItem.Enabled = false;
             this.wklejToolStripMenuItem.Name = "wklejToolStripMenuItem";
-            this.wklejToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.wklejToolStripMenuItem.Size = new System.Drawing.Size(352, 24);
             this.wklejToolStripMenuItem.Text = "Wklej";
             this.wklejToolStripMenuItem.Click += new System.EventHandler(this.WklejToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(349, 6);
             // 
             // kopiujToolStripMenuItem
             // 
             this.kopiujToolStripMenuItem.Name = "kopiujToolStripMenuItem";
-            this.kopiujToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.kopiujToolStripMenuItem.Size = new System.Drawing.Size(352, 24);
             this.kopiujToolStripMenuItem.Text = "Kopiuj";
             this.kopiujToolStripMenuItem.Click += new System.EventHandler(this.KopiujToolStripMenuItem_Click);
             // 
             // kopiujWszystkoToolStripMenuItem
             // 
             this.kopiujWszystkoToolStripMenuItem.Name = "kopiujWszystkoToolStripMenuItem";
-            this.kopiujWszystkoToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.kopiujWszystkoToolStripMenuItem.Size = new System.Drawing.Size(352, 24);
             this.kopiujWszystkoToolStripMenuItem.Text = "Kopiuj wszystko";
             this.kopiujWszystkoToolStripMenuItem.Click += new System.EventHandler(this.KopiujWszystkoToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(349, 6);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(349, 6);
             // 
             // wyczyscToolStripMenuItem
             // 
             this.wyczyscToolStripMenuItem.Name = "wyczyscToolStripMenuItem";
-            this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(183, 24);
+            this.wyczyscToolStripMenuItem.Size = new System.Drawing.Size(352, 24);
             this.wyczyscToolStripMenuItem.Text = "Wyczyść";
             this.wyczyscToolStripMenuItem.Click += new System.EventHandler(this.WyczyscToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(349, 6);
+            // 
+            // schowekToolStripMenuItem
+            // 
+            this.schowekToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.schowekPoz1ToolStripMenuItem,
+            this.schowekPoz2ToolStripMenuItem,
+            this.schowekPoz3ToolStripMenuItem});
+            this.schowekToolStripMenuItem.Name = "schowekToolStripMenuItem";
+            this.schowekToolStripMenuItem.Size = new System.Drawing.Size(352, 24);
+            this.schowekToolStripMenuItem.Text = "Wyślij zaznaczony przedmiot do schowka";
+            // 
+            // schowekPoz1ToolStripMenuItem
+            // 
+            this.schowekPoz1ToolStripMenuItem.Name = "schowekPoz1ToolStripMenuItem";
+            this.schowekPoz1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.schowekPoz1ToolStripMenuItem.Text = "Pozycja 1";
+            this.schowekPoz1ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz1ToolStripMenuItem_Click);
+            // 
+            // schowekPoz2ToolStripMenuItem
+            // 
+            this.schowekPoz2ToolStripMenuItem.Name = "schowekPoz2ToolStripMenuItem";
+            this.schowekPoz2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.schowekPoz2ToolStripMenuItem.Text = "Pozycja 2";
+            this.schowekPoz2ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz2ToolStripMenuItem_Click);
+            // 
+            // schowekPoz3ToolStripMenuItem
+            // 
+            this.schowekPoz3ToolStripMenuItem.Name = "schowekPoz3ToolStripMenuItem";
+            this.schowekPoz3ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.schowekPoz3ToolStripMenuItem.Text = "Pozycja 3";
+            this.schowekPoz3ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz3ToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -4422,6 +4484,7 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iloscLaczen)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -4729,7 +4792,6 @@
         private System.Windows.Forms.Button DystansCofnij;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.RichTextBox helmWynik;
-        private System.Windows.Forms.ToolStripMenuItem wklejToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.TabPage TabLaczenia;
         private System.Windows.Forms.RichTextBox przedmiotyDoAnalizy;
@@ -4767,6 +4829,13 @@
         private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem wyczyscToolStripMenuItem;
+        private System.Windows.Forms.Button edytujPrzedmioty;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem schowekToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem schowekPoz1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem schowekPoz2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem schowekPoz3ToolStripMenuItem;
     }
 }
 

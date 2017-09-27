@@ -1,4 +1,11 @@
-﻿Version 1.10.4 (Beta 2.0.1)
+﻿Version 2.0
+	- Dodano możliwość wysłania zaznaczonego przedmiotu do schowka,
+	- Poprawiono opcję kopiowania w menu prawego przycisku myszy,
+	- Analizator łączeń:
+		-- Dodano możliwość edytowania załadowanych przedmiotów,
+		-- Poprawiono ładowanie przedmiotów dystansowych.
+
+Version 1.10.4 (Beta 2.0.1)
 	- Analizator łączeń:
 		-- Bugfix: Naprawiono crash programu przy kliknięciu "Analizuj połączenia" po kliknięciu "Aktualizuj filtr".
 

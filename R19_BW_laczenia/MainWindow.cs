@@ -286,7 +286,7 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 1.10.4 (Beta 2.0.1)\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 2.0\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
@@ -1079,6 +1079,8 @@ namespace R19_BW_laczenia
             cbFiltrBaza.Enabled = false;
             cbFiltrSuf.Enabled = false;
 
+            edytujPrzedmioty.Enabled = false;
+
             przedmioty.Clear();
 
             switch (listaTypowPrzedmiotow.SelectedItem)
@@ -1111,14 +1113,54 @@ namespace R19_BW_laczenia
                     Zaladuj(PrefPalna2h, BazaPalna2h, SufPalna2h);
                     break;
                 case "Dystans":
-                    Zaladuj(PrefDystans, BazaDystans, SufDystans);
+                    // Normalna identyfikacja nie działa :/
+                    //Zaladuj(PrefDystans, BazaDystans, SufDystans);
+
+                    zaladowanePrzedmioty.Items.Clear();
+                    przedmioty.Clear();
+
+                    przedmiotyDoAnalizy.WordWrap = false;
+
+                    string[] linie = przedmiotyDoAnalizy.Text.Split('\n');
+
+                    Item przedmiot = new Item();
+
+                    foreach (string line in linie)
+                    {
+                        przedmiot = new Item();
+
+                        for (int i = 0; i < PrefDystans.Count; i++)
+                        {
+                            if (line.Contains(PrefDystans[i])) przedmiot.p = i;
+                        }
+                        for (int i = 0; i < BazaDystans.Count; i++)
+                        {
+                            if (line.Contains(BazaDystans[i])) przedmiot.b = i;
+                        }
+                        for (int i = 0; i < SufDystans.Count; i++)
+                        {
+                            if (line.Contains(SufDystans[i])) przedmiot.s = i;
+                        }
+
+
+                        if (przedmiot.Sum() > 0)
+                        {
+                            przedmioty.Add(przedmiot);
+                            zaladowanePrzedmioty.Items.Add(UsunSpacje(przedmiot, PrefDystans, BazaDystans, SufDystans));
+                        }
+                    }
+                    przedmiotyDoAnalizy.WordWrap = true;
                     break;
             }
 
             if (przedmioty.Count == 1) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiot:";
             if (przedmioty.Count > 1 && przedmioty.Count < 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmioty:";
-            if (przedmioty.Count >= 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
-            if (przedmioty.Count > 0) zaladowanePrzedmioty.SelectedIndex = 0;
+            if (przedmioty.Count >= 5 || przedmioty.Count == 0) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
+            if (przedmioty.Count > 0)
+            {
+                zaladowanePrzedmioty.SelectedIndex = 0;
+                edytujPrzedmioty.Enabled = true;
+            }
             if (przedmioty.Count > 1)
             {
                 analizujPolaczenia.Enabled = true;
@@ -1609,14 +1651,63 @@ namespace R19_BW_laczenia
             return s;
         }
 
+        private void EdytujPrzedmioty_Click(object sender, EventArgs e)
+        {
+            przedmiotyDoAnalizy.Text = "";
+
+            switch (listaTypowPrzedmiotow.SelectedItem)
+            {
+                case "Hełm":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefHelm, BazaHelm, SufHelm) + '\n');
+                    break;
+                case "Zbroja":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefZbroja, BazaZbroja, SufZbroja) + '\n');
+                    break;
+                case "Spodnie":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefSpodnie, BazaSpodnie, SufSpodnie) + '\n');
+                    break;
+                case "Pierścień":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPierscien, BazaPierscien, SufPierscien) + '\n');
+                    break;
+                case "Amulet":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefAmulet, BazaAmulet, SufAmulet) + '\n');
+                    break;
+                case "Biała 1h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala1h, BazaBiala1h, SufBiala1h) + '\n');
+                    break;
+                case "Biała 2h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala2h, BazaBiala2h, SufBiala2h) + '\n');
+                    break;
+                case "Palna 1h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalan1h, BazaPalna1h, SufPalna1h) + '\n');
+                    break;
+                case "Palna 2h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalna2h, BazaPalna2h, SufPalna2h) + '\n');
+                    break;
+                case "Dystans":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefDystans, BazaDystans, SufDystans) + '\n');
+                    break;
+            }
+        }
+
         private void GlownyTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             Czyszczenie();
-            if (GlownyTab.SelectedTab.Text == "Analizator raportu") wklejToolStripMenuItem1.Enabled = true;
-            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") wklejToolStripMenuItem1.Enabled = true;
+
+            if (GlownyTab.SelectedTab.Text == "Analizator raportu")
+            {
+                wklejToolStripMenuItem.Enabled = true;
+                schowekToolStripMenuItem.Enabled = false;
+            }
+            else if (GlownyTab.SelectedTab.Text == "Analizator łączeń")
+            {
+                wklejToolStripMenuItem.Enabled = true;
+                schowekToolStripMenuItem.Enabled = false;
+            }
             else
             {
-                wklejToolStripMenuItem1.Enabled = false;
+                wklejToolStripMenuItem.Enabled = false;
+                schowekToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -1698,40 +1789,40 @@ namespace R19_BW_laczenia
             switch (GlownyTab.SelectedTab.Text)
             {
                 case "Hełm":
-                    helmWynik.Copy();
+                    if (helmWynik.SelectedText != "") Clipboard.SetText(helmWynik.SelectedText);
                     break;
                 case "Zbroja":
-                    zbrojaWynik.Copy();
+                    if (zbrojaWynik.SelectedText != "") Clipboard.SetText(zbrojaWynik.SelectedText);
                     break;
                 case "Spodnie":
-                    spodnieWynik.Copy();
+                    if (spodnieWynik.SelectedText != "") Clipboard.SetText(spodnieWynik.SelectedText);
                     break;
                 case "Pierścień":
-                    pierscienWynik.Copy();
+                    if (pierscienWynik.SelectedText != "") Clipboard.SetText(pierscienWynik.SelectedText);
                     break;
                 case "Amulet":
-                    amuletWynik.Copy();
+                    if (amuletWynik.SelectedText != "") Clipboard.SetText(amuletWynik.SelectedText);
                     break;
                 case "Biała 1h":
-                    biala1hWynik.Copy();
+                    if (biala1hWynik.SelectedText != "") Clipboard.SetText(biala1hWynik.SelectedText);
                     break;
                 case "Biała 2h":
-                    biala2hWynik.Copy();
+                    if (biala2hWynik.SelectedText != "") Clipboard.SetText(biala2hWynik.SelectedText);
                     break;
                 case "Palna 1h":
-                    palna1hWynik.Copy();
+                    if (palna1hWynik.SelectedText != "") Clipboard.SetText(palna1hWynik.SelectedText);
                     break;
                 case "Palna 2h":
-                    palna2hWynik.Copy();
+                    if (palna2hWynik.SelectedText != "") Clipboard.SetText(palna2hWynik.SelectedText);
                     break;
                 case "Dystans":
-                    dystansWynik.Copy();
+                    if (dystansWynik.SelectedText != "") Clipboard.SetText(dystansWynik.SelectedText);
                     break;
                 case "Analizator raportu":
-                    AnalizatorRaportuTekst.Copy();
+                    if (AnalizatorRaportuTekst.SelectedText != "") Clipboard.SetText(AnalizatorRaportuTekst.SelectedText);
                     break;
                 case "Analizator łączeń":
-                    przedmiotyDoAnalizy.Copy();
+                    if (przedmiotyDoAnalizy.SelectedText != "") Clipboard.SetText(przedmiotyDoAnalizy.SelectedText);
                     break;
             }
         }
@@ -1742,52 +1833,40 @@ namespace R19_BW_laczenia
             switch (GlownyTab.SelectedTab.Text)
             {
                 case "Hełm":
-                    helmWynik.SelectAll();
-                    helmWynik.Copy();
+                    if (helmWynik.Text != "") Clipboard.SetText(helmWynik.Text);
                     break;
                 case "Zbroja":
-                    zbrojaWynik.SelectAll();
-                    zbrojaWynik.Copy();
+                    if (zbrojaWynik.Text != "") Clipboard.SetText(zbrojaWynik.Text);
                     break;
                 case "Spodnie":
-                    spodnieWynik.SelectAll();
-                    spodnieWynik.Copy();
+                    if (spodnieWynik.Text != "") Clipboard.SetText(spodnieWynik.Text);
                     break;
                 case "Pierścień":
-                    pierscienWynik.SelectAll();
-                    pierscienWynik.Copy();
+                    if (pierscienWynik.Text != "") Clipboard.SetText(pierscienWynik.Text);
                     break;
                 case "Amulet":
-                    amuletWynik.SelectAll();
-                    amuletWynik.Copy();
+                    if (amuletWynik.Text != "") Clipboard.SetText(amuletWynik.Text);
                     break;
                 case "Biała 1h":
-                    biala1hWynik.SelectAll();
-                    biala1hWynik.Copy();
+                    if (biala1hWynik.Text != "") Clipboard.SetText(biala1hWynik.Text);
                     break;
                 case "Biała 2h":
-                    biala2hWynik.SelectAll();
-                    biala2hWynik.Copy();
+                    if (biala2hWynik.Text != "") Clipboard.SetText(biala2hWynik.Text);
                     break;
                 case "Palna 1h":
-                    palna1hWynik.SelectAll();
-                    palna1hWynik.Copy();
+                    if (palna1hWynik.Text != "") Clipboard.SetText(palna1hWynik.Text);
                     break;
                 case "Palna 2h":
-                    palna2hWynik.SelectAll();
-                    palna2hWynik.Copy();
+                    if (palna2hWynik.Text != "") Clipboard.SetText(palna2hWynik.Text);
                     break;
                 case "Dystans":
-                    dystansWynik.SelectAll();
-                    dystansWynik.Copy();
+                    if (dystansWynik.Text != "") Clipboard.SetText(dystansWynik.Text);
                     break;
                 case "Analizator raportu":
-                    AnalizatorRaportuTekst.SelectAll();
-                    AnalizatorRaportuTekst.Copy();
+                    if (AnalizatorRaportuTekst.Text != "") Clipboard.SetText(AnalizatorRaportuTekst.Text);
                     break;
                 case "Analizator łączeń":
-                    przedmiotyDoAnalizy.SelectAll();
-                    przedmiotyDoAnalizy.Copy();
+                    if (przedmiotyDoAnalizy.Text != "") Clipboard.SetText(przedmiotyDoAnalizy.Text);
                     break;
             }
         }
@@ -1849,6 +1928,139 @@ namespace R19_BW_laczenia
         {
             if (GlownyTab.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
             Czyszczenie();
+        }
+
+        private void SchowekPoz1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (GlownyTab.SelectedTab.Text)
+            {
+                case "Hełm":
+                    WyslijDoSchowka(helmWynik.SelectedText, PrefHelm, BazaHelm, SufHelm, cbHelmPref_sh1, cbHelmBaza_sh1, cbHelmSuf_sh1);
+                    break;
+                case "Zbroja":
+                    WyslijDoSchowka(zbrojaWynik.SelectedText, PrefZbroja, BazaZbroja, SufZbroja, cbZbrojaPref_sh1, cbZbrojaBaza_sh1, cbZbrojaSuf_sh1);
+                    break;
+                case "Spodnie":
+                    WyslijDoSchowka(spodnieWynik.SelectedText, PrefSpodnie, BazaSpodnie, SufSpodnie, cbSpodniePref_sh1, cbSpodnieBaza_sh1, cbSpodnieSuf_sh1);
+                    break;
+                case "Pierścień":
+                    WyslijDoSchowka(pierscienWynik.SelectedText, PrefPierscien, BazaPierscien, SufPierscien, cbPierscienPref_sh1, cbPierscienBaza_sh1, cbPierscienSuf_sh1);
+                    break;
+                case "Amulet":
+                    WyslijDoSchowka(amuletWynik.SelectedText, PrefAmulet, BazaAmulet, SufAmulet, cbAmuletPref_sh1, cbAmuletBaza_sh1, cbAmuletSuf_sh1);
+                    break;
+                case "Biała 1h":
+                    WyslijDoSchowka(biala1hWynik.SelectedText, PrefBiala1h, BazaBiala1h, SufBiala1h, cbBiala1hPref_sh1, cbBiala1hBaza_sh1, cbBiala1hSuf_sh1);
+                    break;
+                case "Biała 2h":
+                    WyslijDoSchowka(biala2hWynik.SelectedText, PrefBiala2h, BazaBiala2h, SufBiala2h, cbBiala2hPref_sh1, cbBiala2hBaza_sh1, cbBiala2hSuf_sh1);
+                    break;
+                case "Palna 1h":
+                    WyslijDoSchowka(palna1hWynik.SelectedText, PrefPalan1h, BazaPalna1h, SufPalna1h, cbPalna1hPref_sh1, cbPalna1hBaza_sh1, cbPalna1hSuf_sh1);
+                    break;
+                case "Palna 2h":
+                    WyslijDoSchowka(palna2hWynik.SelectedText, PrefPalna2h, BazaPalna2h, SufPalna2h, cbPalna2hPref_sh1, cbPalna2hBaza_sh1, cbPalna2hSuf_sh1);
+                    break;
+                case "Dystans":
+                    WyslijDoSchowka(dystansWynik.SelectedText, PrefDystans, BazaDystans, SufDystans, cbDystansPref_sh1, cbDystansBaza_sh1, cbDystansSuf_sh1);
+                    break;
+            }
+        }
+
+        private void SchowekPoz2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (GlownyTab.SelectedTab.Text)
+            {
+                case "Hełm":
+                    WyslijDoSchowka(helmWynik.SelectedText, PrefHelm, BazaHelm, SufHelm, cbHelmPref_sh2, cbHelmBaza_sh2, cbHelmSuf_sh2);
+                    break;
+                case "Zbroja":
+                    WyslijDoSchowka(zbrojaWynik.SelectedText, PrefZbroja, BazaZbroja, SufZbroja, cbZbrojaPref_sh2, cbZbrojaBaza_sh2, cbZbrojaSuf_sh2);
+                    break;
+                case "Spodnie":
+                    WyslijDoSchowka(spodnieWynik.SelectedText, PrefSpodnie, BazaSpodnie, SufSpodnie, cbSpodniePref_sh2, cbSpodnieBaza_sh2, cbSpodnieSuf_sh2);
+                    break;
+                case "Pierścień":
+                    WyslijDoSchowka(pierscienWynik.SelectedText, PrefPierscien, BazaPierscien, SufPierscien, cbPierscienPref_sh2, cbPierscienBaza_sh2, cbPierscienSuf_sh2);
+                    break;
+                case "Amulet":
+                    WyslijDoSchowka(amuletWynik.SelectedText, PrefAmulet, BazaAmulet, SufAmulet, cbAmuletPref_sh2, cbAmuletBaza_sh2, cbAmuletSuf_sh2);
+                    break;
+                case "Biała 1h":
+                    WyslijDoSchowka(biala1hWynik.SelectedText, PrefBiala1h, BazaBiala1h, SufBiala1h, cbBiala1hPref_sh2, cbBiala1hBaza_sh2, cbBiala1hSuf_sh2);
+                    break;
+                case "Biała 2h":
+                    WyslijDoSchowka(biala2hWynik.SelectedText, PrefBiala2h, BazaBiala2h, SufBiala2h, cbBiala2hPref_sh2, cbBiala2hBaza_sh2, cbBiala2hSuf_sh2);
+                    break;
+                case "Palna 1h":
+                    WyslijDoSchowka(palna1hWynik.SelectedText, PrefPalan1h, BazaPalna1h, SufPalna1h, cbPalna1hPref_sh2, cbPalna1hBaza_sh2, cbPalna1hSuf_sh2);
+                    break;
+                case "Palna 2h":
+                    WyslijDoSchowka(palna2hWynik.SelectedText, PrefPalna2h, BazaPalna2h, SufPalna2h, cbPalna2hPref_sh2, cbPalna2hBaza_sh2, cbPalna2hSuf_sh2);
+                    break;
+                case "Dystans":
+                    WyslijDoSchowka(dystansWynik.SelectedText, PrefDystans, BazaDystans, SufDystans, cbDystansPref_sh2, cbDystansBaza_sh2, cbDystansSuf_sh2);
+                    break;
+            }
+        }
+
+        private void SchowekPoz3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (GlownyTab.SelectedTab.Text)
+            {
+                case "Hełm":
+                    WyslijDoSchowka(helmWynik.SelectedText, PrefHelm, BazaHelm, SufHelm, cbHelmPref_sh3, cbHelmBaza_sh3, cbHelmSuf_sh3);
+                    break;
+                case "Zbroja":
+                    WyslijDoSchowka(zbrojaWynik.SelectedText, PrefZbroja, BazaZbroja, SufZbroja, cbZbrojaPref_sh3, cbZbrojaBaza_sh3, cbZbrojaSuf_sh3);
+                    break;
+                case "Spodnie":
+                    WyslijDoSchowka(spodnieWynik.SelectedText, PrefSpodnie, BazaSpodnie, SufSpodnie, cbSpodniePref_sh3, cbSpodnieBaza_sh3, cbSpodnieSuf_sh3);
+                    break;
+                case "Pierścień":
+                    WyslijDoSchowka(pierscienWynik.SelectedText, PrefPierscien, BazaPierscien, SufPierscien, cbPierscienPref_sh3, cbPierscienBaza_sh3, cbPierscienSuf_sh3);
+                    break;
+                case "Amulet":
+                    WyslijDoSchowka(amuletWynik.SelectedText, PrefAmulet, BazaAmulet, SufAmulet, cbAmuletPref_sh3, cbAmuletBaza_sh3, cbAmuletSuf_sh3);
+                    break;
+                case "Biała 1h":
+                    WyslijDoSchowka(biala1hWynik.SelectedText, PrefBiala1h, BazaBiala1h, SufBiala1h, cbBiala1hPref_sh3, cbBiala1hBaza_sh3, cbBiala1hSuf_sh3);
+                    break;
+                case "Biała 2h":
+                    WyslijDoSchowka(biala2hWynik.SelectedText, PrefBiala2h, BazaBiala2h, SufBiala2h, cbBiala2hPref_sh3, cbBiala2hBaza_sh3, cbBiala2hSuf_sh3);
+                    break;
+                case "Palna 1h":
+                    WyslijDoSchowka(palna1hWynik.SelectedText, PrefPalan1h, BazaPalna1h, SufPalna1h, cbPalna1hPref_sh3, cbPalna1hBaza_sh3, cbPalna1hSuf_sh3);
+                    break;
+                case "Palna 2h":
+                    WyslijDoSchowka(palna2hWynik.SelectedText, PrefPalna2h, BazaPalna2h, SufPalna2h, cbPalna2hPref_sh3, cbPalna2hBaza_sh3, cbPalna2hSuf_sh3);
+                    break;
+                case "Dystans":
+                    WyslijDoSchowka(dystansWynik.SelectedText, PrefDystans, BazaDystans, SufDystans, cbDystansPref_sh3, cbDystansBaza_sh3, cbDystansSuf_sh3);
+                    break;
+            }
+        }
+
+        private void WyslijDoSchowka(string tekst, List<string> pref, List<string> baza, List<string> suf, ComboBox cbPref, ComboBox cbBaza, ComboBox cbSuf)
+        {
+            Item przedmiot = new Item();
+
+            for (int i = 0; i < pref.Count; i++)
+            {
+                if (tekst.Contains(pref[i])) przedmiot.p = i;
+            }
+            for (int i = 0; i < baza.Count; i++)
+            {
+                if (tekst.Contains(baza[i])) przedmiot.b = i;
+            }
+            for (int i = 0; i < suf.Count; i++)
+            {
+                if (tekst.Contains(suf[i])) przedmiot.s = i;
+            }
+
+            cbPref.SelectedIndex = przedmiot.p;
+            cbBaza.SelectedIndex = przedmiot.b;
+            cbSuf.SelectedIndex = przedmiot.s;
         }
 
         private void BazaHelmow(List<string> pref, List<string> baza, List<string> suf)
