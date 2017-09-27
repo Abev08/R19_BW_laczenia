@@ -31,5 +31,5 @@ Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu
    - Wysłanie zaznaczonego przedmiotu do schowka programowego (nie dostępne w analizatorze raportów i analizatorze łączeń).
 
 
-[Changelog](Changelog.txt). Proszę zgłaszać wszelkie błędy / sugestie dotyczące programu :)
+[Changelog](Changelog.txt). Proszę zgłaszać wszelkie błędy / sugestie dotyczące programu :)  
 Wersję aktualnie używanego programu można sprawdzić najeżdżając myszką na "by Abev".
