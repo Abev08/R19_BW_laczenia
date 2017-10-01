@@ -1,4 +1,15 @@
-﻿Version 2.0
+﻿Version 2.0.1
+	- Bugfix: Poprawiono sufiks hełmu: "Smoczej łuski" na "Smoczej Łuski",
+	- Bugfix: Poprawiono sufiks zbroi: "Śiewcy śmierci" na "Siewcy Śmierci",
+	- Bugfix: Poprawiono sufiks spodni: "Cichych ruchów" na "Cichych Ruchów",
+	- Bugfix: Poprawiono sufiks spodni: "Handlarza bronią" na "Handlarza Bronią",
+	- Bugfix: Poprawiono sufiks spodni: "Łowcy cieni" na "Łowcy Cieni",
+	- Bugfix: Poprawiono sufiks pierścieni: "Twardej skóry" na "Twardej Skóry",
+	- Bugfix: Poprawiono sufiks amuletów: "Twardej skóry" na "Twardej Skóry",
+	- Bugfix: Poprawiono bazę broni białej 1h: "Pięść niebios" na "Pięść Niebios",
+	- Bugfix: Poprawiono bazę broni białej 2h: "Piła łancuchowa" na "Piła łańcuchowa".
+
+Version 2.0
 	- Dodano możliwość wysłania zaznaczonego przedmiotu do schowka,
 	- Poprawiono opcję kopiowania w menu prawego przycisku myszy,
 	- Analizator łączeń:

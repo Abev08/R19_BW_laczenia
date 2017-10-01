@@ -286,7 +286,8 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: 2.0\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() + 
+                "\nProszę zgłaszać wszelkie błędy / sugestie :)");
         }
 
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
@@ -2117,7 +2118,7 @@ namespace R19_BW_laczenia
             suf.Add("Słońca");
             suf.Add("Adrenaliny");
             suf.Add("Prekognicji");
-            suf.Add("Smoczej łuski");
+            suf.Add("Smoczej Łuski");
             suf.Add("Mocy");
             suf.Add("Magii");
         }
@@ -2175,7 +2176,7 @@ namespace R19_BW_laczenia
             suf.Add("Centuriona");
             suf.Add("Odporności");
             suf.Add("Kaliguli");
-            suf.Add("Śiewcy śmierci");
+            suf.Add("Siewcy Śmierci");
             suf.Add("Szybkości");
             suf.Add("Orchidei");
         }
@@ -2215,13 +2216,13 @@ namespace R19_BW_laczenia
             suf.Add("Przemytnika");
             suf.Add("Narkomana");
             suf.Add("Siłacza");
-            suf.Add("Cichych ruchów");
+            suf.Add("Cichych Ruchów");
             suf.Add("Uników");
             suf.Add("Skrytości");
             suf.Add("Słońca");
-            suf.Add("Handlarza bronią");
+            suf.Add("Handlarza Bronią");
             suf.Add("Pasterza");
-            suf.Add("Łowcy cieni");
+            suf.Add("Łowcy Cieni");
             suf.Add("Węża");
             suf.Add("Inków");
             suf.Add("Tropiciela");
@@ -2275,7 +2276,7 @@ namespace R19_BW_laczenia
             suf.Add("Siły");
             suf.Add("Geniuszu");
             suf.Add("Mądrości");
-            suf.Add("Twardej skóry");
+            suf.Add("Twardej Skóry");
             suf.Add("Wilkołaka");
             suf.Add("Sztuki");
             suf.Add("Celności");
@@ -2340,7 +2341,7 @@ namespace R19_BW_laczenia
             suf.Add("Geniuszu");
             suf.Add("Siły");
             suf.Add("Mądrości");
-            suf.Add("Twardej skóry");
+            suf.Add("Twardej Skóry");
             suf.Add("Pielgrzyma");
             suf.Add("Wilkołaka");
             suf.Add("Celności");
@@ -2392,7 +2393,7 @@ namespace R19_BW_laczenia
             baza.Add("Kama");
             baza.Add("Topór");
             baza.Add("Wakizashi");
-            baza.Add("Pięść niebios");
+            baza.Add("Pięść Niebios");
 
             // Sufiksy białej 1h w uporządkowanej kolejności
             suf.Add("");
@@ -2457,7 +2458,7 @@ namespace R19_BW_laczenia
             baza.Add("Pika");
             baza.Add("Halabarda");
             baza.Add("Katana");
-            baza.Add("Piła łancuchowa");
+            baza.Add("Piła łańcuchowa");
 
             // Sufiksy białej 2h w uporządkowanej kolejności
             suf.Add("");
