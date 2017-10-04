@@ -4,7 +4,7 @@ Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars
 Listy przedmiotów przystosowano do serwera R19.
   
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
-Aktualna werjsa programu: 2.0.1. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".
+Aktualna werjsa programu: 2.1. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".
   
 
 ## Funkcje programu
@@ -13,6 +13,11 @@ Aktualna werjsa programu: 2.0.1. Wersję używanego programu można sprawdzić n
  - Możliwość cofnięcia przeprowadzonych połączeń,
  - Trzy elementowy schowek do przechowywania przedmiotów w trakcie sesji łączenia,
  - Możliwość wyświetlenia tabeli łączeń prefiksów / baz / sufiksów każdego typu przedmiotu,
+ - Tabela łączeń:
+   - Możliwość wyświetlania jednocześnie wielu tabeli łączeń w formie zakładek,
+   - Możliwość zamknięcia wybranej tabeli łączeń klikając prawym przyciskiem myszy na jej zakładce,
+   - Możliwość zmiany rozmiaru czcionki wyświetlanych elementów tabeli łączeń,
+   - Podświetlanie wiersza i kolumny wybranego elementu tabeli łączeń,
  - Analizator raportów łączenia umożliwiający wyświetlenie podsumowania przeprowadzonych ulepszeń,
  - Analizator łączeń wyszukujący możliwe połączenia z listy przedmiotów:
    - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
@@ -20,6 +25,7 @@ Aktualna werjsa programu: 2.0.1. Wersję używanego programu można sprawdzić n
    - Możliwość ustawienia maksymalnej ilości wyszukiwanych połączeń,
    - Możliwość filtrowania przeanalizowanych połączeń,
    - Możliwość wyświetlenia historii połączeń,
+   - Możliwość sortowania załadowanych przedmiotów według: jakość prefiksu -> jakość bazy -> jakość sufiksu,
    - Sortowanie wyszukanych połączeń według: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość połączeń,
    - Domyślnie wyszukiwane połączenia: ((A+B) + C) + D itd.,
    - Możliwość włączenia wyszukiwania dodatkowych połączeń: (A+B) + (C+D) + (E+F) + itd..
@@ -32,4 +38,4 @@ Aktualna werjsa programu: 2.0.1. Wersję używanego programu można sprawdzić n
    - Wysłanie zaznaczonego przedmiotu do schowka programowego (nie dostępne w analizatorze raportów i analizatorze łączeń).
 
 
-[Changelog](Changelog.txt). Proszę zgłaszać wszelkie błędy / sugestie dotyczące programu :)  
+[Changelog](Changelog.txt). Proszę zgłaszać wszelkie znalezione błędy / sugestie dotyczące programu :)  

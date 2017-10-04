@@ -10,67 +10,6 @@ namespace R19_BW_laczenia
 {
     public partial class MainWindow : Form
     {
-        // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
-        List<string> PrefHelm = new List<string>();
-        List<string> BazaHelm = new List<string>();
-        List<string> SufHelm = new List<string>();
-
-        List<string> PrefZbroja = new List<string>();
-        List<string> BazaZbroja = new List<string>();
-        List<string> SufZbroja = new List<string>();
-
-        List<string> PrefSpodnie = new List<string>();
-        List<string> BazaSpodnie = new List<string>();
-        List<string> SufSpodnie = new List<string>();
-
-        List<string> PrefPierscien = new List<string>();
-        List<string> BazaPierscien = new List<string>();
-        List<string> SufPierscien = new List<string>();
-
-        List<string> PrefAmulet = new List<string>();
-        List<string> BazaAmulet = new List<string>();
-        List<string> SufAmulet = new List<string>();
-
-        List<string> PrefBiala1h = new List<string>();
-        List<string> BazaBiala1h = new List<string>();
-        List<string> SufBiala1h = new List<string>();
-
-        List<string> PrefBiala2h = new List<string>();
-        List<string> BazaBiala2h = new List<string>();
-        List<string> SufBiala2h = new List<string>();
-
-        List<string> PrefPalan1h = new List<string>();
-        List<string> BazaPalna1h = new List<string>();
-        List<string> SufPalna1h = new List<string>();
-
-        List<string> PrefPalna2h = new List<string>();
-        List<string> BazaPalna2h = new List<string>();
-        List<string> SufPalna2h = new List<string>();
-
-        List<string> PrefDystans = new List<string>();
-        List<string> BazaDystans = new List<string>();
-        List<string> SufDystans = new List<string>();
-
-        // Zmienne do łączenia
-        Item component1 = new Item();
-        Item component2 = new Item();
-        Item result = new Item();
-        bool added = false;
-        List<Item> HistoriaPrzedmiotow = new List<Item>();
-        List<string> HistoriaLaczen = new List<string>();
-
-        // Utworzenie obiektu tabeli łączeń (nowego Form'a)
-        TableWindow Tabela;
-
-        // Obiekt okienka pomocy;
-        Pomoc pomoc;
-
-        // Zmienne do analizatora łączeń
-        List<Item> przedmioty = new List<Item>();
-        List<Item> wyniki = new List<Item>();
-        List<int> filtrPrzedmioty = new List<int>();
-        bool doOnceAnalizator = true;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -286,9 +225,70 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
 
             // Wersja programu (tooltip na labelu "by Abev")
-            toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() + 
-                "\nProszę zgłaszać wszelkie błędy / sugestie :)");
+            toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() +
+                "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
         }
+
+        // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
+        List<string> PrefHelm = new List<string>();
+        List<string> BazaHelm = new List<string>();
+        List<string> SufHelm = new List<string>();
+
+        List<string> PrefZbroja = new List<string>();
+        List<string> BazaZbroja = new List<string>();
+        List<string> SufZbroja = new List<string>();
+
+        List<string> PrefSpodnie = new List<string>();
+        List<string> BazaSpodnie = new List<string>();
+        List<string> SufSpodnie = new List<string>();
+
+        List<string> PrefPierscien = new List<string>();
+        List<string> BazaPierscien = new List<string>();
+        List<string> SufPierscien = new List<string>();
+
+        List<string> PrefAmulet = new List<string>();
+        List<string> BazaAmulet = new List<string>();
+        List<string> SufAmulet = new List<string>();
+
+        List<string> PrefBiala1h = new List<string>();
+        List<string> BazaBiala1h = new List<string>();
+        List<string> SufBiala1h = new List<string>();
+
+        List<string> PrefBiala2h = new List<string>();
+        List<string> BazaBiala2h = new List<string>();
+        List<string> SufBiala2h = new List<string>();
+
+        List<string> PrefPalan1h = new List<string>();
+        List<string> BazaPalna1h = new List<string>();
+        List<string> SufPalna1h = new List<string>();
+
+        List<string> PrefPalna2h = new List<string>();
+        List<string> BazaPalna2h = new List<string>();
+        List<string> SufPalna2h = new List<string>();
+
+        List<string> PrefDystans = new List<string>();
+        List<string> BazaDystans = new List<string>();
+        List<string> SufDystans = new List<string>();
+
+        // Zmienne do łączenia
+        Item component1 = new Item();
+        Item component2 = new Item();
+        Item result = new Item();
+        bool added = false;
+        List<Item> HistoriaPrzedmiotow = new List<Item>();
+        List<string> HistoriaLaczen = new List<string>();
+
+        // Utworzenie obiektu tabeli łączeń (nowego Form'a)
+        TableWindow Tabela;
+
+        // Obiekt okienka pomocy;
+        Pomoc pomoc;
+
+        // Zmienne do analizatora łączeń
+        List<Item> przedmioty = new List<Item>();
+        List<Item> wyniki = new List<Item>();
+        List<int> filtrPrzedmioty = new List<int>();
+        bool doOnceAnalizator = true;
 
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
         {
@@ -524,224 +524,242 @@ namespace R19_BW_laczenia
 
         private void PrefHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefHelm") InicjalizacjaTabeli(Tabela, PrefHelm, "PrefHelm");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Hełm Pref", PrefHelm);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaHelm") InicjalizacjaTabeli(Tabela, BazaHelm, "BazaHelm");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Hełm Baza", BazaHelm);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufHelm") InicjalizacjaTabeli(Tabela, SufHelm, "SufHelm");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Hełm Suf", SufHelm);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefZbroja") InicjalizacjaTabeli(Tabela, PrefZbroja, "PrefZbroja");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Zbroja Pref", PrefZbroja);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaZbroja") InicjalizacjaTabeli(Tabela, BazaZbroja, "BazaZbroja");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Zbroja Baza", BazaZbroja);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufZbroja") InicjalizacjaTabeli(Tabela, SufZbroja, "SufZbroja");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Zbroja Suf", SufZbroja);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefSpodnie") InicjalizacjaTabeli(Tabela, PrefSpodnie, "PrefSpodnie");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Spodnie Pref", PrefSpodnie);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaSpodnie") InicjalizacjaTabeli(Tabela, BazaSpodnie, "BazaSpodnie");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Spodnie Baza", BazaSpodnie);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufSpodnie") InicjalizacjaTabeli(Tabela, SufSpodnie, "SufSpodnie");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Spodnie Suf", SufSpodnie);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPierscien") InicjalizacjaTabeli(Tabela, PrefPierscien, "PrefPierscien");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Pierścień Pref", PrefPierscien);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPierscien") InicjalizacjaTabeli(Tabela, BazaPierscien, "BazaPierscien");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Pierścień Baza", BazaPierscien);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPierscien") InicjalizacjaTabeli(Tabela, SufPierscien, "SufPierscien");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Pierścień Suf", SufPierscien);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefAmulet") InicjalizacjaTabeli(Tabela, PrefAmulet, "PrefAmulet");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Amulet Pref", PrefAmulet);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaAmulet") InicjalizacjaTabeli(Tabela, BazaAmulet, "BazaAmulet");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Amulet Baza", BazaAmulet);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufAmulet") InicjalizacjaTabeli(Tabela, SufAmulet, "SufAmulet");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Amulet Suf", SufAmulet);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefBiala1h") InicjalizacjaTabeli(Tabela, PrefBiala1h, "PrefBiala1h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Biała 1h Pref", PrefBiala1h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaBiala1h") InicjalizacjaTabeli(Tabela, BazaBiala1h, "BazaBiala1h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Biała 1h Baza", BazaBiala1h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufBiala1h") InicjalizacjaTabeli(Tabela, SufBiala1h, "SufBiala1h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Biała 1h Suf", SufBiala1h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefBiala2h") InicjalizacjaTabeli(Tabela, PrefBiala2h, "PrefBiala2h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Biała 2h Pref", PrefBiala2h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaBiala2h") InicjalizacjaTabeli(Tabela, BazaBiala2h, "BazaBiala2h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Biała 2h Baza", BazaBiala2h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufBiala2h") InicjalizacjaTabeli(Tabela, SufBiala2h, "SufBiala2h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Biała 2h Suf", SufBiala2h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPalna1h") InicjalizacjaTabeli(Tabela, PrefPalan1h, "PrefPalna1h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Palna 1h Pref", PrefPalan1h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPalna1h") InicjalizacjaTabeli(Tabela, BazaPalna1h, "BazaPalna1h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Palna 1h Baza", BazaPalna1h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPalna1h") InicjalizacjaTabeli(Tabela, SufPalna1h, "SufPalna1h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Palna 1h Suf", SufPalna1h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefPalna2h") InicjalizacjaTabeli(Tabela, PrefPalna2h, "PrefPalna2h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Palna 2h Pref", PrefPalna2h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaPalna2h") InicjalizacjaTabeli(Tabela, BazaPalna2h, "BazaPalna2h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Palna 2h Baza", BazaPalna2h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufPalna2h") InicjalizacjaTabeli(Tabela, SufPalna2h, "SufPalna2h");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Palna 2h Suf", SufPalna2h);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void PrefDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "PrefDystans") InicjalizacjaTabeli(Tabela, PrefDystans, "PrefDystans");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Dystans Pref", PrefDystans);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void BazaDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "BazaDystans") InicjalizacjaTabeli(Tabela, BazaDystans, "BazaDystans");
-            else Tabela.BringToFront();
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Dystans Baza", BazaDystans);
+            Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void SufDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false || Tabela.DisplayedTable != "SufDystans") InicjalizacjaTabeli(Tabela, SufDystans, "SufDystans");
-            else Tabela.BringToFront();
-        }
-
-        private void InicjalizacjaTabeli(TableWindow Tab, List<string> baza, string disp)
-        {
-            int wynik;
-
-            if (Tab != null)
-            {
-                Tab.IsOpen = false;
-                Tab.Dispose();
-                Tab.Close();
-            }
-
-            Tabela = new TableWindow();
-            Tabela.DisplayedTable = disp;
-            Tabela.DataGridView.RowCount = baza.Count();
-            Tabela.DataGridView.ColumnCount = baza.Count();
-            Tabela.Height = 60 + (Tabela.DataGridView.RowCount * Tabela.DataGridView.RowTemplate.Height); // obramowanie = 60, + (rowCount * rowHeight)
-            if (Tabela.Height < 150) Tabela.Height = 150;
-            Tabela.Width = Convert.ToInt32(Tabela.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
-
-            for (int i = 0; i < baza.Count(); i++)
-            {
-                Tabela.DataGridView.Rows[i].Cells[0].Value = baza[i];
-                Tabela.DataGridView.Rows[i].Cells[0].Style.BackColor = Color.Gainsboro;
-                Tabela.DataGridView.Rows[0].Cells[i].Value = baza[i];
-                Tabela.DataGridView.Rows[0].Cells[i].Style.BackColor = Color.Gainsboro;
-
-                if (i > 0)
-                {
-                    Tabela.DataGridView.Rows[i].Cells[i].Style.BackColor = Color.SkyBlue;
-
-                    for (int j = 1; j < baza.Count(); j++)
-                    {
-                        wynik = Polacz(new Item(i, 0, 0), new Item(j, 0, 0)).Sum();
-                        wynik = SprawdzWyjatki(baza, i, j, wynik);
-
-                        Tabela.DataGridView.Rows[i].Cells[j].Value = baza.ElementAt(wynik);
-                    }
-                }
-            }
+            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
+            Tabela.AddTab("Dystans Suf", SufDystans);
             Tabela.Show();
+            Tabela.BringToFront();
         }
 
         private void AnalizatorRaportuOblicz_Click(object sender, EventArgs e)
@@ -1081,6 +1099,7 @@ namespace R19_BW_laczenia
             cbFiltrSuf.Enabled = false;
 
             edytujPrzedmioty.Enabled = false;
+            segregujPrzedmioty.Enabled = false;
 
             przedmioty.Clear();
 
@@ -1161,6 +1180,7 @@ namespace R19_BW_laczenia
             {
                 zaladowanePrzedmioty.SelectedIndex = 0;
                 edytujPrzedmioty.Enabled = true;
+                segregujPrzedmioty.Enabled = true;
             }
             if (przedmioty.Count > 1)
             {
@@ -1655,6 +1675,46 @@ namespace R19_BW_laczenia
         private void EdytujPrzedmioty_Click(object sender, EventArgs e)
         {
             przedmiotyDoAnalizy.Text = "";
+
+            switch (listaTypowPrzedmiotow.SelectedItem)
+            {
+                case "Hełm":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefHelm, BazaHelm, SufHelm) + '\n');
+                    break;
+                case "Zbroja":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefZbroja, BazaZbroja, SufZbroja) + '\n');
+                    break;
+                case "Spodnie":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefSpodnie, BazaSpodnie, SufSpodnie) + '\n');
+                    break;
+                case "Pierścień":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPierscien, BazaPierscien, SufPierscien) + '\n');
+                    break;
+                case "Amulet":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefAmulet, BazaAmulet, SufAmulet) + '\n');
+                    break;
+                case "Biała 1h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala1h, BazaBiala1h, SufBiala1h) + '\n');
+                    break;
+                case "Biała 2h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala2h, BazaBiala2h, SufBiala2h) + '\n');
+                    break;
+                case "Palna 1h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalan1h, BazaPalna1h, SufPalna1h) + '\n');
+                    break;
+                case "Palna 2h":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalna2h, BazaPalna2h, SufPalna2h) + '\n');
+                    break;
+                case "Dystans":
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefDystans, BazaDystans, SufDystans) + '\n');
+                    break;
+            }
+        }
+
+        private void SegregujPrzedmioty_Click(object sender, EventArgs e)
+        {
+            przedmiotyDoAnalizy.Text = "";
+            przedmioty = przedmioty.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ToList();
 
             switch (listaTypowPrzedmiotow.SelectedItem)
             {

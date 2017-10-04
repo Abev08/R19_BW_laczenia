@@ -372,6 +372,7 @@
             this.schowekPoz1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schowekPoz2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schowekPoz3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.segregujPrzedmioty = new System.Windows.Forms.Button();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -4171,20 +4172,21 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.Controls.Add(this.segregujPrzedmioty);
             this.panel5.Controls.Add(this.edytujPrzedmioty);
             this.panel5.Controls.Add(this.zaladujPrzedmioty);
-            this.panel5.Location = new System.Drawing.Point(84, 5);
+            this.panel5.Location = new System.Drawing.Point(0, 5);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(368, 40);
+            this.panel5.Size = new System.Drawing.Size(537, 40);
             this.panel5.TabIndex = 59;
             // 
             // edytujPrzedmioty
             // 
             this.edytujPrzedmioty.Enabled = false;
-            this.edytujPrzedmioty.Location = new System.Drawing.Point(188, 0);
+            this.edytujPrzedmioty.Location = new System.Drawing.Point(182, 0);
             this.edytujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
             this.edytujPrzedmioty.Name = "edytujPrzedmioty";
-            this.edytujPrzedmioty.Size = new System.Drawing.Size(180, 40);
+            this.edytujPrzedmioty.Size = new System.Drawing.Size(174, 40);
             this.edytujPrzedmioty.TabIndex = 44;
             this.edytujPrzedmioty.Text = "Edytuj przedmioty";
             this.edytujPrzedmioty.UseVisualStyleBackColor = true;
@@ -4195,7 +4197,7 @@
             this.zaladujPrzedmioty.Location = new System.Drawing.Point(0, 0);
             this.zaladujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
             this.zaladujPrzedmioty.Name = "zaladujPrzedmioty";
-            this.zaladujPrzedmioty.Size = new System.Drawing.Size(180, 40);
+            this.zaladujPrzedmioty.Size = new System.Drawing.Size(174, 40);
             this.zaladujPrzedmioty.TabIndex = 41;
             this.zaladujPrzedmioty.Text = "Załaduj przedmioty";
             this.zaladujPrzedmioty.UseVisualStyleBackColor = true;
@@ -4316,7 +4318,7 @@
             this.toolStripSeparator7,
             this.schowekToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(353, 200);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(353, 172);
             // 
             // wklejToolStripMenuItem
             // 
@@ -4380,23 +4382,36 @@
             // schowekPoz1ToolStripMenuItem
             // 
             this.schowekPoz1ToolStripMenuItem.Name = "schowekPoz1ToolStripMenuItem";
-            this.schowekPoz1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.schowekPoz1ToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.schowekPoz1ToolStripMenuItem.Text = "Pozycja 1";
             this.schowekPoz1ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz1ToolStripMenuItem_Click);
             // 
             // schowekPoz2ToolStripMenuItem
             // 
             this.schowekPoz2ToolStripMenuItem.Name = "schowekPoz2ToolStripMenuItem";
-            this.schowekPoz2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.schowekPoz2ToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.schowekPoz2ToolStripMenuItem.Text = "Pozycja 2";
             this.schowekPoz2ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz2ToolStripMenuItem_Click);
             // 
             // schowekPoz3ToolStripMenuItem
             // 
             this.schowekPoz3ToolStripMenuItem.Name = "schowekPoz3ToolStripMenuItem";
-            this.schowekPoz3ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.schowekPoz3ToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.schowekPoz3ToolStripMenuItem.Text = "Pozycja 3";
             this.schowekPoz3ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz3ToolStripMenuItem_Click);
+            // 
+            // segregujPrzedmioty
+            // 
+            this.segregujPrzedmioty.Enabled = false;
+            this.segregujPrzedmioty.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.segregujPrzedmioty.Location = new System.Drawing.Point(364, 0);
+            this.segregujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
+            this.segregujPrzedmioty.Name = "segregujPrzedmioty";
+            this.segregujPrzedmioty.Size = new System.Drawing.Size(173, 40);
+            this.segregujPrzedmioty.TabIndex = 45;
+            this.segregujPrzedmioty.Text = "Segreguj przedmioty";
+            this.segregujPrzedmioty.UseVisualStyleBackColor = true;
+            this.segregujPrzedmioty.Click += new System.EventHandler(this.SegregujPrzedmioty_Click);
             // 
             // MainWindow
             // 
@@ -4836,6 +4851,7 @@
         private System.Windows.Forms.ToolStripMenuItem schowekPoz1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schowekPoz2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schowekPoz3ToolStripMenuItem;
+        private System.Windows.Forms.Button segregujPrzedmioty;
     }
 }
 

@@ -28,46 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DataGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
+            this.tabTabela = new System.Windows.Forms.TabControl();
+            this.tabMinus = new System.Windows.Forms.Button();
+            this.tabPlus = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // DataGridView
+            // tabTabela
             // 
-            this.DataGridView.AllowUserToAddRows = false;
-            this.DataGridView.AllowUserToDeleteRows = false;
-            this.DataGridView.AllowUserToResizeColumns = false;
-            this.DataGridView.AllowUserToResizeRows = false;
-            this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView.Location = new System.Drawing.Point(0, 0);
-            this.DataGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.DataGridView.Name = "DataGridView";
-            this.DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataGridView.Size = new System.Drawing.Size(332, 242);
-            this.DataGridView.TabIndex = 0;
-            this.DataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEnter);
-            this.DataGridView.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellLeave);
+            this.tabTabela.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabTabela.Location = new System.Drawing.Point(0, 0);
+            this.tabTabela.Name = "tabTabela";
+            this.tabTabela.SelectedIndex = 0;
+            this.tabTabela.Size = new System.Drawing.Size(462, 223);
+            this.tabTabela.TabIndex = 1;
+            this.tabTabela.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TabTabela_MouseUp);
             // 
-            // Form2
+            // tabMinus
+            // 
+            this.tabMinus.Location = new System.Drawing.Point(58, 0);
+            this.tabMinus.Name = "tabMinus";
+            this.tabMinus.Size = new System.Drawing.Size(50, 30);
+            this.tabMinus.TabIndex = 2;
+            this.tabMinus.Text = "-";
+            this.tabMinus.UseVisualStyleBackColor = true;
+            this.tabMinus.Click += new System.EventHandler(this.TabMinus_Click);
+            // 
+            // tabPlus
+            // 
+            this.tabPlus.Location = new System.Drawing.Point(0, 0);
+            this.tabPlus.Name = "tabPlus";
+            this.tabPlus.Size = new System.Drawing.Size(50, 30);
+            this.tabPlus.TabIndex = 3;
+            this.tabPlus.Text = "+";
+            this.tabPlus.UseVisualStyleBackColor = true;
+            this.tabPlus.Click += new System.EventHandler(this.TabPlus_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tabPlus);
+            this.panel1.Controls.Add(this.tabMinus);
+            this.panel1.Location = new System.Drawing.Point(300, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(108, 30);
+            this.panel1.TabIndex = 4;
+            // 
+            // TableWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 242);
-            this.Controls.Add(this.DataGridView);
+            this.ClientSize = new System.Drawing.Size(462, 223);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tabTabela);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form2";
+            this.Name = "TableWindow";
             this.Text = "Tabela łączeń";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
+            this.Resize += new System.EventHandler(this.TableWindow_Resize);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        public System.Windows.Forms.DataGridView DataGridView;
+        private System.Windows.Forms.TabControl tabTabela;
+        private System.Windows.Forms.Button tabMinus;
+        private System.Windows.Forms.Button tabPlus;
+        private System.Windows.Forms.Panel panel1;
     }
 }

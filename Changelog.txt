@@ -1,4 +1,11 @@
-﻿Version 2.0.1
+﻿Version 2.1
+	- Dodano możliwość wyświetlania kilku tabeli łączeń w oknie tabeli łączeń,
+	- Dodano możliwość zamknięcia wybranej tabeli łączeń w oknie tabeli łączeń klikając prawym przyciskiem myszy na jej zakładce,
+	- Dodano możliwość zmiany wielkości czcionki wyświetlanych elementów tabeli łączeń,
+	- Analizator łączeń:
+		-- Dodano możliwość sortowania załadowanych przedmiotów według: jakość prefiksu -> jakość bazy -> jakość sufiksu.
+
+Version 2.0.1
 	- Bugfix: Poprawiono sufiks hełmu: "Smoczej łuski" na "Smoczej Łuski",
 	- Bugfix: Poprawiono sufiks zbroi: "Śiewcy śmierci" na "Siewcy Śmierci",
 	- Bugfix: Poprawiono sufiks spodni: "Cichych ruchów" na "Cichych Ruchów",
