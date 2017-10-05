@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("R19 Blood Wars - Łączenia")]
 [assembly: AssemblyDescription("Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Abev Corp. :)")]
+[assembly: AssemblyCompany("Abev :)")]
 [assembly: AssemblyProduct("R19 Blood Wars - Łączenia")]
 [assembly: AssemblyCopyright("Copyright © Abev 2017")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Możesz określić wszystkie wartości lub użyć domyślnych numerów kompilacji i poprawki
 // przy użyciu symbolu „*”, tak jak pokazano poniżej:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.0.0")]
-[assembly: AssemblyFileVersion("2.1.0.0")]
+[assembly: AssemblyVersion("2.2.0.0")]
+[assembly: AssemblyFileVersion("2.2.0.0")]

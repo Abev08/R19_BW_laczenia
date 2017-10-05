@@ -22,5 +22,17 @@ namespace R19_BW_laczenia.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CancelWorker {
+            get {
+                return ((bool)(this["CancelWorker"]));
+            }
+            set {
+                this["CancelWorker"] = value;
+            }
+        }
     }
 }

@@ -327,6 +327,7 @@
             this.TabLaczenia = new System.Windows.Forms.TabPage();
             this.analizatorLaczenPomoc = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBoxWyswietl = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cbFiltrPref = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -345,6 +346,7 @@
             this.znalezionoPolaczen = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.sortujPrzedmioty = new System.Windows.Forms.Button();
             this.edytujPrzedmioty = new System.Windows.Forms.Button();
             this.zaladujPrzedmioty = new System.Windows.Forms.Button();
             this.zaladowanePrzedmioty = new System.Windows.Forms.ComboBox();
@@ -372,7 +374,7 @@
             this.schowekPoz1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schowekPoz2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schowekPoz3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.segregujPrzedmioty = new System.Windows.Forms.Button();
+            this.analizatorWorker = new System.ComponentModel.BackgroundWorker();
             this.GlownyTab.SuspendLayout();
             this.TabHelm.SuspendLayout();
             this.sufHelmPanel.SuspendLayout();
@@ -3969,6 +3971,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.checkBoxWyswietl);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.cbFiltrPref);
             this.panel3.Controls.Add(this.label17);
@@ -3981,6 +3984,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(537, 138);
             this.panel3.TabIndex = 58;
+            // 
+            // checkBoxWyswietl
+            // 
+            this.checkBoxWyswietl.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxWyswietl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxWyswietl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.checkBoxWyswietl.Location = new System.Drawing.Point(365, 54);
+            this.checkBoxWyswietl.Name = "checkBoxWyswietl";
+            this.checkBoxWyswietl.Size = new System.Drawing.Size(172, 50);
+            this.checkBoxWyswietl.TabIndex = 61;
+            this.checkBoxWyswietl.Text = "Mimo wszystko wyświetl!";
+            this.checkBoxWyswietl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxWyswietl.UseVisualStyleBackColor = false;
             // 
             // label19
             // 
@@ -4172,13 +4188,26 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.Controls.Add(this.segregujPrzedmioty);
+            this.panel5.Controls.Add(this.sortujPrzedmioty);
             this.panel5.Controls.Add(this.edytujPrzedmioty);
             this.panel5.Controls.Add(this.zaladujPrzedmioty);
             this.panel5.Location = new System.Drawing.Point(0, 5);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(537, 40);
             this.panel5.TabIndex = 59;
+            // 
+            // sortujPrzedmioty
+            // 
+            this.sortujPrzedmioty.Enabled = false;
+            this.sortujPrzedmioty.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.sortujPrzedmioty.Location = new System.Drawing.Point(364, 0);
+            this.sortujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
+            this.sortujPrzedmioty.Name = "sortujPrzedmioty";
+            this.sortujPrzedmioty.Size = new System.Drawing.Size(173, 40);
+            this.sortujPrzedmioty.TabIndex = 45;
+            this.sortujPrzedmioty.Text = "Sortuj przedmioty";
+            this.sortujPrzedmioty.UseVisualStyleBackColor = true;
+            this.sortujPrzedmioty.Click += new System.EventHandler(this.SortujPrzedmioty_Click);
             // 
             // edytujPrzedmioty
             // 
@@ -4400,18 +4429,10 @@
             this.schowekPoz3ToolStripMenuItem.Text = "Pozycja 3";
             this.schowekPoz3ToolStripMenuItem.Click += new System.EventHandler(this.SchowekPoz3ToolStripMenuItem_Click);
             // 
-            // segregujPrzedmioty
+            // analizatorWorker
             // 
-            this.segregujPrzedmioty.Enabled = false;
-            this.segregujPrzedmioty.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.segregujPrzedmioty.Location = new System.Drawing.Point(364, 0);
-            this.segregujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
-            this.segregujPrzedmioty.Name = "segregujPrzedmioty";
-            this.segregujPrzedmioty.Size = new System.Drawing.Size(173, 40);
-            this.segregujPrzedmioty.TabIndex = 45;
-            this.segregujPrzedmioty.Text = "Segreguj przedmioty";
-            this.segregujPrzedmioty.UseVisualStyleBackColor = true;
-            this.segregujPrzedmioty.Click += new System.EventHandler(this.SegregujPrzedmioty_Click);
+            this.analizatorWorker.WorkerSupportsCancellation = true;
+            this.analizatorWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // MainWindow
             // 
@@ -4851,7 +4872,9 @@
         private System.Windows.Forms.ToolStripMenuItem schowekPoz1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schowekPoz2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schowekPoz3ToolStripMenuItem;
-        private System.Windows.Forms.Button segregujPrzedmioty;
+        private System.Windows.Forms.Button sortujPrzedmioty;
+        private System.ComponentModel.BackgroundWorker analizatorWorker;
+        private System.Windows.Forms.CheckBox checkBoxWyswietl;
     }
 }
 

@@ -223,6 +223,7 @@ namespace R19_BW_laczenia
             przedmiotyDoAnalizy.ReadOnly = false;
             przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.\n";
             iloscLaczen.Minimum = 1;
+            checkBoxWyswietl.Text = "Mimo wszystko\nwyświetl!";
 
             // Wersja programu (tooltip na labelu "by Abev")
             toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() +
@@ -988,24 +989,8 @@ namespace R19_BW_laczenia
         private void AnalizatorRaportuPomoc_Click(object sender, EventArgs e)
         {
             // Szybka pomoc jak korzystać z analizatora ulepszeń
-            if (pomoc != null)
-            {
-                if (pomoc.wyswietl == "Analizator raportów") pomoc.BringToFront();
-                else
-                {
-                    pomoc.wyswietl = "";
-                    pomoc.Dispose();
-                    pomoc.Close();
-
-                    pomoc = new Pomoc("Analizator raportów");
-                    pomoc.ShowDialog(this);
-                }
-            }
-            if (pomoc == null)
-            {
-                pomoc = new Pomoc("Analizator raportów");
-                pomoc.ShowDialog(this);
-            }
+            pomoc = new Pomoc("Analizator raportów");
+            pomoc.ShowDialog(this);
         }
 
         private void CB_TextChanged(object sender, EventArgs e)
@@ -1099,7 +1084,7 @@ namespace R19_BW_laczenia
             cbFiltrSuf.Enabled = false;
 
             edytujPrzedmioty.Enabled = false;
-            segregujPrzedmioty.Enabled = false;
+            sortujPrzedmioty.Enabled = false;
 
             przedmioty.Clear();
 
@@ -1180,7 +1165,7 @@ namespace R19_BW_laczenia
             {
                 zaladowanePrzedmioty.SelectedIndex = 0;
                 edytujPrzedmioty.Enabled = true;
-                segregujPrzedmioty.Enabled = true;
+                sortujPrzedmioty.Enabled = true;
             }
             if (przedmioty.Count > 1)
             {
@@ -1245,53 +1230,102 @@ namespace R19_BW_laczenia
             analizujPolaczenia.Enabled = false;
             analizujPolaczenia.Text = "Analizuję...";
             iloscLaczen.Enabled = false;
+            dodatkoweLaczenia.Enabled = false;
+            zaladujPrzedmioty.Enabled = false;
+            filtrUpdate.Enabled = false;
             polaczonePrzedmioty.DataSource = null;
             wyniki.Clear();
 
+            List<List<string>> send = new List<List<string>>();
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    AnalizujPolaczenia(PrefHelm, BazaHelm, SufHelm);
+                    send.Add(PrefHelm);
+                    send.Add(BazaHelm);
+                    send.Add(SufHelm);
                     break;
                 case "Zbroja":
-                    AnalizujPolaczenia(PrefZbroja, BazaZbroja, SufZbroja);
+                    send.Add(PrefZbroja);
+                    send.Add(BazaZbroja);
+                    send.Add(SufZbroja);
                     break;
                 case "Spodnie":
-                    AnalizujPolaczenia(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    send.Add(PrefSpodnie);
+                    send.Add(BazaSpodnie);
+                    send.Add(SufSpodnie);
                     break;
                 case "Pierścień":
-                    AnalizujPolaczenia(PrefPierscien, BazaPierscien, SufPierscien);
+                    send.Add(PrefPierscien);
+                    send.Add(BazaPierscien);
+                    send.Add(SufPierscien);
                     break;
                 case "Amulet":
-                    AnalizujPolaczenia(PrefAmulet, BazaAmulet, SufAmulet);
+                    send.Add(PrefAmulet);
+                    send.Add(BazaAmulet);
+                    send.Add(SufAmulet);
                     break;
                 case "Biała 1h":
-                    AnalizujPolaczenia(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    send.Add(PrefBiala1h);
+                    send.Add(BazaBiala1h);
+                    send.Add(SufBiala1h);
                     break;
                 case "Biała 2h":
-                    AnalizujPolaczenia(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    send.Add(PrefBiala2h);
+                    send.Add(BazaBiala2h);
+                    send.Add(SufBiala2h);
                     break;
                 case "Palna 1h":
-                    AnalizujPolaczenia(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    send.Add(PrefPalan1h);
+                    send.Add(BazaPalna1h);
+                    send.Add(SufPalna1h);
                     break;
                 case "Palna 2h":
-                    AnalizujPolaczenia(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    send.Add(PrefPalna2h);
+                    send.Add(BazaPalna2h);
+                    send.Add(SufPalna2h);
                     break;
                 case "Dystans":
-                    AnalizujPolaczenia(PrefDystans, BazaDystans, SufDystans);
+                    send.Add(PrefDystans);
+                    send.Add(BazaDystans);
+                    send.Add(SufDystans);
                     break;
             }
 
-            if (przedmioty.Count >= 10) iloscLaczen.Enabled = true;
-            analizujPolaczenia.Text = "Analizuj połączenia";
-            analizujPolaczenia.Enabled = true;
+            analizatorWorker.RunWorkerAsync(send);
         }
 
-        private void AnalizujPolaczenia(List<string> pref, List<string> baza, List<string> suf)
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            List<List<string>> arg = (List<List<string>>)e.Argument;
+
+            AnalizujPolaczenia(arg[0], arg[1], arg[2]);
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (przedmioty.Count >= 10) iloscLaczen.Enabled = true;
+                analizujPolaczenia.Text = "Analizuj połączenia";
+                analizujPolaczenia.Enabled = true;
+                dodatkoweLaczenia.Enabled = true;
+                zaladujPrzedmioty.Enabled = true;
+            });
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            // Przerwij backGroundWorker po wciśnięciu klawisza Esc
+            if (keyData == Keys.Escape)
+            {
+                analizatorWorker.CancelAsync();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void AnalizujPolaczenia(List<string> pref = null, List<string> baza = null, List<string> suf = null)
         {
             List<int> indeksy = new List<int>();    // Lista wykorzystanych indeksów przedmiotów
             Item wynik = new Item();
-            int iloscPrzedmiotów = przedmioty.Count();
+            int iloscPrzedmiotów = przedmioty.Count;
             int iloscPetli = 2;
             int maxIloscPetli = (int)iloscLaczen.Value + 1;
 
@@ -1299,8 +1333,12 @@ namespace R19_BW_laczenia
             {
                 indeksy.Clear();
                 indeksy.Add(sk1);
-                znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / (double)iloscPrzedmiotów) * 100d) + "% połączeń.";
-                this.Update();
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / ((double)iloscPrzedmiotów - 1)) * 100d) + "% połączeń.";
+                    this.Update();
+                });
 
                 for (int sk2 = sk1 + 1; sk2 < iloscPrzedmiotów; sk2++)
                 {
@@ -1324,52 +1362,68 @@ namespace R19_BW_laczenia
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(sk2);
+
+                    // Jeżeli wciśnięto klawisz Esc przerwij analizowanie
+                    if (analizatorWorker.CancellationPending)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            znalezionoPolaczen.Text = "Przerwano analizę.";
+                        });
+                        return;
+                    }
                 }
             }
 
-            if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie.";
-            if (wyniki.Count > 1 && wyniki.Count < 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenia.";
-            if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
-
-            // Aktualizuj prefiksy, bazy i sufiksy filtru
-            switch (listaTypowPrzedmiotow.SelectedItem)
+            this.Invoke((MethodInvoker)delegate
             {
-                case "Hełm":
-                    AktualizujPozyjcieFiltr(PrefHelm, BazaHelm, SufHelm);
-                    break;
-                case "Zbroja":
-                    AktualizujPozyjcieFiltr(PrefZbroja, BazaZbroja, SufZbroja);
-                    break;
-                case "Spodnie":
-                    AktualizujPozyjcieFiltr(PrefSpodnie, BazaSpodnie, SufSpodnie);
-                    break;
-                case "Pierścień":
-                    AktualizujPozyjcieFiltr(PrefPierscien, BazaPierscien, SufPierscien);
-                    break;
-                case "Amulet":
-                    AktualizujPozyjcieFiltr(PrefAmulet, BazaAmulet, SufAmulet);
-                    break;
-                case "Biała 1h":
-                    AktualizujPozyjcieFiltr(PrefBiala1h, BazaBiala1h, SufBiala1h);
-                    break;
-                case "Biała 2h":
-                    AktualizujPozyjcieFiltr(PrefBiala2h, BazaBiala2h, SufBiala2h);
-                    break;
-                case "Palna 1h":
-                    AktualizujPozyjcieFiltr(PrefPalan1h, BazaPalna1h, SufPalna1h);
-                    break;
-                case "Palna 2h":
-                    AktualizujPozyjcieFiltr(PrefPalna2h, BazaPalna2h, SufPalna2h);
-                    break;
-                case "Dystans":
-                    AktualizujPozyjcieFiltr(PrefDystans, BazaDystans, SufDystans);
-                    break;
-            }
+                if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie.";
+                if (wyniki.Count > 1 && wyniki.Count < 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenia.";
+                if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
+            });
 
-            filtrUpdate.Enabled = true;
-            cbFiltrPref.Enabled = true;
-            cbFiltrBaza.Enabled = true;
-            cbFiltrSuf.Enabled = true;
+            this.Invoke((MethodInvoker)delegate
+            {
+                // Aktualizuj prefiksy, bazy i sufiksy filtru
+                switch (listaTypowPrzedmiotow.SelectedItem)
+                {
+                    case "Hełm":
+                        AktualizujPozyjcieFiltr(PrefHelm, BazaHelm, SufHelm);
+                        break;
+                    case "Zbroja":
+                        AktualizujPozyjcieFiltr(PrefZbroja, BazaZbroja, SufZbroja);
+                        break;
+                    case "Spodnie":
+                        AktualizujPozyjcieFiltr(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                        break;
+                    case "Pierścień":
+                        AktualizujPozyjcieFiltr(PrefPierscien, BazaPierscien, SufPierscien);
+                        break;
+                    case "Amulet":
+                        AktualizujPozyjcieFiltr(PrefAmulet, BazaAmulet, SufAmulet);
+                        break;
+                    case "Biała 1h":
+                        AktualizujPozyjcieFiltr(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                        break;
+                    case "Biała 2h":
+                        AktualizujPozyjcieFiltr(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                        break;
+                    case "Palna 1h":
+                        AktualizujPozyjcieFiltr(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                        break;
+                    case "Palna 2h":
+                        AktualizujPozyjcieFiltr(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                        break;
+                    case "Dystans":
+                        AktualizujPozyjcieFiltr(PrefDystans, BazaDystans, SufDystans);
+                        break;
+                }
+
+                filtrUpdate.Enabled = true;
+                cbFiltrPref.Enabled = true;
+                cbFiltrBaza.Enabled = true;
+                cbFiltrSuf.Enabled = true;
+            });
 
             // Sortowanie wyników: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość łączeń
             wyniki = wyniki.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ThenBy(x => x.h.Length).ToList();
@@ -1507,13 +1561,17 @@ namespace R19_BW_laczenia
             polaczonePrzedmioty.SelectedIndexChanged += new EventHandler(PolaczonePrzedmioty_SelectedIndexChanged);
             polaczonePrzedmioty.SelectedIndex = -1;
         }
-        
+
         private void FiltrUpdate(List<string> pref, List<string> baza, List<string> suf)
         {
             List<string> wynikiTekst = new List<string>();
-            int filtrPref = pref.IndexOf(cbFiltrPref.Text);
-            int filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
-            int filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
+            int filtrPref = 0;
+            int filtrBaza = 0;
+            int filtrSuf = 0;
+
+            filtrPref = pref.IndexOf(cbFiltrPref.Text);
+            filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
+            filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
 
             filtrUpdate.Enabled = false;
             filtrUpdate.Text = "Aktualizuję...";
@@ -1612,6 +1670,16 @@ namespace R19_BW_laczenia
                 }
             }
 
+            if (wynikiTekst.Count > 62000 && checkBoxWyswietl.Checked == false)
+            {
+                pomoc = new Pomoc("Wyniki łączeń");
+                pomoc.ShowDialog(this);
+
+                filtrUpdate.Text = "Aktualizuj filtr";
+                filtrUpdate.Enabled = true;
+                return;
+            }
+
             polaczonePrzedmioty.DataSource = wynikiTekst;
             filtrUpdate.Text = "Aktualizuj filtr";
             filtrUpdate.Enabled = true;
@@ -1640,24 +1708,8 @@ namespace R19_BW_laczenia
         private void AnalizatorLaczenPomoc_Click(object sender, EventArgs e)
         {
             // Szybka pomoc jak korzystać z analizatora łączeń
-            if (pomoc != null)
-            {
-                if (pomoc.wyswietl == "Analizator łączeń") pomoc.BringToFront();
-                else
-                {
-                    pomoc.wyswietl = "";
-                    pomoc.Dispose();
-                    pomoc.Close();
-
-                    pomoc = new Pomoc("Analizator łączeń");
-                    pomoc.ShowDialog(this);
-                }
-            }
-            if (pomoc == null)
-            {
-                pomoc = new Pomoc("Analizator łączeń");
-                pomoc.ShowDialog(this);
-            }
+            pomoc = new Pomoc("Analizator łączeń");
+            pomoc.ShowDialog(this);
         }
 
         private string UsunSpacje(Item i, List<string> pref, List<string> baza, List<string> suf)
@@ -1711,7 +1763,7 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void SegregujPrzedmioty_Click(object sender, EventArgs e)
+        private void SortujPrzedmioty_Click(object sender, EventArgs e)
         {
             przedmiotyDoAnalizy.Text = "";
             przedmioty = przedmioty.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ToList();

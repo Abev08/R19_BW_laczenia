@@ -1,4 +1,13 @@
-﻿Version 2.1
+﻿Version 2.2
+	- Poprawiono zachowanie przycisków podczas obliczeń / aktualizacji,
+	- Poprawiono tekst okienek pomocy,
+	- Poprawiono czcionkę okienka pomocy oraz sposób wyświetlania okienka pomocy,
+	- Dodano ostrzerzenie przy wczytywaniu powyżej 60 tyś. wyników w analizatorze łączeń,
+	- Dodano wsparcie dla wątków:
+		-- Przeniesiono analizę połączeń w analizatorze łączeń do nowego wątku działającego w tle,
+		-- Dodano możliwość przerwania działania analizatora połączeń wciskając klawisz "Esc".
+
+Version 2.1
 	- Dodano możliwość wyświetlania kilku tabeli łączeń w oknie tabeli łączeń,
 	- Dodano możliwość zamknięcia wybranej tabeli łączeń w oknie tabeli łączeń klikając prawym przyciskiem myszy na jej zakładce,
 	- Dodano możliwość zmiany wielkości czcionki wyświetlanych elementów tabeli łączeń,

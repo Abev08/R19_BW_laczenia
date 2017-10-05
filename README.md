@@ -4,7 +4,7 @@ Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars
 Listy przedmiotów przystosowano do serwera R19.
   
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
-Aktualna werjsa programu: 2.1. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".
+Aktualna werjsa programu: 2.2. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".
   
 
 ## Funkcje programu
@@ -28,7 +28,8 @@ Aktualna werjsa programu: 2.1. Wersję używanego programu można sprawdzić naj
    - Możliwość sortowania załadowanych przedmiotów według: jakość prefiksu -> jakość bazy -> jakość sufiksu,
    - Sortowanie wyszukanych połączeń według: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość połączeń,
    - Domyślnie wyszukiwane połączenia: ((A+B) + C) + D itd.,
-   - Możliwość włączenia wyszukiwania dodatkowych połączeń: (A+B) + (C+D) + (E+F) + itd..
+   - Możliwość włączenia wyszukiwania dodatkowych połączeń: (A+B) + (C+D) + (E+F) + itd.,
+   - Analizator łączeń do działania wykorzyustuje nowy wątek - możliwe jest przerwanie działania po wciśnięciu klawisza Esc.
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów i analizatorze łączeń),
    - Kopiowanie zaznaczonego tekstu,
@@ -36,6 +37,9 @@ Aktualna werjsa programu: 2.1. Wersję używanego programu można sprawdzić naj
    - Zapisywanie wyświetlanego tekstu do pliku,
    - Czyszczenie przebiegu łączeń / raportu w analizatorze raportów,
    - Wysłanie zaznaczonego przedmiotu do schowka programowego (nie dostępne w analizatorze raportów i analizatorze łączeń).
+
+
+--------------------------
 
 
 [Changelog](Changelog.txt). Proszę zgłaszać wszelkie znalezione błędy / sugestie dotyczące programu :)  

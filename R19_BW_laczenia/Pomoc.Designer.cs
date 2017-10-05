@@ -45,12 +45,13 @@
             // 
             // pomocTekst
             // 
+            this.pomocTekst.AutoSize = true;
             this.pomocTekst.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pomocTekst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.pomocTekst.Font = new System.Drawing.Font("Franklin Gothic Book", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.pomocTekst.Location = new System.Drawing.Point(0, 0);
             this.pomocTekst.Name = "pomocTekst";
             this.pomocTekst.Padding = new System.Windows.Forms.Padding(10);
-            this.pomocTekst.Size = new System.Drawing.Size(782, 303);
+            this.pomocTekst.Size = new System.Drawing.Size(69, 41);
             this.pomocTekst.TabIndex = 1;
             this.pomocTekst.Text = "Tekst";
             this.pomocTekst.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -68,6 +69,7 @@
             this.Text = "Pomoc";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pomoc_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
