@@ -337,6 +337,7 @@
             this.cbFiltrSuf = new System.Windows.Forms.ComboBox();
             this.cbFiltrBaza = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.mieszaneLaczenia = new System.Windows.Forms.CheckBox();
             this.dodatkoweLaczenia = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
@@ -3988,6 +3989,7 @@
             // checkBoxWyswietl
             // 
             this.checkBoxWyswietl.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxWyswietl.Enabled = false;
             this.checkBoxWyswietl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBoxWyswietl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.checkBoxWyswietl.Location = new System.Drawing.Point(365, 54);
@@ -4087,20 +4089,36 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.mieszaneLaczenia);
             this.panel2.Controls.Add(this.dodatkoweLaczenia);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.analizujPolaczenia);
             this.panel2.Controls.Add(this.znalezionoPolaczen);
-            this.panel2.Location = new System.Drawing.Point(615, 193);
+            this.panel2.Location = new System.Drawing.Point(615, 180);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(537, 164);
+            this.panel2.Size = new System.Drawing.Size(537, 190);
             this.panel2.TabIndex = 47;
+            // 
+            // mieszaneLaczenia
+            // 
+            this.mieszaneLaczenia.AutoSize = true;
+            this.mieszaneLaczenia.BackColor = System.Drawing.Color.Transparent;
+            this.mieszaneLaczenia.Enabled = false;
+            this.mieszaneLaczenia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mieszaneLaczenia.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.mieszaneLaczenia.Location = new System.Drawing.Point(70, 92);
+            this.mieszaneLaczenia.Name = "mieszaneLaczenia";
+            this.mieszaneLaczenia.Size = new System.Drawing.Size(396, 24);
+            this.mieszaneLaczenia.TabIndex = 61;
+            this.mieszaneLaczenia.Text = "Wykorzystuj łączenia mieszane - (A+B) + C + (D+E) + F";
+            this.mieszaneLaczenia.UseVisualStyleBackColor = false;
             // 
             // dodatkoweLaczenia
             // 
             this.dodatkoweLaczenia.AutoSize = true;
             this.dodatkoweLaczenia.BackColor = System.Drawing.Color.Transparent;
+            this.dodatkoweLaczenia.Enabled = false;
             this.dodatkoweLaczenia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dodatkoweLaczenia.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.dodatkoweLaczenia.Location = new System.Drawing.Point(89, 62);
@@ -4109,6 +4127,7 @@
             this.dodatkoweLaczenia.TabIndex = 60;
             this.dodatkoweLaczenia.Text = "Wykorzystuj dodatkowe łączenia - (A+B) + (C+D)";
             this.dodatkoweLaczenia.UseVisualStyleBackColor = false;
+            this.dodatkoweLaczenia.CheckedChanged += new System.EventHandler(this.DodatkoweLaczenia_CheckedChanged);
             // 
             // panel4
             // 
@@ -4154,7 +4173,7 @@
             // analizujPolaczenia
             // 
             this.analizujPolaczenia.Enabled = false;
-            this.analizujPolaczenia.Location = new System.Drawing.Point(178, 93);
+            this.analizujPolaczenia.Location = new System.Drawing.Point(178, 123);
             this.analizujPolaczenia.Margin = new System.Windows.Forms.Padding(4);
             this.analizujPolaczenia.Name = "analizujPolaczenia";
             this.analizujPolaczenia.Size = new System.Drawing.Size(180, 40);
@@ -4167,7 +4186,7 @@
             // 
             this.znalezionoPolaczen.BackColor = System.Drawing.Color.Transparent;
             this.znalezionoPolaczen.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.znalezionoPolaczen.Location = new System.Drawing.Point(0, 137);
+            this.znalezionoPolaczen.Location = new System.Drawing.Point(0, 167);
             this.znalezionoPolaczen.Name = "znalezionoPolaczen";
             this.znalezionoPolaczen.Size = new System.Drawing.Size(537, 23);
             this.znalezionoPolaczen.TabIndex = 46;
@@ -4432,7 +4451,7 @@
             // analizatorWorker
             // 
             this.analizatorWorker.WorkerSupportsCancellation = true;
-            this.analizatorWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.analizatorWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.AnalizujWorker_DoWork);
             // 
             // MainWindow
             // 
@@ -4875,6 +4894,7 @@
         private System.Windows.Forms.Button sortujPrzedmioty;
         private System.ComponentModel.BackgroundWorker analizatorWorker;
         private System.Windows.Forms.CheckBox checkBoxWyswietl;
+        private System.Windows.Forms.CheckBox mieszaneLaczenia;
     }
 }
 

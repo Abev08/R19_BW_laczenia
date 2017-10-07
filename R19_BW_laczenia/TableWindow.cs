@@ -113,18 +113,21 @@ namespace R19_BW_laczenia
             int maxRow = 0;
             int maxRowIndex = 0;
 
-            for (int i = 0; i < dgvList.Count; i++)
+            if (dgvList.Count > 0)
             {
-                if (dgvList[i].RowCount > maxRow)
+                for (int i = 0; i < dgvList.Count; i++)
                 {
-                    maxRow = dgvList[i].RowCount;
-                    maxRowIndex = i;
+                    if (dgvList[i].RowCount > maxRow)
+                    {
+                        maxRow = dgvList[i].RowCount;
+                        maxRowIndex = i;
+                    }
                 }
-            }
 
-            this.Height = 90 + dgvList[maxRowIndex].Rows.GetRowsHeight(DataGridViewElementStates.None);  // obramowanie = 90 + wysokość wszystkich wierszy
-            if (this.Height < 150) this.Height = 150;
-            this.Width = Convert.ToInt32(this.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
+                this.Height = 90 + dgvList[maxRowIndex].Rows.GetRowsHeight(DataGridViewElementStates.None);  // obramowanie = 90 + wysokość wszystkich wierszy
+                if (this.Height < 150) this.Height = 150;
+                this.Width = Convert.ToInt32(this.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
+            }
 
             // Przenieś przyciski "+" i "-" na koniec okna
             panel1.Location = new Point(this.Width - panel1.Width - 21, 1);
@@ -163,7 +166,7 @@ namespace R19_BW_laczenia
         private void TabTabela_MouseUp(object sender, MouseEventArgs e)
         {
             // Zamknij kartę po kliknięciu na niej prawym przyciskiem myszy
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right || e.Button == MouseButtons.Middle)
             {
                 for (int i = 0; i < tabTabela.TabCount; i++)
                 {
@@ -195,10 +198,10 @@ namespace R19_BW_laczenia
         private int SprawdzWyjatki(List<string> B, int sk1, int sk2, int w)
         {
             // Sprawdzenie wyjątków przy łączeniach przy końcu tabeli
-            if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 2))) w = B.Count - 3;
-            if ((sk1 == (B.Count - 2)) & (sk2 == (B.Count - 1))) w = B.Count - 3;
-            if ((sk1 == (B.Count - 3)) & (sk2 == (B.Count - 1))) w = B.Count - 2;
-            if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 3))) w = B.Count - 2;
+            if ((sk1 == (B.Count - 1)) && (sk2 == (B.Count - 2))) w = B.Count - 3;
+            if ((sk1 == (B.Count - 2)) && (sk2 == (B.Count - 1))) w = B.Count - 3;
+            if ((sk1 == (B.Count - 3)) && (sk2 == (B.Count - 1))) w = B.Count - 2;
+            if ((sk1 == (B.Count - 1)) && (sk2 == (B.Count - 3))) w = B.Count - 2;
             return w;
         }
 

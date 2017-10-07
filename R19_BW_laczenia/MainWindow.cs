@@ -274,7 +274,6 @@ namespace R19_BW_laczenia
         // Zmienne do łączenia
         Item component1 = new Item();
         Item component2 = new Item();
-        Item result = new Item();
         bool added = false;
         List<Item> HistoriaPrzedmiotow = new List<Item>();
         List<string> HistoriaLaczen = new List<string>();
@@ -359,6 +358,7 @@ namespace R19_BW_laczenia
         private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
         {
             Item temp = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
+            Item result;
 
             // Dodaj znak sumy jeżeli dodano drugi przedmiot do łączenia
             if (temp.Sum() > 0)
@@ -388,19 +388,14 @@ namespace R19_BW_laczenia
                     // Dodaj składnik do histori składników
                     HistoriaPrzedmiotow.Add(new Item(component2));
 
-                    // Połącz składniki
-                    result.Set(Polacz(component1, component2));
-                    
-                    // Sprawdź wyjątki przy łączeniu przy końcu tabeli łączeń
-                    result.p = SprawdzWyjatki(Pref, component1.p, component2.p, result.p);
-                    result.b = SprawdzWyjatki(Baza, component1.b, component2.b, result.b);
-                    result.s = SprawdzWyjatki(Suf, component1.s, component2.s, result.s);
+                    // Połącz przedmioty
+                    result = new Item(component1.Polacz(component2, Pref, Baza, Suf));
 
                     // Potraktuj wynik jako pierwszy składnik
                     component1 = new Item(result);
 
                     // Dodaj składnik do histori składników
-                    HistoriaPrzedmiotow.Add(new Item(component1));
+                    HistoriaPrzedmiotow.Add(new Item(result));
                     // Wyświetl wynik łączenia
                     Wynik.AppendText("\n= " + UsunSpacje(result, Pref, Baza, Suf));
                 }
@@ -413,41 +408,6 @@ namespace R19_BW_laczenia
             Wynik.ScrollToCaret();
             // Uaktualnij "wynik łączenia aktualizowany na bieżąco"
             ZmienLabel();
-        }
-
-        //private int[] Polacz(int pref1, int baza1, int suf1, int pref2, int baza2, int suf2)
-        private Item Polacz(Item sk1, Item sk2)
-        {
-            int[] wynik = new int[] { 0, 0, 0 };
-            double x = 0d, y = 0d;
-
-            for (int i = 0; i < 3; i++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        // Prefiksy
-                        x = sk1.p;
-                        y = sk2.p;
-                        break;
-                    case 1:
-                        // Bazy
-                        x = sk1.b;
-                        y = sk2.b;
-                        break;
-                    case 2:
-                        // Sufiksy
-                        x = sk1.s;
-                        y = sk2.s;
-                        break;
-                }
-
-                if ((int)x == 0 || (int)y == 0) wynik[i] = 0;
-                else if (x == y) wynik[i] = (int)x;
-                else wynik[i] = Convert.ToInt32(Math.Ceiling((x + y) / 2d) + 1d);
-            }
-
-            return new Item(wynik[0], wynik[1], wynik[2]);
         }
 
         private void HelmCofnij_Click(object sender, EventArgs e)
@@ -525,240 +485,159 @@ namespace R19_BW_laczenia
 
         private void PrefHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Hełm Pref", PrefHelm);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Hełm Pref", PrefHelm);
         }
 
         private void BazaHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Hełm Baza", BazaHelm);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Hełm Baza", BazaHelm);
         }
 
         private void SufHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Hełm Suf", SufHelm);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Hełm Suf", SufHelm);
         }
 
         private void PrefZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Zbroja Pref", PrefZbroja);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Zbroja Pref", PrefZbroja);
         }
 
         private void BazaZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Zbroja Baza", BazaZbroja);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Zbroja Baza", BazaZbroja);
         }
 
         private void SufZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Zbroja Suf", SufZbroja);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Zbroja Suf", SufZbroja);
         }
 
         private void PrefSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Spodnie Pref", PrefSpodnie);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Spodnie Pref", PrefSpodnie);
         }
 
         private void BazaSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Spodnie Baza", BazaSpodnie);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Spodnie Baza", BazaSpodnie);
         }
 
         private void SufSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Spodnie Suf", SufSpodnie);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Spodnie Suf", SufSpodnie);
         }
 
         private void PrefPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Pierścień Pref", PrefPierscien);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Pierścień Pref", PrefPierscien);
         }
 
         private void BazaPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Pierścień Baza", BazaPierscien);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Pierścień Baza", BazaPierscien);
         }
 
         private void SufPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Pierścień Suf", SufPierscien);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Pierścień Suf", SufPierscien);
         }
 
         private void PrefAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Amulet Pref", PrefAmulet);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Amulet Pref", PrefAmulet);
         }
 
         private void BazaAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Amulet Baza", BazaAmulet);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Amulet Baza", BazaAmulet);
         }
 
         private void SufAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Amulet Suf", SufAmulet);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Amulet Suf", SufAmulet);
         }
 
         private void PrefBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Biała 1h Pref", PrefBiala1h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Biała 1h Pref", PrefBiala1h);
         }
 
         private void BazaBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Biała 1h Baza", BazaBiala1h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Biała 1h Baza", BazaBiala1h);
         }
 
         private void SufBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Biała 1h Suf", SufBiala1h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Biała 1h Suf", SufBiala1h);
         }
 
         private void PrefBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Biała 2h Pref", PrefBiala2h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Biała 2h Pref", PrefBiala2h);
         }
 
         private void BazaBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Biała 2h Baza", BazaBiala2h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Biała 2h Baza", BazaBiala2h);
         }
 
         private void SufBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Biała 2h Suf", SufBiala2h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Biała 2h Suf", SufBiala2h);
         }
 
         private void PrefPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Palna 1h Pref", PrefPalan1h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Palna 1h Pref", PrefPalan1h);
         }
 
         private void BazaPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Palna 1h Baza", BazaPalna1h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Palna 1h Baza", BazaPalna1h);
         }
 
         private void SufPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Palna 1h Suf", SufPalna1h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Palna 1h Suf", SufPalna1h);
         }
 
         private void PrefPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Palna 2h Pref", PrefPalna2h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Palna 2h Pref", PrefPalna2h);
         }
 
         private void BazaPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Palna 2h Baza", BazaPalna2h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Palna 2h Baza", BazaPalna2h);
         }
 
         private void SufPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
             if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Palna 2h Suf", SufPalna2h);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Palna 2h Suf", SufPalna2h);
         }
 
         private void PrefDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Dystans Pref", PrefDystans);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Dystans Pref", PrefDystans);
         }
 
         private void BazaDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Dystans Baza", BazaDystans);
-            Tabela.Show();
-            Tabela.BringToFront();
+            InicjalizacjaTabeli("Dystans Baza", BazaDystans);
         }
 
         private void SufDystansPanelLabel_Click(object sender, EventArgs e)
         {
+            InicjalizacjaTabeli("Dystans Suf", SufDystans);
+        }
+
+        private void InicjalizacjaTabeli(string s, List<string> baza)
+        {
             if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            Tabela.AddTab("Dystans Suf", SufDystans);
+            Tabela.AddTab(s, baza);
             Tabela.Show();
             Tabela.BringToFront();
         }
@@ -1043,51 +922,52 @@ namespace R19_BW_laczenia
         {
             // Funkcja do zmiany labeli - aktualizacji "na bieżąco" wyniku łączenia
             Item skladnik = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
-            Item wynik = new Item(Polacz(component1, skladnik));
+            Item wynik = new Item(component1.Polacz(skladnik, Pref, Baza, Suf));
 
-            wynik.p = SprawdzWyjatki(Pref, component1.p, skladnik.p, wynik.p);
-            wynik.b = SprawdzWyjatki(Baza, component1.b, skladnik.b, wynik.b);
-            wynik.s = SprawdzWyjatki(Suf, component1.s, skladnik.s, wynik.s);
-
-            PrefLab.Text = "";
-            if (PrefCB.Text != "") PrefLab.Text = Pref.ElementAt(wynik.p);
-            BazaLab.Text = "";
-            if (BazaCB.Text != "") BazaLab.Text = Baza.ElementAt(wynik.b);
-            SufLab.Text = "";
-            if (SufCB.Text != "") SufLab.Text = Suf.ElementAt(wynik.s);
-        }
-
-        private int SprawdzWyjatki(List<string> B, int sk1, int sk2, int w)
-        {
-            // Sprawdzenie wyjątków przy łączeniach przy końcu tabeli
-            if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 2))) w = B.Count - 3;
-            if ((sk1 == (B.Count - 2)) & (sk2 == (B.Count - 1))) w = B.Count - 3;
-            if ((sk1 == (B.Count - 3)) & (sk2 == (B.Count - 1))) w = B.Count - 2;
-            if ((sk1 == (B.Count - 1)) & (sk2 == (B.Count - 3))) w = B.Count - 2;
-            return w;
+            if (wynik.p > 0) PrefLab.Text = Pref.ElementAt(wynik.p);
+            else PrefLab.Text = "";
+            if (wynik.b > 0) BazaLab.Text = Baza.ElementAt(wynik.b);
+            else BazaLab.Text = "";
+            if (wynik.s > 0) SufLab.Text = Suf.ElementAt(wynik.s);
+            else SufLab.Text = "";
         }
 
         private void ZaladujPrzedmioty_Click(object sender, EventArgs e)
         {
-            // Wyczyść listy załadowanych przedmiotów
+            // Wyczyść comboBox'a z listą załadowanych przedmiotów
             zaladowanePrzedmioty.Items.Clear();
+            // Wyczyść przefiltrowane przedmioty
             polaczonePrzedmioty.DataSource = null;
+            // Wyczyśc ilość załadowanych połączeń
             znalezionoPolaczen.Text = " ";
+            // Wyczyść pozycje filtra
             cbFiltrPref.Items.Clear();
             cbFiltrBaza.Items.Clear();
             cbFiltrSuf.Items.Clear();
+            // Wyłącz okienko z ilością sprawdzanych łączeń 
             iloscLaczen.Enabled = false;
+            // Wyłącz przycisk aktualizacji filtra
             filtrUpdate.Enabled = false;
+            // Wyłącz listę przefiltrowanych wyników
             polaczonePrzedmioty.Enabled = false;
+            // Wyłącz okienka filtra
             cbFiltrPref.Enabled = false;
             cbFiltrBaza.Enabled = false;
             cbFiltrSuf.Enabled = false;
-
+            // Odznacz dodatkowe łączenia
+            dodatkoweLaczenia.Checked = false;
+            // Wyłącz checkBox "Wyświetl mimio wszystko"
+            checkBoxWyswietl.Enabled = false;
+            // Odznacz checkBox "Wyświetl mimio wszystko"
+            checkBoxWyswietl.Checked = false;
+            // Wyłącz przyciski "Edytuj przedmioty" i "Sortuj przedmioty"
             edytujPrzedmioty.Enabled = false;
             sortujPrzedmioty.Enabled = false;
 
+            // Wyczyść listę załadowanych przedmiotów
             przedmioty.Clear();
 
+            // Załaduj przedmioty
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
@@ -1158,49 +1038,68 @@ namespace R19_BW_laczenia
                     break;
             }
 
+            // W zależności od ilości załadowanych przedmiotów wyświetl poprawną (słownie) ilość
             if (przedmioty.Count == 1) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiot:";
             if (przedmioty.Count > 1 && przedmioty.Count < 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmioty:";
             if (przedmioty.Count >= 5 || przedmioty.Count == 0) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
+            // Jeżeli załadowano przynajmniej 1 przedmiot włącz przyciski "Edytuj przedmioty" i "Sortuj przedmioty"
             if (przedmioty.Count > 0)
             {
                 zaladowanePrzedmioty.SelectedIndex = 0;
                 edytujPrzedmioty.Enabled = true;
                 sortujPrzedmioty.Enabled = true;
             }
+            // Jeżeli załadowano przynajmniej 2 przedmioty włącz przyciski "Analizuj połączenia"
+            // i checkBox'y dodatkoweLaczenia i mieszaneLaczenia
             if (przedmioty.Count > 1)
             {
                 analizujPolaczenia.Enabled = true;
+                dodatkoweLaczenia.Enabled = true;
+                mieszaneLaczenia.Checked = false;
+                // Jeżeli załadowano poniżej 10 przedmiotów ustaw ilość łączeń na ilość przedmiotów
                 if (przedmioty.Count < 10) iloscLaczen.Value = przedmioty.Count;
                 else
                 {
+                    // Jeżeli załadowano 10+ przedmiotów włącz okienko z wyborem ilości łączeń i ustaw wartość początkową równą 1
                     iloscLaczen.Enabled = true;
                     iloscLaczen.Value = 1;
                 }
             }
             if (przedmioty.Count < 2)
             {
+                // Jeżeli załadowano mniej niż 2 przedmioty wyłącz przycisk "Analizuj połączenia" oraz checkBox dodatkoweLaczenia
+                // i ustaw ilość łączeń na 1
                 analizujPolaczenia.Enabled = false;
+                dodatkoweLaczenia.Enabled = false;
+                mieszaneLaczenia.Checked = false;
                 iloscLaczen.Value = 1;
             }
         }
 
         private void Zaladuj(List<string> pref, List<string> baza, List<string> suf)
         {
+            // Funkcja ładująca przedmioty - identyfikuje przedmioty z ciągu znaków
+            // Wyczyść listy załadowanych przedmiotów
             zaladowanePrzedmioty.Items.Clear();
             przedmioty.Clear();
 
+            // Wyłącz zawijanie tekstu w okienku z tekstem
             przedmiotyDoAnalizy.WordWrap = false;
 
             // Podziel wklejony tekst na linie
             string[] linie = przedmiotyDoAnalizy.Text.Split('\n');
 
-            Item przedmiot = new Item();
+            // Identyfikowany przedmiot
+            Item przedmiot;
 
+            // Pętla dzieląca tekst z okienka na poszczególne linie
             foreach (string line in linie)
             {
                 przedmiot = new Item();
+                // Podziel linię tekstu na wyrazy oddzielone spacjami
                 string[] wyrazy = line.Split(' ');
 
+                // Przeszukaj poszczególne wyrazy
                 for (int i = 0; i < wyrazy.Count(); i++)
                 {
                     // Pomiń spacje i inne wyrazy z ilością znaków < 3
@@ -1209,6 +1108,7 @@ namespace R19_BW_laczenia
                     // Przytnij końcówkę wyrazu - ułatwienie identyfikacji przedmiotów
                     wyrazy[i] = wyrazy[i].Substring(0, wyrazy[i].Length - 1);
 
+                    // Odnajdź w liście prefiksów / baz / sufiksów wyraz
                     if (pref.Any(p => p.Contains(wyrazy[i])) && przedmiot.p == 0) przedmiot.p = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
                     if (baza.Any(b => b.Contains(wyrazy[i]))) przedmiot.b = baza.IndexOf(baza.Find(b => b.Contains(wyrazy[i])));
                     if (suf.Any(s => s.Contains(wyrazy[i]))) przedmiot.s = suf.IndexOf(suf.Find(s => s.Contains(wyrazy[i])));
@@ -1222,20 +1122,32 @@ namespace R19_BW_laczenia
                 }
             }
 
+            // Włącz zawijanie tekstu w okienku z tekstem
             przedmiotyDoAnalizy.WordWrap = true;
         }
 
         private void AnalizujPolaczenia_Click(object sender, EventArgs e)
         {
+            // Na czas analizy wyłącz przycisk "Analizuj połączenia" i zmień jego tekst na "Analizuję..."
             analizujPolaczenia.Enabled = false;
             analizujPolaczenia.Text = "Analizuję...";
+            // Na czas analizy wyłącz okienko z zadeklarowaną ilością łączeń
             iloscLaczen.Enabled = false;
+            // Na czas analizy wyłącz checkBox'y dodatkoweLaczenia i mieszaneLaczenia
             dodatkoweLaczenia.Enabled = false;
+            mieszaneLaczenia.Enabled = false;
+            // Na czas analizy wyłącz przycisk "Załaduj Przedmioty"
             zaladujPrzedmioty.Enabled = false;
+            // Wyłącz przycisk "Aktualizuj filtr" i wyczyść wyświetlane wyniki łączeń
             filtrUpdate.Enabled = false;
             polaczonePrzedmioty.DataSource = null;
+            // Wyłącz i odznacz checkBox "Wyświetl mimio wszystko"
+            checkBoxWyswietl.Enabled = false;
+            checkBoxWyswietl.Checked = false;
+            // Wyczyść wyniki łączeń
             wyniki.Clear();
 
+            // Lista z listami prefiksów, baz i sufiksów wysyłana do backgroundWorker'a
             List<List<string>> send = new List<List<string>>();
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
@@ -1291,22 +1203,29 @@ namespace R19_BW_laczenia
                     break;
             }
 
+            // Uruchom backgroundWorker oraz wyślij do niego atrybut z listą prefiksów, baz i sufiksów
             analizatorWorker.RunWorkerAsync(send);
         }
 
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void AnalizujWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            // Funkcja wywoływana przez backgroundWorkera - analizujWorker
+            // Potraktuj otrzymany argument jako lista list prefiksów, baz i sufiksów
             List<List<string>> arg = (List<List<string>>)e.Argument;
 
+            // Wywołaj analizator połączeń
             AnalizujPolaczenia(arg[0], arg[1], arg[2]);
 
+            // Po skończonej analizie zaktualizuj tekst przycisku i włącz kontrolki wyłączone na czas analizy
             this.Invoke((MethodInvoker)delegate
             {
                 if (przedmioty.Count >= 10) iloscLaczen.Enabled = true;
                 analizujPolaczenia.Text = "Analizuj połączenia";
                 analizujPolaczenia.Enabled = true;
                 dodatkoweLaczenia.Enabled = true;
+                if (dodatkoweLaczenia.Checked == true) mieszaneLaczenia.Enabled = true;
                 zaladujPrzedmioty.Enabled = true;
+                checkBoxWyswietl.Enabled = true;
             });
         }
 
@@ -1321,53 +1240,61 @@ namespace R19_BW_laczenia
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void AnalizujPolaczenia(List<string> pref = null, List<string> baza = null, List<string> suf = null)
+        private void AnalizujPolaczenia(List<string> pref, List<string> baza, List<string> suf)
         {
-            List<int> indeksy = new List<int>();    // Lista wykorzystanych indeksów przedmiotów
+            // Główna funkcja analizatora połączeń sprawdzająca pierwsze połączenie
+            // Lista wykorzystanych indeksów przedmiotów
+            List<int> indeksy = new List<int>();
+            // Zmienna do przechowywania wyniku łączenia
             Item wynik = new Item();
+            // Zmienna do przechowywania ilości łączonych przedmiotów
             int iloscPrzedmiotów = przedmioty.Count;
-            int iloscPetli = 2;
-            int maxIloscPetli = (int)iloscLaczen.Value + 1;
+            // Początkowa ilość łączeń = 1
+            int iloscLacz = 1;
+            // Maksymalna ilość łączeń odczytana z kontrolki do ustawiania ilości łączeń
+            int maxIloscLaczen = (int)iloscLaczen.Value;
 
             for (int sk1 = 0; sk1 < iloscPrzedmiotów; sk1++)
             {
+                // Wyczyść listę wykorzystanych indeksów oraz dodaj aktualnie wykorzystywany indeks
                 indeksy.Clear();
                 indeksy.Add(sk1);
 
+                // Zaktualizuj procentowy postęp analizy połączeń
                 this.Invoke((MethodInvoker)delegate
                 {
-                    znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / ((double)iloscPrzedmiotów - 1)) * 100d) + "% połączeń.";
+                    znalezionoPolaczen.Text = "Znaleziono " + Math.Ceiling(((double)sk1 / ((double)iloscPrzedmiotów)) * 100d) + "% połączeń.";
                     this.Update();
                 });
 
+                // Rozpocznij drugą pętlę od następnego przedmiotu
                 for (int sk2 = sk1 + 1; sk2 < iloscPrzedmiotów; sk2++)
                 {
                     // Dodaj wykorzystany "indeks" przedmiotu z listy
                     indeksy.Add(sk2);
 
-                    wynik = new Item(Polacz(przedmioty[sk1], przedmioty[sk2]));
-                    wynik.p = SprawdzWyjatki(pref, przedmioty[sk1].p, przedmioty[sk2].p, wynik.p);
-                    wynik.b = SprawdzWyjatki(baza, przedmioty[sk1].b, przedmioty[sk2].b, wynik.b);
-                    wynik.s = SprawdzWyjatki(suf, przedmioty[sk1].s, przedmioty[sk2].s, wynik.s);
+                    // Połącz składniki, dodaj historię łączenia oraz zwiększ ilość łączeń wyniku o 1
+                    wynik = new Item(przedmioty[sk1].Polacz(przedmioty[sk2], pref, baza, suf));
                     wynik.h = UsunSpacje(przedmioty[sk1], pref, baza, suf) + " + " + UsunSpacje(przedmioty[sk2], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                    wynik.iloscLaczen += 1;
+                    // Dodaj otrzymany wynik do listy wyników
                     wyniki.Add(wynik);
 
+                    // Wywołaj pętle sprawdzające pozostałe łączenia
                     // Połączenia (((A+B)+C)+D) itd.
-                    if (iloscPrzedmiotów > iloscPetli && iloscPetli < maxIloscPetli) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf);
-                    if (dodatkoweLaczenia.Checked)
-                    {
-                        // Połączenia ((A+B)+(C+D)) itd.
-                        if (iloscPrzedmiotów >= iloscPetli + 2 && iloscPetli < maxIloscPetli) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscPetli, 2, wynik, pref, baza, suf);
-                    }
+                    if (iloscLacz < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, pref, baza, suf);
+                    // Połączenia dodatkowe ((A+B)+(C+D)) itd.
+                    if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, pref, baza, suf);
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(sk2);
 
                     // Jeżeli wciśnięto klawisz Esc przerwij analizowanie
-                    if (analizatorWorker.CancellationPending)
+                    if (analizatorWorker.CancellationPending == true)
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
+                            // Daj użytkownikowi znać, że przerwał analizę
                             znalezionoPolaczen.Text = "Przerwano analizę.";
                         });
                         return;
@@ -1375,6 +1302,7 @@ namespace R19_BW_laczenia
                 }
             }
 
+            // Po zakończonej analizie połączeń wyświetl ilość znalezionych wyników
             this.Invoke((MethodInvoker)delegate
             {
                 if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie.";
@@ -1382,6 +1310,7 @@ namespace R19_BW_laczenia
                 if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
             });
 
+            // Po zakończonej analizie połączeń zaktualizuj filtr
             this.Invoke((MethodInvoker)delegate
             {
                 // Aktualizuj prefiksy, bazy i sufiksy filtru
@@ -1419,6 +1348,7 @@ namespace R19_BW_laczenia
                         break;
                 }
 
+                // Włącz kontrolki filtra
                 filtrUpdate.Enabled = true;
                 cbFiltrPref.Enabled = true;
                 cbFiltrBaza.Enabled = true;
@@ -1426,15 +1356,18 @@ namespace R19_BW_laczenia
             });
 
             // Sortowanie wyników: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość łączeń
-            wyniki = wyniki.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ThenBy(x => x.h.Length).ToList();
+            wyniki = wyniki.OrderBy(x => x.p).ThenBy(y => y.b).ThenBy(z => z.s).ThenBy(l => l.iloscLaczen).ToList();
         }
 
-        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
         {
+            // Funkcja sprawdzająca proste łączenia - ((A+B)+C)+D
+            // Zmienna do przechowywania wyniku łączenia
             Item wynik = new Item();
-            int numerPetli = nrPetli + 1;
-            int iloscPetli = iloscPet + 1;
+            // Zwiększ ilość łączeń o 1
+            int iloscL = iloscLacz + 1;
 
+            // Połącz wszystkie pozostałe przedmioty
             for (int i = 0; i < iloscPrzed; i++)
             {
                 // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
@@ -1443,27 +1376,37 @@ namespace R19_BW_laczenia
                 // Dodaj wykorzystany "indeks" przedmiotu do listy
                 indeksy.Add(i);
 
-                wynik = new Item(Polacz(skladnik, przedmioty[i]));
-                wynik.p = SprawdzWyjatki(pref, skladnik.p, przedmioty[i].p, wynik.p);
-                wynik.b = SprawdzWyjatki(baza, skladnik.b, przedmioty[i].b, wynik.b);
-                wynik.s = SprawdzWyjatki(suf, skladnik.s, przedmioty[i].s, wynik.s);
+                // Połącz otrzymany w argumentach składnik z pozostałym przedmiotem
+                wynik = new Item(skladnik.Polacz(przedmioty[i], pref, baza, suf));
+                // Dodaj jego historię łączenia - historia łącznia składnika + aktualnie sprawdzany przedmiot + wynik łączenia
                 wynik.h = skladnik.h + " + " + UsunSpacje(przedmioty[i], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                // Zwiększ ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń aktualnego przedmiotu + 1
+                wynik.iloscLaczen = skladnik.iloscLaczen + przedmioty[i].iloscLaczen + 1;
+                // Dodaj wynik do listy wyników
                 wyniki.Add(wynik);
 
                 // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
-                if (iloscPrzed > nrPetli && iloscPetli < iloscLaczen.Value + 1) AnalizujRekFunc(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
+                if (iloscL < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
+                // Jeżeli zaznaczono połączenia mieszane wywołaj funkcję dodatkowych łączeń
+                if (iloscL + 2 <= maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
 
                 // Usuń wykorzystany "indeks" przedmiotu z listy
                 indeksy.Remove(i);
+
+                // Wyjdź z funkcji jeżeli przerwano analizę połączeń
+                if (analizatorWorker.CancellationPending == true) return;
             }
         }
 
-        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscPet, int nrPetli, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
         {
+            // Funkcja sprawdzająca dodatkowe łączenia (A+B)+(C+D)
+            // Zmienna do przechowywania tymczasowego składnika - wyniku łączenia dwóch przedmiotów, które zostaną połączone z otrzymanym składnikiem w argumentach funkcji
             Item skladnikTemp = new Item();
+            // Zmienna do przechowywania wyniku łączenia
             Item wynik = new Item();
-            int numerPetli = nrPetli + 2;
-            int iloscPetli = iloscPet + 2;
+            // Zwiększ ilość łączeń o 2
+            int iloscL = iloscLacz + 2;
 
             for (int i = 0; i < iloscPrzed; i++)
             {
@@ -1481,25 +1424,33 @@ namespace R19_BW_laczenia
                     // Dodaj wykorzystany "indeks" przedmiotu do listy
                     indeksy.Add(j);
 
-                    skladnikTemp = new Item(Polacz(przedmioty[i], przedmioty[j]));
-                    skladnikTemp.p = SprawdzWyjatki(pref, przedmioty[i].p, przedmioty[j].p, skladnikTemp.p);
-                    skladnikTemp.b = SprawdzWyjatki(baza, przedmioty[i].b, przedmioty[j].b, skladnikTemp.b);
-                    skladnikTemp.s = SprawdzWyjatki(suf, przedmioty[i].s, przedmioty[j].s, skladnikTemp.s);
+                    // Połącz dwa przedmioty aby otrzymać tymczasowy składnik
+                    skladnikTemp = new Item(przedmioty[i].Polacz(przedmioty[j], pref, baza, suf));
+                    // Dodaj historię łączenia tymczasowego składnika - historia łączenia przedmiotu 1 + historia łączenia przedmiotu 2
                     skladnikTemp.h = "(" + UsunSpacje(przedmioty[i], pref, baza, suf) + " + " + UsunSpacje(przedmioty[j], pref, baza, suf) + ")";
+                    // Ustaw ilość łączeń tymczasowego składnika - ilość łączeń przedmiotu 1 + ilość łączeń przedmiotu 2 + 1
+                    skladnikTemp.iloscLaczen = przedmioty[i].iloscLaczen + przedmioty[j].iloscLaczen + 1;
 
-                    wynik = new Item(Polacz(skladnik, skladnikTemp));
-                    wynik.p = SprawdzWyjatki(pref, skladnik.p, skladnikTemp.p, wynik.p);
-                    wynik.b = SprawdzWyjatki(baza, skladnik.b, skladnikTemp.b, wynik.b);
-                    wynik.s = SprawdzWyjatki(suf, skladnik.s, skladnikTemp.s, wynik.s);
+                    // Połącz tymczasowy składnik ze składnikiem otrzymanym w argumencie funkcji
+                    wynik = new Item(skladnik.Polacz(skladnikTemp, pref, baza, suf));
+                    // Dodaj historię łączenia wyniku - historia łączenia skłądnika + historia łączenia tymczasowego składnika + wynik łączenia
                     wynik.h = skladnik.h + " + " + skladnikTemp.h + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                    // Ustaw ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń tymczasowego składnika
+                    wynik.iloscLaczen = skladnik.iloscLaczen + skladnikTemp.iloscLaczen + 1;
 
+                    // Dodaj otrzymany wynik łączenia do listy wyników
                     wyniki.Add(wynik);
 
                     // Wywołaj sam siebie jeżeli ilość itemów > ilości pętli + 2
-                    if (iloscPrzed >= iloscPetli + 2 && iloscPetli < iloscLaczen.Value + 2) AnalizujRekFunc2(indeksy, iloscPrzed, iloscPetli, numerPetli, wynik, pref, baza, suf);
+                    if (iloscL + 2 <= maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
+                    // Jeżeli zaznaczono połączenia mieszane wywołaj funkcję domyślnych łączeń
+                    if (iloscL < maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(j);
+
+                    // Wyjdź z funkcji jeżeli przerwano analizę połączeń
+                    if (analizatorWorker.CancellationPending == true) return;
                 }
 
                 // Usuń wykorzystany "indeks" przedmiotu z listy
@@ -1509,10 +1460,13 @@ namespace R19_BW_laczenia
 
         private void AktualizujPozyjcieFiltr(List<string> pref, List<string> baza, List<string> suf)
         {
+            // Zaktualizuj pozycje filtra
+            // Wyczyść aktualne pozycje filtra
             cbFiltrPref.Items.Clear();
             cbFiltrBaza.Items.Clear();
             cbFiltrSuf.Items.Clear();
 
+            // Dodaj nowe pozycje filtra
             foreach (string p in pref) cbFiltrPref.Items.Add(p);
             foreach (string b in baza) cbFiltrBaza.Items.Add(b);
             foreach (string s in suf) cbFiltrSuf.Items.Add(s);
@@ -1520,9 +1474,13 @@ namespace R19_BW_laczenia
 
         private void FiltrUpdate_Click(object sender, EventArgs e)
         {
+            // Przefiltruj wyniki połączeń
+            // Na czas filtrowania i dodawania wyników wyłącz obsługę zdarzeń
             polaczonePrzedmioty.SelectedIndexChanged -= new EventHandler(PolaczonePrzedmioty_SelectedIndexChanged);
+            // Wyczyść wyświetlane przefiltorwane wyniki
             polaczonePrzedmioty.DataSource = null;
 
+            // Wywołaj funkcję do filtrowania wyników łączeń
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
@@ -1557,6 +1515,7 @@ namespace R19_BW_laczenia
                     break;
             }
 
+            // Po zakończonym filtorwaniu wyników włącz listę wyświetlającą wyniki oraz dodaj obsługę zdarzeń
             polaczonePrzedmioty.Enabled = true;
             polaczonePrzedmioty.SelectedIndexChanged += new EventHandler(PolaczonePrzedmioty_SelectedIndexChanged);
             polaczonePrzedmioty.SelectedIndex = -1;
@@ -1564,21 +1523,25 @@ namespace R19_BW_laczenia
 
         private void FiltrUpdate(List<string> pref, List<string> baza, List<string> suf)
         {
+            // Funkcja filtrująca wyniki łączeń oraz zmieniająca Item'y na string'i
+            // Lista przechowująca przefiltrowanie wyniki łączeń w postaci string'ów
             List<string> wynikiTekst = new List<string>();
-            int filtrPref = 0;
-            int filtrBaza = 0;
-            int filtrSuf = 0;
+            // Zmienne do przechowywania wybranych parametrów filtra
+            int filtrPref = pref.IndexOf(cbFiltrPref.Text);
+            int filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
+            int filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
 
-            filtrPref = pref.IndexOf(cbFiltrPref.Text);
-            filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
-            filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
-
+            // Na czas filtrowania i dodawania wyników wyłącz przycisk "Aktualizuj filtr" oraz zmień jego tekst na "Aktualizuję..."
             filtrUpdate.Enabled = false;
             filtrUpdate.Text = "Aktualizuję...";
             this.Update();
 
+            // Lista wiążąca przefiltorwane wyniki w postaci tekstu z listą wszystkich wyników
+            // lista ta przechowuje "indeks" wyniku dodawanego do listy przefiltorwanych wyników
+            // wyświetlany przedmiot = wynik . elementAt ( filtrPrzedmioty( indkes_wybranego_przefiltrowanego_wyniku ) )
             filtrPrzedmioty.Clear();
 
+            // Przefiltruj wyniki
             for (int i = 0; i < wyniki.Count; i++)
             {
                 if (filtrPref == 0 && filtrBaza == 0 && filtrSuf == 0)
@@ -1670,9 +1633,10 @@ namespace R19_BW_laczenia
                 }
             }
 
+            // Jeżeli ilość przefiltrowanych wyników jest większa niż 62 tyś. wyświetl ostrzeżenie i wyjdź z funkcji
             if (wynikiTekst.Count > 62000 && checkBoxWyswietl.Checked == false)
             {
-                pomoc = new Pomoc("Wyniki łączeń");
+                pomoc = new Pomoc("Wyniki łączeń", wynikiTekst.Count);
                 pomoc.ShowDialog(this);
 
                 filtrUpdate.Text = "Aktualizuj filtr";
@@ -1680,6 +1644,7 @@ namespace R19_BW_laczenia
                 return;
             }
 
+            // Dodaj przefiltrowane wyniki do listy wyświetlanych wyników
             polaczonePrzedmioty.DataSource = wynikiTekst;
             filtrUpdate.Text = "Aktualizuj filtr";
             filtrUpdate.Enabled = true;
@@ -1803,6 +1768,20 @@ namespace R19_BW_laczenia
             }
         }
 
+        private void DodatkoweLaczenia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dodatkoweLaczenia.Checked == true)
+            {
+                mieszaneLaczenia.Enabled = true;
+            }
+
+            if (dodatkoweLaczenia.Checked == false)
+            {
+                mieszaneLaczenia.Enabled = false;
+                mieszaneLaczenia.Checked = false;
+            }
+        }
+
         private void GlownyTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             Czyszczenie();
@@ -1829,7 +1808,6 @@ namespace R19_BW_laczenia
             // Czyszczenie składników i okienek wyników po przepłączeniu zakładki
             component1 = new Item();
             component2 = new Item();
-            result = new Item();
             added = false;
 
             helmWynik.Clear();

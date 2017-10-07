@@ -5,7 +5,7 @@ namespace R19_BW_laczenia
 {
     public partial class Pomoc : Form
     {
-        public Pomoc(string s = "")
+        public Pomoc(string s, int iloscPrzed = 0)
         {
             InitializeComponent();
 
@@ -30,7 +30,7 @@ namespace R19_BW_laczenia
                     this.Text = "Pomoc: " + s;
                     pomocTekst.Text = "1. Wklej do okienka po lewej stronie listę przedmiotów do łączenia.\n" +
                                         "Możesz wkleić przedmioty wraz z cenami i \"SPRZEDAJ\", \"EKWIPUJ\", lecz w jednej linii musi znajdować się jeden przedmiot\n" +
-                                        "oraz prefiks, baza i sufiks przedmiotu muszą zaczynać się z dużej litery.\n" +
+                                        "oraz prefiks, baza i sufiks przedmiotu muszą zaczynać się z dużej litery (muszą zgadzać się z nazewnictwem przedmiotów przez Blood Wars).\n" +
                                         "2. Z listy u góry okna wybierz typ przedmiotu jaki chcesz łączyć.\n" +
                                         "3. Kliknij \"Załaduj przedmioty\".\n" +
                                         "4. Sprawdź czy załadowane przedmioty zgadzają się z przedmiotami z listy.\n" +
@@ -38,12 +38,13 @@ namespace R19_BW_laczenia
                                         "Przedmioty po edycji / sortowaniu należy ponownie załadować.\n" +
                                         "5. Jeżeli załadowano powyżej 10 przedmiotów wybierz ilość łączeń do sprawdzania (ilość łączeń określa ilość sprawdzanych połączeń \"w głąb\").\n" +
                                         "Dla dużej ilości przedmiotów warto zacząć od niskiej wartości (1-2) i zwiększać o 1 jeżeli komputer daje radę z obliczeniami :).\n" +
-                                        "6. Kliknij \"Analizuj połączenia\".\n" +
-                                        "Jeżeli analiza połączeń trwa zbyt długo możesz ją przerwać klikając klawisz \"Esc\" na klawiaturze.\n" +
+                                        "6. Kliknij \"Analizuj połączenia\". Postęp analizowania połączeń aktualizowany jest krokowo z krokiem: ( 1 / ilość przedmiotów ) * 100%.\n" +
+                                        "Jeżeli analiza połączeń trwa zbyt długo możesz ją przerwać naciskając klawisz \"Esc\" na klawiaturze.\n" +
                                         "7. Wybierz filtr (dla dużej ilości wyników - powyżej kilkuset tysięcy - dodawanie ich do listy przefiltrowanych wyników trwa bardzo długo).\n" +
                                         "Lista wyników powyżej 60 tysięcy nie scrolluje się za dobrze - możliwe jest wyświetlenie każdego wyniku,\n" +
                                         "lecz chwycenie za pasek przewijania po prawej stronie i przeciągnięcie w dół nie przescrolluje listy.\n" +
-                                        "Możliwe jest szybkie skakanie pomiędzy pierwszym i ostatnim wynikiem listy używając klawiszy \"Home\" i \"End\".\n" +
+                                        "Możliwe jest poruszanie się po liście wyników używając klawiszy \"Home\" - skok na początek listy, \"End\" - skok na koniec listy,\n" +
+                                        "\"Page Up\" - przewinięcie listy o jedno okienko w górę, \"Page Down\" - przewinięcie listy o jedno okienko w dół.\n" +
                                         "8. Kliknij \"Aktualizuj filtr\".\n" +
                                         "9. Po wyborze wyniku łączenia z listy przefiltrowanych wyników w okienku po lewej stronie pokaże się lista wymaganych łączeń.\n" +
                                         "\n\n" +
@@ -55,7 +56,7 @@ namespace R19_BW_laczenia
                     break;
                 case "Wyniki łączeń":
                     this.Text = "Sugestia dotycząca filtra";
-                    pomocTekst.Text = "Powyżej 60 tyś. wyników do wyświetlenia.\n" +
+                    pomocTekst.Text = "Powyżej 60 tyś. wyników do wyświetlenia (" + iloscPrzed.ToString() + " wyników).\n" +
                                         "To za dużo do poprawnego działania listy wyników! Użyj filtra.\n" +
                                         "Jeżeli mimo wszystko chcesz je wyświetlić zaznacz odpowiedni CheckBox.\n" +
                                         "\n" +

@@ -1,12 +1,12 @@
 # R19 Blood Wars Łączenia
-  
+   
 Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars.interia.pl).  
-Listy przedmiotów przystosowano do serwera R19.
-  
+Listy przedmiotów przystosowano do serwera R19.  
+   
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
-Aktualna werjsa programu: 2.2. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".
-  
-
+Aktualna wersja programu: 2.3. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
+   
+   
 ## Funkcje programu
  - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
  - Możliwość łączenia przedmiotów z prefiksami i sufiksami lub łączenia samych prefiksów / baz / sufiksów,
@@ -15,7 +15,7 @@ Aktualna werjsa programu: 2.2. Wersję używanego programu można sprawdzić naj
  - Możliwość wyświetlenia tabeli łączeń prefiksów / baz / sufiksów każdego typu przedmiotu,
  - Tabela łączeń:
    - Możliwość wyświetlania jednocześnie wielu tabeli łączeń w formie zakładek,
-   - Możliwość zamknięcia wybranej tabeli łączeń klikając prawym przyciskiem myszy na jej zakładce,
+   - Możliwość zamknięcia wybranej zakładki tabeli łączeń klikając prawym przyciskiem lub środkowym przyciskiem (kółkiem) myszy na jej zakładce,
    - Możliwość zmiany rozmiaru czcionki wyświetlanych elementów tabeli łączeń,
    - Podświetlanie wiersza i kolumny wybranego elementu tabeli łączeń,
  - Analizator raportów łączenia umożliwiający wyświetlenie podsumowania przeprowadzonych ulepszeń,
@@ -26,20 +26,22 @@ Aktualna werjsa programu: 2.2. Wersję używanego programu można sprawdzić naj
    - Możliwość filtrowania przeanalizowanych połączeń,
    - Możliwość wyświetlenia historii połączeń,
    - Możliwość sortowania załadowanych przedmiotów według: jakość prefiksu -> jakość bazy -> jakość sufiksu,
-   - Sortowanie wyszukanych połączeń według: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość połączeń,
-   - Domyślnie wyszukiwane połączenia: ((A+B) + C) + D itd.,
+   - Sortowanie wyszukanych wyników połączeń według: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość połączeń,
+   - Domyślnie wyszukiwane połączenia: ((A+B) + C) + D + itd.,
    - Możliwość włączenia wyszukiwania dodatkowych połączeń: (A+B) + (C+D) + (E+F) + itd.,
-   - Analizator łączeń do działania wykorzyustuje nowy wątek - możliwe jest przerwanie działania po wciśnięciu klawisza Esc.
+   - Możliwość włączenia wyszukiwania połączeń mieszanych: (A+B) + C + (D+E) + F + itd. (odpowiednio (A+B) + (C+D) + E + itd.),
+   - Analizator łączeń do działania wykorzystuje nowy wątek - możliwe jest przerwanie działania po wciśnięciu klawisza Esc.
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów i analizatorze łączeń),
    - Kopiowanie zaznaczonego tekstu,
    - Kopiowanie całego wyświetlanego tekstu,
    - Zapisywanie wyświetlanego tekstu do pliku,
    - Czyszczenie przebiegu łączeń / raportu w analizatorze raportów,
-   - Wysłanie zaznaczonego przedmiotu do schowka programowego (nie dostępne w analizatorze raportów i analizatorze łączeń).
-
-
+   - Wysłanie zaznaczonego przedmiotu do schowka programowego (nie dostępne w analizatorze raportów i analizatorze łączeń).  
+   
+   
 --------------------------
-
-
+   
+   
+Do poprawnego działania aplikacja wymaga zainstalowanego środowiska .NET Framework 4.5 lub nowszej wersji.  
 [Changelog](Changelog.txt). Proszę zgłaszać wszelkie znalezione błędy / sugestie dotyczące programu :)  

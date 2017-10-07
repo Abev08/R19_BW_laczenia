@@ -1,4 +1,17 @@
-﻿Version 2.2
+﻿Version 2.3
+	- Tabela łączeń: Dodano możliwość zamknięcia wybranej zakładki klikając środkowym przyciskiem myszy (kółkiem),
+	- Poprawki kodu,
+	- Analizator łączeń:
+		-- Dodano dodatkową opcję wyszukiwania połączeń - połączenia mieszane: (A+B) + C + (D+E) + itd.,
+		-- Poprawiono filtrowanie wyników łączeń według ilości łączeń,
+		-- Poprawiono wyszukiwanie połączeń z uwzględnieniem limitu ilości łączeń,
+		-- Poprawiono przerywanie analizowania połączeń - będzie częściej sprawdzane,
+		-- Dodano ilość wyników do wyświetlenia w ostrzeżeniu przy wczytywaniu powyżej 60 tyś. wyników.
+
+Version 2.2.1
+	- Bugfix: Naprawiono crash ArgumentOutOfRangeException przy zmianie rozmiaru czcionki tabeli łączeń gdy żadna tabela nie jest wyświetlana.
+
+Version 2.2
 	- Poprawiono zachowanie przycisków podczas obliczeń / aktualizacji,
 	- Poprawiono tekst okienek pomocy,
 	- Poprawiono czcionkę okienka pomocy oraz sposób wyświetlania okienka pomocy,
