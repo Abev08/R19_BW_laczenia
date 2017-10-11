@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Data;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace R19_BW_laczenia
 {
@@ -230,6 +232,35 @@ namespace R19_BW_laczenia
             // Wersja programu (tooltip na labelu "by Abev")
             toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() +
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
+
+            // Sprawdz uaktualnienia !!
+            string version = "Version 2.5"; // Trzeba pamiętać o zmianie :(
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("User-Agent",
+                        "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+
+                    using (var response = client.GetAsync("https://api.github.com/repos/Abev08/R19_BW_laczenia/commits").Result)
+                    {
+                        var json = response.Content.ReadAsStringAsync().Result;
+
+                        dynamic commits = JArray.Parse(json);
+                        string lastCommit = commits[0].commit.message;
+
+                        if (lastCommit != version)
+                        {
+                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualna: " + version + "\nNowsza: " + lastCommit + "\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                System.Diagnostics.Process.Start("https://github.com/Abev08/R19_BW_laczenia");
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
         }
 
         // Listy prefiksów, baz i sufiksów każdego typu przedmiotów

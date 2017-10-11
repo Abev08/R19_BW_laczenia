@@ -4387,7 +4387,7 @@
             this.ByMe.AutoSize = true;
             this.ByMe.BackColor = System.Drawing.Color.Transparent;
             this.ByMe.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ByMe.Location = new System.Drawing.Point(1092, 7);
+            this.ByMe.Location = new System.Drawing.Point(1091, 7);
             this.ByMe.Margin = new System.Windows.Forms.Padding(12);
             this.ByMe.Name = "ByMe";
             this.ByMe.Size = new System.Drawing.Size(73, 23);
