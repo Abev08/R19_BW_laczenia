@@ -1,4 +1,10 @@
-﻿Version 2.3
+﻿Version 2.4
+	- Dodano procentową wartość wyniku przeprowadzonych ulepszeń w analizatorze raportów,
+	- Dodano możliwosć zwiększenia i zmniejszenia rozmiaru czcionki analizatora raportów,
+	- Bugfix: Poprawiono otwieranie nowych tabeli łączeń, gdy okno tabeli łączeń zostało zminimalizowane,
+	- Bugfix: Poprawiono łączenie baz hełów (dodano wyjątek): Czapka + Hełm = Maska.
+
+Version 2.3
 	- Tabela łączeń: Dodano możliwość zamknięcia wybranej zakładki klikając środkowym przyciskiem myszy (kółkiem),
 	- Poprawki kodu,
 	- Analizator łączeń:

@@ -19,6 +19,9 @@ namespace R19_BW_laczenia
             IsOpen = true;
             tabTabela.Font = new Font("Segoe UI", 10);
             dgvFont = new Font("Segoe UI", fontSize);
+
+            // Ustawienie minimalnego rozmiaru okna
+            this.MinimumSize = new Size(356, 200);
         }
 
         public bool IsOpen = false;
@@ -28,6 +31,9 @@ namespace R19_BW_laczenia
 
         public void AddTab(string name, List<string> baza)
         {
+            // Sprawdź czy okienko zostało zminimalizowane
+            if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
+
             // Sprawdź czy istnieje już tab o zadanej nazwie
             int temp = 0;
             foreach (TabPage TP in tabTabela.TabPages)
@@ -65,7 +71,8 @@ namespace R19_BW_laczenia
 
                     for (int j = 1; j < baza.Count; j++)
                     {
-                        wynik = Polacz(i, j);
+                        if (name == "Hełm Baza") wynik = Polacz(i, j, true);
+                        else wynik = Polacz(i, j);
                         wynik = SprawdzWyjatki(baza, i, j, wynik);
 
                         dgvList[dgvList.Count - 1].Rows[i].Cells[j].Value = baza.ElementAt(wynik);
@@ -125,7 +132,6 @@ namespace R19_BW_laczenia
                 }
 
                 this.Height = 90 + dgvList[maxRowIndex].Rows.GetRowsHeight(DataGridViewElementStates.None);  // obramowanie = 90 + wysokość wszystkich wierszy
-                if (this.Height < 150) this.Height = 150;
                 this.Width = Convert.ToInt32(this.Height * 1.78);   // szerokość do dopasowania do formatu 16:9
             }
 
@@ -182,7 +188,7 @@ namespace R19_BW_laczenia
             }
         }
 
-        private int Polacz(int sk1, int sk2)
+        private int Polacz(int sk1, int sk2, bool wyjatekHelm = false)
         {
             // Funkcja do łączenia przedmiotów
             int wynik = 0;
@@ -191,6 +197,10 @@ namespace R19_BW_laczenia
             if ((int)x == 0 || (int)y == 0) wynik = 0;
             else if (x == y) wynik = (int)x;
             else wynik = Convert.ToInt32(Math.Ceiling((x + y) / 2d) + 1d);
+
+            // Wyjątek przy łączeniu czapka + hełm = maska
+            if (wyjatekHelm == true && x == 1 && y == 3) wynik = 4;
+            if (wyjatekHelm == true && x == 3 && y == 1) wynik = 4;
 
             return wynik;
         }

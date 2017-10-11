@@ -37,7 +37,9 @@ namespace R19_BW_laczenia
             // Zmienne do zmian wyglądu
             Color bckColorTab = Color.Black; // Zmiana koloru tła z Transparent (przeźroczysty) niweluje migotanie przy TabControl
             Color bckColorRTB = Color.FromArgb(20, 20, 20); // Kolor tła RichTextBox'a
-            Font fontRTB = new Font("Segoe UI", 9); // Czcionka RTB
+            Font fontRTB = new Font("Segoe UI", 9f); // Czcionka RTB
+            fontSizeAnalizRap = 8;
+            fontAnalizatorRap = new Font("Segoe UI", fontSizeAnalizRap);  // Czcionka Analizatora raportu
             Color foreColorRTB = Color.FromName("ControlLightLight");   // Kolor czcionki RTB
             ImageLayout imgLayoutTab = ImageLayout.Tile;   // Wybór typu obrazu tła tab'u - kafelka
             Image bckPictureTab = Properties.Resources.Background_black;    // Obraz tła tab'u
@@ -177,7 +179,7 @@ namespace R19_BW_laczenia
             TabAnalizator.BackColor = bckColorTab;
             TabAnalizator.BackgroundImageLayout = imgLayoutTab;
             TabAnalizator.BackgroundImage = bckPictureTab;
-            AnalizatorRaportuTekst.Font = fontRTB;
+            AnalizatorRaportuTekst.Font = fontAnalizatorRap;
             AnalizatorRaportuTekst.ForeColor = foreColorRTB;
             AnalizatorRaportuTekst.BackColor = bckColorRTB;
             AnalizatorRaportuTekst.ReadOnly = false;
@@ -290,6 +292,10 @@ namespace R19_BW_laczenia
         List<int> filtrPrzedmioty = new List<int>();
         bool doOnceAnalizator = true;
 
+        // Zmienne do analizatora raportów
+        int fontSizeAnalizRap;
+        Font fontAnalizatorRap;
+
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
         {
             foreach (string s in Baza)
@@ -388,8 +394,9 @@ namespace R19_BW_laczenia
                     // Dodaj składnik do histori składników
                     HistoriaPrzedmiotow.Add(new Item(component2));
 
-                    // Połącz przedmioty
-                    result = new Item(component1.Polacz(component2, Pref, Baza, Suf));
+                    // Połącz przedmioty, uwzględnij wyjątek przy łączeniu baz hełmów
+                    if (Baza == BazaHelm) result = new Item(component1.Polacz(component2, Pref, Baza, Suf, true));
+                    else result = new Item(component1.Polacz(component2, Pref, Baza, Suf));
 
                     // Potraktuj wynik jako pierwszy składnik
                     component1 = new Item(result);
@@ -645,6 +652,12 @@ namespace R19_BW_laczenia
         private void AnalizatorRaportuOblicz_Click(object sender, EventArgs e)
         {
             // Przeprowadź analizę raportu
+            AnalizujRaport();
+        }
+
+        private void AnalizujRaport()
+        {
+            // Funkcja do analizy raportu
             // Zmienne do przechowywania całkowitej ilości ulepszeń i ilości udanych ulepszeń
             int zw0zw1 = 0, zw0zw1c = 0;
             int zw1zw2 = 0, zw1zw2c = 0;
@@ -847,29 +860,66 @@ namespace R19_BW_laczenia
 
             // Wyświetl przeanalizowane ulepszenia
             ARzw0zw1.Text = Convert.ToString("Zwykły -> Zwykły (+1): " + zw0zw1 + "/" + zw0zw1c);
+            if (zw0zw1c != 0) ARzw0zw1.Text += ", " + Math.Round(((double)zw0zw1 / (double)zw0zw1c) * 100d, 2) + "%";
             ARzw1zw2.Text = Convert.ToString("Zwykły (+1) -> Zwykły (+2): " + zw1zw2 + "/" + zw1zw2c);
+            if (zw1zw2c != 0) ARzw1zw2.Text += ", " + Math.Round(((double)zw1zw2 / (double)zw1zw2c) * 100d, 2) + "%";
             ARzw2zw3.Text = Convert.ToString("Zwykły (+2) -> Zwykły (+3): " + zw2zw3 + "/" + zw2zw3c);
+            if (zw2zw3c != 0) ARzw2zw3.Text += ", " + Math.Round(((double)zw2zw3 / (double)zw2zw3c) * 100d, 2) + "%";
             ARzw3zw4.Text = Convert.ToString("Zwykły (+3) -> Zwykły (+4): " + zw3zw4 + "/" + zw3zw4c);
+            if (zw3zw4c != 0) ARzw3zw4.Text += ", " + Math.Round(((double)zw3zw4 / (double)zw3zw4c) * 100d, 2) + "%";
             ARzw4zw5.Text = Convert.ToString("Zwykły (+4) -> Zwykły (+5): " + zw4zw5 + "/" + zw4zw5c);
+            if (zw4zw5c != 0) ARzw4zw5.Text += ", " + Math.Round(((double)zw4zw5 / (double)zw4zw5c) * 100d, 2) + "%";
             ARzw5db0.Text = Convert.ToString("Zwykły (+5) -> Dobry: " + zw5db0 + "/" + zw5db0c);
+            if (zw5db0c != 0) ARzw5db0.Text += ", " + Math.Round(((double)zw5db0 / (double)zw5db0c) * 100d, 2) + "%";
             ARdb0db1.Text = Convert.ToString("Dobry -> Dobry (+1): " + db0db1 + "/" + db0db1c);
+            if (db0db1c != 0) ARdb0db1.Text += ", " + Math.Round(((double)db0db1 / (double)db0db1c) * 100d, 2) + "%";
             ARdb1db2.Text = Convert.ToString("Dobry (+1) -> Dobry (+2): " + db1db2 + "/" + db1db2c);
+            if (db1db2c != 0) ARdb1db2.Text += ", " + Math.Round(((double)db1db2 / (double)db1db2c) * 100d, 2) + "%";
             ARdb2db3.Text = Convert.ToString("Dobry (+2) -> Dobry (+3): " + db2db3 + "/" + db2db3c);
+            if (db2db3c != 0) ARdb2db3.Text += ", " + Math.Round(((double)db2db3 / (double)db2db3c) * 100d, 2) + "%";
             ARdb3db4.Text = Convert.ToString("Dobry (+3) -> Dobry (+4): " + db3db4 + "/" + db3db4c);
+            if (db3db4c != 0) ARdb3db4.Text += ", " + Math.Round(((double)db3db4 / (double)db3db4c) * 100d, 2) + "%";
             ARdb4db5.Text = Convert.ToString("Dobry (+4) -> Dobry (+5): " + db4db5 + "/" + db4db5c);
+            if (db4db5c != 0) ARdb4db5.Text += ", " + Math.Round(((double)db4db5 / (double)db4db5c) * 100d, 2) + "%";
             ARdb5dsk0.Text = Convert.ToString("Dobry (+5) -> Doskonały: " + db5dsk0 + "/" + db5dsk0c);
+            if (db5dsk0c != 0) ARdb5dsk0.Text += ", " + Math.Round(((double)db5dsk0 / (double)db5dsk0c) * 100d, 2) + "%";
             ARdsk0dsk1.Text = Convert.ToString("Doskonały -> Doskonały (+1): " + dsk0dsk1 + "/" + dsk0dsk1c);
+            if (dsk0dsk1c != 0) ARdsk0dsk1.Text += ", " + Math.Round(((double)dsk0dsk1 / (double)dsk0dsk1c) * 100d, 2) + "%";
             ARdsk1dsk2.Text = Convert.ToString("Doskonały (+1) -> Doskonały (+2): " + dsk1dsk2 + "/" + dsk1dsk2c);
+            if (dsk1dsk2c != 0) ARdsk1dsk2.Text += ", " + Math.Round(((double)dsk1dsk2 / (double)dsk1dsk2c) * 100d, 2) + "%";
             ARdsk2dsk3.Text = Convert.ToString("Doskonały (+2) -> Doskonały (+3): " + dsk2dsk3 + "/" + dsk2dsk3c);
+            if (dsk2dsk3c != 0) ARdsk2dsk3.Text += ", " + Math.Round(((double)dsk2dsk3 / (double)dsk2dsk3c) * 100d, 2) + "%";
             ARdsk3dsk4.Text = Convert.ToString("Doskonały (+3) -> Doskonały (+4): " + dsk3dsk4 + "/" + dsk3dsk4c);
+            if (dsk3dsk4c != 0) ARdsk3dsk4.Text += ", " + Math.Round(((double)dsk3dsk4 / (double)dsk3dsk4c) * 100d, 2) + "%";
             ARdsk4dsk5.Text = Convert.ToString("Doskonały (+4) -> Doskonały (+5): " + dsk4dsk5 + "/" + dsk4dsk5c);
+            if (dsk4dsk5c != 0) ARdsk4dsk5.Text += ", " + Math.Round(((double)dsk4dsk5 / (double)dsk4dsk5c) * 100d, 2) + "%";
         }
 
         private void AnalizatorRaportuPomoc_Click(object sender, EventArgs e)
         {
-            // Szybka pomoc jak korzystać z analizatora ulepszeń
+            // Szybka pomoc jak korzystać z analizatora raportów
             pomoc = new Pomoc("Analizator raportów");
             pomoc.ShowDialog(this);
+        }
+
+        private void analizRapFontPlus_Click(object sender, EventArgs e)
+        {
+            // Zwiększ rozmiar czcionki analizatora raportów
+            fontSizeAnalizRap++;
+            fontAnalizatorRap = new Font("Segoe UI", fontSizeAnalizRap);
+            AnalizatorRaportuTekst.Font = fontAnalizatorRap;
+            // Po zmianie rozmiaru czcionki wymagana jest ponowna analiza w celu pokolorowania raportu
+            AnalizujRaport();
+        }
+
+        private void analizRapFontMinus_Click(object sender, EventArgs e)
+        {
+            // Zmniejsz rozmiar czcionki analizatora raportów
+            fontSizeAnalizRap--;
+            fontAnalizatorRap = new Font("Segoe UI", fontSizeAnalizRap);
+            AnalizatorRaportuTekst.Font = fontAnalizatorRap;
+            // Po zmianie rozmiaru czcionki wymagana jest ponowna analiza w celu pokolorowania raportu
+            AnalizujRaport();
         }
 
         private void CB_TextChanged(object sender, EventArgs e)
@@ -922,7 +972,9 @@ namespace R19_BW_laczenia
         {
             // Funkcja do zmiany labeli - aktualizacji "na bieżąco" wyniku łączenia
             Item skladnik = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
-            Item wynik = new Item(component1.Polacz(skladnik, Pref, Baza, Suf));
+            Item wynik;
+            if (Baza == BazaHelm) wynik = new Item(component1.Polacz(skladnik, Pref, Baza, Suf, true));
+            else wynik = new Item(component1.Polacz(skladnik, Pref, Baza, Suf));
 
             if (wynik.p > 0) PrefLab.Text = Pref.ElementAt(wynik.p);
             else PrefLab.Text = "";
@@ -1273,8 +1325,9 @@ namespace R19_BW_laczenia
                     // Dodaj wykorzystany "indeks" przedmiotu z listy
                     indeksy.Add(sk2);
 
-                    // Połącz składniki, dodaj historię łączenia oraz zwiększ ilość łączeń wyniku o 1
-                    wynik = new Item(przedmioty[sk1].Polacz(przedmioty[sk2], pref, baza, suf));
+                    // Połącz składniki, dodaj historię łączenia oraz zwiększ ilość łączeń wyniku o 1, uwzględnij wyjątek przy łączeniu baz hełmów
+                    if (baza == BazaHelm) wynik = new Item(przedmioty[sk1].Polacz(przedmioty[sk2], pref, baza, suf, true));
+                    else wynik = new Item(przedmioty[sk1].Polacz(przedmioty[sk2], pref, baza, suf));
                     wynik.h = UsunSpacje(przedmioty[sk1], pref, baza, suf) + " + " + UsunSpacje(przedmioty[sk2], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
                     wynik.iloscLaczen += 1;
                     // Dodaj otrzymany wynik do listy wyników
@@ -1376,8 +1429,9 @@ namespace R19_BW_laczenia
                 // Dodaj wykorzystany "indeks" przedmiotu do listy
                 indeksy.Add(i);
 
-                // Połącz otrzymany w argumentach składnik z pozostałym przedmiotem
-                wynik = new Item(skladnik.Polacz(przedmioty[i], pref, baza, suf));
+                // Połącz otrzymany w argumentach składnik z pozostałym przedmiotem, uwzględnij wyjątek przy łączeniu baz hełmów
+                if (baza == BazaHelm) wynik = new Item(skladnik.Polacz(przedmioty[i], pref, baza, suf, true));
+                else wynik = new Item(skladnik.Polacz(przedmioty[i], pref, baza, suf));
                 // Dodaj jego historię łączenia - historia łącznia składnika + aktualnie sprawdzany przedmiot + wynik łączenia
                 wynik.h = skladnik.h + " + " + UsunSpacje(przedmioty[i], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
                 // Zwiększ ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń aktualnego przedmiotu + 1
@@ -1424,15 +1478,17 @@ namespace R19_BW_laczenia
                     // Dodaj wykorzystany "indeks" przedmiotu do listy
                     indeksy.Add(j);
 
-                    // Połącz dwa przedmioty aby otrzymać tymczasowy składnik
-                    skladnikTemp = new Item(przedmioty[i].Polacz(przedmioty[j], pref, baza, suf));
+                    // Połącz dwa przedmioty aby otrzymać tymczasowy składnik, uwzględnij wyjątek przy łączeniu baz hełmów
+                    if (baza == BazaHelm) skladnikTemp = new Item(przedmioty[i].Polacz(przedmioty[j], pref, baza, suf, true));
+                    else skladnikTemp = new Item(przedmioty[i].Polacz(przedmioty[j], pref, baza, suf));
                     // Dodaj historię łączenia tymczasowego składnika - historia łączenia przedmiotu 1 + historia łączenia przedmiotu 2
                     skladnikTemp.h = "(" + UsunSpacje(przedmioty[i], pref, baza, suf) + " + " + UsunSpacje(przedmioty[j], pref, baza, suf) + ")";
                     // Ustaw ilość łączeń tymczasowego składnika - ilość łączeń przedmiotu 1 + ilość łączeń przedmiotu 2 + 1
                     skladnikTemp.iloscLaczen = przedmioty[i].iloscLaczen + przedmioty[j].iloscLaczen + 1;
 
-                    // Połącz tymczasowy składnik ze składnikiem otrzymanym w argumencie funkcji
-                    wynik = new Item(skladnik.Polacz(skladnikTemp, pref, baza, suf));
+                    // Połącz tymczasowy składnik ze składnikiem otrzymanym w argumencie funkcji, uwzględnij wyjątek przy łączeniu baz hełmów
+                    if (baza == BazaHelm) wynik = new Item(skladnik.Polacz(skladnikTemp, pref, baza, suf, true));
+                    else wynik = new Item(skladnik.Polacz(skladnikTemp, pref, baza, suf));
                     // Dodaj historię łączenia wyniku - historia łączenia skłądnika + historia łączenia tymczasowego składnika + wynik łączenia
                     wynik.h = skladnik.h + " + " + skladnikTemp.h + "\n= " + UsunSpacje(wynik, pref, baza, suf);
                     // Ustaw ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń tymczasowego składnika

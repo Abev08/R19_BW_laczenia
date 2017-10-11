@@ -21,7 +21,7 @@ namespace R19_BW_laczenia
                                         "3. Kliknij 'Oblicz'.\n" +
                                         "\n" +
                                         "Podsumowanie raportu po prawej stronie przedstawia ulepszenia w postaci:\n" +
-                                        "Ilość udanych ulepszeń / Ilość wszystkich ulepszeń.";
+                                        "Ilość udanych ulepszeń / Ilość wszystkich ulepszeń, Procentowa wartość powodzenia.";
 
                     this.Width = pomocTekst.Width + 50;
                     this.Height = pomocTekst.Height + pomocOK.Height + 50;

@@ -301,28 +301,33 @@
             this.cbDystansPref = new System.Windows.Forms.ComboBox();
             this.dystansWynik = new System.Windows.Forms.RichTextBox();
             this.TabAnalizator = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.analizRapFontPlus = new System.Windows.Forms.Button();
+            this.analizRapFontMinus = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.ARzw5db0 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.ARdb0db1 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.ARdb1db2 = new System.Windows.Forms.Label();
             this.ARzw4zw5 = new System.Windows.Forms.Label();
+            this.ARdb2db3 = new System.Windows.Forms.Label();
             this.ARzw3zw4 = new System.Windows.Forms.Label();
+            this.ARdb3db4 = new System.Windows.Forms.Label();
             this.ARzw2zw3 = new System.Windows.Forms.Label();
+            this.ARdb4db5 = new System.Windows.Forms.Label();
             this.ARzw1zw2 = new System.Windows.Forms.Label();
+            this.ARdb5dsk0 = new System.Windows.Forms.Label();
             this.ARzw0zw1 = new System.Windows.Forms.Label();
+            this.ARdsk0dsk1 = new System.Windows.Forms.Label();
             this.ARdsk4dsk5 = new System.Windows.Forms.Label();
+            this.ARdsk1dsk2 = new System.Windows.Forms.Label();
             this.ARdsk3dsk4 = new System.Windows.Forms.Label();
             this.ARdsk2dsk3 = new System.Windows.Forms.Label();
-            this.ARdsk1dsk2 = new System.Windows.Forms.Label();
-            this.ARdsk0dsk1 = new System.Windows.Forms.Label();
-            this.ARdb5dsk0 = new System.Windows.Forms.Label();
-            this.ARdb4db5 = new System.Windows.Forms.Label();
-            this.ARdb3db4 = new System.Windows.Forms.Label();
-            this.ARdb2db3 = new System.Windows.Forms.Label();
-            this.ARdb1db2 = new System.Windows.Forms.Label();
-            this.ARdb0db1 = new System.Windows.Forms.Label();
-            this.ARzw5db0 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.AnalizatorRaportuPomoc = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.AnalizatorRaportuOblicz = new System.Windows.Forms.Button();
+            this.AnalizatorRaportuPomoc = new System.Windows.Forms.Button();
             this.AnalizatorRaportuTekst = new System.Windows.Forms.RichTextBox();
             this.TabLaczenia = new System.Windows.Forms.TabPage();
             this.analizatorLaczenPomoc = new System.Windows.Forms.Button();
@@ -428,6 +433,8 @@
             this.prefDystansPanel.SuspendLayout();
             this.DystansPanel.SuspendLayout();
             this.TabAnalizator.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.TabLaczenia.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -3634,28 +3641,11 @@
             // 
             // TabAnalizator
             // 
-            this.TabAnalizator.Controls.Add(this.label14);
-            this.TabAnalizator.Controls.Add(this.label13);
-            this.TabAnalizator.Controls.Add(this.ARzw4zw5);
-            this.TabAnalizator.Controls.Add(this.ARzw3zw4);
-            this.TabAnalizator.Controls.Add(this.ARzw2zw3);
-            this.TabAnalizator.Controls.Add(this.ARzw1zw2);
-            this.TabAnalizator.Controls.Add(this.ARzw0zw1);
-            this.TabAnalizator.Controls.Add(this.ARdsk4dsk5);
-            this.TabAnalizator.Controls.Add(this.ARdsk3dsk4);
-            this.TabAnalizator.Controls.Add(this.ARdsk2dsk3);
-            this.TabAnalizator.Controls.Add(this.ARdsk1dsk2);
-            this.TabAnalizator.Controls.Add(this.ARdsk0dsk1);
-            this.TabAnalizator.Controls.Add(this.ARdb5dsk0);
-            this.TabAnalizator.Controls.Add(this.ARdb4db5);
-            this.TabAnalizator.Controls.Add(this.ARdb3db4);
-            this.TabAnalizator.Controls.Add(this.ARdb2db3);
-            this.TabAnalizator.Controls.Add(this.ARdb1db2);
-            this.TabAnalizator.Controls.Add(this.ARdb0db1);
-            this.TabAnalizator.Controls.Add(this.ARzw5db0);
-            this.TabAnalizator.Controls.Add(this.label12);
-            this.TabAnalizator.Controls.Add(this.AnalizatorRaportuPomoc);
-            this.TabAnalizator.Controls.Add(this.AnalizatorRaportuOblicz);
+            this.TabAnalizator.Controls.Add(this.label21);
+            this.TabAnalizator.Controls.Add(this.analizRapFontPlus);
+            this.TabAnalizator.Controls.Add(this.analizRapFontMinus);
+            this.TabAnalizator.Controls.Add(this.panel7);
+            this.TabAnalizator.Controls.Add(this.panel6);
             this.TabAnalizator.Controls.Add(this.AnalizatorRaportuTekst);
             this.TabAnalizator.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.TabAnalizator.Location = new System.Drawing.Point(4, 34);
@@ -3665,108 +3655,294 @@
             this.TabAnalizator.TabIndex = 10;
             this.TabAnalizator.Text = "Analizator raportu";
             // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label21.Location = new System.Drawing.Point(958, 515);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(112, 19);
+            this.label21.TabIndex = 66;
+            this.label21.Text = "Rozmiar czcionki:";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // analizRapFontPlus
+            // 
+            this.analizRapFontPlus.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.analizRapFontPlus.Location = new System.Drawing.Point(1076, 510);
+            this.analizRapFontPlus.Name = "analizRapFontPlus";
+            this.analizRapFontPlus.Size = new System.Drawing.Size(35, 30);
+            this.analizRapFontPlus.TabIndex = 65;
+            this.analizRapFontPlus.Text = "+";
+            this.analizRapFontPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.analizRapFontPlus.UseVisualStyleBackColor = true;
+            this.analizRapFontPlus.Click += new System.EventHandler(this.analizRapFontPlus_Click);
+            // 
+            // analizRapFontMinus
+            // 
+            this.analizRapFontMinus.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.analizRapFontMinus.Location = new System.Drawing.Point(1117, 510);
+            this.analizRapFontMinus.Name = "analizRapFontMinus";
+            this.analizRapFontMinus.Size = new System.Drawing.Size(35, 30);
+            this.analizRapFontMinus.TabIndex = 64;
+            this.analizRapFontMinus.Text = "-";
+            this.analizRapFontMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.analizRapFontMinus.UseVisualStyleBackColor = true;
+            this.analizRapFontMinus.Click += new System.EventHandler(this.analizRapFontMinus_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.Controls.Add(this.label12);
+            this.panel7.Controls.Add(this.ARzw5db0);
+            this.panel7.Controls.Add(this.label14);
+            this.panel7.Controls.Add(this.ARdb0db1);
+            this.panel7.Controls.Add(this.label13);
+            this.panel7.Controls.Add(this.ARdb1db2);
+            this.panel7.Controls.Add(this.ARzw4zw5);
+            this.panel7.Controls.Add(this.ARdb2db3);
+            this.panel7.Controls.Add(this.ARzw3zw4);
+            this.panel7.Controls.Add(this.ARdb3db4);
+            this.panel7.Controls.Add(this.ARzw2zw3);
+            this.panel7.Controls.Add(this.ARdb4db5);
+            this.panel7.Controls.Add(this.ARzw1zw2);
+            this.panel7.Controls.Add(this.ARdb5dsk0);
+            this.panel7.Controls.Add(this.ARzw0zw1);
+            this.panel7.Controls.Add(this.ARdsk0dsk1);
+            this.panel7.Controls.Add(this.ARdsk4dsk5);
+            this.panel7.Controls.Add(this.ARdsk1dsk2);
+            this.panel7.Controls.Add(this.ARdsk3dsk4);
+            this.panel7.Controls.Add(this.ARdsk2dsk3);
+            this.panel7.Location = new System.Drawing.Point(784, 54);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(368, 450);
+            this.panel7.TabIndex = 63;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label12.Location = new System.Drawing.Point(4, 0);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(96, 23);
+            this.label12.TabIndex = 42;
+            this.label12.Text = "Ulepszenia:";
+            // 
+            // ARzw5db0
+            // 
+            this.ARzw5db0.AutoSize = true;
+            this.ARzw5db0.BackColor = System.Drawing.Color.Transparent;
+            this.ARzw5db0.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARzw5db0.Location = new System.Drawing.Point(13, 135);
+            this.ARzw5db0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARzw5db0.Name = "ARzw5db0";
+            this.ARzw5db0.Size = new System.Drawing.Size(15, 23);
+            this.ARzw5db0.TabIndex = 43;
+            this.ARzw5db0.Text = " ";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label14.Location = new System.Drawing.Point(835, 362);
+            this.label14.Location = new System.Drawing.Point(13, 312);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(15, 23);
             this.label14.TabIndex = 61;
             this.label14.Text = " ";
             // 
+            // ARdb0db1
+            // 
+            this.ARdb0db1.AutoSize = true;
+            this.ARdb0db1.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb0db1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdb0db1.Location = new System.Drawing.Point(13, 181);
+            this.ARdb0db1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdb0db1.Name = "ARdb0db1";
+            this.ARdb0db1.Size = new System.Drawing.Size(15, 23);
+            this.ARdb0db1.TabIndex = 44;
+            this.ARdb0db1.Text = " ";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label13.Location = new System.Drawing.Point(835, 208);
+            this.label13.Location = new System.Drawing.Point(13, 158);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(15, 23);
             this.label13.TabIndex = 60;
             this.label13.Text = " ";
             // 
+            // ARdb1db2
+            // 
+            this.ARdb1db2.AutoSize = true;
+            this.ARdb1db2.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb1db2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdb1db2.Location = new System.Drawing.Point(13, 203);
+            this.ARdb1db2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdb1db2.Name = "ARdb1db2";
+            this.ARdb1db2.Size = new System.Drawing.Size(15, 23);
+            this.ARdb1db2.TabIndex = 45;
+            this.ARdb1db2.Text = " ";
+            // 
             // ARzw4zw5
             // 
             this.ARzw4zw5.AutoSize = true;
             this.ARzw4zw5.BackColor = System.Drawing.Color.Transparent;
             this.ARzw4zw5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARzw4zw5.Location = new System.Drawing.Point(835, 162);
+            this.ARzw4zw5.Location = new System.Drawing.Point(13, 112);
             this.ARzw4zw5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw4zw5.Name = "ARzw4zw5";
             this.ARzw4zw5.Size = new System.Drawing.Size(15, 23);
             this.ARzw4zw5.TabIndex = 59;
             this.ARzw4zw5.Text = " ";
             // 
+            // ARdb2db3
+            // 
+            this.ARdb2db3.AutoSize = true;
+            this.ARdb2db3.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb2db3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdb2db3.Location = new System.Drawing.Point(13, 224);
+            this.ARdb2db3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdb2db3.Name = "ARdb2db3";
+            this.ARdb2db3.Size = new System.Drawing.Size(15, 23);
+            this.ARdb2db3.TabIndex = 46;
+            this.ARdb2db3.Text = " ";
+            // 
             // ARzw3zw4
             // 
             this.ARzw3zw4.AutoSize = true;
             this.ARzw3zw4.BackColor = System.Drawing.Color.Transparent;
             this.ARzw3zw4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARzw3zw4.Location = new System.Drawing.Point(835, 139);
+            this.ARzw3zw4.Location = new System.Drawing.Point(13, 89);
             this.ARzw3zw4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw3zw4.Name = "ARzw3zw4";
             this.ARzw3zw4.Size = new System.Drawing.Size(15, 23);
             this.ARzw3zw4.TabIndex = 58;
             this.ARzw3zw4.Text = " ";
             // 
+            // ARdb3db4
+            // 
+            this.ARdb3db4.AutoSize = true;
+            this.ARdb3db4.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb3db4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdb3db4.Location = new System.Drawing.Point(13, 245);
+            this.ARdb3db4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdb3db4.Name = "ARdb3db4";
+            this.ARdb3db4.Size = new System.Drawing.Size(15, 23);
+            this.ARdb3db4.TabIndex = 47;
+            this.ARdb3db4.Text = " ";
+            // 
             // ARzw2zw3
             // 
             this.ARzw2zw3.AutoSize = true;
             this.ARzw2zw3.BackColor = System.Drawing.Color.Transparent;
             this.ARzw2zw3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARzw2zw3.Location = new System.Drawing.Point(835, 116);
+            this.ARzw2zw3.Location = new System.Drawing.Point(13, 66);
             this.ARzw2zw3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw2zw3.Name = "ARzw2zw3";
             this.ARzw2zw3.Size = new System.Drawing.Size(15, 23);
             this.ARzw2zw3.TabIndex = 57;
             this.ARzw2zw3.Text = " ";
             // 
+            // ARdb4db5
+            // 
+            this.ARdb4db5.AutoSize = true;
+            this.ARdb4db5.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb4db5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdb4db5.Location = new System.Drawing.Point(13, 266);
+            this.ARdb4db5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdb4db5.Name = "ARdb4db5";
+            this.ARdb4db5.Size = new System.Drawing.Size(15, 23);
+            this.ARdb4db5.TabIndex = 48;
+            this.ARdb4db5.Text = " ";
+            // 
             // ARzw1zw2
             // 
             this.ARzw1zw2.AutoSize = true;
             this.ARzw1zw2.BackColor = System.Drawing.Color.Transparent;
             this.ARzw1zw2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARzw1zw2.Location = new System.Drawing.Point(835, 94);
+            this.ARzw1zw2.Location = new System.Drawing.Point(13, 44);
             this.ARzw1zw2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw1zw2.Name = "ARzw1zw2";
             this.ARzw1zw2.Size = new System.Drawing.Size(15, 23);
             this.ARzw1zw2.TabIndex = 56;
             this.ARzw1zw2.Text = " ";
             // 
+            // ARdb5dsk0
+            // 
+            this.ARdb5dsk0.AutoSize = true;
+            this.ARdb5dsk0.BackColor = System.Drawing.Color.Transparent;
+            this.ARdb5dsk0.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdb5dsk0.Location = new System.Drawing.Point(13, 289);
+            this.ARdb5dsk0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdb5dsk0.Name = "ARdb5dsk0";
+            this.ARdb5dsk0.Size = new System.Drawing.Size(15, 23);
+            this.ARdb5dsk0.TabIndex = 49;
+            this.ARdb5dsk0.Text = " ";
+            // 
             // ARzw0zw1
             // 
             this.ARzw0zw1.AutoSize = true;
             this.ARzw0zw1.BackColor = System.Drawing.Color.Transparent;
             this.ARzw0zw1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARzw0zw1.Location = new System.Drawing.Point(835, 73);
+            this.ARzw0zw1.Location = new System.Drawing.Point(13, 23);
             this.ARzw0zw1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARzw0zw1.Name = "ARzw0zw1";
             this.ARzw0zw1.Size = new System.Drawing.Size(15, 23);
             this.ARzw0zw1.TabIndex = 55;
             this.ARzw0zw1.Text = " ";
             // 
+            // ARdsk0dsk1
+            // 
+            this.ARdsk0dsk1.AutoSize = true;
+            this.ARdsk0dsk1.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk0dsk1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdsk0dsk1.Location = new System.Drawing.Point(13, 335);
+            this.ARdsk0dsk1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdsk0dsk1.Name = "ARdsk0dsk1";
+            this.ARdsk0dsk1.Size = new System.Drawing.Size(15, 23);
+            this.ARdsk0dsk1.TabIndex = 50;
+            this.ARdsk0dsk1.Text = " ";
+            // 
             // ARdsk4dsk5
             // 
             this.ARdsk4dsk5.AutoSize = true;
             this.ARdsk4dsk5.BackColor = System.Drawing.Color.Transparent;
             this.ARdsk4dsk5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdsk4dsk5.Location = new System.Drawing.Point(835, 477);
+            this.ARdsk4dsk5.Location = new System.Drawing.Point(13, 427);
             this.ARdsk4dsk5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk4dsk5.Name = "ARdsk4dsk5";
             this.ARdsk4dsk5.Size = new System.Drawing.Size(15, 23);
             this.ARdsk4dsk5.TabIndex = 54;
             this.ARdsk4dsk5.Text = " ";
             // 
+            // ARdsk1dsk2
+            // 
+            this.ARdsk1dsk2.AutoSize = true;
+            this.ARdsk1dsk2.BackColor = System.Drawing.Color.Transparent;
+            this.ARdsk1dsk2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ARdsk1dsk2.Location = new System.Drawing.Point(13, 358);
+            this.ARdsk1dsk2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ARdsk1dsk2.Name = "ARdsk1dsk2";
+            this.ARdsk1dsk2.Size = new System.Drawing.Size(15, 23);
+            this.ARdsk1dsk2.TabIndex = 51;
+            this.ARdsk1dsk2.Text = " ";
+            // 
             // ARdsk3dsk4
             // 
             this.ARdsk3dsk4.AutoSize = true;
             this.ARdsk3dsk4.BackColor = System.Drawing.Color.Transparent;
             this.ARdsk3dsk4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdsk3dsk4.Location = new System.Drawing.Point(835, 454);
+            this.ARdsk3dsk4.Location = new System.Drawing.Point(13, 404);
             this.ARdsk3dsk4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk3dsk4.Name = "ARdsk3dsk4";
             this.ARdsk3dsk4.Size = new System.Drawing.Size(15, 23);
@@ -3778,154 +3954,44 @@
             this.ARdsk2dsk3.AutoSize = true;
             this.ARdsk2dsk3.BackColor = System.Drawing.Color.Transparent;
             this.ARdsk2dsk3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdsk2dsk3.Location = new System.Drawing.Point(835, 431);
+            this.ARdsk2dsk3.Location = new System.Drawing.Point(13, 381);
             this.ARdsk2dsk3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ARdsk2dsk3.Name = "ARdsk2dsk3";
             this.ARdsk2dsk3.Size = new System.Drawing.Size(15, 23);
             this.ARdsk2dsk3.TabIndex = 52;
             this.ARdsk2dsk3.Text = " ";
             // 
-            // ARdsk1dsk2
+            // panel6
             // 
-            this.ARdsk1dsk2.AutoSize = true;
-            this.ARdsk1dsk2.BackColor = System.Drawing.Color.Transparent;
-            this.ARdsk1dsk2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdsk1dsk2.Location = new System.Drawing.Point(835, 408);
-            this.ARdsk1dsk2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdsk1dsk2.Name = "ARdsk1dsk2";
-            this.ARdsk1dsk2.Size = new System.Drawing.Size(15, 23);
-            this.ARdsk1dsk2.TabIndex = 51;
-            this.ARdsk1dsk2.Text = " ";
-            // 
-            // ARdsk0dsk1
-            // 
-            this.ARdsk0dsk1.AutoSize = true;
-            this.ARdsk0dsk1.BackColor = System.Drawing.Color.Transparent;
-            this.ARdsk0dsk1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdsk0dsk1.Location = new System.Drawing.Point(835, 385);
-            this.ARdsk0dsk1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdsk0dsk1.Name = "ARdsk0dsk1";
-            this.ARdsk0dsk1.Size = new System.Drawing.Size(15, 23);
-            this.ARdsk0dsk1.TabIndex = 50;
-            this.ARdsk0dsk1.Text = " ";
-            // 
-            // ARdb5dsk0
-            // 
-            this.ARdb5dsk0.AutoSize = true;
-            this.ARdb5dsk0.BackColor = System.Drawing.Color.Transparent;
-            this.ARdb5dsk0.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdb5dsk0.Location = new System.Drawing.Point(835, 339);
-            this.ARdb5dsk0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdb5dsk0.Name = "ARdb5dsk0";
-            this.ARdb5dsk0.Size = new System.Drawing.Size(15, 23);
-            this.ARdb5dsk0.TabIndex = 49;
-            this.ARdb5dsk0.Text = " ";
-            // 
-            // ARdb4db5
-            // 
-            this.ARdb4db5.AutoSize = true;
-            this.ARdb4db5.BackColor = System.Drawing.Color.Transparent;
-            this.ARdb4db5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdb4db5.Location = new System.Drawing.Point(835, 316);
-            this.ARdb4db5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdb4db5.Name = "ARdb4db5";
-            this.ARdb4db5.Size = new System.Drawing.Size(15, 23);
-            this.ARdb4db5.TabIndex = 48;
-            this.ARdb4db5.Text = " ";
-            // 
-            // ARdb3db4
-            // 
-            this.ARdb3db4.AutoSize = true;
-            this.ARdb3db4.BackColor = System.Drawing.Color.Transparent;
-            this.ARdb3db4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdb3db4.Location = new System.Drawing.Point(835, 295);
-            this.ARdb3db4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdb3db4.Name = "ARdb3db4";
-            this.ARdb3db4.Size = new System.Drawing.Size(15, 23);
-            this.ARdb3db4.TabIndex = 47;
-            this.ARdb3db4.Text = " ";
-            // 
-            // ARdb2db3
-            // 
-            this.ARdb2db3.AutoSize = true;
-            this.ARdb2db3.BackColor = System.Drawing.Color.Transparent;
-            this.ARdb2db3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdb2db3.Location = new System.Drawing.Point(835, 274);
-            this.ARdb2db3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdb2db3.Name = "ARdb2db3";
-            this.ARdb2db3.Size = new System.Drawing.Size(15, 23);
-            this.ARdb2db3.TabIndex = 46;
-            this.ARdb2db3.Text = " ";
-            // 
-            // ARdb1db2
-            // 
-            this.ARdb1db2.AutoSize = true;
-            this.ARdb1db2.BackColor = System.Drawing.Color.Transparent;
-            this.ARdb1db2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdb1db2.Location = new System.Drawing.Point(835, 253);
-            this.ARdb1db2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdb1db2.Name = "ARdb1db2";
-            this.ARdb1db2.Size = new System.Drawing.Size(15, 23);
-            this.ARdb1db2.TabIndex = 45;
-            this.ARdb1db2.Text = " ";
-            // 
-            // ARdb0db1
-            // 
-            this.ARdb0db1.AutoSize = true;
-            this.ARdb0db1.BackColor = System.Drawing.Color.Transparent;
-            this.ARdb0db1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARdb0db1.Location = new System.Drawing.Point(835, 231);
-            this.ARdb0db1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARdb0db1.Name = "ARdb0db1";
-            this.ARdb0db1.Size = new System.Drawing.Size(15, 23);
-            this.ARdb0db1.TabIndex = 44;
-            this.ARdb0db1.Text = " ";
-            // 
-            // ARzw5db0
-            // 
-            this.ARzw5db0.AutoSize = true;
-            this.ARzw5db0.BackColor = System.Drawing.Color.Transparent;
-            this.ARzw5db0.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ARzw5db0.Location = new System.Drawing.Point(835, 185);
-            this.ARzw5db0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ARzw5db0.Name = "ARzw5db0";
-            this.ARzw5db0.Size = new System.Drawing.Size(15, 23);
-            this.ARzw5db0.TabIndex = 43;
-            this.ARzw5db0.Text = " ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label12.Location = new System.Drawing.Point(826, 50);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(96, 23);
-            this.label12.TabIndex = 42;
-            this.label12.Text = "Ulepszenia:";
-            // 
-            // AnalizatorRaportuPomoc
-            // 
-            this.AnalizatorRaportuPomoc.Location = new System.Drawing.Point(1000, 8);
-            this.AnalizatorRaportuPomoc.Margin = new System.Windows.Forms.Padding(4);
-            this.AnalizatorRaportuPomoc.Name = "AnalizatorRaportuPomoc";
-            this.AnalizatorRaportuPomoc.Size = new System.Drawing.Size(151, 38);
-            this.AnalizatorRaportuPomoc.TabIndex = 41;
-            this.AnalizatorRaportuPomoc.Text = "Pomoc";
-            this.AnalizatorRaportuPomoc.UseVisualStyleBackColor = true;
-            this.AnalizatorRaportuPomoc.Click += new System.EventHandler(this.AnalizatorRaportuPomoc_Click);
+            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.Controls.Add(this.AnalizatorRaportuOblicz);
+            this.panel6.Controls.Add(this.AnalizatorRaportuPomoc);
+            this.panel6.Location = new System.Drawing.Point(784, 8);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(368, 40);
+            this.panel6.TabIndex = 62;
             // 
             // AnalizatorRaportuOblicz
             // 
-            this.AnalizatorRaportuOblicz.Location = new System.Drawing.Point(830, 8);
+            this.AnalizatorRaportuOblicz.Location = new System.Drawing.Point(0, 0);
             this.AnalizatorRaportuOblicz.Margin = new System.Windows.Forms.Padding(4);
             this.AnalizatorRaportuOblicz.Name = "AnalizatorRaportuOblicz";
-            this.AnalizatorRaportuOblicz.Size = new System.Drawing.Size(151, 38);
+            this.AnalizatorRaportuOblicz.Size = new System.Drawing.Size(180, 40);
             this.AnalizatorRaportuOblicz.TabIndex = 40;
             this.AnalizatorRaportuOblicz.Text = "Oblicz";
             this.AnalizatorRaportuOblicz.UseVisualStyleBackColor = true;
             this.AnalizatorRaportuOblicz.Click += new System.EventHandler(this.AnalizatorRaportuOblicz_Click);
+            // 
+            // AnalizatorRaportuPomoc
+            // 
+            this.AnalizatorRaportuPomoc.Location = new System.Drawing.Point(188, 0);
+            this.AnalizatorRaportuPomoc.Margin = new System.Windows.Forms.Padding(4);
+            this.AnalizatorRaportuPomoc.Name = "AnalizatorRaportuPomoc";
+            this.AnalizatorRaportuPomoc.Size = new System.Drawing.Size(180, 40);
+            this.AnalizatorRaportuPomoc.TabIndex = 41;
+            this.AnalizatorRaportuPomoc.Text = "Pomoc";
+            this.AnalizatorRaportuPomoc.UseVisualStyleBackColor = true;
+            this.AnalizatorRaportuPomoc.Click += new System.EventHandler(this.AnalizatorRaportuPomoc_Click);
             // 
             // AnalizatorRaportuTekst
             // 
@@ -3935,7 +4001,7 @@
             this.AnalizatorRaportuTekst.Margin = new System.Windows.Forms.Padding(4);
             this.AnalizatorRaportuTekst.Name = "AnalizatorRaportuTekst";
             this.AnalizatorRaportuTekst.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.AnalizatorRaportuTekst.Size = new System.Drawing.Size(810, 525);
+            this.AnalizatorRaportuTekst.Size = new System.Drawing.Size(768, 525);
             this.AnalizatorRaportuTekst.TabIndex = 36;
             this.AnalizatorRaportuTekst.Text = "";
             // 
@@ -4530,6 +4596,9 @@
             this.DystansPanel.PerformLayout();
             this.TabAnalizator.ResumeLayout(false);
             this.TabAnalizator.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
             this.TabLaczenia.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -4895,6 +4964,11 @@
         private System.ComponentModel.BackgroundWorker analizatorWorker;
         private System.Windows.Forms.CheckBox checkBoxWyswietl;
         private System.Windows.Forms.CheckBox mieszaneLaczenia;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button analizRapFontMinus;
+        private System.Windows.Forms.Button analizRapFontPlus;
+        private System.Windows.Forms.Label label21;
     }
 }
 

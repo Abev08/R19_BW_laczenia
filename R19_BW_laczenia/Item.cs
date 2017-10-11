@@ -38,7 +38,7 @@
             iloscLaczen = i.iloscLaczen;
         }
 
-        public Item Polacz(Item item, System.Collections.Generic.List<string> pref, System.Collections.Generic.List<string> baza, System.Collections.Generic.List<string> suf)
+        public Item Polacz(Item item, System.Collections.Generic.List<string> pref, System.Collections.Generic.List<string> baza, System.Collections.Generic.List<string> suf, bool wyjatekHelm = false)
         {
             // Łączenie 
             int[] wynik = new int[] { 0, 0, 0 };
@@ -68,6 +68,9 @@
                 if ((int)x == 0 || (int)y == 0) wynik[i] = 0;
                 else if (x == y) wynik[i] = (int)x;
                 else wynik[i] = System.Convert.ToInt32(System.Math.Ceiling((x + y) / 2d) + 1d);
+                // Wyjątek przy łączeniu Czapka + Hełm = Maska
+                if (wyjatekHelm == true && x == 1 && y == 3 && i == 1) wynik[i] = 4;
+                if (wyjatekHelm == true && x == 3 && y == 1 && i == 1) wynik[i] = 4;
             }
 
             Item w = new Item(wynik[0], wynik[1], wynik[2]);
