@@ -3668,6 +3668,7 @@
             this.label21.TabIndex = 66;
             this.label21.Text = "Rozmiar czcionki:";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.label21, "Zmiana rozmiaru czcionki powoduje ponowne przeprowadzenie obliczeń!\r\n");
             // 
             // analizRapFontPlus
             // 

@@ -234,7 +234,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.5"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.5.1"; // Trzeba pamiętać o zmianie :(
             try
             {
                 using (var client = new HttpClient())
@@ -251,7 +251,7 @@ namespace R19_BW_laczenia
 
                         if (lastCommit != version)
                         {
-                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualna: " + version + "\nNowsza: " + lastCommit + "\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualnie używana: " + version + "\nDostępna na GitHub'ie: " + lastCommit + "\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
                                 System.Diagnostics.Process.Start("https://github.com/Abev08/R19_BW_laczenia");
                             }
@@ -1140,13 +1140,11 @@ namespace R19_BW_laczenia
                 dodatkoweLaczenia.Enabled = true;
                 mieszaneLaczenia.Checked = false;
                 // Jeżeli załadowano poniżej 10 przedmiotów ustaw ilość łączeń na ilość przedmiotów
-                if (przedmioty.Count < 10) iloscLaczen.Value = przedmioty.Count;
-                else
-                {
-                    // Jeżeli załadowano 10+ przedmiotów włącz okienko z wyborem ilości łączeń i ustaw wartość początkową równą 1
-                    iloscLaczen.Enabled = true;
-                    iloscLaczen.Value = 1;
-                }
+                if (przedmioty.Count < 8) iloscLaczen.Value = przedmioty.Count - 1;
+                // Jeżeli załadowano więcej przedmiotów ustaw wartość początkową równą 1
+                else iloscLaczen.Value = 1;
+
+                iloscLaczen.Enabled = true;
             }
             if (przedmioty.Count < 2)
             {
@@ -1302,7 +1300,7 @@ namespace R19_BW_laczenia
             // Po skończonej analizie zaktualizuj tekst przycisku i włącz kontrolki wyłączone na czas analizy
             this.Invoke((MethodInvoker)delegate
             {
-                if (przedmioty.Count >= 10) iloscLaczen.Enabled = true;
+                if (przedmioty.Count >= 2) iloscLaczen.Enabled = true;
                 analizujPolaczenia.Text = "Analizuj połączenia";
                 analizujPolaczenia.Enabled = true;
                 dodatkoweLaczenia.Enabled = true;
@@ -1907,7 +1905,6 @@ namespace R19_BW_laczenia
             palna1hWynik.Clear();
             palna2hWynik.Clear();
             dystansWynik.Clear();
-            AnalizatorRaportuTekst.Clear();
 
             // czyszczenie labeli
             PrefHelmL.Text = "";
@@ -2105,6 +2102,7 @@ namespace R19_BW_laczenia
         private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (GlownyTab.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
+            if (GlownyTab.SelectedTab.Text == "Analizator raportu") AnalizatorRaportuTekst.Clear();
             Czyszczenie();
         }
 
