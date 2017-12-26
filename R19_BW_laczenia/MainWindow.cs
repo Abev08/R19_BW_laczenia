@@ -7,6 +7,7 @@ using System.IO;
 using System.Data;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace R19_BW_laczenia
 {
@@ -22,16 +23,16 @@ namespace R19_BW_laczenia
             this.Icon = Properties.Resources.Icon;
 
             // Załaduj bazy przedmiotów do list
-            BazaHelmow(PrefHelm, BazaHelm, SufHelm);
-            BazaZbroi(PrefZbroja, BazaZbroja, SufZbroja);
-            BazaSpodni(PrefSpodnie, BazaSpodnie, SufSpodnie);
-            BazaPierścieni(PrefPierscien, BazaPierscien, SufPierscien);
-            BazaAmuletow(PrefAmulet, BazaAmulet, SufAmulet);
-            BazaBialych1h(PrefBiala1h, BazaBiala1h, SufBiala1h);
-            BazaBialych2h(PrefBiala2h, BazaBiala2h, SufBiala2h);
-            BazaPalnych1h(PrefPalan1h, BazaPalna1h, SufPalna1h);
-            BazaPalnych2h(PrefPalna2h, BazaPalna2h, SufPalna2h);
-            BazaDystansow(PrefDystans, BazaDystans, SufDystans);
+            BazaHelmow(BazaHelm.prefy, BazaHelm.bazy, BazaHelm.sufy);
+            BazaZbroi(BazaZbroja.prefy, BazaZbroja.bazy, BazaZbroja.sufy);
+            BazaSpodni(BazaSpodnie.prefy, BazaSpodnie.bazy, BazaSpodnie.sufy);
+            BazaPierścieni(BazaPierscien.prefy, BazaPierscien.bazy, BazaPierscien.sufy);
+            BazaAmuletow(BazaAmulet.prefy, BazaAmulet.bazy, BazaAmulet.sufy);
+            BazaBialych1h(BazaBiala1h.prefy, BazaBiala1h.bazy, BazaBiala1h.sufy);
+            BazaBialych2h(BazaBiala2h.prefy, BazaBiala2h.bazy, BazaBiala2h.sufy);
+            BazaPalnych1h(BazaPalna1h.prefy, BazaPalna1h.bazy, BazaPalna1h.sufy);
+            BazaPalnych2h(BazaPalna2h.prefy, BazaPalna2h.bazy, BazaPalna2h.sufy);
+            BazaDystansow(BazaDystans.prefy, BazaDystans.bazy, BazaDystans.sufy);
 
             // Dodaj "puste okno" do historii łączeń
             HistoriaLaczen.Add("");
@@ -56,9 +57,9 @@ namespace R19_BW_laczenia
             helmWynik.BackColor = bckColorRTB;
             helmWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             helmWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefHelm, cbHelmPref, cbHelmPref_sh1, cbHelmPref_sh2, cbHelmPref_sh3);
-            DodajElementyCB(BazaHelm, cbHelmBaza, cbHelmBaza_sh1, cbHelmBaza_sh2, cbHelmBaza_sh3);
-            DodajElementyCB(SufHelm, cbHelmSuf, cbHelmSuf_sh1, cbHelmSuf_sh2, cbHelmSuf_sh3);
+            DodajElementyCB(BazaHelm.prefy, cbHelmPref, cbHelmPref_sh1, cbHelmPref_sh2, cbHelmPref_sh3);
+            DodajElementyCB(BazaHelm.bazy, cbHelmBaza, cbHelmBaza_sh1, cbHelmBaza_sh2, cbHelmBaza_sh3);
+            DodajElementyCB(BazaHelm.sufy, cbHelmSuf, cbHelmSuf_sh1, cbHelmSuf_sh2, cbHelmSuf_sh3);
 
             // Zbroja
             TabZbroja.BackColor = bckColorTab;
@@ -69,9 +70,9 @@ namespace R19_BW_laczenia
             zbrojaWynik.BackColor = bckColorRTB;
             zbrojaWynik.ReadOnly = true;    // Ustawienie flagi Read Only
             zbrojaWynik.ContextMenuStrip = contextMenuStrip1;   // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefZbroja, cbZbrojaPref, cbZbrojaPref_sh1, cbZbrojaPref_sh2, cbZbrojaPref_sh3);
-            DodajElementyCB(BazaZbroja, cbZbrojaBaza, cbZbrojaBaza_sh1, cbZbrojaBaza_sh2, cbZbrojaBaza_sh3);
-            DodajElementyCB(SufZbroja, cbZbrojaSuf, cbZbrojaSuf_sh1, cbZbrojaSuf_sh2, cbZbrojaSuf_sh3);
+            DodajElementyCB(BazaZbroja.prefy, cbZbrojaPref, cbZbrojaPref_sh1, cbZbrojaPref_sh2, cbZbrojaPref_sh3);
+            DodajElementyCB(BazaZbroja.bazy, cbZbrojaBaza, cbZbrojaBaza_sh1, cbZbrojaBaza_sh2, cbZbrojaBaza_sh3);
+            DodajElementyCB(BazaZbroja.sufy, cbZbrojaSuf, cbZbrojaSuf_sh1, cbZbrojaSuf_sh2, cbZbrojaSuf_sh3);
 
             // Spodnie
             TabSpodnie.BackColor = bckColorTab;
@@ -82,9 +83,9 @@ namespace R19_BW_laczenia
             spodnieWynik.BackColor = bckColorRTB;
             spodnieWynik.ReadOnly = true;   // Ustawienie flagi Read Only
             spodnieWynik.ContextMenuStrip = contextMenuStrip1;  // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefSpodnie, cbSpodniePref, cbSpodniePref_sh1, cbSpodniePref_sh2, cbSpodniePref_sh3);
-            DodajElementyCB(BazaSpodnie, cbSpodnieBaza, cbSpodnieBaza_sh1, cbSpodnieBaza_sh2, cbSpodnieBaza_sh3);
-            DodajElementyCB(SufSpodnie, cbSpodnieSuf, cbSpodnieSuf_sh1, cbSpodnieSuf_sh2, cbSpodnieSuf_sh3);
+            DodajElementyCB(BazaSpodnie.prefy, cbSpodniePref, cbSpodniePref_sh1, cbSpodniePref_sh2, cbSpodniePref_sh3);
+            DodajElementyCB(BazaSpodnie.bazy, cbSpodnieBaza, cbSpodnieBaza_sh1, cbSpodnieBaza_sh2, cbSpodnieBaza_sh3);
+            DodajElementyCB(BazaSpodnie.sufy, cbSpodnieSuf, cbSpodnieSuf_sh1, cbSpodnieSuf_sh2, cbSpodnieSuf_sh3);
 
             // Pierścień
             TabPierscien.BackColor = bckColorTab;
@@ -95,9 +96,9 @@ namespace R19_BW_laczenia
             pierscienWynik.BackColor = bckColorRTB;
             pierscienWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             pierscienWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefPierscien, cbPierscienPref, cbPierscienPref_sh1, cbPierscienPref_sh2, cbPierscienPref_sh3);
-            DodajElementyCB(BazaPierscien, cbPierscienBaza, cbPierscienBaza_sh1, cbPierscienBaza_sh2, cbPierscienBaza_sh3);
-            DodajElementyCB(SufPierscien, cbPierscienSuf, cbPierscienSuf_sh1, cbPierscienSuf_sh2, cbPierscienSuf_sh3);
+            DodajElementyCB(BazaPierscien.prefy, cbPierscienPref, cbPierscienPref_sh1, cbPierscienPref_sh2, cbPierscienPref_sh3);
+            DodajElementyCB(BazaPierscien.bazy, cbPierscienBaza, cbPierscienBaza_sh1, cbPierscienBaza_sh2, cbPierscienBaza_sh3);
+            DodajElementyCB(BazaPierscien.sufy, cbPierscienSuf, cbPierscienSuf_sh1, cbPierscienSuf_sh2, cbPierscienSuf_sh3);
 
             // Amulet
             TabAmulet.BackColor = bckColorTab;
@@ -108,9 +109,9 @@ namespace R19_BW_laczenia
             amuletWynik.BackColor = bckColorRTB;
             amuletWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             amuletWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefAmulet, cbAmuletPref, cbAmuletPref_sh1, cbAmuletPref_sh2, cbAmuletPref_sh3);
-            DodajElementyCB(BazaAmulet, cbAmuletBaza, cbAmuletBaza_sh1, cbAmuletBaza_sh2, cbAmuletBaza_sh3);
-            DodajElementyCB(SufAmulet, cbAmuletSuf, cbAmuletSuf_sh1, cbAmuletSuf_sh2, cbAmuletSuf_sh3);
+            DodajElementyCB(BazaAmulet.prefy, cbAmuletPref, cbAmuletPref_sh1, cbAmuletPref_sh2, cbAmuletPref_sh3);
+            DodajElementyCB(BazaAmulet.bazy, cbAmuletBaza, cbAmuletBaza_sh1, cbAmuletBaza_sh2, cbAmuletBaza_sh3);
+            DodajElementyCB(BazaAmulet.sufy, cbAmuletSuf, cbAmuletSuf_sh1, cbAmuletSuf_sh2, cbAmuletSuf_sh3);
 
             // Biała 1h
             TabBiala1h.BackColor = bckColorTab;
@@ -121,9 +122,9 @@ namespace R19_BW_laczenia
             biala1hWynik.BackColor = bckColorRTB;
             biala1hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             biala1hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefBiala1h, cbBiala1hPref, cbBiala1hPref_sh1, cbBiala1hPref_sh2, cbBiala1hPref_sh3);
-            DodajElementyCB(BazaBiala1h, cbBiala1hBaza, cbBiala1hBaza_sh1, cbBiala1hBaza_sh2, cbBiala1hBaza_sh3);
-            DodajElementyCB(SufBiala1h, cbBiala1hSuf, cbBiala1hSuf_sh1, cbBiala1hSuf_sh2, cbBiala1hSuf_sh3);
+            DodajElementyCB(BazaBiala1h.prefy, cbBiala1hPref, cbBiala1hPref_sh1, cbBiala1hPref_sh2, cbBiala1hPref_sh3);
+            DodajElementyCB(BazaBiala1h.bazy, cbBiala1hBaza, cbBiala1hBaza_sh1, cbBiala1hBaza_sh2, cbBiala1hBaza_sh3);
+            DodajElementyCB(BazaBiala1h.sufy, cbBiala1hSuf, cbBiala1hSuf_sh1, cbBiala1hSuf_sh2, cbBiala1hSuf_sh3);
 
             // Biała 2h
             TabBiala2h.BackColor = bckColorTab;
@@ -134,9 +135,9 @@ namespace R19_BW_laczenia
             biala2hWynik.BackColor = bckColorRTB;
             biala2hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             biala2hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefBiala2h, cbBiala2hPref, cbBiala2hPref_sh1, cbBiala2hPref_sh2, cbBiala2hPref_sh3);
-            DodajElementyCB(BazaBiala2h, cbBiala2hBaza, cbBiala2hBaza_sh1, cbBiala2hBaza_sh2, cbBiala2hBaza_sh3);
-            DodajElementyCB(SufBiala2h, cbBiala2hSuf, cbBiala2hSuf_sh1, cbBiala2hSuf_sh2, cbBiala2hSuf_sh3);
+            DodajElementyCB(BazaBiala2h.prefy, cbBiala2hPref, cbBiala2hPref_sh1, cbBiala2hPref_sh2, cbBiala2hPref_sh3);
+            DodajElementyCB(BazaBiala2h.bazy, cbBiala2hBaza, cbBiala2hBaza_sh1, cbBiala2hBaza_sh2, cbBiala2hBaza_sh3);
+            DodajElementyCB(BazaBiala2h.sufy, cbBiala2hSuf, cbBiala2hSuf_sh1, cbBiala2hSuf_sh2, cbBiala2hSuf_sh3);
 
             // Palna 1h
             TabPalna1h.BackColor = bckColorTab;
@@ -147,9 +148,9 @@ namespace R19_BW_laczenia
             palna1hWynik.BackColor = bckColorRTB;
             palna1hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             palna1hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefPalan1h, cbPalna1hPref, cbPalna1hPref_sh1, cbPalna1hPref_sh2, cbPalna1hPref_sh3);
-            DodajElementyCB(BazaPalna1h, cbPalna1hBaza, cbPalna1hBaza_sh1, cbPalna1hBaza_sh2, cbPalna1hBaza_sh3);
-            DodajElementyCB(SufPalna1h, cbPalna1hSuf, cbPalna1hSuf_sh1, cbPalna1hSuf_sh2, cbPalna1hSuf_sh3);
+            DodajElementyCB(BazaPalna1h.prefy, cbPalna1hPref, cbPalna1hPref_sh1, cbPalna1hPref_sh2, cbPalna1hPref_sh3);
+            DodajElementyCB(BazaPalna1h.bazy, cbPalna1hBaza, cbPalna1hBaza_sh1, cbPalna1hBaza_sh2, cbPalna1hBaza_sh3);
+            DodajElementyCB(BazaPalna1h.sufy, cbPalna1hSuf, cbPalna1hSuf_sh1, cbPalna1hSuf_sh2, cbPalna1hSuf_sh3);
 
             // Palna 2h
             TabPalna2h.BackColor = bckColorTab;
@@ -160,9 +161,9 @@ namespace R19_BW_laczenia
             palna2hWynik.BackColor = bckColorRTB;
             palna2hWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             palna2hWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefPalna2h, cbPalna2hPref, cbPalna2hPref_sh1, cbPalna2hPref_sh2, cbPalna2hPref_sh3);
-            DodajElementyCB(BazaPalna2h, cbPalna2hBaza, cbPalna2hBaza_sh1, cbPalna2hBaza_sh2, cbPalna2hBaza_sh3);
-            DodajElementyCB(SufPalna2h, cbPalna2hSuf, cbPalna2hSuf_sh1, cbPalna2hSuf_sh2, cbPalna2hSuf_sh3);
+            DodajElementyCB(BazaPalna2h.prefy, cbPalna2hPref, cbPalna2hPref_sh1, cbPalna2hPref_sh2, cbPalna2hPref_sh3);
+            DodajElementyCB(BazaPalna2h.bazy, cbPalna2hBaza, cbPalna2hBaza_sh1, cbPalna2hBaza_sh2, cbPalna2hBaza_sh3);
+            DodajElementyCB(BazaPalna2h.sufy, cbPalna2hSuf, cbPalna2hSuf_sh1, cbPalna2hSuf_sh2, cbPalna2hSuf_sh3);
 
             // Dystans
             TabDystans.BackColor = bckColorTab;
@@ -173,9 +174,9 @@ namespace R19_BW_laczenia
             dystansWynik.BackColor = bckColorRTB;
             dystansWynik.ReadOnly = true;  // Ustawienie flagi Read Only
             dystansWynik.ContextMenuStrip = contextMenuStrip1; // Dodanie menu prawego przycisku myszy
-            DodajElementyCB(PrefDystans, cbDystansPref, cbDystansPref_sh1, cbDystansPref_sh2, cbDystansPref_sh3);
-            DodajElementyCB(BazaDystans, cbDystansBaza, cbDystansBaza_sh1, cbDystansBaza_sh2, cbDystansBaza_sh3);
-            DodajElementyCB(SufDystans, cbDystansSuf, cbDystansSuf_sh1, cbDystansSuf_sh2, cbDystansSuf_sh3);
+            DodajElementyCB(BazaDystans.prefy, cbDystansPref, cbDystansPref_sh1, cbDystansPref_sh2, cbDystansPref_sh3);
+            DodajElementyCB(BazaDystans.bazy, cbDystansBaza, cbDystansBaza_sh1, cbDystansBaza_sh2, cbDystansBaza_sh3);
+            DodajElementyCB(BazaDystans.sufy, cbDystansSuf, cbDystansSuf_sh1, cbDystansSuf_sh2, cbDystansSuf_sh3);
 
             // Analizator raportu
             TabAnalizator.BackColor = bckColorTab;
@@ -234,7 +235,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.5.1"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.6"; // Trzeba pamiętać o zmianie :(
             try
             {
                 using (var client = new HttpClient())
@@ -264,45 +265,16 @@ namespace R19_BW_laczenia
         }
 
         // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
-        List<string> PrefHelm = new List<string>();
-        List<string> BazaHelm = new List<string>();
-        List<string> SufHelm = new List<string>();
-
-        List<string> PrefZbroja = new List<string>();
-        List<string> BazaZbroja = new List<string>();
-        List<string> SufZbroja = new List<string>();
-
-        List<string> PrefSpodnie = new List<string>();
-        List<string> BazaSpodnie = new List<string>();
-        List<string> SufSpodnie = new List<string>();
-
-        List<string> PrefPierscien = new List<string>();
-        List<string> BazaPierscien = new List<string>();
-        List<string> SufPierscien = new List<string>();
-
-        List<string> PrefAmulet = new List<string>();
-        List<string> BazaAmulet = new List<string>();
-        List<string> SufAmulet = new List<string>();
-
-        List<string> PrefBiala1h = new List<string>();
-        List<string> BazaBiala1h = new List<string>();
-        List<string> SufBiala1h = new List<string>();
-
-        List<string> PrefBiala2h = new List<string>();
-        List<string> BazaBiala2h = new List<string>();
-        List<string> SufBiala2h = new List<string>();
-
-        List<string> PrefPalan1h = new List<string>();
-        List<string> BazaPalna1h = new List<string>();
-        List<string> SufPalna1h = new List<string>();
-
-        List<string> PrefPalna2h = new List<string>();
-        List<string> BazaPalna2h = new List<string>();
-        List<string> SufPalna2h = new List<string>();
-
-        List<string> PrefDystans = new List<string>();
-        List<string> BazaDystans = new List<string>();
-        List<string> SufDystans = new List<string>();
+        ItemType BazaHelm = new ItemType();
+        ItemType BazaZbroja = new ItemType();
+        ItemType BazaSpodnie = new ItemType();
+        ItemType BazaPierscien = new ItemType();
+        ItemType BazaAmulet = new ItemType();
+        ItemType BazaBiala1h = new ItemType();
+        ItemType BazaBiala2h = new ItemType();
+        ItemType BazaPalna1h = new ItemType();
+        ItemType BazaPalna2h = new ItemType();
+        ItemType BazaDystans = new ItemType();
 
         // Zmienne do łączenia
         Item component1 = new Item();
@@ -344,57 +316,57 @@ namespace R19_BW_laczenia
 
         private void HelmDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbHelmPref, cbHelmBaza, cbHelmSuf, helmWynik, PrefHelm, BazaHelm, SufHelm);
+            Dodaj(cbHelmPref, cbHelmBaza, cbHelmSuf, helmWynik, BazaHelm);
         }
 
         private void ZbrojaDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbZbrojaPref, cbZbrojaBaza, cbZbrojaSuf, zbrojaWynik, PrefZbroja, BazaZbroja, SufZbroja);
+            Dodaj(cbZbrojaPref, cbZbrojaBaza, cbZbrojaSuf, zbrojaWynik, BazaZbroja);
         }
 
         private void SpodnieDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbSpodniePref, cbSpodnieBaza, cbSpodnieSuf, spodnieWynik, PrefSpodnie, BazaSpodnie, SufSpodnie);
+            Dodaj(cbSpodniePref, cbSpodnieBaza, cbSpodnieSuf, spodnieWynik, BazaSpodnie);
         }
 
         private void PierscienDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbPierscienPref, cbPierscienBaza, cbPierscienSuf, pierscienWynik, PrefPierscien, BazaPierscien, SufPierscien);
+            Dodaj(cbPierscienPref, cbPierscienBaza, cbPierscienSuf, pierscienWynik, BazaPierscien);
         }
 
         private void AmuletDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbAmuletPref, cbAmuletBaza, cbAmuletSuf, amuletWynik, PrefAmulet, BazaAmulet, SufAmulet);
+            Dodaj(cbAmuletPref, cbAmuletBaza, cbAmuletSuf, amuletWynik, BazaAmulet);
         }
 
         private void Biala1hDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbBiala1hPref, cbBiala1hBaza, cbBiala1hSuf, biala1hWynik, PrefBiala1h, BazaBiala1h, SufBiala1h);
+            Dodaj(cbBiala1hPref, cbBiala1hBaza, cbBiala1hSuf, biala1hWynik, BazaBiala1h);
         }
 
         private void Biala2hDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbBiala2hPref, cbBiala2hBaza, cbBiala2hSuf, biala2hWynik, PrefBiala2h, BazaBiala2h, SufBiala2h);
+            Dodaj(cbBiala2hPref, cbBiala2hBaza, cbBiala2hSuf, biala2hWynik, BazaBiala2h);
         }
 
         private void Palna1hDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbPalna1hPref, cbPalna1hBaza, cbPalna1hSuf, palna1hWynik, PrefPalan1h, BazaPalna1h, SufPalna1h);
+            Dodaj(cbPalna1hPref, cbPalna1hBaza, cbPalna1hSuf, palna1hWynik, BazaPalna1h);
         }
 
         private void Palna2hDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbPalna2hPref, cbPalna2hBaza, cbPalna2hSuf, palna2hWynik, PrefPalna2h, BazaPalna2h, SufPalna2h);
+            Dodaj(cbPalna2hPref, cbPalna2hBaza, cbPalna2hSuf, palna2hWynik, BazaPalna2h);
         }
 
         private void DystansDodaj_Click(object sender, EventArgs e)
         {
-            Dodaj(cbDystansPref, cbDystansBaza, cbDystansSuf, dystansWynik, PrefDystans, BazaDystans, SufDystans);
+            Dodaj(cbDystansPref, cbDystansBaza, cbDystansSuf, dystansWynik, BazaDystans);
         }
 
-        private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, List<string> Pref, List<string> Baza, List<string> Suf)
+        private void Dodaj(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, RichTextBox Wynik, ItemType TypPrzedmiotu)
         {
-            Item temp = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
+            Item temp = new Item(TypPrzedmiotu.prefy.IndexOf(PrefCB.Text), TypPrzedmiotu.bazy.IndexOf(BazaCB.Text), TypPrzedmiotu.sufy.IndexOf(SufCB.Text));
             Item result;
 
             // Dodaj znak sumy jeżeli dodano drugi przedmiot do łączenia
@@ -403,7 +375,7 @@ namespace R19_BW_laczenia
                 if (component1.Sum() > 0) Wynik.AppendText(" + ");
 
                 // Dodaj wybrany prefiks / bazę / sufiks do okienka z wynikiem
-                Wynik.AppendText(UsunSpacje(temp, Pref, Baza, Suf));
+                Wynik.AppendText(UsunSpacje(temp, TypPrzedmiotu));
                 added = true;
             }
 
@@ -414,20 +386,20 @@ namespace R19_BW_laczenia
                 if (component1.Sum() == 0)
                 {
                     // Pierwszy składnik - indeks prefiksu + indeks bazy + indeks sufiksu = 0
-                    component1.Set(temp);
+                    component1 = new Item(temp);
                     // Dodaj składnik do histori składników
                     HistoriaPrzedmiotow.Add(new Item(component1));
                 }
                 else
                 {
                     // Drugi składnik
-                    component2.Set(temp);
+                    component2 = new Item(temp);
                     // Dodaj składnik do histori składników
                     HistoriaPrzedmiotow.Add(new Item(component2));
 
                     // Połącz przedmioty, uwzględnij wyjątek przy łączeniu baz hełmów
-                    if (Baza == BazaHelm) result = new Item(component1.Polacz(component2, Pref, Baza, Suf, true));
-                    else result = new Item(component1.Polacz(component2, Pref, Baza, Suf));
+                    if (TypPrzedmiotu.bazy == BazaHelm.bazy) result = new Item(Polacz(component1, component2, TypPrzedmiotu, true));
+                    else result = new Item(Polacz(component1, component2, TypPrzedmiotu));
 
                     // Potraktuj wynik jako pierwszy składnik
                     component1 = new Item(result);
@@ -435,7 +407,7 @@ namespace R19_BW_laczenia
                     // Dodaj składnik do histori składników
                     HistoriaPrzedmiotow.Add(new Item(result));
                     // Wyświetl wynik łączenia
-                    Wynik.AppendText("\n= " + UsunSpacje(result, Pref, Baza, Suf));
+                    Wynik.AppendText("\n= " + UsunSpacje(result, TypPrzedmiotu));
                 }
 
                 // Dodaj łączenie do historii łączeń 
@@ -523,153 +495,153 @@ namespace R19_BW_laczenia
 
         private void PrefHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Hełm Pref", PrefHelm);
+            InicjalizacjaTabeli("Hełm Pref", BazaHelm.prefy);
         }
 
         private void BazaHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Hełm Baza", BazaHelm);
+            InicjalizacjaTabeli("Hełm Baza", BazaHelm.bazy);
         }
 
         private void SufHelmPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Hełm Suf", SufHelm);
+            InicjalizacjaTabeli("Hełm Suf", BazaHelm.sufy);
         }
 
         private void PrefZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Zbroja Pref", PrefZbroja);
+            InicjalizacjaTabeli("Zbroja Pref", BazaZbroja.prefy);
         }
 
         private void BazaZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Zbroja Baza", BazaZbroja);
+            InicjalizacjaTabeli("Zbroja Baza", BazaZbroja.bazy);
         }
 
         private void SufZbrojaPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Zbroja Suf", SufZbroja);
+            InicjalizacjaTabeli("Zbroja Suf", BazaZbroja.sufy);
         }
 
         private void PrefSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Spodnie Pref", PrefSpodnie);
+            InicjalizacjaTabeli("Spodnie Pref", BazaSpodnie.prefy);
         }
 
         private void BazaSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Spodnie Baza", BazaSpodnie);
+            InicjalizacjaTabeli("Spodnie Baza", BazaSpodnie.bazy);
         }
 
         private void SufSpodniePanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Spodnie Suf", SufSpodnie);
+            InicjalizacjaTabeli("Spodnie Suf", BazaSpodnie.sufy);
         }
 
         private void PrefPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Pierścień Pref", PrefPierscien);
+            InicjalizacjaTabeli("Pierścień Pref", BazaPierscien.prefy);
         }
 
         private void BazaPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Pierścień Baza", BazaPierscien);
+            InicjalizacjaTabeli("Pierścień Baza", BazaPierscien.bazy);
         }
 
         private void SufPierscienPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Pierścień Suf", SufPierscien);
+            InicjalizacjaTabeli("Pierścień Suf", BazaPierscien.sufy);
         }
 
         private void PrefAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Amulet Pref", PrefAmulet);
+            InicjalizacjaTabeli("Amulet Pref", BazaAmulet.prefy);
         }
 
         private void BazaAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Amulet Baza", BazaAmulet);
+            InicjalizacjaTabeli("Amulet Baza", BazaAmulet.bazy);
         }
 
         private void SufAmuletPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Amulet Suf", SufAmulet);
+            InicjalizacjaTabeli("Amulet Suf", BazaAmulet.sufy);
         }
 
         private void PrefBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Biała 1h Pref", PrefBiala1h);
+            InicjalizacjaTabeli("Biała 1h Pref", BazaBiala1h.prefy);
         }
 
         private void BazaBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Biała 1h Baza", BazaBiala1h);
+            InicjalizacjaTabeli("Biała 1h Baza", BazaBiala1h.bazy);
         }
 
         private void SufBiala1hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Biała 1h Suf", SufBiala1h);
+            InicjalizacjaTabeli("Biała 1h Suf", BazaBiala1h.sufy);
         }
 
         private void PrefBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Biała 2h Pref", PrefBiala2h);
+            InicjalizacjaTabeli("Biała 2h Pref", BazaBiala2h.prefy);
         }
 
         private void BazaBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Biała 2h Baza", BazaBiala2h);
+            InicjalizacjaTabeli("Biała 2h Baza", BazaBiala2h.bazy);
         }
 
         private void SufBiala2hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Biała 2h Suf", SufBiala2h);
+            InicjalizacjaTabeli("Biała 2h Suf", BazaBiala2h.sufy);
         }
 
         private void PrefPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Palna 1h Pref", PrefPalan1h);
+            InicjalizacjaTabeli("Palna 1h Pref", BazaPalna1h.prefy);
         }
 
         private void BazaPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Palna 1h Baza", BazaPalna1h);
+            InicjalizacjaTabeli("Palna 1h Baza", BazaPalna1h.bazy);
         }
 
         private void SufPalna1hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Palna 1h Suf", SufPalna1h);
+            InicjalizacjaTabeli("Palna 1h Suf", BazaPalna1h.sufy);
         }
 
         private void PrefPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Palna 2h Pref", PrefPalna2h);
+            InicjalizacjaTabeli("Palna 2h Pref", BazaPalna2h.prefy);
         }
 
         private void BazaPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Palna 2h Baza", BazaPalna2h);
+            InicjalizacjaTabeli("Palna 2h Baza", BazaPalna2h.bazy);
         }
 
         private void SufPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
             if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
-            InicjalizacjaTabeli("Palna 2h Suf", SufPalna2h);
+            InicjalizacjaTabeli("Palna 2h Suf", BazaPalna2h.sufy);
         }
 
         private void PrefDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Dystans Pref", PrefDystans);
+            InicjalizacjaTabeli("Dystans Pref", BazaDystans.prefy);
         }
 
         private void BazaDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Dystans Baza", BazaDystans);
+            InicjalizacjaTabeli("Dystans Baza", BazaDystans.bazy);
         }
 
         private void SufDystansPanelLabel_Click(object sender, EventArgs e)
         {
-            InicjalizacjaTabeli("Dystans Suf", SufDystans);
+            InicjalizacjaTabeli("Dystans Suf", BazaDystans.sufy);
         }
 
         private void InicjalizacjaTabeli(string s, List<string> baza)
@@ -933,7 +905,7 @@ namespace R19_BW_laczenia
             pomoc.ShowDialog(this);
         }
 
-        private void analizRapFontPlus_Click(object sender, EventArgs e)
+        private void AnalizRapFontPlus_Click(object sender, EventArgs e)
         {
             // Zwiększ rozmiar czcionki analizatora raportów
             fontSizeAnalizRap++;
@@ -943,7 +915,7 @@ namespace R19_BW_laczenia
             AnalizujRaport();
         }
 
-        private void analizRapFontMinus_Click(object sender, EventArgs e)
+        private void AnalizRapFontMinus_Click(object sender, EventArgs e)
         {
             // Zmniejsz rozmiar czcionki analizatora raportów
             fontSizeAnalizRap--;
@@ -966,52 +938,52 @@ namespace R19_BW_laczenia
                 switch (GlownyTab.SelectedTab.Text)
                 {
                     case "Hełm":
-                        ZmienLabelObliczenia(cbHelmPref, cbHelmBaza, cbHelmSuf, PrefHelm, BazaHelm, SufHelm, PrefHelmL, BazaHelmL, SufHelmL);
+                        ZmienLabelObliczenia(cbHelmPref, cbHelmBaza, cbHelmSuf, BazaHelm, PrefHelmL, BazaHelmL, SufHelmL);
                         break;
                     case "Zbroja":
-                        ZmienLabelObliczenia(cbZbrojaPref, cbZbrojaBaza, cbZbrojaSuf, PrefZbroja, BazaZbroja, SufZbroja, PrefZbrojaL, BazaZbrojaL, SufZbrojaL);
+                        ZmienLabelObliczenia(cbZbrojaPref, cbZbrojaBaza, cbZbrojaSuf, BazaZbroja, PrefZbrojaL, BazaZbrojaL, SufZbrojaL);
                         break;
                     case "Spodnie":
-                        ZmienLabelObliczenia(cbSpodniePref, cbSpodnieBaza, cbSpodnieSuf, PrefSpodnie, BazaSpodnie, SufSpodnie, PrefSpodnieL, BazaSpodnieL, SufSpodnieL);
+                        ZmienLabelObliczenia(cbSpodniePref, cbSpodnieBaza, cbSpodnieSuf, BazaSpodnie, PrefSpodnieL, BazaSpodnieL, SufSpodnieL);
                         break;
                     case "Pierścień":
-                        ZmienLabelObliczenia(cbPierscienPref, cbPierscienBaza, cbPierscienSuf, PrefPierscien, BazaPierscien, SufPierscien, PrefPierscienL, BazaPierscienL, SufPierscienL);
+                        ZmienLabelObliczenia(cbPierscienPref, cbPierscienBaza, cbPierscienSuf, BazaPierscien, PrefPierscienL, BazaPierscienL, SufPierscienL);
                         break;
                     case "Amulet":
-                        ZmienLabelObliczenia(cbAmuletPref, cbAmuletBaza, cbAmuletSuf, PrefAmulet, BazaAmulet, SufAmulet, PrefAmuletL, BazaAmuletL, SufAmuletL);
+                        ZmienLabelObliczenia(cbAmuletPref, cbAmuletBaza, cbAmuletSuf, BazaAmulet, PrefAmuletL, BazaAmuletL, SufAmuletL);
                         break;
                     case "Biała 1h":
-                        ZmienLabelObliczenia(cbBiala1hPref, cbBiala1hBaza, cbBiala1hSuf, PrefBiala1h, BazaBiala1h, SufBiala1h, PrefBiala1hL, BazaBiala1hL, SufBiala1hL);
+                        ZmienLabelObliczenia(cbBiala1hPref, cbBiala1hBaza, cbBiala1hSuf, BazaBiala1h, PrefBiala1hL, BazaBiala1hL, SufBiala1hL);
                         break;
                     case "Biała 2h":
-                        ZmienLabelObliczenia(cbBiala2hPref, cbBiala2hBaza, cbBiala2hSuf, PrefBiala2h, BazaBiala2h, SufBiala2h, PrefBiala2hL, BazaBiala2hL, SufBiala2hL);
+                        ZmienLabelObliczenia(cbBiala2hPref, cbBiala2hBaza, cbBiala2hSuf, BazaBiala2h, PrefBiala2hL, BazaBiala2hL, SufBiala2hL);
                         break;
                     case "Palna 1h":
-                        ZmienLabelObliczenia(cbPalna1hPref, cbPalna1hBaza, cbPalna1hSuf, PrefPalan1h, BazaPalna1h, SufPalna1h, PrefPalna1hL, BazaPalna1hL, SufPalna1hL);
+                        ZmienLabelObliczenia(cbPalna1hPref, cbPalna1hBaza, cbPalna1hSuf, BazaPalna1h, PrefPalna1hL, BazaPalna1hL, SufPalna1hL);
                         break;
                     case "Palna 2h":
-                        ZmienLabelObliczenia(cbPalna2hPref, cbPalna2hBaza, cbPalna2hSuf, PrefPalna2h, BazaPalna2h, SufPalna2h, PrefPalna2hL, BazaPalna2hL, SufPalna2hL);
+                        ZmienLabelObliczenia(cbPalna2hPref, cbPalna2hBaza, cbPalna2hSuf, BazaPalna2h, PrefPalna2hL, BazaPalna2hL, SufPalna2hL);
                         break;
                     case "Dystans":
-                        ZmienLabelObliczenia(cbDystansPref, cbDystansBaza, cbDystansSuf, PrefDystans, BazaDystans, SufDystans, PrefDystansL, BazaDystansL, SufDystansL);
+                        ZmienLabelObliczenia(cbDystansPref, cbDystansBaza, cbDystansSuf, BazaDystans, PrefDystansL, BazaDystansL, SufDystansL);
                         break;
                 }
             }
         }
 
-        private void ZmienLabelObliczenia(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, List<string> Pref, List<string> Baza, List<string> Suf, Label PrefLab, Label BazaLab, Label SufLab)
+        private void ZmienLabelObliczenia(ComboBox PrefCB, ComboBox BazaCB, ComboBox SufCB, ItemType TypPrzedmiotu, Label PrefLab, Label BazaLab, Label SufLab)
         {
             // Funkcja do zmiany labeli - aktualizacji "na bieżąco" wyniku łączenia
-            Item skladnik = new Item(Pref.IndexOf(PrefCB.Text), Baza.IndexOf(BazaCB.Text), Suf.IndexOf(SufCB.Text));
+            Item skladnik = new Item(TypPrzedmiotu.prefy.IndexOf(PrefCB.Text), TypPrzedmiotu.bazy.IndexOf(BazaCB.Text), TypPrzedmiotu.sufy.IndexOf(SufCB.Text));
             Item wynik;
-            if (Baza == BazaHelm) wynik = new Item(component1.Polacz(skladnik, Pref, Baza, Suf, true));
-            else wynik = new Item(component1.Polacz(skladnik, Pref, Baza, Suf));
+            if (TypPrzedmiotu.bazy == BazaHelm.bazy) wynik = new Item(Polacz(component1, skladnik, TypPrzedmiotu, true));
+            else wynik = new Item(Polacz(component1, skladnik, TypPrzedmiotu));
 
-            if (wynik.p > 0) PrefLab.Text = Pref.ElementAt(wynik.p);
+            if (wynik.pref > 0) PrefLab.Text = TypPrzedmiotu.prefy.ElementAt(wynik.pref);
             else PrefLab.Text = "";
-            if (wynik.b > 0) BazaLab.Text = Baza.ElementAt(wynik.b);
+            if (wynik.baza > 0) BazaLab.Text = TypPrzedmiotu.bazy.ElementAt(wynik.baza);
             else BazaLab.Text = "";
-            if (wynik.s > 0) SufLab.Text = Suf.ElementAt(wynik.s);
+            if (wynik.suf > 0) SufLab.Text = TypPrzedmiotu.sufy.ElementAt(wynik.suf);
             else SufLab.Text = "";
         }
 
@@ -1049,77 +1021,44 @@ namespace R19_BW_laczenia
 
             // Wyczyść listę załadowanych przedmiotów
             przedmioty.Clear();
+            przedmioty.TrimExcess();
 
             // Załaduj przedmioty
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    Zaladuj(PrefHelm, BazaHelm, SufHelm);
+                    Zaladuj(BazaHelm);
                     break;
                 case "Zbroja":
-                    Zaladuj(PrefZbroja, BazaZbroja, SufZbroja);
+                    Zaladuj(BazaZbroja);
                     break;
                 case "Spodnie":
-                    Zaladuj(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    Zaladuj(BazaSpodnie);
                     break;
                 case "Pierścień":
-                    Zaladuj(PrefPierscien, BazaPierscien, SufPierscien);
+                    Zaladuj(BazaPierscien);
                     break;
                 case "Amulet":
-                    Zaladuj(PrefAmulet, BazaAmulet, SufAmulet);
+                    Zaladuj(BazaAmulet);
                     break;
                 case "Biała 1h":
-                    Zaladuj(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    Zaladuj(BazaBiala1h);
                     break;
                 case "Biała 2h":
-                    Zaladuj(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    Zaladuj(BazaBiala2h);
                     break;
                 case "Palna 1h":
-                    Zaladuj(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    Zaladuj(BazaPalna1h);
                     break;
                 case "Palna 2h":
-                    Zaladuj(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    Zaladuj(BazaPalna2h);
                     break;
                 case "Dystans":
-                    // Normalna identyfikacja nie działa :/
-                    //Zaladuj(PrefDystans, BazaDystans, SufDystans);
-
-                    zaladowanePrzedmioty.Items.Clear();
-                    przedmioty.Clear();
-
-                    przedmiotyDoAnalizy.WordWrap = false;
-
-                    string[] linie = przedmiotyDoAnalizy.Text.Split('\n');
-
-                    Item przedmiot = new Item();
-
-                    foreach (string line in linie)
-                    {
-                        przedmiot = new Item();
-
-                        for (int i = 0; i < PrefDystans.Count; i++)
-                        {
-                            if (line.Contains(PrefDystans[i])) przedmiot.p = i;
-                        }
-                        for (int i = 0; i < BazaDystans.Count; i++)
-                        {
-                            if (line.Contains(BazaDystans[i])) przedmiot.b = i;
-                        }
-                        for (int i = 0; i < SufDystans.Count; i++)
-                        {
-                            if (line.Contains(SufDystans[i])) przedmiot.s = i;
-                        }
-
-
-                        if (przedmiot.Sum() > 0)
-                        {
-                            przedmioty.Add(przedmiot);
-                            zaladowanePrzedmioty.Items.Add(UsunSpacje(przedmiot, PrefDystans, BazaDystans, SufDystans));
-                        }
-                    }
-                    przedmiotyDoAnalizy.WordWrap = true;
+                    Zaladuj(BazaDystans);
                     break;
             }
+
+            przedmioty.TrimExcess();
 
             // W zależności od ilości załadowanych przedmiotów wyświetl poprawną (słownie) ilość
             if (przedmioty.Count == 1) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiot:";
@@ -1157,12 +1096,13 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void Zaladuj(List<string> pref, List<string> baza, List<string> suf)
+        private void Zaladuj(ItemType TypPrzedmiotu)
         {
             // Funkcja ładująca przedmioty - identyfikuje przedmioty z ciągu znaków
             // Wyczyść listy załadowanych przedmiotów
             zaladowanePrzedmioty.Items.Clear();
             przedmioty.Clear();
+            przedmioty.TrimExcess();
 
             // Wyłącz zawijanie tekstu w okienku z tekstem
             przedmiotyDoAnalizy.WordWrap = false;
@@ -1171,37 +1111,45 @@ namespace R19_BW_laczenia
             string[] linie = przedmiotyDoAnalizy.Text.Split('\n');
 
             // Identyfikowany przedmiot
-            Item przedmiot;
+            Item przedmiot = new Item();
 
-            // Pętla dzieląca tekst z okienka na poszczególne linie
             foreach (string line in linie)
             {
                 przedmiot = new Item();
-                // Podziel linię tekstu na wyrazy oddzielone spacjami
-                string[] wyrazy = line.Split(' ');
 
-                // Przeszukaj poszczególne wyrazy
-                for (int i = 0; i < wyrazy.Count(); i++)
+                for (int i = 1; i < TypPrzedmiotu.prefy.Count; i++)
                 {
-                    // Pomiń spacje i inne wyrazy z ilością znaków < 3
-                    if (wyrazy[i].Length < 3) continue;
-
-                    // Przytnij końcówkę wyrazu - ułatwienie identyfikacji przedmiotów
-                    wyrazy[i] = wyrazy[i].Substring(0, wyrazy[i].Length - 1);
-
-                    // Odnajdź w liście prefiksów / baz / sufiksów wyraz
-                    if (pref.Any(p => p.Contains(wyrazy[i])) && przedmiot.p == 0) przedmiot.p = pref.IndexOf(pref.Find(p => p.Contains(wyrazy[i])));
-                    if (baza.Any(b => b.Contains(wyrazy[i]))) przedmiot.b = baza.IndexOf(baza.Find(b => b.Contains(wyrazy[i])));
-                    if (suf.Any(s => s.Contains(wyrazy[i]))) przedmiot.s = suf.IndexOf(suf.Find(s => s.Contains(wyrazy[i])));
+                    if (line.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 1, 1)))
+                    {
+                        przedmiot.pref = i;
+                        break;
+                    }
+                }
+                for (int i = 1; i < TypPrzedmiotu.bazy.Count; i++)
+                {
+                    if (line.Contains(TypPrzedmiotu.bazy[i].Remove(TypPrzedmiotu.bazy[i].Length - 1, 1)))
+                    {
+                        przedmiot.baza = i;
+                        //break;
+                    }
+                }
+                for (int i = 1; i < TypPrzedmiotu.sufy.Count; i++)
+                {
+                    if (line.Contains(TypPrzedmiotu.sufy[i].Remove(TypPrzedmiotu.sufy[i].Length - 1, 1)))
+                    {
+                        przedmiot.suf = i;
+                        break;
+                    }
                 }
 
-                // Jeżeli znaleziono prefiks / bazę / sufiks to dodaj przedmiot do listy przedmiotów
                 if (przedmiot.Sum() > 0)
                 {
                     przedmioty.Add(przedmiot);
-                    zaladowanePrzedmioty.Items.Add(UsunSpacje(przedmiot, pref, baza, suf));
+                    zaladowanePrzedmioty.Items.Add(UsunSpacje(przedmiot, TypPrzedmiotu));
                 }
             }
+
+            przedmioty.TrimExcess();
 
             // Włącz zawijanie tekstu w okienku z tekstem
             przedmiotyDoAnalizy.WordWrap = true;
@@ -1227,75 +1175,52 @@ namespace R19_BW_laczenia
             checkBoxWyswietl.Checked = false;
             // Wyczyść wyniki łączeń
             wyniki.Clear();
+            wyniki.TrimExcess();
 
             // Lista z listami prefiksów, baz i sufiksów wysyłana do backgroundWorker'a
-            List<List<string>> send = new List<List<string>>();
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    send.Add(PrefHelm);
-                    send.Add(BazaHelm);
-                    send.Add(SufHelm);
+                    analizatorWorker.RunWorkerAsync(BazaHelm);
                     break;
                 case "Zbroja":
-                    send.Add(PrefZbroja);
-                    send.Add(BazaZbroja);
-                    send.Add(SufZbroja);
+                    analizatorWorker.RunWorkerAsync(BazaZbroja);
                     break;
                 case "Spodnie":
-                    send.Add(PrefSpodnie);
-                    send.Add(BazaSpodnie);
-                    send.Add(SufSpodnie);
+                    analizatorWorker.RunWorkerAsync(BazaSpodnie);
                     break;
                 case "Pierścień":
-                    send.Add(PrefPierscien);
-                    send.Add(BazaPierscien);
-                    send.Add(SufPierscien);
+                    analizatorWorker.RunWorkerAsync(BazaPierscien);
                     break;
                 case "Amulet":
-                    send.Add(PrefAmulet);
-                    send.Add(BazaAmulet);
-                    send.Add(SufAmulet);
+                    analizatorWorker.RunWorkerAsync(BazaAmulet);
                     break;
                 case "Biała 1h":
-                    send.Add(PrefBiala1h);
-                    send.Add(BazaBiala1h);
-                    send.Add(SufBiala1h);
+                    analizatorWorker.RunWorkerAsync(BazaBiala1h);
                     break;
                 case "Biała 2h":
-                    send.Add(PrefBiala2h);
-                    send.Add(BazaBiala2h);
-                    send.Add(SufBiala2h);
+                    analizatorWorker.RunWorkerAsync(BazaBiala2h);
                     break;
                 case "Palna 1h":
-                    send.Add(PrefPalan1h);
-                    send.Add(BazaPalna1h);
-                    send.Add(SufPalna1h);
+                    analizatorWorker.RunWorkerAsync(BazaPalna1h);
                     break;
                 case "Palna 2h":
-                    send.Add(PrefPalna2h);
-                    send.Add(BazaPalna2h);
-                    send.Add(SufPalna2h);
+                    analizatorWorker.RunWorkerAsync(BazaPalna2h);
                     break;
                 case "Dystans":
-                    send.Add(PrefDystans);
-                    send.Add(BazaDystans);
-                    send.Add(SufDystans);
+                    analizatorWorker.RunWorkerAsync(BazaDystans);
                     break;
             }
-
-            // Uruchom backgroundWorker oraz wyślij do niego atrybut z listą prefiksów, baz i sufiksów
-            analizatorWorker.RunWorkerAsync(send);
         }
 
         private void AnalizujWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             // Funkcja wywoływana przez backgroundWorkera - analizujWorker
             // Potraktuj otrzymany argument jako lista list prefiksów, baz i sufiksów
-            List<List<string>> arg = (List<List<string>>)e.Argument;
+            ItemType arg = (ItemType)e.Argument;
 
             // Wywołaj analizator połączeń
-            AnalizujPolaczenia(arg[0], arg[1], arg[2]);
+            AnalizujPolaczenia(arg);
 
             // Po skończonej analizie zaktualizuj tekst przycisku i włącz kontrolki wyłączone na czas analizy
             this.Invoke((MethodInvoker)delegate
@@ -1321,9 +1246,13 @@ namespace R19_BW_laczenia
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void AnalizujPolaczenia(List<string> pref, List<string> baza, List<string> suf)
+        private void AnalizujPolaczenia(ItemType TypPrzedmiotu)
         {
             // Główna funkcja analizatora połączeń sprawdzająca pierwsze połączenie
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             // Lista wykorzystanych indeksów przedmiotów
             List<int> indeksy = new List<int>();
             // Zmienna do przechowywania wyniku łączenia
@@ -1339,6 +1268,7 @@ namespace R19_BW_laczenia
             {
                 // Wyczyść listę wykorzystanych indeksów oraz dodaj aktualnie wykorzystywany indeks
                 indeksy.Clear();
+                indeksy.TrimExcess();
                 indeksy.Add(sk1);
 
                 // Zaktualizuj procentowy postęp analizy połączeń
@@ -1355,18 +1285,24 @@ namespace R19_BW_laczenia
                     indeksy.Add(sk2);
 
                     // Połącz składniki, dodaj historię łączenia oraz zwiększ ilość łączeń wyniku o 1, uwzględnij wyjątek przy łączeniu baz hełmów
-                    if (baza == BazaHelm) wynik = new Item(przedmioty[sk1].Polacz(przedmioty[sk2], pref, baza, suf, true));
-                    else wynik = new Item(przedmioty[sk1].Polacz(przedmioty[sk2], pref, baza, suf));
-                    wynik.h = UsunSpacje(przedmioty[sk1], pref, baza, suf) + " + " + UsunSpacje(przedmioty[sk2], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                    if (TypPrzedmiotu.bazy == BazaHelm.bazy) wynik = new Item(Polacz(przedmioty[sk1], przedmioty[sk2], TypPrzedmiotu, true));
+                    else wynik = new Item(Polacz(przedmioty[sk1], przedmioty[sk2], TypPrzedmiotu));
+                    
+                    // Dodaj historię łączenia
+                    wynik.hist.Add(new int[] { przedmioty[sk1].pref, przedmioty[sk1].baza, przedmioty[sk1].suf, 0 });
+                    wynik.hist.Add(new int[] { przedmioty[sk2].pref, przedmioty[sk2].baza, przedmioty[sk2].suf, -1 });
+                    wynik.hist.Add(new int[] { wynik.pref, wynik.baza, wynik.suf, -2 });
+                    wynik.hist.TrimExcess();
                     wynik.iloscLaczen += 1;
-                    // Dodaj otrzymany wynik do listy wyników
-                    wyniki.Add(wynik);
 
+                    // Dodaj otrzymany wynik do listy wyników
+                    wyniki.Add(new Item(wynik));
+                    
                     // Wywołaj pętle sprawdzające pozostałe łączenia
                     // Połączenia (((A+B)+C)+D) itd.
-                    if (iloscLacz < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, pref, baza, suf);
+                    if (iloscLacz < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu);
                     // Połączenia dodatkowe ((A+B)+(C+D)) itd.
-                    if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, pref, baza, suf);
+                    if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu);
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(sk2);
@@ -1382,14 +1318,39 @@ namespace R19_BW_laczenia
                         return;
                     }
                 }
+
+                wyniki.TrimExcess();
+            }
+
+            sw.Stop();
+
+            string elapsedTime = "";
+
+            if ((double)sw.ElapsedMilliseconds >= 60000d)
+            {
+                // Analiza trwała ponad 1 min
+                elapsedTime = Math.Round(((double)sw.ElapsedMilliseconds / 60000d), 3).ToString();
+                elapsedTime += " min.";
+            }
+            else if ((double)sw.ElapsedMilliseconds > 1000d)
+            {
+                // Analiza trwała ponad 1 sec
+                elapsedTime = Math.Round(((double)sw.ElapsedMilliseconds / 1000d), 3).ToString();
+                elapsedTime += " s.";
+            }
+            else
+            {
+                // Analiza trwała poniżej 1 sec
+                elapsedTime = Math.Round(((double)sw.ElapsedMilliseconds), 3).ToString();
+                elapsedTime += " ms.";
             }
 
             // Po zakończonej analizie połączeń wyświetl ilość znalezionych wyników
             this.Invoke((MethodInvoker)delegate
             {
-                if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie.";
-                if (wyniki.Count > 1 && wyniki.Count < 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenia.";
-                if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń.";
+                if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie w " + elapsedTime;
+                if (wyniki.Count > 1 && wyniki.Count < 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenia w " + elapsedTime;
+                if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń w " + elapsedTime;
             });
 
             // Po zakończonej analizie połączeń zaktualizuj filtr
@@ -1399,34 +1360,34 @@ namespace R19_BW_laczenia
                 switch (listaTypowPrzedmiotow.SelectedItem)
                 {
                     case "Hełm":
-                        AktualizujPozyjcieFiltr(PrefHelm, BazaHelm, SufHelm);
+                        AktualizujPozyjcieFiltr(BazaHelm);
                         break;
                     case "Zbroja":
-                        AktualizujPozyjcieFiltr(PrefZbroja, BazaZbroja, SufZbroja);
+                        AktualizujPozyjcieFiltr(BazaZbroja);
                         break;
                     case "Spodnie":
-                        AktualizujPozyjcieFiltr(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                        AktualizujPozyjcieFiltr(BazaSpodnie);
                         break;
                     case "Pierścień":
-                        AktualizujPozyjcieFiltr(PrefPierscien, BazaPierscien, SufPierscien);
+                        AktualizujPozyjcieFiltr(BazaPierscien);
                         break;
                     case "Amulet":
-                        AktualizujPozyjcieFiltr(PrefAmulet, BazaAmulet, SufAmulet);
+                        AktualizujPozyjcieFiltr(BazaAmulet);
                         break;
                     case "Biała 1h":
-                        AktualizujPozyjcieFiltr(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                        AktualizujPozyjcieFiltr(BazaBiala1h);
                         break;
                     case "Biała 2h":
-                        AktualizujPozyjcieFiltr(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                        AktualizujPozyjcieFiltr(BazaBiala2h);
                         break;
                     case "Palna 1h":
-                        AktualizujPozyjcieFiltr(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                        AktualizujPozyjcieFiltr(BazaPalna1h);
                         break;
                     case "Palna 2h":
-                        AktualizujPozyjcieFiltr(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                        AktualizujPozyjcieFiltr(BazaPalna2h);
                         break;
                     case "Dystans":
-                        AktualizujPozyjcieFiltr(PrefDystans, BazaDystans, SufDystans);
+                        AktualizujPozyjcieFiltr(BazaDystans);
                         break;
                 }
 
@@ -1435,13 +1396,15 @@ namespace R19_BW_laczenia
                 cbFiltrPref.Enabled = true;
                 cbFiltrBaza.Enabled = true;
                 cbFiltrSuf.Enabled = true;
+
+                analizujPolaczenia.Text = "Sortuję wyniki...";
             });
 
             // Sortowanie wyników: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość łączeń
-            wyniki = wyniki.OrderBy(x => x.p).ThenBy(y => y.b).ThenBy(z => z.s).ThenBy(l => l.iloscLaczen).ToList();
+            wyniki = wyniki.OrderBy(x => x.pref).ThenBy(y => y.baza).ThenBy(z => z.suf).ThenBy(l => l.iloscLaczen).ToList();
         }
 
-        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu)
         {
             // Funkcja sprawdzająca proste łączenia - ((A+B)+C)+D
             // Zmienna do przechowywania wyniku łączenia
@@ -1459,19 +1422,25 @@ namespace R19_BW_laczenia
                 indeksy.Add(i);
 
                 // Połącz otrzymany w argumentach składnik z pozostałym przedmiotem, uwzględnij wyjątek przy łączeniu baz hełmów
-                if (baza == BazaHelm) wynik = new Item(skladnik.Polacz(przedmioty[i], pref, baza, suf, true));
-                else wynik = new Item(skladnik.Polacz(przedmioty[i], pref, baza, suf));
+                if (TypPrzedmiotu.bazy == BazaHelm.bazy) wynik = new Item(Polacz(skladnik, przedmioty[i], TypPrzedmiotu, true));
+                else wynik = new Item(Polacz(skladnik, przedmioty[i], TypPrzedmiotu));
+                
                 // Dodaj jego historię łączenia - historia łącznia składnika + aktualnie sprawdzany przedmiot + wynik łączenia
-                wynik.h = skladnik.h + " + " + UsunSpacje(przedmioty[i], pref, baza, suf) + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                foreach (int[] historiaSkladnika in skladnik.hist) wynik.hist.Add(historiaSkladnika); // Dodaj historię składnika
+                wynik.hist.Add(new int[] { przedmioty[i].pref, przedmioty[i].baza, przedmioty[i].suf, -1 }); // Dodaj łączony przedmiot
+                wynik.hist.Add(new int[] { wynik.pref, wynik.baza, wynik.suf, -2 }); // Dodaj wynik łączenia
+                wynik.hist.TrimExcess();
+
                 // Zwiększ ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń aktualnego przedmiotu + 1
                 wynik.iloscLaczen = skladnik.iloscLaczen + przedmioty[i].iloscLaczen + 1;
+                
                 // Dodaj wynik do listy wyników
-                wyniki.Add(wynik);
+                wyniki.Add(new Item(wynik));
 
                 // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
-                if (iloscL < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
+                if (iloscL < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
                 // Jeżeli zaznaczono połączenia mieszane wywołaj funkcję dodatkowych łączeń
-                if (iloscL + 2 <= maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
+                if (iloscL + 2 <= maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
 
                 // Usuń wykorzystany "indeks" przedmiotu z listy
                 indeksy.Remove(i);
@@ -1481,7 +1450,7 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, List<string> pref, List<string> baza, List<string> suf)
+        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu)
         {
             // Funkcja sprawdzająca dodatkowe łączenia (A+B)+(C+D)
             // Zmienna do przechowywania tymczasowego składnika - wyniku łączenia dwóch przedmiotów, które zostaną połączone z otrzymanym składnikiem w argumentach funkcji
@@ -1508,28 +1477,37 @@ namespace R19_BW_laczenia
                     indeksy.Add(j);
 
                     // Połącz dwa przedmioty aby otrzymać tymczasowy składnik, uwzględnij wyjątek przy łączeniu baz hełmów
-                    if (baza == BazaHelm) skladnikTemp = new Item(przedmioty[i].Polacz(przedmioty[j], pref, baza, suf, true));
-                    else skladnikTemp = new Item(przedmioty[i].Polacz(przedmioty[j], pref, baza, suf));
+                    if (TypPrzedmiotu.bazy == BazaHelm.bazy) skladnikTemp = new Item(Polacz(przedmioty[i], przedmioty[j], TypPrzedmiotu, true));
+                    else skladnikTemp = new Item(Polacz(przedmioty[i], przedmioty[j], TypPrzedmiotu));
+                    
                     // Dodaj historię łączenia tymczasowego składnika - historia łączenia przedmiotu 1 + historia łączenia przedmiotu 2
-                    skladnikTemp.h = "(" + UsunSpacje(przedmioty[i], pref, baza, suf) + " + " + UsunSpacje(przedmioty[j], pref, baza, suf) + ")";
+                    skladnikTemp.hist.Add(new int[] { przedmioty[i].pref, przedmioty[i].baza, przedmioty[i].suf, -3 });
+                    skladnikTemp.hist.Add(new int[] { przedmioty[j].pref, przedmioty[j].baza, przedmioty[j].suf, -4 });
+                    skladnikTemp.hist.TrimExcess();
+                    
                     // Ustaw ilość łączeń tymczasowego składnika - ilość łączeń przedmiotu 1 + ilość łączeń przedmiotu 2 + 1
                     skladnikTemp.iloscLaczen = przedmioty[i].iloscLaczen + przedmioty[j].iloscLaczen + 1;
 
                     // Połącz tymczasowy składnik ze składnikiem otrzymanym w argumencie funkcji, uwzględnij wyjątek przy łączeniu baz hełmów
-                    if (baza == BazaHelm) wynik = new Item(skladnik.Polacz(skladnikTemp, pref, baza, suf, true));
-                    else wynik = new Item(skladnik.Polacz(skladnikTemp, pref, baza, suf));
+                    if (TypPrzedmiotu.bazy == BazaHelm.bazy) wynik = new Item(Polacz(skladnik, skladnikTemp, TypPrzedmiotu, true));
+                    else wynik = new Item(Polacz(skladnik, skladnikTemp, TypPrzedmiotu));
+                    
                     // Dodaj historię łączenia wyniku - historia łączenia skłądnika + historia łączenia tymczasowego składnika + wynik łączenia
-                    wynik.h = skladnik.h + " + " + skladnikTemp.h + "\n= " + UsunSpacje(wynik, pref, baza, suf);
+                    foreach (int[] historiaSkladnika in skladnik.hist) wynik.hist.Add(historiaSkladnika); // Dodaj historię składnika
+                    foreach (int[] historyItem in skladnikTemp.hist) wynik.hist.Add(new int[] { historyItem[0], historyItem[1], historyItem[2], historyItem[3] });
+                    wynik.hist.Add(new int[] { wynik.pref, wynik.baza, wynik.suf, -2 });
+                    wynik.hist.TrimExcess();
+
                     // Ustaw ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń tymczasowego składnika
                     wynik.iloscLaczen = skladnik.iloscLaczen + skladnikTemp.iloscLaczen + 1;
 
                     // Dodaj otrzymany wynik łączenia do listy wyników
-                    wyniki.Add(wynik);
+                    wyniki.Add(new Item(wynik));
 
                     // Wywołaj sam siebie jeżeli ilość itemów > ilości pętli + 2
-                    if (iloscL + 2 <= maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
+                    if (iloscL + 2 <= maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
                     // Jeżeli zaznaczono połączenia mieszane wywołaj funkcję domyślnych łączeń
-                    if (iloscL < maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, pref, baza, suf);
+                    if (iloscL < maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(j);
@@ -1543,7 +1521,7 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void AktualizujPozyjcieFiltr(List<string> pref, List<string> baza, List<string> suf)
+        private void AktualizujPozyjcieFiltr(ItemType TypPrzedmiotu)
         {
             // Zaktualizuj pozycje filtra
             // Wyczyść aktualne pozycje filtra
@@ -1552,9 +1530,9 @@ namespace R19_BW_laczenia
             cbFiltrSuf.Items.Clear();
 
             // Dodaj nowe pozycje filtra
-            foreach (string p in pref) cbFiltrPref.Items.Add(p);
-            foreach (string b in baza) cbFiltrBaza.Items.Add(b);
-            foreach (string s in suf) cbFiltrSuf.Items.Add(s);
+            foreach (string p in TypPrzedmiotu.prefy) cbFiltrPref.Items.Add(p);
+            foreach (string b in TypPrzedmiotu.bazy) cbFiltrBaza.Items.Add(b);
+            foreach (string s in TypPrzedmiotu.sufy) cbFiltrSuf.Items.Add(s);
         }
 
         private void FiltrUpdate_Click(object sender, EventArgs e)
@@ -1569,34 +1547,34 @@ namespace R19_BW_laczenia
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    FiltrUpdate(PrefHelm, BazaHelm, SufHelm);
+                    FiltrUpdate(BazaHelm);
                     break;
                 case "Zbroja":
-                    FiltrUpdate(PrefZbroja, BazaZbroja, SufZbroja);
+                    FiltrUpdate(BazaZbroja);
                     break;
                 case "Spodnie":
-                    FiltrUpdate(PrefSpodnie, BazaSpodnie, SufSpodnie);
+                    FiltrUpdate(BazaSpodnie);
                     break;
                 case "Pierścień":
-                    FiltrUpdate(PrefPierscien, BazaPierscien, SufPierscien);
+                    FiltrUpdate(BazaPierscien);
                     break;
                 case "Amulet":
-                    FiltrUpdate(PrefAmulet, BazaAmulet, SufAmulet);
+                    FiltrUpdate(BazaAmulet);
                     break;
                 case "Biała 1h":
-                    FiltrUpdate(PrefBiala1h, BazaBiala1h, SufBiala1h);
+                    FiltrUpdate(BazaBiala1h);
                     break;
                 case "Biała 2h":
-                    FiltrUpdate(PrefBiala2h, BazaBiala2h, SufBiala2h);
+                    FiltrUpdate(BazaBiala2h);
                     break;
                 case "Palna 1h":
-                    FiltrUpdate(PrefPalan1h, BazaPalna1h, SufPalna1h);
+                    FiltrUpdate(BazaPalna1h);
                     break;
                 case "Palna 2h":
-                    FiltrUpdate(PrefPalna2h, BazaPalna2h, SufPalna2h);
+                    FiltrUpdate(BazaPalna2h);
                     break;
                 case "Dystans":
-                    FiltrUpdate(PrefDystans, BazaDystans, SufDystans);
+                    FiltrUpdate(BazaDystans);
                     break;
             }
 
@@ -1606,15 +1584,16 @@ namespace R19_BW_laczenia
             polaczonePrzedmioty.SelectedIndex = -1;
         }
 
-        private void FiltrUpdate(List<string> pref, List<string> baza, List<string> suf)
+        private void FiltrUpdate(ItemType TypPrzedmiotu)
         {
             // Funkcja filtrująca wyniki łączeń oraz zmieniająca Item'y na string'i
             // Lista przechowująca przefiltrowanie wyniki łączeń w postaci string'ów
             List<string> wynikiTekst = new List<string>();
+            
             // Zmienne do przechowywania wybranych parametrów filtra
-            int filtrPref = pref.IndexOf(cbFiltrPref.Text);
-            int filtrBaza = baza.IndexOf(cbFiltrBaza.Text);
-            int filtrSuf = suf.IndexOf(cbFiltrSuf.Text);
+            int filtrPref = TypPrzedmiotu.prefy.IndexOf(cbFiltrPref.Text);
+            int filtrBaza = TypPrzedmiotu.bazy.IndexOf(cbFiltrBaza.Text);
+            int filtrSuf = TypPrzedmiotu.sufy.IndexOf(cbFiltrSuf.Text);
 
             // Na czas filtrowania i dodawania wyników wyłącz przycisk "Aktualizuj filtr" oraz zmień jego tekst na "Aktualizuję..."
             filtrUpdate.Enabled = false;
@@ -1625,6 +1604,7 @@ namespace R19_BW_laczenia
             // lista ta przechowuje "indeks" wyniku dodawanego do listy przefiltorwanych wyników
             // wyświetlany przedmiot = wynik . elementAt ( filtrPrzedmioty( indkes_wybranego_przefiltrowanego_wyniku ) )
             filtrPrzedmioty.Clear();
+            filtrPrzedmioty.TrimExcess();
 
             // Przefiltruj wyniki
             for (int i = 0; i < wyniki.Count; i++)
@@ -1632,27 +1612,27 @@ namespace R19_BW_laczenia
                 if (filtrPref == 0 && filtrBaza == 0 && filtrSuf == 0)
                 {
                     // Pref, baza i suf dowolny - pokaż wszystko
-                    wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                    wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                     filtrPrzedmioty.Add(i);
                     continue;
                 }
-                else if (wyniki[i].p == filtrPref)
+                else if (wyniki[i].pref == filtrPref)
                 {
                     // Wybrano prefiks do filtrowania
-                    if (wyniki[i].b == filtrBaza)
+                    if (wyniki[i].baza == filtrBaza)
                     {
                         // Wybrano prefiks i bazę do filtrowania
-                        if (wyniki[i].s == filtrSuf)
+                        if (wyniki[i].suf == filtrSuf)
                         {
                             // Wybrano prefiks, bazę i sufiks do filtrowania
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano prefiks i bazę do filtrowania, dowolny sufiks
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1660,17 +1640,17 @@ namespace R19_BW_laczenia
                     else if (filtrBaza == 0)
                     {
                         // Wybrano prefiks do filtrowania i dowolną bazę
-                        if (wyniki[i].s == filtrSuf)
+                        if (wyniki[i].suf == filtrSuf)
                         {
                             // Wybrano prefiks i sufiks do filtrowania
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano prefiks do filtrowania, dowolna baza i sufiks
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1679,20 +1659,20 @@ namespace R19_BW_laczenia
                 else if (filtrPref == 0)
                 {
                     // Dowolny prefiks
-                    if (wyniki[i].b == filtrBaza)
+                    if (wyniki[i].baza == filtrBaza)
                     {
                         // Wybrano bazę do filtrowania, dowolny prefiks
-                        if (wyniki[i].s == filtrSuf)
+                        if (wyniki[i].suf == filtrSuf)
                         {
                             // Wybrano bazę i sufiks do filtrowania, dowolny prefiks
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Wybrano bazę do filtrowania, dowolny prefiks i sufiks
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1700,17 +1680,17 @@ namespace R19_BW_laczenia
                     else if (filtrBaza == 0)
                     {
                         // Dowolny prefiks i baza
-                        if (wyniki[i].s == filtrSuf)
+                        if (wyniki[i].suf == filtrSuf)
                         {
                             // Wybrano sufiks do filtrowania, dowolny prefiks i baza
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
                             // Dowolny prefiks, baza i sufiks
-                            wynikiTekst.Add(UsunSpacje(wyniki[i], pref, baza, suf));
+                            wynikiTekst.Add(UsunSpacje(wyniki[i], TypPrzedmiotu));
                             filtrPrzedmioty.Add(i);
                             continue;
                         }
@@ -1741,7 +1721,72 @@ namespace R19_BW_laczenia
             {
                 // Aktualizacja historii łączeń po zmianie wybranego wyniku połączenia
                 int index = filtrPrzedmioty[polaczonePrzedmioty.SelectedIndex];
-                przedmiotyDoAnalizy.Text = wyniki[index].h;
+                //przedmiotyDoAnalizy.Text = wyniki[index].hist;
+
+                ItemType typPrzedmiotu = new ItemType();
+                switch (listaTypowPrzedmiotow.SelectedItem)
+                {
+                    case "Hełm":
+                        typPrzedmiotu = BazaHelm;
+                        break;
+                    case "Zbroja":
+                        typPrzedmiotu = BazaZbroja;
+                        break;
+                    case "Spodnie":
+                        typPrzedmiotu = BazaSpodnie;
+                        break;
+                    case "Pierścień":
+                        typPrzedmiotu = BazaPierscien;
+                        break;
+                    case "Amulet":
+                        typPrzedmiotu = BazaAmulet;
+                        break;
+                    case "Biała 1h":
+                        typPrzedmiotu = BazaBiala1h;
+                        break;
+                    case "Biała 2h":
+                        typPrzedmiotu = BazaBiala2h;
+                        break;
+                    case "Palna 1h":
+                        typPrzedmiotu = BazaPalna1h;
+                        break;
+                    case "Palna 2h":
+                        typPrzedmiotu = BazaPalna2h;
+                        break;
+                    case "Dystans":
+                        typPrzedmiotu = BazaDystans;
+                        break;
+                }
+
+                string text = "";
+                for (int i = 0; i < wyniki[index].hist.Count; i++)
+                {
+                    switch (wyniki[index].hist[i][3])
+                    {
+                        case 0:
+                            // Nic nie dodawaj
+                            text += UsunSpacje(new Item(wyniki[index].hist[i][0], wyniki[index].hist[i][1], wyniki[index].hist[i][2]), typPrzedmiotu);
+                            break;
+                        case -1:
+                            // Dodaj " + "
+                            text += " + " + UsunSpacje(new Item(wyniki[index].hist[i][0], wyniki[index].hist[i][1], wyniki[index].hist[i][2]), typPrzedmiotu);
+                            break;
+                        case -2:
+                            // Dodaj "\n= "
+                            text += "\n= " + UsunSpacje(new Item(wyniki[index].hist[i][0], wyniki[index].hist[i][1], wyniki[index].hist[i][2]), typPrzedmiotu);
+                            break;
+                        case -3:
+                            // Dodaj " + ("
+                            text += " + (" + UsunSpacje(new Item(wyniki[index].hist[i][0], wyniki[index].hist[i][1], wyniki[index].hist[i][2]), typPrzedmiotu);
+                            break;
+                        case -4:
+                            // Dodaj " + " i ")"
+                            text += " + " + UsunSpacje(new Item(wyniki[index].hist[i][0], wyniki[index].hist[i][1], wyniki[index].hist[i][2]), typPrzedmiotu) + ")";
+                            break;
+                    }
+                }
+
+                przedmiotyDoAnalizy.Text = text;
             }
         }
 
@@ -1762,15 +1807,73 @@ namespace R19_BW_laczenia
             pomoc.ShowDialog(this);
         }
 
-        private string UsunSpacje(Item i, List<string> pref, List<string> baza, List<string> suf)
+        private static Item Polacz(Item i1, Item i2, ItemType TypPrzedmiotu, bool wyjatekHelm = false)
+        {
+            // Łączenie 
+            int[] wynik = new int[] { 0, 0, 0 };
+            double x = 0d, y = 0d;
+
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        // Prefiksy
+                        x = i1.pref;
+                        y = i2.pref;
+                        break;
+                    case 1:
+                        // Bazy
+                        x = i1.baza;
+                        y = i2.baza;
+                        break;
+                    case 2:
+                        // Sufiksy
+                        x = i1.suf;
+                        y = i2.suf;
+                        break;
+                }
+
+                if ((int)x == 0 || (int)y == 0) wynik[i] = 0;
+                else if (x == y) wynik[i] = (int)x;
+                else wynik[i] = Convert.ToInt32(Math.Ceiling((x + y) / 2d) + 1d);
+                // Wyjątek przy łączeniu Czapka + Hełm = Maska
+                if (wyjatekHelm == true && x == 1 && y == 3 && i == 1) wynik[i] = 4;
+                if (wyjatekHelm == true && x == 3 && y == 1 && i == 1) wynik[i] = 4;
+
+            }
+
+            Item w = new Item(wynik[0], wynik[1], wynik[2]);
+
+            // Sprawdzenie wyjątkow przy łączeniu przy końcu tabeli łączeń
+            // Prefiksy
+            if ((i1.pref == (TypPrzedmiotu.prefy.Count - 1)) && (i2.pref == (TypPrzedmiotu.prefy.Count - 2))) w.pref = TypPrzedmiotu.prefy.Count - 3;
+            if ((i1.pref == (TypPrzedmiotu.prefy.Count - 2)) && (i2.pref == (TypPrzedmiotu.prefy.Count - 1))) w.pref = TypPrzedmiotu.prefy.Count - 3;
+            if ((i1.pref == (TypPrzedmiotu.prefy.Count - 1)) && (i2.pref == (TypPrzedmiotu.prefy.Count - 3))) w.pref = TypPrzedmiotu.prefy.Count - 2;
+            if ((i1.pref == (TypPrzedmiotu.prefy.Count - 3)) && (i2.pref == (TypPrzedmiotu.prefy.Count - 1))) w.pref = TypPrzedmiotu.prefy.Count - 2;
+            // Bazy
+            if ((i1.baza == (TypPrzedmiotu.bazy.Count - 1)) && (i2.baza == (TypPrzedmiotu.bazy.Count - 2))) w.baza = TypPrzedmiotu.bazy.Count - 3;
+            if ((i1.baza == (TypPrzedmiotu.bazy.Count - 2)) && (i2.baza == (TypPrzedmiotu.bazy.Count - 1))) w.baza = TypPrzedmiotu.bazy.Count - 3;
+            if ((i1.baza == (TypPrzedmiotu.bazy.Count - 1)) && (i2.baza == (TypPrzedmiotu.bazy.Count - 3))) w.baza = TypPrzedmiotu.bazy.Count - 2;
+            if ((i1.baza == (TypPrzedmiotu.bazy.Count - 3)) && (i2.baza == (TypPrzedmiotu.bazy.Count - 1))) w.baza = TypPrzedmiotu.bazy.Count - 2;
+            // Sufiksy
+            if ((i1.suf == (TypPrzedmiotu.sufy.Count - 1)) && (i2.suf == (TypPrzedmiotu.sufy.Count - 2))) w.suf = TypPrzedmiotu.sufy.Count - 3;
+            if ((i1.suf == (TypPrzedmiotu.sufy.Count - 2)) && (i2.suf == (TypPrzedmiotu.sufy.Count - 1))) w.suf = TypPrzedmiotu.sufy.Count - 3;
+            if ((i1.suf == (TypPrzedmiotu.sufy.Count - 1)) && (i2.suf == (TypPrzedmiotu.sufy.Count - 3))) w.suf = TypPrzedmiotu.sufy.Count - 2;
+            if ((i1.suf == (TypPrzedmiotu.sufy.Count - 3)) && (i2.suf == (TypPrzedmiotu.sufy.Count - 1))) w.suf = TypPrzedmiotu.sufy.Count - 2;
+
+            return w;
+        }
+
+        private static string UsunSpacje(Item i, ItemType TypPrzedmiotu)
         {
             // Funkcja zwracająca prefiks, bazę i sufiks przedmiotu w postaci stringa bez niepotrzebnych spacji
             string s = "";
-            if (i.p != 0) s += pref.ElementAt(i.p);
-            if (i.p != 0 && i.b != 0) s += " ";
-            if (i.b != 0) s += baza.ElementAt(i.b);
-            if ((i.p != 0 || i.b != 0) && i.s != 0) s += " ";
-            if (i.s != 0) s += suf.ElementAt(i.s);
+            if (i.pref != 0) s += TypPrzedmiotu.prefy.ElementAt(i.pref);
+            if (i.pref != 0 && i.baza != 0) s += " ";
+            if (i.baza != 0) s += TypPrzedmiotu.bazy.ElementAt(i.baza);
+            if ((i.pref != 0 || i.baza != 0) && i.suf != 0) s += " ";
+            if (i.suf != 0) s += TypPrzedmiotu.sufy.ElementAt(i.suf);
             return s;
         }
 
@@ -1781,34 +1884,34 @@ namespace R19_BW_laczenia
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefHelm, BazaHelm, SufHelm) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaHelm) + '\n');
                     break;
                 case "Zbroja":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefZbroja, BazaZbroja, SufZbroja) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaZbroja) + '\n');
                     break;
                 case "Spodnie":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefSpodnie, BazaSpodnie, SufSpodnie) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaSpodnie) + '\n');
                     break;
                 case "Pierścień":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPierscien, BazaPierscien, SufPierscien) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPierscien) + '\n');
                     break;
                 case "Amulet":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefAmulet, BazaAmulet, SufAmulet) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaAmulet) + '\n');
                     break;
                 case "Biała 1h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala1h, BazaBiala1h, SufBiala1h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaBiala1h) + '\n');
                     break;
                 case "Biała 2h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala2h, BazaBiala2h, SufBiala2h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaBiala2h) + '\n');
                     break;
                 case "Palna 1h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalan1h, BazaPalna1h, SufPalna1h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPalna1h) + '\n');
                     break;
                 case "Palna 2h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalna2h, BazaPalna2h, SufPalna2h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPalna2h) + '\n');
                     break;
                 case "Dystans":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefDystans, BazaDystans, SufDystans) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaDystans) + '\n');
                     break;
             }
         }
@@ -1816,39 +1919,39 @@ namespace R19_BW_laczenia
         private void SortujPrzedmioty_Click(object sender, EventArgs e)
         {
             przedmiotyDoAnalizy.Text = "";
-            przedmioty = przedmioty.OrderBy(y => y.p).ThenBy(z => z.b).ThenBy(k => k.s).ToList();
+            przedmioty = przedmioty.OrderBy(y => y.pref).ThenBy(z => z.baza).ThenBy(k => k.suf).ToList();
 
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefHelm, BazaHelm, SufHelm) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaHelm) + '\n');
                     break;
                 case "Zbroja":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefZbroja, BazaZbroja, SufZbroja) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaZbroja) + '\n');
                     break;
                 case "Spodnie":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefSpodnie, BazaSpodnie, SufSpodnie) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaSpodnie) + '\n');
                     break;
                 case "Pierścień":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPierscien, BazaPierscien, SufPierscien) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPierscien) + '\n');
                     break;
                 case "Amulet":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefAmulet, BazaAmulet, SufAmulet) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaAmulet) + '\n');
                     break;
                 case "Biała 1h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala1h, BazaBiala1h, SufBiala1h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaBiala1h) + '\n');
                     break;
                 case "Biała 2h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefBiala2h, BazaBiala2h, SufBiala2h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaBiala2h) + '\n');
                     break;
                 case "Palna 1h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalan1h, BazaPalna1h, SufPalna1h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPalna1h) + '\n');
                     break;
                 case "Palna 2h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefPalna2h, BazaPalna2h, SufPalna2h) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPalna2h) + '\n');
                     break;
                 case "Dystans":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, PrefDystans, BazaDystans, SufDystans) + '\n');
+                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaDystans) + '\n');
                     break;
             }
         }
@@ -1886,6 +1989,35 @@ namespace R19_BW_laczenia
                 wklejToolStripMenuItem.Enabled = false;
                 schowekToolStripMenuItem.Enabled = true;
             }
+        }
+
+        private void ListaTypowPrzedmiotow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Zmieniono typ przedmiotu do łączenia - przywróc wszystko do stanu początkowego
+            edytujPrzedmioty.Enabled = false;
+            sortujPrzedmioty.Enabled = false;
+            przedmioty.Clear();
+            przedmioty.TrimExcess();
+            zaladowanePrzedmioty.Items.Clear();
+            zaladowanoPrzedmiotow.Text = "Załadowano 0 przedmiotów:";
+            iloscLaczen.Enabled = false;
+            iloscLaczen.Value = 1;
+            dodatkoweLaczenia.Enabled = false;
+            dodatkoweLaczenia.Checked = false;
+            mieszaneLaczenia.Checked = false;
+            analizujPolaczenia.Enabled = false;
+            znalezionoPolaczen.Text = "";
+            cbFiltrPref.Enabled = false;
+            cbFiltrPref.Text = "";
+            cbFiltrBaza.Enabled = false;
+            cbFiltrBaza.Text = "";
+            cbFiltrSuf.Enabled = false;
+            cbFiltrSuf.Text = "";
+            filtrUpdate.Enabled = false;
+            checkBoxWyswietl.Enabled = false;
+            checkBoxWyswietl.Checked = false;
+            polaczonePrzedmioty.Enabled = false;
+            polaczonePrzedmioty.DataSource = null;
         }
 
         private void Czyszczenie()
@@ -1940,8 +2072,10 @@ namespace R19_BW_laczenia
 
             // Czyszczenie historii
             HistoriaLaczen.Clear();
+            HistoriaLaczen.TrimExcess();
             HistoriaLaczen.Add("");
             HistoriaPrzedmiotow.Clear();
+            HistoriaPrzedmiotow.TrimExcess();
         }
 
         private void WklejToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2111,34 +2245,34 @@ namespace R19_BW_laczenia
             switch (GlownyTab.SelectedTab.Text)
             {
                 case "Hełm":
-                    WyslijDoSchowka(helmWynik.SelectedText, PrefHelm, BazaHelm, SufHelm, cbHelmPref_sh1, cbHelmBaza_sh1, cbHelmSuf_sh1);
+                    WyslijDoSchowka(helmWynik.SelectedText, BazaHelm, cbHelmPref_sh1, cbHelmBaza_sh1, cbHelmSuf_sh1);
                     break;
                 case "Zbroja":
-                    WyslijDoSchowka(zbrojaWynik.SelectedText, PrefZbroja, BazaZbroja, SufZbroja, cbZbrojaPref_sh1, cbZbrojaBaza_sh1, cbZbrojaSuf_sh1);
+                    WyslijDoSchowka(zbrojaWynik.SelectedText, BazaZbroja, cbZbrojaPref_sh1, cbZbrojaBaza_sh1, cbZbrojaSuf_sh1);
                     break;
                 case "Spodnie":
-                    WyslijDoSchowka(spodnieWynik.SelectedText, PrefSpodnie, BazaSpodnie, SufSpodnie, cbSpodniePref_sh1, cbSpodnieBaza_sh1, cbSpodnieSuf_sh1);
+                    WyslijDoSchowka(spodnieWynik.SelectedText, BazaSpodnie, cbSpodniePref_sh1, cbSpodnieBaza_sh1, cbSpodnieSuf_sh1);
                     break;
                 case "Pierścień":
-                    WyslijDoSchowka(pierscienWynik.SelectedText, PrefPierscien, BazaPierscien, SufPierscien, cbPierscienPref_sh1, cbPierscienBaza_sh1, cbPierscienSuf_sh1);
+                    WyslijDoSchowka(pierscienWynik.SelectedText, BazaPierscien, cbPierscienPref_sh1, cbPierscienBaza_sh1, cbPierscienSuf_sh1);
                     break;
                 case "Amulet":
-                    WyslijDoSchowka(amuletWynik.SelectedText, PrefAmulet, BazaAmulet, SufAmulet, cbAmuletPref_sh1, cbAmuletBaza_sh1, cbAmuletSuf_sh1);
+                    WyslijDoSchowka(amuletWynik.SelectedText, BazaAmulet, cbAmuletPref_sh1, cbAmuletBaza_sh1, cbAmuletSuf_sh1);
                     break;
                 case "Biała 1h":
-                    WyslijDoSchowka(biala1hWynik.SelectedText, PrefBiala1h, BazaBiala1h, SufBiala1h, cbBiala1hPref_sh1, cbBiala1hBaza_sh1, cbBiala1hSuf_sh1);
+                    WyslijDoSchowka(biala1hWynik.SelectedText, BazaBiala1h, cbBiala1hPref_sh1, cbBiala1hBaza_sh1, cbBiala1hSuf_sh1);
                     break;
                 case "Biała 2h":
-                    WyslijDoSchowka(biala2hWynik.SelectedText, PrefBiala2h, BazaBiala2h, SufBiala2h, cbBiala2hPref_sh1, cbBiala2hBaza_sh1, cbBiala2hSuf_sh1);
+                    WyslijDoSchowka(biala2hWynik.SelectedText, BazaBiala2h, cbBiala2hPref_sh1, cbBiala2hBaza_sh1, cbBiala2hSuf_sh1);
                     break;
                 case "Palna 1h":
-                    WyslijDoSchowka(palna1hWynik.SelectedText, PrefPalan1h, BazaPalna1h, SufPalna1h, cbPalna1hPref_sh1, cbPalna1hBaza_sh1, cbPalna1hSuf_sh1);
+                    WyslijDoSchowka(palna1hWynik.SelectedText, BazaPalna1h, cbPalna1hPref_sh1, cbPalna1hBaza_sh1, cbPalna1hSuf_sh1);
                     break;
                 case "Palna 2h":
-                    WyslijDoSchowka(palna2hWynik.SelectedText, PrefPalna2h, BazaPalna2h, SufPalna2h, cbPalna2hPref_sh1, cbPalna2hBaza_sh1, cbPalna2hSuf_sh1);
+                    WyslijDoSchowka(palna2hWynik.SelectedText, BazaPalna2h, cbPalna2hPref_sh1, cbPalna2hBaza_sh1, cbPalna2hSuf_sh1);
                     break;
                 case "Dystans":
-                    WyslijDoSchowka(dystansWynik.SelectedText, PrefDystans, BazaDystans, SufDystans, cbDystansPref_sh1, cbDystansBaza_sh1, cbDystansSuf_sh1);
+                    WyslijDoSchowka(dystansWynik.SelectedText, BazaDystans, cbDystansPref_sh1, cbDystansBaza_sh1, cbDystansSuf_sh1);
                     break;
             }
         }
@@ -2148,34 +2282,34 @@ namespace R19_BW_laczenia
             switch (GlownyTab.SelectedTab.Text)
             {
                 case "Hełm":
-                    WyslijDoSchowka(helmWynik.SelectedText, PrefHelm, BazaHelm, SufHelm, cbHelmPref_sh2, cbHelmBaza_sh2, cbHelmSuf_sh2);
+                    WyslijDoSchowka(helmWynik.SelectedText, BazaHelm, cbHelmPref_sh2, cbHelmBaza_sh2, cbHelmSuf_sh2);
                     break;
                 case "Zbroja":
-                    WyslijDoSchowka(zbrojaWynik.SelectedText, PrefZbroja, BazaZbroja, SufZbroja, cbZbrojaPref_sh2, cbZbrojaBaza_sh2, cbZbrojaSuf_sh2);
+                    WyslijDoSchowka(zbrojaWynik.SelectedText, BazaZbroja, cbZbrojaPref_sh2, cbZbrojaBaza_sh2, cbZbrojaSuf_sh2);
                     break;
                 case "Spodnie":
-                    WyslijDoSchowka(spodnieWynik.SelectedText, PrefSpodnie, BazaSpodnie, SufSpodnie, cbSpodniePref_sh2, cbSpodnieBaza_sh2, cbSpodnieSuf_sh2);
+                    WyslijDoSchowka(spodnieWynik.SelectedText, BazaSpodnie, cbSpodniePref_sh2, cbSpodnieBaza_sh2, cbSpodnieSuf_sh2);
                     break;
                 case "Pierścień":
-                    WyslijDoSchowka(pierscienWynik.SelectedText, PrefPierscien, BazaPierscien, SufPierscien, cbPierscienPref_sh2, cbPierscienBaza_sh2, cbPierscienSuf_sh2);
+                    WyslijDoSchowka(pierscienWynik.SelectedText, BazaPierscien, cbPierscienPref_sh2, cbPierscienBaza_sh2, cbPierscienSuf_sh2);
                     break;
                 case "Amulet":
-                    WyslijDoSchowka(amuletWynik.SelectedText, PrefAmulet, BazaAmulet, SufAmulet, cbAmuletPref_sh2, cbAmuletBaza_sh2, cbAmuletSuf_sh2);
+                    WyslijDoSchowka(amuletWynik.SelectedText, BazaAmulet, cbAmuletPref_sh2, cbAmuletBaza_sh2, cbAmuletSuf_sh2);
                     break;
                 case "Biała 1h":
-                    WyslijDoSchowka(biala1hWynik.SelectedText, PrefBiala1h, BazaBiala1h, SufBiala1h, cbBiala1hPref_sh2, cbBiala1hBaza_sh2, cbBiala1hSuf_sh2);
+                    WyslijDoSchowka(biala1hWynik.SelectedText, BazaBiala1h, cbBiala1hPref_sh2, cbBiala1hBaza_sh2, cbBiala1hSuf_sh2);
                     break;
                 case "Biała 2h":
-                    WyslijDoSchowka(biala2hWynik.SelectedText, PrefBiala2h, BazaBiala2h, SufBiala2h, cbBiala2hPref_sh2, cbBiala2hBaza_sh2, cbBiala2hSuf_sh2);
+                    WyslijDoSchowka(biala2hWynik.SelectedText, BazaBiala2h, cbBiala2hPref_sh2, cbBiala2hBaza_sh2, cbBiala2hSuf_sh2);
                     break;
                 case "Palna 1h":
-                    WyslijDoSchowka(palna1hWynik.SelectedText, PrefPalan1h, BazaPalna1h, SufPalna1h, cbPalna1hPref_sh2, cbPalna1hBaza_sh2, cbPalna1hSuf_sh2);
+                    WyslijDoSchowka(palna1hWynik.SelectedText, BazaPalna1h, cbPalna1hPref_sh2, cbPalna1hBaza_sh2, cbPalna1hSuf_sh2);
                     break;
                 case "Palna 2h":
-                    WyslijDoSchowka(palna2hWynik.SelectedText, PrefPalna2h, BazaPalna2h, SufPalna2h, cbPalna2hPref_sh2, cbPalna2hBaza_sh2, cbPalna2hSuf_sh2);
+                    WyslijDoSchowka(palna2hWynik.SelectedText, BazaPalna2h, cbPalna2hPref_sh2, cbPalna2hBaza_sh2, cbPalna2hSuf_sh2);
                     break;
                 case "Dystans":
-                    WyslijDoSchowka(dystansWynik.SelectedText, PrefDystans, BazaDystans, SufDystans, cbDystansPref_sh2, cbDystansBaza_sh2, cbDystansSuf_sh2);
+                    WyslijDoSchowka(dystansWynik.SelectedText, BazaDystans, cbDystansPref_sh2, cbDystansBaza_sh2, cbDystansSuf_sh2);
                     break;
             }
         }
@@ -2185,58 +2319,58 @@ namespace R19_BW_laczenia
             switch (GlownyTab.SelectedTab.Text)
             {
                 case "Hełm":
-                    WyslijDoSchowka(helmWynik.SelectedText, PrefHelm, BazaHelm, SufHelm, cbHelmPref_sh3, cbHelmBaza_sh3, cbHelmSuf_sh3);
+                    WyslijDoSchowka(helmWynik.SelectedText, BazaHelm, cbHelmPref_sh3, cbHelmBaza_sh3, cbHelmSuf_sh3);
                     break;
                 case "Zbroja":
-                    WyslijDoSchowka(zbrojaWynik.SelectedText, PrefZbroja, BazaZbroja, SufZbroja, cbZbrojaPref_sh3, cbZbrojaBaza_sh3, cbZbrojaSuf_sh3);
+                    WyslijDoSchowka(zbrojaWynik.SelectedText, BazaZbroja, cbZbrojaPref_sh3, cbZbrojaBaza_sh3, cbZbrojaSuf_sh3);
                     break;
                 case "Spodnie":
-                    WyslijDoSchowka(spodnieWynik.SelectedText, PrefSpodnie, BazaSpodnie, SufSpodnie, cbSpodniePref_sh3, cbSpodnieBaza_sh3, cbSpodnieSuf_sh3);
+                    WyslijDoSchowka(spodnieWynik.SelectedText, BazaSpodnie, cbSpodniePref_sh3, cbSpodnieBaza_sh3, cbSpodnieSuf_sh3);
                     break;
                 case "Pierścień":
-                    WyslijDoSchowka(pierscienWynik.SelectedText, PrefPierscien, BazaPierscien, SufPierscien, cbPierscienPref_sh3, cbPierscienBaza_sh3, cbPierscienSuf_sh3);
+                    WyslijDoSchowka(pierscienWynik.SelectedText, BazaPierscien, cbPierscienPref_sh3, cbPierscienBaza_sh3, cbPierscienSuf_sh3);
                     break;
                 case "Amulet":
-                    WyslijDoSchowka(amuletWynik.SelectedText, PrefAmulet, BazaAmulet, SufAmulet, cbAmuletPref_sh3, cbAmuletBaza_sh3, cbAmuletSuf_sh3);
+                    WyslijDoSchowka(amuletWynik.SelectedText, BazaAmulet, cbAmuletPref_sh3, cbAmuletBaza_sh3, cbAmuletSuf_sh3);
                     break;
                 case "Biała 1h":
-                    WyslijDoSchowka(biala1hWynik.SelectedText, PrefBiala1h, BazaBiala1h, SufBiala1h, cbBiala1hPref_sh3, cbBiala1hBaza_sh3, cbBiala1hSuf_sh3);
+                    WyslijDoSchowka(biala1hWynik.SelectedText, BazaBiala1h, cbBiala1hPref_sh3, cbBiala1hBaza_sh3, cbBiala1hSuf_sh3);
                     break;
                 case "Biała 2h":
-                    WyslijDoSchowka(biala2hWynik.SelectedText, PrefBiala2h, BazaBiala2h, SufBiala2h, cbBiala2hPref_sh3, cbBiala2hBaza_sh3, cbBiala2hSuf_sh3);
+                    WyslijDoSchowka(biala2hWynik.SelectedText, BazaBiala2h, cbBiala2hPref_sh3, cbBiala2hBaza_sh3, cbBiala2hSuf_sh3);
                     break;
                 case "Palna 1h":
-                    WyslijDoSchowka(palna1hWynik.SelectedText, PrefPalan1h, BazaPalna1h, SufPalna1h, cbPalna1hPref_sh3, cbPalna1hBaza_sh3, cbPalna1hSuf_sh3);
+                    WyslijDoSchowka(palna1hWynik.SelectedText, BazaPalna1h, cbPalna1hPref_sh3, cbPalna1hBaza_sh3, cbPalna1hSuf_sh3);
                     break;
                 case "Palna 2h":
-                    WyslijDoSchowka(palna2hWynik.SelectedText, PrefPalna2h, BazaPalna2h, SufPalna2h, cbPalna2hPref_sh3, cbPalna2hBaza_sh3, cbPalna2hSuf_sh3);
+                    WyslijDoSchowka(palna2hWynik.SelectedText, BazaPalna2h, cbPalna2hPref_sh3, cbPalna2hBaza_sh3, cbPalna2hSuf_sh3);
                     break;
                 case "Dystans":
-                    WyslijDoSchowka(dystansWynik.SelectedText, PrefDystans, BazaDystans, SufDystans, cbDystansPref_sh3, cbDystansBaza_sh3, cbDystansSuf_sh3);
+                    WyslijDoSchowka(dystansWynik.SelectedText, BazaDystans, cbDystansPref_sh3, cbDystansBaza_sh3, cbDystansSuf_sh3);
                     break;
             }
         }
 
-        private void WyslijDoSchowka(string tekst, List<string> pref, List<string> baza, List<string> suf, ComboBox cbPref, ComboBox cbBaza, ComboBox cbSuf)
+        private void WyslijDoSchowka(string tekst, ItemType TypPrzedmiotu, ComboBox cbPref, ComboBox cbBaza, ComboBox cbSuf)
         {
             Item przedmiot = new Item();
 
-            for (int i = 0; i < pref.Count; i++)
+            for (int i = 0; i < TypPrzedmiotu.prefy.Count; i++)
             {
-                if (tekst.Contains(pref[i])) przedmiot.p = i;
+                if (tekst.Contains(TypPrzedmiotu.prefy[i])) przedmiot.pref = i;
             }
-            for (int i = 0; i < baza.Count; i++)
+            for (int i = 0; i < TypPrzedmiotu.bazy.Count; i++)
             {
-                if (tekst.Contains(baza[i])) przedmiot.b = i;
+                if (tekst.Contains(TypPrzedmiotu.bazy[i])) przedmiot.baza = i;
             }
-            for (int i = 0; i < suf.Count; i++)
+            for (int i = 0; i < TypPrzedmiotu.sufy.Count; i++)
             {
-                if (tekst.Contains(suf[i])) przedmiot.s = i;
+                if (tekst.Contains(TypPrzedmiotu.sufy[i])) przedmiot.suf = i;
             }
 
-            cbPref.SelectedIndex = przedmiot.p;
-            cbBaza.SelectedIndex = przedmiot.b;
-            cbSuf.SelectedIndex = przedmiot.s;
+            cbPref.SelectedIndex = przedmiot.pref;
+            cbBaza.SelectedIndex = przedmiot.baza;
+            cbSuf.SelectedIndex = przedmiot.suf;
         }
 
         private void BazaHelmow(List<string> pref, List<string> baza, List<string> suf)
@@ -2296,6 +2430,10 @@ namespace R19_BW_laczenia
             suf.Add("Smoczej Łuski");
             suf.Add("Mocy");
             suf.Add("Magii");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaZbroi(List<string> pref, List<string> baza, List<string> suf)
@@ -2354,6 +2492,10 @@ namespace R19_BW_laczenia
             suf.Add("Siewcy Śmierci");
             suf.Add("Szybkości");
             suf.Add("Orchidei");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaSpodni(List<string> pref, List<string> baza, List<string> suf)
@@ -2402,6 +2544,10 @@ namespace R19_BW_laczenia
             suf.Add("Inków");
             suf.Add("Tropiciela");
             suf.Add("Nocy");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaPierścieni(List<string> pref, List<string> baza, List<string> suf)
@@ -2465,6 +2611,10 @@ namespace R19_BW_laczenia
             suf.Add("Przebiegłości");
             suf.Add("Szaleńca");
             suf.Add("Łatwości");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaAmuletow(List<string> pref, List<string> baza, List<string> suf)
@@ -2530,6 +2680,10 @@ namespace R19_BW_laczenia
             suf.Add("Przebiegłości");
             suf.Add("Szaleńca");
             suf.Add("Łatwości");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaBialych1h(List<string> pref, List<string> baza, List<string> suf)
@@ -2594,6 +2748,10 @@ namespace R19_BW_laczenia
             suf.Add("Klanu");
             suf.Add("Imperatora");
             suf.Add("Samobójcy");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaBialych2h(List<string> pref, List<string> baza, List<string> suf)
@@ -2655,6 +2813,10 @@ namespace R19_BW_laczenia
             suf.Add("Bazyliszka");
             suf.Add("Samobójcy");
             suf.Add("Drakuli");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaPalnych1h(List<string> pref, List<string> baza, List<string> suf)
@@ -2674,6 +2836,10 @@ namespace R19_BW_laczenia
 
             // Sufiksy palnych 1h w uporządkowanej kolejności
             suf.Add("");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaPalnych2h(List<string> pref, List<string> baza, List<string> suf)
@@ -2693,6 +2859,10 @@ namespace R19_BW_laczenia
 
             // Sufiksy palnych 2h w uporządkowanej kolejności
             suf.Add("");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void BazaDystansow(List<string> pref, List<string> baza, List<string> suf)
@@ -2724,6 +2894,10 @@ namespace R19_BW_laczenia
             suf.Add("Driady");
             suf.Add("Szybkostrzelności");
             suf.Add("Wilka");
+
+            pref.TrimExcess();
+            baza.TrimExcess();
+            suf.TrimExcess();
         }
 
         private void Label1_Click(object sender, EventArgs e)

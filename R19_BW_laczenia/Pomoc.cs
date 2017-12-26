@@ -26,6 +26,7 @@ namespace R19_BW_laczenia
                     this.Width = pomocTekst.Width + 50;
                     this.Height = pomocTekst.Height + pomocOK.Height + 50;
                     break;
+
                 case "Analizator łączeń":
                     this.Text = "Pomoc: " + s;
                     pomocTekst.Text = "1. Wklej do okienka po lewej stronie listę przedmiotów do łączenia.\n" +
@@ -38,8 +39,9 @@ namespace R19_BW_laczenia
                                         "Przedmioty po edycji / sortowaniu należy ponownie załadować.\n" +
                                         "5. Jeżeli załadowano powyżej 10 przedmiotów wybierz ilość łączeń do sprawdzania (ilość łączeń określa ilość sprawdzanych połączeń \"w głąb\").\n" +
                                         "Dla dużej ilości przedmiotów warto zacząć od niskiej wartości (1-2) i zwiększać o 1 jeżeli komputer daje radę z obliczeniami :).\n" +
-                                        "6. Kliknij \"Analizuj połączenia\". Postęp analizowania połączeń aktualizowany jest krokowo z krokiem: ( 1 / ilość przedmiotów ) * 100%.\n" +
+                                        "6. Kliknij \"Analizuj połączenia\". Postęp analizowania połączeń aktualizowany jest stopniowo z krokiem: ( 1 / ilość przedmiotów ) * 100%.\n" +
                                         "Jeżeli analiza połączeń trwa zbyt długo możesz ją przerwać naciskając klawisz \"Esc\" na klawiaturze.\n" +
+                                        "Po zakończonym analizowaniu połączeń wyniki są sortowane. Sortowanie może trwać długo jeżeli znaleziono wiele połączeń.\n" +
                                         "7. Wybierz filtr (dla dużej ilości wyników - powyżej kilkuset tysięcy - dodawanie ich do listy przefiltrowanych wyników trwa bardzo długo).\n" +
                                         "Lista wyników powyżej 60 tysięcy nie scrolluje się za dobrze - możliwe jest wyświetlenie każdego wyniku,\n" +
                                         "lecz chwycenie za pasek przewijania po prawej stronie i przeciągnięcie w dół nie przescrolluje listy.\n" +
@@ -54,6 +56,7 @@ namespace R19_BW_laczenia
                     this.Width = pomocTekst.Width + 50;
                     this.Height = pomocTekst.Height + pomocOK.Height + 50;
                     break;
+
                 case "Wyniki łączeń":
                     this.Text = "Sugestia dotycząca filtra";
                     pomocTekst.Text = "Powyżej 60 tyś. wyników do wyświetlenia (" + iloscPrzed.ToString() + " wyników).\n" +
@@ -68,7 +71,7 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void pomocOK_Click(object sender, EventArgs e)
+        private void PomocOK_Click(object sender, EventArgs e)
         {
             // Zamknij okno pomocy po kliknięciu OK
             this.Dispose();

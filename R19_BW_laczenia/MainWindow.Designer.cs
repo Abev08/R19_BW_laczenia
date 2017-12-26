@@ -360,7 +360,6 @@
             this.przedmiotyDoAnalizy = new System.Windows.Forms.RichTextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.listaTypowPrzedmiotow = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.ByMe = new System.Windows.Forms.Label();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -3680,7 +3679,7 @@
             this.analizRapFontPlus.Text = "+";
             this.analizRapFontPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.analizRapFontPlus.UseVisualStyleBackColor = true;
-            this.analizRapFontPlus.Click += new System.EventHandler(this.analizRapFontPlus_Click);
+            this.analizRapFontPlus.Click += new System.EventHandler(this.AnalizRapFontPlus_Click);
             // 
             // analizRapFontMinus
             // 
@@ -3692,7 +3691,7 @@
             this.analizRapFontMinus.Text = "-";
             this.analizRapFontMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.analizRapFontMinus.UseVisualStyleBackColor = true;
-            this.analizRapFontMinus.Click += new System.EventHandler(this.analizRapFontMinus_Click);
+            this.analizRapFontMinus.Click += new System.EventHandler(this.AnalizRapFontMinus_Click);
             // 
             // panel7
             // 
@@ -4015,7 +4014,6 @@
             this.TabLaczenia.Controls.Add(this.przedmiotyDoAnalizy);
             this.TabLaczenia.Controls.Add(this.label16);
             this.TabLaczenia.Controls.Add(this.listaTypowPrzedmiotow);
-            this.TabLaczenia.Controls.Add(this.label1);
             this.TabLaczenia.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.TabLaczenia.Location = new System.Drawing.Point(4, 34);
             this.TabLaczenia.Margin = new System.Windows.Forms.Padding(4);
@@ -4162,7 +4160,7 @@
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.analizujPolaczenia);
             this.panel2.Controls.Add(this.znalezionoPolaczen);
-            this.panel2.Location = new System.Drawing.Point(615, 180);
+            this.panel2.Location = new System.Drawing.Point(615, 163);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(537, 190);
             this.panel2.TabIndex = 47;
@@ -4266,7 +4264,7 @@
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.zaladowanePrzedmioty);
             this.panel1.Controls.Add(this.zaladowanoPrzedmiotow);
-            this.panel1.Location = new System.Drawing.Point(615, 74);
+            this.panel1.Location = new System.Drawing.Point(615, 43);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(537, 84);
             this.panel1.TabIndex = 46;
@@ -4342,10 +4340,10 @@
             // 
             this.przedmiotyDoAnalizy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.przedmiotyDoAnalizy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.przedmiotyDoAnalizy.Location = new System.Drawing.Point(8, 74);
+            this.przedmiotyDoAnalizy.Location = new System.Drawing.Point(8, 43);
             this.przedmiotyDoAnalizy.Margin = new System.Windows.Forms.Padding(4);
             this.przedmiotyDoAnalizy.Name = "przedmiotyDoAnalizy";
-            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(600, 459);
+            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(600, 490);
             this.przedmiotyDoAnalizy.TabIndex = 37;
             this.przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.";
             this.przedmiotyDoAnalizy.Enter += new System.EventHandler(this.PrzedmiotyDoAnalizy_Enter);
@@ -4354,7 +4352,7 @@
             // 
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label16.Location = new System.Drawing.Point(4, 38);
+            this.label16.Location = new System.Drawing.Point(4, 6);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(225, 29);
             this.label16.TabIndex = 3;
@@ -4365,23 +4363,11 @@
             // 
             this.listaTypowPrzedmiotow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.listaTypowPrzedmiotow.FormattingEnabled = true;
-            this.listaTypowPrzedmiotow.Location = new System.Drawing.Point(235, 38);
+            this.listaTypowPrzedmiotow.Location = new System.Drawing.Point(235, 7);
             this.listaTypowPrzedmiotow.Name = "listaTypowPrzedmiotow";
             this.listaTypowPrzedmiotow.Size = new System.Drawing.Size(192, 29);
             this.listaTypowPrzedmiotow.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1063, 35);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nie sprawdza wszystkich możliwych połączeń (lecz dużą ich część) i zużywa dużo pa" +
-    "mięci komputera.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.listaTypowPrzedmiotow.SelectedIndexChanged += new System.EventHandler(this.ListaTypowPrzedmiotow_SelectedIndexChanged);
             // 
             // ByMe
             // 
@@ -4922,7 +4908,6 @@
         private System.Windows.Forms.RichTextBox przedmiotyDoAnalizy;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox listaTypowPrzedmiotow;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button zaladujPrzedmioty;
         private System.Windows.Forms.ComboBox zaladowanePrzedmioty;
         private System.Windows.Forms.Label zaladowanoPrzedmiotow;

@@ -41,7 +41,7 @@
             this.pomocOK.TabIndex = 0;
             this.pomocOK.Text = "OK";
             this.pomocOK.UseVisualStyleBackColor = true;
-            this.pomocOK.Click += new System.EventHandler(this.pomocOK_Click);
+            this.pomocOK.Click += new System.EventHandler(this.PomocOK_Click);
             // 
             // pomocTekst
             // 
