@@ -1,6 +1,6 @@
 ﻿namespace R19_BW_laczenia
 {
-    class Item
+    public class Item
     {
         public Item(int pref = 0, int baza = 0, int suf = 0, int iloscL = 0)
         {
@@ -31,7 +31,7 @@
         }
     }
 
-    class ItemType
+    public class ItemType
     {
         public ItemType()
         {

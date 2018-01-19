@@ -4160,7 +4160,7 @@
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.analizujPolaczenia);
             this.panel2.Controls.Add(this.znalezionoPolaczen);
-            this.panel2.Location = new System.Drawing.Point(615, 163);
+            this.panel2.Location = new System.Drawing.Point(615, 180);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(537, 190);
             this.panel2.TabIndex = 47;
@@ -4266,7 +4266,7 @@
             this.panel1.Controls.Add(this.zaladowanoPrzedmiotow);
             this.panel1.Location = new System.Drawing.Point(615, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(537, 84);
+            this.panel1.Size = new System.Drawing.Size(537, 115);
             this.panel1.TabIndex = 46;
             // 
             // panel5
@@ -4295,7 +4295,6 @@
             // 
             // edytujPrzedmioty
             // 
-            this.edytujPrzedmioty.Enabled = false;
             this.edytujPrzedmioty.Location = new System.Drawing.Point(182, 0);
             this.edytujPrzedmioty.Margin = new System.Windows.Forms.Padding(4);
             this.edytujPrzedmioty.Name = "edytujPrzedmioty";
@@ -4320,16 +4319,16 @@
             // 
             this.zaladowanePrzedmioty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.zaladowanePrzedmioty.FormattingEnabled = true;
-            this.zaladowanePrzedmioty.Location = new System.Drawing.Point(236, 51);
+            this.zaladowanePrzedmioty.Location = new System.Drawing.Point(44, 80);
             this.zaladowanePrzedmioty.Name = "zaladowanePrzedmioty";
-            this.zaladowanePrzedmioty.Size = new System.Drawing.Size(298, 29);
+            this.zaladowanePrzedmioty.Size = new System.Drawing.Size(450, 29);
             this.zaladowanePrzedmioty.TabIndex = 42;
             // 
             // zaladowanoPrzedmiotow
             // 
             this.zaladowanoPrzedmiotow.BackColor = System.Drawing.Color.Transparent;
             this.zaladowanoPrzedmiotow.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.zaladowanoPrzedmiotow.Location = new System.Drawing.Point(3, 51);
+            this.zaladowanoPrzedmiotow.Location = new System.Drawing.Point(156, 48);
             this.zaladowanoPrzedmiotow.Name = "zaladowanoPrzedmiotow";
             this.zaladowanoPrzedmiotow.Size = new System.Drawing.Size(227, 29);
             this.zaladowanoPrzedmiotow.TabIndex = 43;

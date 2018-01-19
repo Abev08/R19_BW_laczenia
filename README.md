@@ -4,7 +4,7 @@ Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars
 Listy przedmiotów przystosowano do serwera R19.  
    
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
-Aktualna wersja programu: 2.6. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
+Aktualna wersja programu: 2.6.1. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
    
    
 ## Funkcje programu
@@ -20,6 +20,7 @@ Aktualna wersja programu: 2.6. Wersję używanego programu można sprawdzić naj
    - Podświetlanie wiersza i kolumny wybranego elementu tabeli łączeń,
  - Analizator raportów łączenia umożliwiający wyświetlenie podsumowania przeprowadzonych ulepszeń,
  - Analizator łączeń wyszukujący możliwe połączenia z listy przedmiotów:
+   - Możliwość załadowania listy przedmiotów z tekstu lub poprzez edytor załadowanych przedmiotów,
    - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
    - Brak ograniczenia ilości łączonych przedmiotów,
    - Możliwość ustawienia maksymalnej ilości wyszukiwanych połączeń,

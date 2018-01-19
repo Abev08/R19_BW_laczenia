@@ -235,7 +235,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.6"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.6.1"; // Trzeba pamiętać o zmianie :(
             try
             {
                 using (var client = new HttpClient())
@@ -252,7 +252,7 @@ namespace R19_BW_laczenia
 
                         if (lastCommit != version)
                         {
-                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualnie używana: " + version + "\nDostępna na GitHub'ie: " + lastCommit + "\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualnie używana: " + version + "\nDostępna na GitHub'ie: " + lastCommit + "\n\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
                                 System.Diagnostics.Process.Start("https://github.com/Abev08/R19_BW_laczenia");
                             }
@@ -286,8 +286,11 @@ namespace R19_BW_laczenia
         // Utworzenie obiektu tabeli łączeń (nowego Form'a)
         TableWindow Tabela;
 
-        // Obiekt okienka pomocy;
-        Pomoc pomoc;
+        // Obiekt okienka pomocy
+        Pomoc Pomoc;
+
+        // Obiekt okienka edycji przedmiotów
+        EditWindow EditWindow;
 
         // Zmienne do analizatora łączeń
         List<Item> przedmioty = new List<Item>();
@@ -901,8 +904,8 @@ namespace R19_BW_laczenia
         private void AnalizatorRaportuPomoc_Click(object sender, EventArgs e)
         {
             // Szybka pomoc jak korzystać z analizatora raportów
-            pomoc = new Pomoc("Analizator raportów");
-            pomoc.ShowDialog(this);
+            Pomoc = new Pomoc("Analizator raportów");
+            Pomoc.ShowDialog(this);
         }
 
         private void AnalizRapFontPlus_Click(object sender, EventArgs e)
@@ -1065,10 +1068,10 @@ namespace R19_BW_laczenia
             if (przedmioty.Count > 1 && przedmioty.Count < 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmioty:";
             if (przedmioty.Count >= 5 || przedmioty.Count == 0) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
             // Jeżeli załadowano przynajmniej 1 przedmiot włącz przyciski "Edytuj przedmioty" i "Sortuj przedmioty"
+            edytujPrzedmioty.Enabled = true;
             if (przedmioty.Count > 0)
             {
                 zaladowanePrzedmioty.SelectedIndex = 0;
-                edytujPrzedmioty.Enabled = true;
                 sortujPrzedmioty.Enabled = true;
             }
             // Jeżeli załadowano przynajmniej 2 przedmioty włącz przyciski "Analizuj połączenia"
@@ -1701,8 +1704,8 @@ namespace R19_BW_laczenia
             // Jeżeli ilość przefiltrowanych wyników jest większa niż 62 tyś. wyświetl ostrzeżenie i wyjdź z funkcji
             if (wynikiTekst.Count > 62000 && checkBoxWyswietl.Checked == false)
             {
-                pomoc = new Pomoc("Wyniki łączeń", wynikiTekst.Count);
-                pomoc.ShowDialog(this);
+                Pomoc = new Pomoc("Wyniki łączeń", wynikiTekst.Count);
+                Pomoc.ShowDialog(this);
 
                 filtrUpdate.Text = "Aktualizuj filtr";
                 filtrUpdate.Enabled = true;
@@ -1714,7 +1717,7 @@ namespace R19_BW_laczenia
             filtrUpdate.Text = "Aktualizuj filtr";
             filtrUpdate.Enabled = true;
         }
-
+        
         private void PolaczonePrzedmioty_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (polaczonePrzedmioty.SelectedIndex >= 0)
@@ -1803,8 +1806,8 @@ namespace R19_BW_laczenia
         private void AnalizatorLaczenPomoc_Click(object sender, EventArgs e)
         {
             // Szybka pomoc jak korzystać z analizatora łączeń
-            pomoc = new Pomoc("Analizator łączeń");
-            pomoc.ShowDialog(this);
+            Pomoc = new Pomoc("Analizator łączeń");
+            Pomoc.ShowDialog(this);
         }
 
         private static Item Polacz(Item i1, Item i2, ItemType TypPrzedmiotu, bool wyjatekHelm = false)
@@ -1879,43 +1882,98 @@ namespace R19_BW_laczenia
 
         private void EdytujPrzedmioty_Click(object sender, EventArgs e)
         {
-            przedmiotyDoAnalizy.Text = "";
-
+            // Wywołaj okienko edytora przedmiotu 
             switch (listaTypowPrzedmiotow.SelectedItem)
             {
                 case "Hełm":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaHelm) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaHelm, this);
                     break;
                 case "Zbroja":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaZbroja) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaZbroja, this);
                     break;
                 case "Spodnie":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaSpodnie) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaSpodnie, this);
                     break;
                 case "Pierścień":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPierscien) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaPierscien, this);
                     break;
                 case "Amulet":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaAmulet) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaAmulet, this);
                     break;
                 case "Biała 1h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaBiala1h) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaBiala1h, this);
                     break;
                 case "Biała 2h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaBiala2h) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaBiala2h, this);
                     break;
                 case "Palna 1h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPalna1h) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaPalna1h, this);
                     break;
                 case "Palna 2h":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaPalna2h) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaPalna2h, this);
                     break;
                 case "Dystans":
-                    foreach (Item i in przedmioty) przedmiotyDoAnalizy.AppendText(UsunSpacje(i, BazaDystans) + '\n');
+                    EditWindow = new EditWindow(przedmioty, BazaDystans, this);
                     break;
             }
+            
+            EditWindow.ShowDialog();
         }
 
+        public void UpdateLoadedItems(List<Item> _il, ItemType _it)
+        {
+            // Zaktualizuj załadowane przedmioty
+            przedmioty = _il;
+            przedmioty.TrimExcess();
+
+            // Wyczyść comoBox z załadowanymi przedtmiotami
+            zaladowanePrzedmioty.Items.Clear();
+
+            // Dodaj załadowane przedmioty do comboBox'a
+            foreach (Item i in przedmioty) zaladowanePrzedmioty.Items.Add(UsunSpacje(i, _it));
+
+            // W zależności od ilości załadowanych przedmiotów wyświetl poprawną (słownie) ilość
+            if (przedmioty.Count == 1) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiot:";
+            if (przedmioty.Count > 1 && przedmioty.Count < 5) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmioty:";
+            if (przedmioty.Count >= 5 || przedmioty.Count == 0) zaladowanoPrzedmiotow.Text = "Załadowano " + przedmioty.Count + " przedmiotów:";
+            // Jeżeli załadowano przynajmniej 1 przedmiot włącz przyciski "Edytuj przedmioty" i "Sortuj przedmioty"
+            if (przedmioty.Count > 0)
+            {
+                zaladowanePrzedmioty.SelectedIndex = 0;
+                sortujPrzedmioty.Enabled = true;
+            }
+            else
+            {
+                iloscLaczen.Enabled = false;
+                sortujPrzedmioty.Enabled = false;
+            }
+            // Jeżeli załadowano przynajmniej 2 przedmioty włącz przyciski "Analizuj połączenia"
+            // i checkBox'y dodatkoweLaczenia i mieszaneLaczenia
+            if (przedmioty.Count > 1)
+            {
+                analizujPolaczenia.Enabled = true;
+                dodatkoweLaczenia.Enabled = true;
+                mieszaneLaczenia.Checked = false;
+                // Jeżeli załadowano poniżej 10 przedmiotów ustaw ilość łączeń na ilość przedmiotów
+                if (przedmioty.Count < 8) iloscLaczen.Value = przedmioty.Count - 1;
+                // Jeżeli załadowano więcej przedmiotów ustaw wartość początkową równą 1
+                else iloscLaczen.Value = 1;
+
+                iloscLaczen.Enabled = true;
+            }
+            if (przedmioty.Count < 2)
+            {
+                // Jeżeli załadowano mniej niż 2 przedmioty wyłącz przycisk "Analizuj połączenia" oraz checkBox dodatkoweLaczenia
+                // i ustaw ilość łączeń na 1
+                analizujPolaczenia.Enabled = false;
+                dodatkoweLaczenia.Enabled = false;
+                dodatkoweLaczenia.Checked = false;
+                mieszaneLaczenia.Enabled = false;
+                mieszaneLaczenia.Checked = false;
+                iloscLaczen.Value = 1;
+            }
+        }
+        
         private void SortujPrzedmioty_Click(object sender, EventArgs e)
         {
             przedmiotyDoAnalizy.Text = "";
@@ -1994,7 +2052,6 @@ namespace R19_BW_laczenia
         private void ListaTypowPrzedmiotow_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Zmieniono typ przedmiotu do łączenia - przywróc wszystko do stanu początkowego
-            edytujPrzedmioty.Enabled = false;
             sortujPrzedmioty.Enabled = false;
             przedmioty.Clear();
             przedmioty.TrimExcess();

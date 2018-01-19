@@ -1,10 +1,14 @@
-﻿Version 2.6
+﻿Version 2.6.1
+	- Dodano edytor załadowanych przedmiotów w analizatorze łączeń,
+	- Przystosowano wygląd elementów analizatora łączeń do współpracy z przedmiotami o długich nazwach.
+
+Version 2.6
 	- Poprawiono zużycie pamięci przez analizator łączeń,
 	- Dodano timer odmierzający czas analizowania połączeń w analizatorze łączeń,
 	- Dodano tekst "Sortuję wyniki..." wyświetlany w trakcie wyszukiwania łączeń w analizatorze łączeń,
 	- Poprawiono identyfikację przedmiotów z tekstu,
 	- Zaktualizowano okienko pomocy,
-	- Dodano screenshoty to repozytorium GitHub'a.
+	- Dodano screenshoty do repozytorium GitHub'a.
 
 Version 2.5.1
 	- Wyłączono automatyczne czyszczenie analizatora raportu po zmianie zakładki programu,

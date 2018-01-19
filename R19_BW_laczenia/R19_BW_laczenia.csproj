@@ -27,7 +27,7 @@
     <PublisherName>Abev</PublisherName>
     <SuiteName>Narzędzie Bloodwars</SuiteName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.6.0.0</ApplicationVersion>
+    <ApplicationVersion>2.6.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>false</BootstrapperEnabled>
@@ -107,6 +107,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditWindow.Designer.cs">
+      <DependentUpon>EditWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -128,6 +134,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditWindow.resx">
+      <DependentUpon>EditWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

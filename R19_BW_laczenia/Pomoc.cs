@@ -36,7 +36,7 @@ namespace R19_BW_laczenia
                                         "3. Kliknij \"Załaduj przedmioty\".\n" +
                                         "4. Sprawdź czy załadowane przedmioty zgadzają się z przedmiotami z listy.\n" +
                                         "Załadowane przedmioty możesz edytować klikając w \"Edytuj przedmioty\" i sortować klikając w \"Sortuj przedmioty\".\n" +
-                                        "Przedmioty po edycji / sortowaniu należy ponownie załadować.\n" +
+                                        "Przedmioty po sortowaniu należy ponownie załadować.\n" +
                                         "5. Jeżeli załadowano powyżej 10 przedmiotów wybierz ilość łączeń do sprawdzania (ilość łączeń określa ilość sprawdzanych połączeń \"w głąb\").\n" +
                                         "Dla dużej ilości przedmiotów warto zacząć od niskiej wartości (1-2) i zwiększać o 1 jeżeli komputer daje radę z obliczeniami :).\n" +
                                         "6. Kliknij \"Analizuj połączenia\". Postęp analizowania połączeń aktualizowany jest stopniowo z krokiem: ( 1 / ilość przedmiotów ) * 100%.\n" +
