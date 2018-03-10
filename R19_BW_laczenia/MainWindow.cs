@@ -235,7 +235,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.7"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.7.1"; // Trzeba pamiętać o zmianie :(
             try
             {
                 using (var client = new HttpClient())
@@ -1171,8 +1171,11 @@ namespace R19_BW_laczenia
             zaladujPrzedmioty.Enabled = false;
             edytujPrzedmioty.Enabled = false;
             sortujPrzedmioty.Enabled = false;
-            // Na czas analizy wyłącz comboBox z wyborem typu łączonego przedmiotu
+            // Na czas analizy wyłącz comboBox z wyborem typu łączonego przedmiotu i comboBox'y z wyborem prefu / bazy / sufu poszukiwanego przedmiotu
             listaTypowPrzedmiotow.Enabled = false;
+            cbSzukanyItemPref.Enabled = false;
+            cbSzukanyItemBaza.Enabled = false;
+            cbSzukanyItemSuf.Enabled = false;
             // Wyłącz przycisk "Aktualizuj filtr" i wyczyść wyświetlane wyniki łączeń
             filtrUpdate.Enabled = false;
             polaczonePrzedmioty.DataSource = null;
@@ -1241,6 +1244,9 @@ namespace R19_BW_laczenia
                 sortujPrzedmioty.Enabled = true;
                 checkBoxWyswietl.Enabled = true;
                 listaTypowPrzedmiotow.Enabled = true;
+                cbSzukanyItemPref.Enabled = true;
+                cbSzukanyItemBaza.Enabled = true;
+                cbSzukanyItemSuf.Enabled = true;
             });
         }
 

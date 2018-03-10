@@ -1,6 +1,9 @@
-﻿Version 2.7
+﻿Version 2.7.1
+	- Hotfix: Wyłączono możliwość zmiany prefiksu / bazy / sufiksu poszukiwanego przedmiotu w trakcie wyszukiwania łączeń.
+
+Version 2.7
 	- Analizator łączeń: Dodano możliwość wyszukiwania konkretnego wyniku łączenia z listy wszystkich wyników łączeń w trakcie ich wyszukiwania.
-	Funkcjonalność ta znacząco obniża zużycie pamięci spowodowane przechowywaniem niepotrzebnych wyników łączeń jednocześnie umożliwiając szukanie porządanego wyniku łączeń z większej listy łączonych przedmiotów.
+	Funkcjonalność ta znacząco obniża zużycie pamięci spowodowane przechowywaniem niepotrzebnych wyników łączeń jednocześnie umożliwiając szukanie pożądanego wyniku łączeń z większej listy łączonych przedmiotów.
 	- Poprawiono wygląd okna programu,
 	- Wprowadzono kilka mniejszych poprawek.
 
