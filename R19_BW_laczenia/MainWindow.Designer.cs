@@ -330,17 +330,11 @@
             this.AnalizatorRaportuPomoc = new System.Windows.Forms.Button();
             this.AnalizatorRaportuTekst = new System.Windows.Forms.RichTextBox();
             this.TabLaczenia = new System.Windows.Forms.TabPage();
-            this.analizatorLaczenPomoc = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.checkBoxWyswietl = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cbFiltrPref = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.polaczonePrzedmioty = new System.Windows.Forms.ComboBox();
-            this.filtrUpdate = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cbFiltrSuf = new System.Windows.Forms.ComboBox();
-            this.cbFiltrBaza = new System.Windows.Forms.ComboBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbSzukanyItemPref = new System.Windows.Forms.ComboBox();
+            this.cbSzukanyItemBaza = new System.Windows.Forms.ComboBox();
+            this.cbSzukanyItemSuf = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.mieszaneLaczenia = new System.Windows.Forms.CheckBox();
             this.dodatkoweLaczenia = new System.Windows.Forms.CheckBox();
@@ -350,6 +344,16 @@
             this.label20 = new System.Windows.Forms.Label();
             this.analizujPolaczenia = new System.Windows.Forms.Button();
             this.znalezionoPolaczen = new System.Windows.Forms.Label();
+            this.analizatorLaczenPomoc = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBoxWyswietl = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cbFiltrBaza = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cbFiltrSuf = new System.Windows.Forms.ComboBox();
+            this.cbFiltrPref = new System.Windows.Forms.ComboBox();
+            this.polaczonePrzedmioty = new System.Windows.Forms.ComboBox();
+            this.filtrUpdate = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.sortujPrzedmioty = new System.Windows.Forms.Button();
@@ -435,10 +439,11 @@
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.TabLaczenia.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iloscLaczen)).BeginInit();
+            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -463,7 +468,7 @@
             this.GlownyTab.Margin = new System.Windows.Forms.Padding(4);
             this.GlownyTab.Name = "GlownyTab";
             this.GlownyTab.SelectedIndex = 0;
-            this.GlownyTab.Size = new System.Drawing.Size(1172, 584);
+            this.GlownyTab.Size = new System.Drawing.Size(1171, 625);
             this.GlownyTab.TabIndex = 0;
             this.GlownyTab.SelectedIndexChanged += new System.EventHandler(this.GlownyTab_SelectedIndexChanged);
             // 
@@ -486,7 +491,7 @@
             this.TabHelm.Location = new System.Drawing.Point(4, 34);
             this.TabHelm.Margin = new System.Windows.Forms.Padding(4);
             this.TabHelm.Name = "TabHelm";
-            this.TabHelm.Size = new System.Drawing.Size(1164, 546);
+            this.TabHelm.Size = new System.Drawing.Size(1163, 587);
             this.TabHelm.TabIndex = 0;
             this.TabHelm.Text = "Hełm";
             // 
@@ -620,7 +625,7 @@
             this.HelmPanel.Controls.Add(this.cbHelmPref_sh1);
             this.HelmPanel.Controls.Add(this.cbHelmBaza_sh1);
             this.HelmPanel.Controls.Add(this.cbHelmSuf_sh1);
-            this.HelmPanel.Location = new System.Drawing.Point(686, 370);
+            this.HelmPanel.Location = new System.Drawing.Point(686, 412);
             this.HelmPanel.Margin = new System.Windows.Forms.Padding(4);
             this.HelmPanel.Name = "HelmPanel";
             this.HelmPanel.Size = new System.Drawing.Size(468, 162);
@@ -781,7 +786,7 @@
             this.helmWynik.Margin = new System.Windows.Forms.Padding(4);
             this.helmWynik.Name = "helmWynik";
             this.helmWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.helmWynik.Size = new System.Drawing.Size(670, 525);
+            this.helmWynik.Size = new System.Drawing.Size(670, 566);
             this.helmWynik.TabIndex = 0;
             this.helmWynik.Text = "";
             // 
@@ -804,7 +809,7 @@
             this.TabZbroja.Location = new System.Drawing.Point(4, 34);
             this.TabZbroja.Margin = new System.Windows.Forms.Padding(4);
             this.TabZbroja.Name = "TabZbroja";
-            this.TabZbroja.Size = new System.Drawing.Size(1164, 546);
+            this.TabZbroja.Size = new System.Drawing.Size(1163, 587);
             this.TabZbroja.TabIndex = 1;
             this.TabZbroja.Text = "Zbroja";
             // 
@@ -938,7 +943,7 @@
             this.ZbrojaPanel.Controls.Add(this.cbZbrojaPref_sh1);
             this.ZbrojaPanel.Controls.Add(this.cbZbrojaBaza_sh1);
             this.ZbrojaPanel.Controls.Add(this.cbZbrojaSuf_sh1);
-            this.ZbrojaPanel.Location = new System.Drawing.Point(686, 370);
+            this.ZbrojaPanel.Location = new System.Drawing.Point(686, 412);
             this.ZbrojaPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ZbrojaPanel.Name = "ZbrojaPanel";
             this.ZbrojaPanel.Size = new System.Drawing.Size(468, 162);
@@ -1098,7 +1103,7 @@
             this.zbrojaWynik.Margin = new System.Windows.Forms.Padding(4);
             this.zbrojaWynik.Name = "zbrojaWynik";
             this.zbrojaWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.zbrojaWynik.Size = new System.Drawing.Size(670, 525);
+            this.zbrojaWynik.Size = new System.Drawing.Size(670, 566);
             this.zbrojaWynik.TabIndex = 5;
             this.zbrojaWynik.Text = "";
             // 
@@ -1121,7 +1126,7 @@
             this.TabSpodnie.Location = new System.Drawing.Point(4, 34);
             this.TabSpodnie.Margin = new System.Windows.Forms.Padding(4);
             this.TabSpodnie.Name = "TabSpodnie";
-            this.TabSpodnie.Size = new System.Drawing.Size(1164, 546);
+            this.TabSpodnie.Size = new System.Drawing.Size(1163, 587);
             this.TabSpodnie.TabIndex = 2;
             this.TabSpodnie.Text = "Spodnie";
             // 
@@ -1255,7 +1260,7 @@
             this.SpodniePanel.Controls.Add(this.cbSpodniePref_sh1);
             this.SpodniePanel.Controls.Add(this.cbSpodnieBaza_sh1);
             this.SpodniePanel.Controls.Add(this.cbSpodnieSuf_sh1);
-            this.SpodniePanel.Location = new System.Drawing.Point(686, 370);
+            this.SpodniePanel.Location = new System.Drawing.Point(686, 412);
             this.SpodniePanel.Margin = new System.Windows.Forms.Padding(4);
             this.SpodniePanel.Name = "SpodniePanel";
             this.SpodniePanel.Size = new System.Drawing.Size(468, 162);
@@ -1415,7 +1420,7 @@
             this.spodnieWynik.Margin = new System.Windows.Forms.Padding(4);
             this.spodnieWynik.Name = "spodnieWynik";
             this.spodnieWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.spodnieWynik.Size = new System.Drawing.Size(670, 525);
+            this.spodnieWynik.Size = new System.Drawing.Size(670, 566);
             this.spodnieWynik.TabIndex = 10;
             this.spodnieWynik.Text = "";
             // 
@@ -1438,7 +1443,7 @@
             this.TabPierscien.Location = new System.Drawing.Point(4, 34);
             this.TabPierscien.Margin = new System.Windows.Forms.Padding(4);
             this.TabPierscien.Name = "TabPierscien";
-            this.TabPierscien.Size = new System.Drawing.Size(1164, 546);
+            this.TabPierscien.Size = new System.Drawing.Size(1163, 587);
             this.TabPierscien.TabIndex = 3;
             this.TabPierscien.Text = "Pierścień";
             // 
@@ -1572,7 +1577,7 @@
             this.PierscienPanel.Controls.Add(this.cbPierscienPref_sh1);
             this.PierscienPanel.Controls.Add(this.cbPierscienBaza_sh1);
             this.PierscienPanel.Controls.Add(this.cbPierscienSuf_sh1);
-            this.PierscienPanel.Location = new System.Drawing.Point(686, 370);
+            this.PierscienPanel.Location = new System.Drawing.Point(686, 412);
             this.PierscienPanel.Margin = new System.Windows.Forms.Padding(4);
             this.PierscienPanel.Name = "PierscienPanel";
             this.PierscienPanel.Size = new System.Drawing.Size(468, 162);
@@ -1732,7 +1737,7 @@
             this.pierscienWynik.Margin = new System.Windows.Forms.Padding(4);
             this.pierscienWynik.Name = "pierscienWynik";
             this.pierscienWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.pierscienWynik.Size = new System.Drawing.Size(670, 525);
+            this.pierscienWynik.Size = new System.Drawing.Size(670, 566);
             this.pierscienWynik.TabIndex = 15;
             this.pierscienWynik.Text = "";
             // 
@@ -1755,7 +1760,7 @@
             this.TabAmulet.Location = new System.Drawing.Point(4, 34);
             this.TabAmulet.Margin = new System.Windows.Forms.Padding(4);
             this.TabAmulet.Name = "TabAmulet";
-            this.TabAmulet.Size = new System.Drawing.Size(1164, 546);
+            this.TabAmulet.Size = new System.Drawing.Size(1163, 587);
             this.TabAmulet.TabIndex = 4;
             this.TabAmulet.Text = "Amulet";
             // 
@@ -1889,7 +1894,7 @@
             this.AmuletPanel.Controls.Add(this.cbAmuletPref_sh1);
             this.AmuletPanel.Controls.Add(this.cbAmuletBaza_sh1);
             this.AmuletPanel.Controls.Add(this.cbAmuletSuf_sh1);
-            this.AmuletPanel.Location = new System.Drawing.Point(686, 370);
+            this.AmuletPanel.Location = new System.Drawing.Point(686, 412);
             this.AmuletPanel.Margin = new System.Windows.Forms.Padding(4);
             this.AmuletPanel.Name = "AmuletPanel";
             this.AmuletPanel.Size = new System.Drawing.Size(468, 162);
@@ -2049,7 +2054,7 @@
             this.amuletWynik.Margin = new System.Windows.Forms.Padding(4);
             this.amuletWynik.Name = "amuletWynik";
             this.amuletWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.amuletWynik.Size = new System.Drawing.Size(670, 525);
+            this.amuletWynik.Size = new System.Drawing.Size(670, 566);
             this.amuletWynik.TabIndex = 20;
             this.amuletWynik.Text = "";
             // 
@@ -2072,7 +2077,7 @@
             this.TabBiala1h.Location = new System.Drawing.Point(4, 34);
             this.TabBiala1h.Margin = new System.Windows.Forms.Padding(4);
             this.TabBiala1h.Name = "TabBiala1h";
-            this.TabBiala1h.Size = new System.Drawing.Size(1164, 546);
+            this.TabBiala1h.Size = new System.Drawing.Size(1163, 587);
             this.TabBiala1h.TabIndex = 5;
             this.TabBiala1h.Text = "Biała 1h";
             // 
@@ -2206,7 +2211,7 @@
             this.Biala1hPanel.Controls.Add(this.cbBiala1hPref_sh1);
             this.Biala1hPanel.Controls.Add(this.cbBiala1hBaza_sh1);
             this.Biala1hPanel.Controls.Add(this.cbBiala1hSuf_sh1);
-            this.Biala1hPanel.Location = new System.Drawing.Point(686, 370);
+            this.Biala1hPanel.Location = new System.Drawing.Point(686, 412);
             this.Biala1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.Biala1hPanel.Name = "Biala1hPanel";
             this.Biala1hPanel.Size = new System.Drawing.Size(468, 162);
@@ -2366,7 +2371,7 @@
             this.biala1hWynik.Margin = new System.Windows.Forms.Padding(4);
             this.biala1hWynik.Name = "biala1hWynik";
             this.biala1hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.biala1hWynik.Size = new System.Drawing.Size(670, 525);
+            this.biala1hWynik.Size = new System.Drawing.Size(670, 566);
             this.biala1hWynik.TabIndex = 25;
             this.biala1hWynik.Text = "";
             // 
@@ -2389,7 +2394,7 @@
             this.TabBiala2h.Location = new System.Drawing.Point(4, 34);
             this.TabBiala2h.Margin = new System.Windows.Forms.Padding(4);
             this.TabBiala2h.Name = "TabBiala2h";
-            this.TabBiala2h.Size = new System.Drawing.Size(1164, 546);
+            this.TabBiala2h.Size = new System.Drawing.Size(1163, 587);
             this.TabBiala2h.TabIndex = 6;
             this.TabBiala2h.Text = "Biała 2h";
             // 
@@ -2523,7 +2528,7 @@
             this.Biala2hPanel.Controls.Add(this.cbBiala2hPref_sh1);
             this.Biala2hPanel.Controls.Add(this.cbBiala2hBaza_sh1);
             this.Biala2hPanel.Controls.Add(this.cbBiala2hSuf_sh1);
-            this.Biala2hPanel.Location = new System.Drawing.Point(686, 370);
+            this.Biala2hPanel.Location = new System.Drawing.Point(686, 412);
             this.Biala2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.Biala2hPanel.Name = "Biala2hPanel";
             this.Biala2hPanel.Size = new System.Drawing.Size(468, 162);
@@ -2683,7 +2688,7 @@
             this.biala2hWynik.Margin = new System.Windows.Forms.Padding(4);
             this.biala2hWynik.Name = "biala2hWynik";
             this.biala2hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.biala2hWynik.Size = new System.Drawing.Size(670, 525);
+            this.biala2hWynik.Size = new System.Drawing.Size(670, 566);
             this.biala2hWynik.TabIndex = 30;
             this.biala2hWynik.Text = "";
             // 
@@ -2706,7 +2711,7 @@
             this.TabPalna1h.Location = new System.Drawing.Point(4, 34);
             this.TabPalna1h.Margin = new System.Windows.Forms.Padding(4);
             this.TabPalna1h.Name = "TabPalna1h";
-            this.TabPalna1h.Size = new System.Drawing.Size(1164, 546);
+            this.TabPalna1h.Size = new System.Drawing.Size(1163, 587);
             this.TabPalna1h.TabIndex = 7;
             this.TabPalna1h.Text = "Palna 1h";
             // 
@@ -2840,7 +2845,7 @@
             this.Palna1hPanel.Controls.Add(this.cbPalna1hPref_sh1);
             this.Palna1hPanel.Controls.Add(this.cbPalna1hBaza_sh1);
             this.Palna1hPanel.Controls.Add(this.cbPalna1hSuf_sh1);
-            this.Palna1hPanel.Location = new System.Drawing.Point(686, 370);
+            this.Palna1hPanel.Location = new System.Drawing.Point(686, 412);
             this.Palna1hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.Palna1hPanel.Name = "Palna1hPanel";
             this.Palna1hPanel.Size = new System.Drawing.Size(468, 162);
@@ -3000,7 +3005,7 @@
             this.palna1hWynik.Margin = new System.Windows.Forms.Padding(4);
             this.palna1hWynik.Name = "palna1hWynik";
             this.palna1hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.palna1hWynik.Size = new System.Drawing.Size(670, 525);
+            this.palna1hWynik.Size = new System.Drawing.Size(670, 566);
             this.palna1hWynik.TabIndex = 35;
             this.palna1hWynik.Text = "";
             // 
@@ -3023,7 +3028,7 @@
             this.TabPalna2h.Location = new System.Drawing.Point(4, 34);
             this.TabPalna2h.Margin = new System.Windows.Forms.Padding(4);
             this.TabPalna2h.Name = "TabPalna2h";
-            this.TabPalna2h.Size = new System.Drawing.Size(1164, 546);
+            this.TabPalna2h.Size = new System.Drawing.Size(1163, 587);
             this.TabPalna2h.TabIndex = 8;
             this.TabPalna2h.Text = "Palna 2h";
             // 
@@ -3157,7 +3162,7 @@
             this.Palna2hPanel.Controls.Add(this.cbPalna2hPref_sh1);
             this.Palna2hPanel.Controls.Add(this.cbPalna2hBaza_sh1);
             this.Palna2hPanel.Controls.Add(this.cbPalna2hSuf_sh1);
-            this.Palna2hPanel.Location = new System.Drawing.Point(686, 370);
+            this.Palna2hPanel.Location = new System.Drawing.Point(686, 412);
             this.Palna2hPanel.Margin = new System.Windows.Forms.Padding(4);
             this.Palna2hPanel.Name = "Palna2hPanel";
             this.Palna2hPanel.Size = new System.Drawing.Size(468, 162);
@@ -3317,7 +3322,7 @@
             this.palna2hWynik.Margin = new System.Windows.Forms.Padding(4);
             this.palna2hWynik.Name = "palna2hWynik";
             this.palna2hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.palna2hWynik.Size = new System.Drawing.Size(670, 525);
+            this.palna2hWynik.Size = new System.Drawing.Size(670, 566);
             this.palna2hWynik.TabIndex = 40;
             this.palna2hWynik.Text = "";
             // 
@@ -3340,7 +3345,7 @@
             this.TabDystans.Location = new System.Drawing.Point(4, 34);
             this.TabDystans.Margin = new System.Windows.Forms.Padding(4);
             this.TabDystans.Name = "TabDystans";
-            this.TabDystans.Size = new System.Drawing.Size(1164, 546);
+            this.TabDystans.Size = new System.Drawing.Size(1163, 587);
             this.TabDystans.TabIndex = 9;
             this.TabDystans.Text = "Dystans";
             // 
@@ -3474,7 +3479,7 @@
             this.DystansPanel.Controls.Add(this.cbDystansPref_sh1);
             this.DystansPanel.Controls.Add(this.cbDystansBaza_sh1);
             this.DystansPanel.Controls.Add(this.cbDystansSuf_sh1);
-            this.DystansPanel.Location = new System.Drawing.Point(686, 370);
+            this.DystansPanel.Location = new System.Drawing.Point(686, 412);
             this.DystansPanel.Margin = new System.Windows.Forms.Padding(4);
             this.DystansPanel.Name = "DystansPanel";
             this.DystansPanel.Size = new System.Drawing.Size(468, 162);
@@ -3634,7 +3639,7 @@
             this.dystansWynik.Margin = new System.Windows.Forms.Padding(4);
             this.dystansWynik.Name = "dystansWynik";
             this.dystansWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.dystansWynik.Size = new System.Drawing.Size(670, 525);
+            this.dystansWynik.Size = new System.Drawing.Size(670, 566);
             this.dystansWynik.TabIndex = 35;
             this.dystansWynik.Text = "";
             // 
@@ -3650,7 +3655,7 @@
             this.TabAnalizator.Location = new System.Drawing.Point(4, 34);
             this.TabAnalizator.Margin = new System.Windows.Forms.Padding(4);
             this.TabAnalizator.Name = "TabAnalizator";
-            this.TabAnalizator.Size = new System.Drawing.Size(1164, 546);
+            this.TabAnalizator.Size = new System.Drawing.Size(1163, 587);
             this.TabAnalizator.TabIndex = 10;
             this.TabAnalizator.Text = "Analizator raportu";
             // 
@@ -3661,7 +3666,7 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label21.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label21.Location = new System.Drawing.Point(958, 515);
+            this.label21.Location = new System.Drawing.Point(955, 549);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(112, 19);
             this.label21.TabIndex = 66;
@@ -3672,7 +3677,7 @@
             // analizRapFontPlus
             // 
             this.analizRapFontPlus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.analizRapFontPlus.Location = new System.Drawing.Point(1076, 510);
+            this.analizRapFontPlus.Location = new System.Drawing.Point(1076, 544);
             this.analizRapFontPlus.Name = "analizRapFontPlus";
             this.analizRapFontPlus.Size = new System.Drawing.Size(35, 30);
             this.analizRapFontPlus.TabIndex = 65;
@@ -3684,7 +3689,7 @@
             // analizRapFontMinus
             // 
             this.analizRapFontMinus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.analizRapFontMinus.Location = new System.Drawing.Point(1117, 510);
+            this.analizRapFontMinus.Location = new System.Drawing.Point(1117, 544);
             this.analizRapFontMinus.Name = "analizRapFontMinus";
             this.analizRapFontMinus.Size = new System.Drawing.Size(35, 30);
             this.analizRapFontMinus.TabIndex = 64;
@@ -3718,7 +3723,7 @@
             this.panel7.Controls.Add(this.ARdsk2dsk3);
             this.panel7.Location = new System.Drawing.Point(784, 54);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(368, 450);
+            this.panel7.Size = new System.Drawing.Size(368, 484);
             this.panel7.TabIndex = 63;
             // 
             // label12
@@ -4001,15 +4006,16 @@
             this.AnalizatorRaportuTekst.Margin = new System.Windows.Forms.Padding(4);
             this.AnalizatorRaportuTekst.Name = "AnalizatorRaportuTekst";
             this.AnalizatorRaportuTekst.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.AnalizatorRaportuTekst.Size = new System.Drawing.Size(768, 525);
+            this.AnalizatorRaportuTekst.Size = new System.Drawing.Size(768, 566);
             this.AnalizatorRaportuTekst.TabIndex = 36;
             this.AnalizatorRaportuTekst.Text = "";
             // 
             // TabLaczenia
             // 
+            this.TabLaczenia.Controls.Add(this.panel8);
+            this.TabLaczenia.Controls.Add(this.panel2);
             this.TabLaczenia.Controls.Add(this.analizatorLaczenPomoc);
             this.TabLaczenia.Controls.Add(this.panel3);
-            this.TabLaczenia.Controls.Add(this.panel2);
             this.TabLaczenia.Controls.Add(this.panel1);
             this.TabLaczenia.Controls.Add(this.przedmiotyDoAnalizy);
             this.TabLaczenia.Controls.Add(this.label16);
@@ -4018,138 +4024,59 @@
             this.TabLaczenia.Location = new System.Drawing.Point(4, 34);
             this.TabLaczenia.Margin = new System.Windows.Forms.Padding(4);
             this.TabLaczenia.Name = "TabLaczenia";
-            this.TabLaczenia.Size = new System.Drawing.Size(1164, 546);
+            this.TabLaczenia.Size = new System.Drawing.Size(1163, 587);
             this.TabLaczenia.TabIndex = 11;
             this.TabLaczenia.Text = "Analizator łączeń";
             // 
-            // analizatorLaczenPomoc
+            // panel8
             // 
-            this.analizatorLaczenPomoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.analizatorLaczenPomoc.Location = new System.Drawing.Point(1069, 4);
-            this.analizatorLaczenPomoc.Margin = new System.Windows.Forms.Padding(4);
-            this.analizatorLaczenPomoc.Name = "analizatorLaczenPomoc";
-            this.analizatorLaczenPomoc.Size = new System.Drawing.Size(90, 32);
-            this.analizatorLaczenPomoc.TabIndex = 44;
-            this.analizatorLaczenPomoc.Text = "Pomoc";
-            this.analizatorLaczenPomoc.UseVisualStyleBackColor = true;
-            this.analizatorLaczenPomoc.Click += new System.EventHandler(this.AnalizatorLaczenPomoc_Click);
+            this.panel8.BackColor = System.Drawing.Color.Transparent;
+            this.panel8.Controls.Add(this.label1);
+            this.panel8.Controls.Add(this.cbSzukanyItemPref);
+            this.panel8.Controls.Add(this.cbSzukanyItemBaza);
+            this.panel8.Controls.Add(this.cbSzukanyItemSuf);
+            this.panel8.Location = new System.Drawing.Point(615, 161);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(537, 61);
+            this.panel8.TabIndex = 62;
             // 
-            // panel3
+            // label1
             // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.checkBoxWyswietl);
-            this.panel3.Controls.Add(this.label19);
-            this.panel3.Controls.Add(this.cbFiltrPref);
-            this.panel3.Controls.Add(this.label17);
-            this.panel3.Controls.Add(this.polaczonePrzedmioty);
-            this.panel3.Controls.Add(this.filtrUpdate);
-            this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.cbFiltrSuf);
-            this.panel3.Controls.Add(this.cbFiltrBaza);
-            this.panel3.Location = new System.Drawing.Point(615, 392);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(537, 138);
-            this.panel3.TabIndex = 58;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(119, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(328, 23);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "Poszukiwany wynik (puste pole - dowolny)";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkBoxWyswietl
+            // cbSzukanyItemPref
             // 
-            this.checkBoxWyswietl.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxWyswietl.Enabled = false;
-            this.checkBoxWyswietl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxWyswietl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.checkBoxWyswietl.Location = new System.Drawing.Point(365, 54);
-            this.checkBoxWyswietl.Name = "checkBoxWyswietl";
-            this.checkBoxWyswietl.Size = new System.Drawing.Size(172, 50);
-            this.checkBoxWyswietl.TabIndex = 61;
-            this.checkBoxWyswietl.Text = "Mimo wszystko wyświetl!";
-            this.checkBoxWyswietl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxWyswietl.UseVisualStyleBackColor = false;
+            this.cbSzukanyItemPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSzukanyItemPref.FormattingEnabled = true;
+            this.cbSzukanyItemPref.Location = new System.Drawing.Point(27, 29);
+            this.cbSzukanyItemPref.Name = "cbSzukanyItemPref";
+            this.cbSzukanyItemPref.Size = new System.Drawing.Size(157, 29);
+            this.cbSzukanyItemPref.TabIndex = 60;
             // 
-            // label19
+            // cbSzukanyItemBaza
             // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label19.Location = new System.Drawing.Point(197, 35);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(142, 19);
-            this.label19.TabIndex = 57;
-            this.label19.Text = "Puste pole - dowolny.";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbSzukanyItemBaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSzukanyItemBaza.FormattingEnabled = true;
+            this.cbSzukanyItemBaza.Location = new System.Drawing.Point(190, 29);
+            this.cbSzukanyItemBaza.Name = "cbSzukanyItemBaza";
+            this.cbSzukanyItemBaza.Size = new System.Drawing.Size(157, 29);
+            this.cbSzukanyItemBaza.TabIndex = 61;
             // 
-            // cbFiltrPref
+            // cbSzukanyItemSuf
             // 
-            this.cbFiltrPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiltrPref.Enabled = false;
-            this.cbFiltrPref.FormattingEnabled = true;
-            this.cbFiltrPref.Location = new System.Drawing.Point(51, 3);
-            this.cbFiltrPref.Name = "cbFiltrPref";
-            this.cbFiltrPref.Size = new System.Drawing.Size(157, 29);
-            this.cbFiltrPref.TabIndex = 49;
-            // 
-            // label17
-            // 
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label17.Location = new System.Drawing.Point(3, 105);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(227, 29);
-            this.label17.TabIndex = 53;
-            this.label17.Text = "Przefiltrowane wyniki łączeń:";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // polaczonePrzedmioty
-            // 
-            this.polaczonePrzedmioty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.polaczonePrzedmioty.Enabled = false;
-            this.polaczonePrzedmioty.Location = new System.Drawing.Point(236, 105);
-            this.polaczonePrzedmioty.Name = "polaczonePrzedmioty";
-            this.polaczonePrzedmioty.Size = new System.Drawing.Size(298, 29);
-            this.polaczonePrzedmioty.TabIndex = 45;
-            this.polaczonePrzedmioty.SelectedIndexChanged += new System.EventHandler(this.PolaczonePrzedmioty_SelectedIndexChanged);
-            // 
-            // filtrUpdate
-            // 
-            this.filtrUpdate.Enabled = false;
-            this.filtrUpdate.Location = new System.Drawing.Point(178, 58);
-            this.filtrUpdate.Margin = new System.Windows.Forms.Padding(4);
-            this.filtrUpdate.Name = "filtrUpdate";
-            this.filtrUpdate.Size = new System.Drawing.Size(180, 40);
-            this.filtrUpdate.TabIndex = 52;
-            this.filtrUpdate.Text = "Aktualizuj filtr";
-            this.filtrUpdate.UseVisualStyleBackColor = true;
-            this.filtrUpdate.Click += new System.EventHandler(this.FiltrUpdate_Click);
-            // 
-            // label15
-            // 
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label15.Location = new System.Drawing.Point(3, 3);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(42, 29);
-            this.label15.TabIndex = 48;
-            this.label15.Text = "Filtr:";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cbFiltrSuf
-            // 
-            this.cbFiltrSuf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiltrSuf.Enabled = false;
-            this.cbFiltrSuf.FormattingEnabled = true;
-            this.cbFiltrSuf.Location = new System.Drawing.Point(377, 3);
-            this.cbFiltrSuf.Name = "cbFiltrSuf";
-            this.cbFiltrSuf.Size = new System.Drawing.Size(157, 29);
-            this.cbFiltrSuf.TabIndex = 51;
-            // 
-            // cbFiltrBaza
-            // 
-            this.cbFiltrBaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiltrBaza.Enabled = false;
-            this.cbFiltrBaza.FormattingEnabled = true;
-            this.cbFiltrBaza.Location = new System.Drawing.Point(214, 3);
-            this.cbFiltrBaza.Name = "cbFiltrBaza";
-            this.cbFiltrBaza.Size = new System.Drawing.Size(157, 29);
-            this.cbFiltrBaza.TabIndex = 50;
+            this.cbSzukanyItemSuf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSzukanyItemSuf.FormattingEnabled = true;
+            this.cbSzukanyItemSuf.Location = new System.Drawing.Point(353, 29);
+            this.cbSzukanyItemSuf.Name = "cbSzukanyItemSuf";
+            this.cbSzukanyItemSuf.Size = new System.Drawing.Size(157, 29);
+            this.cbSzukanyItemSuf.TabIndex = 62;
             // 
             // panel2
             // 
@@ -4160,9 +4087,9 @@
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.analizujPolaczenia);
             this.panel2.Controls.Add(this.znalezionoPolaczen);
-            this.panel2.Location = new System.Drawing.Point(615, 180);
+            this.panel2.Location = new System.Drawing.Point(615, 228);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(537, 190);
+            this.panel2.Size = new System.Drawing.Size(537, 193);
             this.panel2.TabIndex = 47;
             // 
             // mieszaneLaczenia
@@ -4258,6 +4185,122 @@
             this.znalezionoPolaczen.Text = " ";
             this.znalezionoPolaczen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // analizatorLaczenPomoc
+            // 
+            this.analizatorLaczenPomoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.analizatorLaczenPomoc.Location = new System.Drawing.Point(1062, 4);
+            this.analizatorLaczenPomoc.Margin = new System.Windows.Forms.Padding(4);
+            this.analizatorLaczenPomoc.Name = "analizatorLaczenPomoc";
+            this.analizatorLaczenPomoc.Size = new System.Drawing.Size(90, 32);
+            this.analizatorLaczenPomoc.TabIndex = 44;
+            this.analizatorLaczenPomoc.Text = "Pomoc";
+            this.analizatorLaczenPomoc.UseVisualStyleBackColor = true;
+            this.analizatorLaczenPomoc.Click += new System.EventHandler(this.AnalizatorLaczenPomoc_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.checkBoxWyswietl);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.cbFiltrBaza);
+            this.panel3.Controls.Add(this.label17);
+            this.panel3.Controls.Add(this.cbFiltrSuf);
+            this.panel3.Controls.Add(this.cbFiltrPref);
+            this.panel3.Controls.Add(this.polaczonePrzedmioty);
+            this.panel3.Controls.Add(this.filtrUpdate);
+            this.panel3.Location = new System.Drawing.Point(615, 427);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(537, 148);
+            this.panel3.TabIndex = 58;
+            // 
+            // checkBoxWyswietl
+            // 
+            this.checkBoxWyswietl.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxWyswietl.Enabled = false;
+            this.checkBoxWyswietl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxWyswietl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.checkBoxWyswietl.Location = new System.Drawing.Point(365, 64);
+            this.checkBoxWyswietl.Name = "checkBoxWyswietl";
+            this.checkBoxWyswietl.Size = new System.Drawing.Size(172, 50);
+            this.checkBoxWyswietl.TabIndex = 61;
+            this.checkBoxWyswietl.Text = "Mimo wszystko wyświetl!";
+            this.checkBoxWyswietl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxWyswietl.UseVisualStyleBackColor = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label15.Location = new System.Drawing.Point(162, 3);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(214, 23);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "Filtr (puste pole - dowolny)";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbFiltrBaza
+            // 
+            this.cbFiltrBaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltrBaza.Enabled = false;
+            this.cbFiltrBaza.FormattingEnabled = true;
+            this.cbFiltrBaza.Location = new System.Drawing.Point(190, 29);
+            this.cbFiltrBaza.Name = "cbFiltrBaza";
+            this.cbFiltrBaza.Size = new System.Drawing.Size(157, 29);
+            this.cbFiltrBaza.TabIndex = 50;
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label17.Location = new System.Drawing.Point(3, 116);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(227, 29);
+            this.label17.TabIndex = 53;
+            this.label17.Text = "Przefiltrowane wyniki łączeń:";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbFiltrSuf
+            // 
+            this.cbFiltrSuf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltrSuf.Enabled = false;
+            this.cbFiltrSuf.FormattingEnabled = true;
+            this.cbFiltrSuf.Location = new System.Drawing.Point(353, 29);
+            this.cbFiltrSuf.Name = "cbFiltrSuf";
+            this.cbFiltrSuf.Size = new System.Drawing.Size(157, 29);
+            this.cbFiltrSuf.TabIndex = 51;
+            // 
+            // cbFiltrPref
+            // 
+            this.cbFiltrPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltrPref.Enabled = false;
+            this.cbFiltrPref.FormattingEnabled = true;
+            this.cbFiltrPref.Location = new System.Drawing.Point(27, 29);
+            this.cbFiltrPref.Name = "cbFiltrPref";
+            this.cbFiltrPref.Size = new System.Drawing.Size(157, 29);
+            this.cbFiltrPref.TabIndex = 49;
+            // 
+            // polaczonePrzedmioty
+            // 
+            this.polaczonePrzedmioty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.polaczonePrzedmioty.Enabled = false;
+            this.polaczonePrzedmioty.Location = new System.Drawing.Point(236, 116);
+            this.polaczonePrzedmioty.Name = "polaczonePrzedmioty";
+            this.polaczonePrzedmioty.Size = new System.Drawing.Size(298, 29);
+            this.polaczonePrzedmioty.TabIndex = 45;
+            this.polaczonePrzedmioty.SelectedIndexChanged += new System.EventHandler(this.PolaczonePrzedmioty_SelectedIndexChanged);
+            // 
+            // filtrUpdate
+            // 
+            this.filtrUpdate.Enabled = false;
+            this.filtrUpdate.Location = new System.Drawing.Point(179, 69);
+            this.filtrUpdate.Margin = new System.Windows.Forms.Padding(4);
+            this.filtrUpdate.Name = "filtrUpdate";
+            this.filtrUpdate.Size = new System.Drawing.Size(180, 40);
+            this.filtrUpdate.TabIndex = 52;
+            this.filtrUpdate.Text = "Aktualizuj filtr";
+            this.filtrUpdate.UseVisualStyleBackColor = true;
+            this.filtrUpdate.Click += new System.EventHandler(this.FiltrUpdate_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
@@ -4266,7 +4309,7 @@
             this.panel1.Controls.Add(this.zaladowanoPrzedmiotow);
             this.panel1.Location = new System.Drawing.Point(615, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(537, 115);
+            this.panel1.Size = new System.Drawing.Size(537, 112);
             this.panel1.TabIndex = 46;
             // 
             // panel5
@@ -4342,7 +4385,7 @@
             this.przedmiotyDoAnalizy.Location = new System.Drawing.Point(8, 43);
             this.przedmiotyDoAnalizy.Margin = new System.Windows.Forms.Padding(4);
             this.przedmiotyDoAnalizy.Name = "przedmiotyDoAnalizy";
-            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(600, 490);
+            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(600, 532);
             this.przedmiotyDoAnalizy.TabIndex = 37;
             this.przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.";
             this.przedmiotyDoAnalizy.Enter += new System.EventHandler(this.PrzedmiotyDoAnalizy_Enter);
@@ -4509,7 +4552,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1168, 576);
+            this.ClientSize = new System.Drawing.Size(1171, 625);
             this.Controls.Add(this.ByMe);
             this.Controls.Add(this.GlownyTab);
             this.DoubleBuffered = true;
@@ -4586,13 +4629,15 @@
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.TabLaczenia.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iloscLaczen)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -4922,7 +4967,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.NumericUpDown iloscLaczen;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
@@ -4954,6 +4998,11 @@
         private System.Windows.Forms.Button analizRapFontMinus;
         private System.Windows.Forms.Button analizRapFontPlus;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cbSzukanyItemPref;
+        private System.Windows.Forms.ComboBox cbSzukanyItemSuf;
+        private System.Windows.Forms.ComboBox cbSzukanyItemBaza;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -1,4 +1,10 @@
-﻿Version 2.6.1
+﻿Version 2.7
+	- Analizator łączeń: Dodano możliwość wyszukiwania konkretnego wyniku łączenia z listy wszystkich wyników łączeń w trakcie ich wyszukiwania.
+	Funkcjonalność ta znacząco obniża zużycie pamięci spowodowane przechowywaniem niepotrzebnych wyników łączeń jednocześnie umożliwiając szukanie porządanego wyniku łączeń z większej listy łączonych przedmiotów.
+	- Poprawiono wygląd okna programu,
+	- Wprowadzono kilka mniejszych poprawek.
+
+Version 2.6.1
 	- Dodano edytor załadowanych przedmiotów w analizatorze łączeń,
 	- Przystosowano wygląd elementów analizatora łączeń do współpracy z przedmiotami o długich nazwach.
 

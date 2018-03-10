@@ -235,13 +235,12 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.6.1"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.7"; // Trzeba pamiętać o zmianie :(
             try
             {
                 using (var client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Add("User-Agent",
-                        "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+                    client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
 
                     using (var response = client.GetAsync("https://api.github.com/repos/Abev08/R19_BW_laczenia/commits").Result)
                     {
@@ -306,15 +305,15 @@ namespace R19_BW_laczenia
         {
             foreach (string s in Baza)
             {
-                cb1.Items.Add(s);
-                cb2.Items.Add(s);
-                cb3.Items.Add(s);
-                cb4.Items.Add(s);
+                if (cb1 != null) cb1.Items.Add(s);
+                if (cb2 != null) cb2.Items.Add(s);
+                if (cb3 != null) cb3.Items.Add(s);
+                if (cb4 != null) cb4.Items.Add(s);
             }
-            cb1.SelectedIndex = 0;
-            cb2.SelectedIndex = 0;
-            cb3.SelectedIndex = 0;
-            cb4.SelectedIndex = 0;
+            if (cb1 != null) cb1.SelectedIndex = 0;
+            if (cb2 != null) cb2.SelectedIndex = 0;
+            if (cb3 != null) cb3.SelectedIndex = 0;
+            if (cb4 != null) cb4.SelectedIndex = 0;
         }
 
         private void HelmDodaj_Click(object sender, EventArgs e)
@@ -1168,8 +1167,12 @@ namespace R19_BW_laczenia
             // Na czas analizy wyłącz checkBox'y dodatkoweLaczenia i mieszaneLaczenia
             dodatkoweLaczenia.Enabled = false;
             mieszaneLaczenia.Enabled = false;
-            // Na czas analizy wyłącz przycisk "Załaduj Przedmioty"
+            // Na czas analizy wyłącz przycisk "Załaduj Przedmioty", "Edytuj Przedmioty" i "Sortuj Przedmioty"
             zaladujPrzedmioty.Enabled = false;
+            edytujPrzedmioty.Enabled = false;
+            sortujPrzedmioty.Enabled = false;
+            // Na czas analizy wyłącz comboBox z wyborem typu łączonego przedmiotu
+            listaTypowPrzedmiotow.Enabled = false;
             // Wyłącz przycisk "Aktualizuj filtr" i wyczyść wyświetlane wyniki łączeń
             filtrUpdate.Enabled = false;
             polaczonePrzedmioty.DataSource = null;
@@ -1234,7 +1237,10 @@ namespace R19_BW_laczenia
                 dodatkoweLaczenia.Enabled = true;
                 if (dodatkoweLaczenia.Checked == true) mieszaneLaczenia.Enabled = true;
                 zaladujPrzedmioty.Enabled = true;
+                edytujPrzedmioty.Enabled = true;
+                sortujPrzedmioty.Enabled = true;
                 checkBoxWyswietl.Enabled = true;
+                listaTypowPrzedmiotow.Enabled = true;
             });
         }
 
@@ -1252,7 +1258,6 @@ namespace R19_BW_laczenia
         private void AnalizujPolaczenia(ItemType TypPrzedmiotu)
         {
             // Główna funkcja analizatora połączeń sprawdzająca pierwsze połączenie
-
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
@@ -1266,6 +1271,12 @@ namespace R19_BW_laczenia
             int iloscLacz = 1;
             // Maksymalna ilość łączeń odczytana z kontrolki do ustawiania ilości łączeń
             int maxIloscLaczen = (int)iloscLaczen.Value;
+            // Szukasz konkretnego przedmiotu?
+            Item szukanyItem = new Item();
+            this.Invoke((MethodInvoker)delegate
+            {
+                szukanyItem = new Item(cbSzukanyItemPref.SelectedIndex, cbSzukanyItemBaza.SelectedIndex, cbSzukanyItemSuf.SelectedIndex);
+            });
 
             for (int sk1 = 0; sk1 < iloscPrzedmiotów; sk1++)
             {
@@ -1298,14 +1309,42 @@ namespace R19_BW_laczenia
                     wynik.hist.TrimExcess();
                     wynik.iloscLaczen += 1;
 
-                    // Dodaj otrzymany wynik do listy wyników
-                    wyniki.Add(new Item(wynik));
-                    
-                    // Wywołaj pętle sprawdzające pozostałe łączenia
-                    // Połączenia (((A+B)+C)+D) itd.
-                    if (iloscLacz < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu);
-                    // Połączenia dodatkowe ((A+B)+(C+D)) itd.
-                    if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu);
+                    if ((wynik.pref == szukanyItem.pref || szukanyItem.pref == 0) && (wynik.baza == szukanyItem.baza || szukanyItem.baza == 0) && (wynik.suf == szukanyItem.suf || szukanyItem.suf == 0))
+                    {
+                        wyniki.Add(new Item(wynik));
+                    }
+
+                    //if (szukanyItem.Sum() > 0)
+                    //{
+                    //    // Jeżeli szukasz konkretnego itemu, sprawdź czy po tym łączeniu się do niego zbliżasz
+                    //    if (((szukanyItem.pref == 0) || (szukanyItem.pref - wynik.pref > szukanyItem.pref - przedmioty[sk1].pref) || (szukanyItem.pref - wynik.pref > szukanyItem.pref - przedmioty[sk2].pref)) &&
+                    //        ((szukanyItem.baza == 0) || (szukanyItem.baza - wynik.baza > szukanyItem.baza - przedmioty[sk1].baza) || (szukanyItem.baza - wynik.baza > szukanyItem.baza - przedmioty[sk2].baza)) &&
+                    //        ((szukanyItem.suf == 0) || (szukanyItem.suf - wynik.suf > szukanyItem.suf - przedmioty[sk1].suf) || (szukanyItem.suf - wynik.suf > szukanyItem.suf - przedmioty[sk2].suf)))
+
+                    //        //(wynik.pref == szukanyItem.pref || szukanyItem.pref == 0) && (wynik.baza == szukanyItem.baza || szukanyItem.baza == 0) && (wynik.suf == szukanyItem.suf || szukanyItem.suf == 0))
+                    //    {
+                    //        // Dodaj otrzymany wynik do listy wyników
+                    //        wyniki.Add(new Item(wynik));
+
+                    //        // Wywołaj pętle sprawdzające pozostałe łączenia
+                    //        // Połączenia (((A+B)+C)+D) itd.
+                    //        if (iloscLacz < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu);
+                    //        // Połączenia dodatkowe ((A+B)+(C+D)) itd.
+                    //        if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu);
+                    //    }
+                    //}
+                    //else
+                    //{
+                        // Nie szukasz konkretnego itemu, kontynuuj łączenia
+                        // Dodaj otrzymany wynik do listy wyników
+                        //wyniki.Add(new Item(wynik));
+
+                        // Wywołaj pętle sprawdzające pozostałe łączenia
+                        // Połączenia (((A+B)+C)+D) itd.
+                        if (iloscLacz < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem);
+                        // Połączenia dodatkowe ((A+B)+(C+D)) itd.
+                        if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem);
+                    //}
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(sk2);
@@ -1353,7 +1392,7 @@ namespace R19_BW_laczenia
             {
                 if (wyniki.Count == 1) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenie w " + elapsedTime;
                 if (wyniki.Count > 1 && wyniki.Count < 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączenia w " + elapsedTime;
-                if (wyniki.Count >= 5) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń w " + elapsedTime;
+                if (wyniki.Count >= 5 || wyniki.Count == 0) znalezionoPolaczen.Text = "Znaleziono " + wyniki.Count + " połączeń w " + elapsedTime;
             });
 
             // Po zakończonej analizie połączeń zaktualizuj filtr
@@ -1407,13 +1446,15 @@ namespace R19_BW_laczenia
             wyniki = wyniki.OrderBy(x => x.pref).ThenBy(y => y.baza).ThenBy(z => z.suf).ThenBy(l => l.iloscLaczen).ToList();
         }
 
-        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu)
+        private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu, Item SzukanyItem)
         {
             // Funkcja sprawdzająca proste łączenia - ((A+B)+C)+D
             // Zmienna do przechowywania wyniku łączenia
             Item wynik = new Item();
             // Zwiększ ilość łączeń o 1
             int iloscL = iloscLacz + 1;
+            // Szukany item
+            Item szukanyItem = new Item(SzukanyItem);
 
             // Połącz wszystkie pozostałe przedmioty
             for (int i = 0; i < iloscPrzed; i++)
@@ -1436,14 +1477,17 @@ namespace R19_BW_laczenia
 
                 // Zwiększ ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń aktualnego przedmiotu + 1
                 wynik.iloscLaczen = skladnik.iloscLaczen + przedmioty[i].iloscLaczen + 1;
-                
-                // Dodaj wynik do listy wyników
-                wyniki.Add(new Item(wynik));
+
+                if ((wynik.pref == szukanyItem.pref || szukanyItem.pref == 0) && (wynik.baza == szukanyItem.baza || szukanyItem.baza == 0) && (wynik.suf == szukanyItem.suf || szukanyItem.suf == 0))
+                {
+                    // Dodaj wynik do listy wyników
+                    wyniki.Add(new Item(wynik));
+                }
 
                 // Wywołaj sam siebie + ogranicznie ilości sprawdzanych łączeń
-                if (iloscL < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
+                if (iloscL < maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem);
                 // Jeżeli zaznaczono połączenia mieszane wywołaj funkcję dodatkowych łączeń
-                if (iloscL + 2 <= maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
+                if (iloscL + 2 <= maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem);
 
                 // Usuń wykorzystany "indeks" przedmiotu z listy
                 indeksy.Remove(i);
@@ -1453,7 +1497,7 @@ namespace R19_BW_laczenia
             }
         }
 
-        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu)
+        private void AnalizujRekFunc2(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu, Item SzukanyItem)
         {
             // Funkcja sprawdzająca dodatkowe łączenia (A+B)+(C+D)
             // Zmienna do przechowywania tymczasowego składnika - wyniku łączenia dwóch przedmiotów, które zostaną połączone z otrzymanym składnikiem w argumentach funkcji
@@ -1462,6 +1506,8 @@ namespace R19_BW_laczenia
             Item wynik = new Item();
             // Zwiększ ilość łączeń o 2
             int iloscL = iloscLacz + 2;
+            // Szukany Item
+            Item szukanyItem = new Item(SzukanyItem);
 
             for (int i = 0; i < iloscPrzed; i++)
             {
@@ -1504,13 +1550,16 @@ namespace R19_BW_laczenia
                     // Ustaw ilość łączeń wyniku - ilość łączeń składnika + ilość łączeń tymczasowego składnika
                     wynik.iloscLaczen = skladnik.iloscLaczen + skladnikTemp.iloscLaczen + 1;
 
-                    // Dodaj otrzymany wynik łączenia do listy wyników
-                    wyniki.Add(new Item(wynik));
+                    if ((wynik.pref == szukanyItem.pref || szukanyItem.pref == 0) && (wynik.baza == szukanyItem.baza || szukanyItem.baza == 0) && (wynik.suf == szukanyItem.suf || szukanyItem.suf == 0))
+                    {
+                        // Dodaj otrzymany wynik łączenia do listy wyników
+                        wyniki.Add(new Item(wynik));
+                    }
 
                     // Wywołaj sam siebie jeżeli ilość itemów > ilości pętli + 2
-                    if (iloscL + 2 <= maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
+                    if (iloscL + 2 <= maxIloscLaczen && analizatorWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem);
                     // Jeżeli zaznaczono połączenia mieszane wywołaj funkcję domyślnych łączeń
-                    if (iloscL < maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu);
+                    if (iloscL < maxIloscLaczen && mieszaneLaczenia.Checked == true && analizatorWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzed, iloscL, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem);
 
                     // Usuń wykorzystany "indeks" przedmiotu z listy
                     indeksy.Remove(j);
@@ -2075,6 +2124,68 @@ namespace R19_BW_laczenia
             checkBoxWyswietl.Checked = false;
             polaczonePrzedmioty.Enabled = false;
             polaczonePrzedmioty.DataSource = null;
+
+            cbSzukanyItemPref.Items.Clear();
+            cbSzukanyItemBaza.Items.Clear();
+            cbSzukanyItemSuf.Items.Clear();
+
+            switch (listaTypowPrzedmiotow.Text)
+            {
+                case "Hełm":
+                    foreach (string s in BazaHelm.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaHelm.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaHelm.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Zbroja":
+                    foreach (string s in BazaZbroja.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaZbroja.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaZbroja.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Spodnie":
+                    foreach (string s in BazaSpodnie.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaSpodnie.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaSpodnie.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Pierścień":
+                    foreach (string s in BazaPierscien.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaPierscien.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaPierscien.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Amulet":
+                    foreach (string s in BazaAmulet.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaAmulet.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaAmulet.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Biała 1h":
+                    foreach (string s in BazaBiala1h.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaBiala1h.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaBiala1h.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Biała 2h":
+                    foreach (string s in BazaBiala2h.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaBiala2h.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaBiala2h.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Palna 1h":
+                    foreach (string s in BazaPalna1h.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaPalna1h.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaPalna1h.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Palna 2h":
+                    foreach (string s in BazaPalna2h.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaPalna2h.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaPalna2h.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+                case "Dystans":
+                    foreach (string s in BazaDystans.prefy) cbSzukanyItemPref.Items.Add(s);
+                    foreach (string s in BazaDystans.bazy) cbSzukanyItemBaza.Items.Add(s);
+                    foreach (string s in BazaDystans.sufy) cbSzukanyItemSuf.Items.Add(s);
+                    break;
+            }
+
+            cbSzukanyItemPref.SelectedIndex = 0;
+            cbSzukanyItemBaza.SelectedIndex = 0;
+            cbSzukanyItemSuf.SelectedIndex = 0;
         }
 
         private void Czyszczenie()
