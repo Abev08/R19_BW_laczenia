@@ -1,4 +1,9 @@
-﻿Version 2.7.1
+﻿Version 2.7.2
+	- Bugfix: Analizator łączeń - poprawiono identyfikację przedmiotu: Szamańska Spódnica,
+	- Bugfix: Poprawiono błąd przy sprawdzaniu aktualizacji podczas łączenia ze stroną GitHub,
+	- Poprawiono wygląd okienka pomocy.
+
+Version 2.7.1
 	- Hotfix: Wyłączono możliwość zmiany prefiksu / bazy / sufiksu poszukiwanego przedmiotu w trakcie wyszukiwania łączeń.
 
 Version 2.7

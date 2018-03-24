@@ -235,7 +235,8 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.7.1"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.7.2"; // Trzeba pamiętać o zmianie :(
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12; // Poprawka do: WebException: "Żądanie zostało przerwane: Nie można utworzyć bezpiecznego kanału SSL/TLS."
             try
             {
                 using (var client = new HttpClient())
@@ -1121,10 +1122,22 @@ namespace R19_BW_laczenia
 
                 for (int i = 1; i < TypPrzedmiotu.prefy.Count; i++)
                 {
-                    if (line.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 1, 1)))
+                    if (TypPrzedmiotu.prefy[i] == BazaSpodnie.prefy[10])
                     {
-                        przedmiot.pref = i;
-                        break;
+                        // Wyjątek do sprawdzania "Szamańska Spódnica"
+                        if (line.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 2, 2)))
+                        {
+                            przedmiot.pref = i;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (line.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 1, 1)))
+                        {
+                            przedmiot.pref = i;
+                            break;
+                        }
                     }
                 }
                 for (int i = 1; i < TypPrzedmiotu.bazy.Count; i++)
