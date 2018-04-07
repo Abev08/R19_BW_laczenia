@@ -1,4 +1,9 @@
-﻿Version 2.7.2
+﻿Version 2.7.3
+	- Analizator łączeń - Zmodyfikowano sposób identyfikacji przedmiotów,
+	- Poprawiono rozmiary okienek pomocy,
+	- Dodano ikonę okienka pomocy.
+
+Version 2.7.2
 	- Bugfix: Analizator łączeń - poprawiono identyfikację przedmiotu: Szamańska Spódnica,
 	- Bugfix: Poprawiono błąd przy sprawdzaniu aktualizacji podczas łączenia ze stroną GitHub,
 	- Poprawiono wygląd okienka pomocy.

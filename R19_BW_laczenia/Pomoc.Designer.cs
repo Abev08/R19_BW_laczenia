@@ -30,12 +30,17 @@
         {
             this.pomocOK = new System.Windows.Forms.Button();
             this.rtbText = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pomocOK
             // 
             this.pomocOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pomocOK.Location = new System.Drawing.Point(953, 406);
+            this.pomocOK.Location = new System.Drawing.Point(955, 10);
+            this.pomocOK.Margin = new System.Windows.Forms.Padding(10);
             this.pomocOK.Name = "pomocOK";
             this.pomocOK.Size = new System.Drawing.Size(117, 35);
             this.pomocOK.TabIndex = 0;
@@ -45,25 +50,46 @@
             // 
             // rtbText
             // 
-            this.rtbText.Location = new System.Drawing.Point(3, 3);
+            this.rtbText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbText.Location = new System.Drawing.Point(0, 0);
             this.rtbText.Name = "rtbText";
             this.rtbText.ReadOnly = true;
-            this.rtbText.Size = new System.Drawing.Size(1076, 400);
-            this.rtbText.TabIndex = 2;
+            this.rtbText.Size = new System.Drawing.Size(1082, 398);
+            this.rtbText.TabIndex = 4;
             this.rtbText.Text = "";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pomocOK);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 398);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1082, 55);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rtbText);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1082, 398);
+            this.panel2.TabIndex = 6;
             // 
             // Pomoc
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1082, 453);
-            this.Controls.Add(this.rtbText);
-            this.Controls.Add(this.pomocOK);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Pomoc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pomoc";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pomoc_FormClosing);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -72,5 +98,7 @@
 
         private System.Windows.Forms.Button pomocOK;
         private System.Windows.Forms.RichTextBox rtbText;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

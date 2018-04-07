@@ -17,6 +17,7 @@ namespace R19_BW_laczenia
         {
             InitializeComponent();
 
+            // Włączenie podwójnego buforowania okna
             this.DoubleBuffered = true;
 
             // Zmiana ikony Form'a
@@ -235,7 +236,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.7.2"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.7.3"; // Trzeba pamiętać o zmianie :(
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12; // Poprawka do: WebException: "Żądanie zostało przerwane: Nie można utworzyć bezpiecznego kanału SSL/TLS."
             try
             {
@@ -628,7 +629,6 @@ namespace R19_BW_laczenia
 
         private void SufPalna2hPanelLabel_Click(object sender, EventArgs e)
         {
-            if (Tabela == null || Tabela.IsOpen == false) Tabela = new TableWindow();
             InicjalizacjaTabeli("Palna 2h Suf", BazaPalna2h.sufy);
         }
 
@@ -1119,41 +1119,46 @@ namespace R19_BW_laczenia
             foreach (string line in linie)
             {
                 przedmiot = new Item();
+                string linia = line;
 
+                for (int i = 1; i < TypPrzedmiotu.sufy.Count; i++)
+                {
+                    if (linia.Contains(TypPrzedmiotu.sufy[i]))
+                    {
+                        linia = linia.Remove(linia.IndexOf(TypPrzedmiotu.sufy[i]), TypPrzedmiotu.sufy[i].Length);
+                        przedmiot.suf = i;
+                        break;
+                    }
+                }
+                for (int i = TypPrzedmiotu.bazy.Count - 1; i >= 1; i--)
+                {
+                    if (linia.Contains(TypPrzedmiotu.bazy[i]))
+                    {
+                        linia = linia.Remove(linia.IndexOf(TypPrzedmiotu.bazy[i]), TypPrzedmiotu.bazy[i].Length);
+                        przedmiot.baza = i;
+                        break;
+                    }
+                }
                 for (int i = 1; i < TypPrzedmiotu.prefy.Count; i++)
                 {
-                    if (TypPrzedmiotu.prefy[i] == BazaSpodnie.prefy[10])
+                    if (TypPrzedmiotu.prefy[i] == "Szamańskie")
                     {
                         // Wyjątek do sprawdzania "Szamańska Spódnica"
-                        if (line.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 2, 2)))
+                        if (linia.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 2, 2)))
                         {
+                            linia = linia.Remove(linia.IndexOf(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 2, 2)), TypPrzedmiotu.prefy[i].Length);
                             przedmiot.pref = i;
                             break;
                         }
                     }
                     else
                     {
-                        if (line.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 1, 1)))
+                        if (linia.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 1, 1)))
                         {
+                            linia = linia.Remove(linia.IndexOf(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 1, 1)), TypPrzedmiotu.prefy[i].Length);
                             przedmiot.pref = i;
                             break;
                         }
-                    }
-                }
-                for (int i = 1; i < TypPrzedmiotu.bazy.Count; i++)
-                {
-                    if (line.Contains(TypPrzedmiotu.bazy[i].Remove(TypPrzedmiotu.bazy[i].Length - 1, 1)))
-                    {
-                        przedmiot.baza = i;
-                        //break;
-                    }
-                }
-                for (int i = 1; i < TypPrzedmiotu.sufy.Count; i++)
-                {
-                    if (line.Contains(TypPrzedmiotu.sufy[i].Remove(TypPrzedmiotu.sufy[i].Length - 1, 1)))
-                    {
-                        przedmiot.suf = i;
-                        break;
                     }
                 }
 

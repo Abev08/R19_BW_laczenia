@@ -12,6 +12,7 @@ namespace R19_BW_laczenia
 
             this.DoubleBuffered = true;
             this.BackColor = Color.FromArgb(5, 5, 5);
+            this.Icon = R19_BW_laczenia.Properties.Resources.Help_icon;
 
             rtbText.BackColor = Color.FromArgb(20, 20, 20);
             rtbText.ForeColor = Color.FromName("ControlLightLight");
@@ -22,6 +23,8 @@ namespace R19_BW_laczenia
             switch (s)
             {
                 case "Analizator raportów":
+                    this.Width = 600;
+                    this.Height = 210;
                     this.Text = "Pomoc: " + s;
                     rtbText.Text = "1.Skopiuj zawartość raportu z ulepszania.\n" +
                                     "Możesz zaznaczyć wszystko (CTRL+A) i skopiować (CTRL+C).\n" +
@@ -33,6 +36,8 @@ namespace R19_BW_laczenia
                     break;
 
                 case "Analizator łączeń":
+                    this.Width = 900;
+                    this.Height = 400;
                     this.Text = "Pomoc: " + s;
                     rtbText.Text = "1. Wklej do okienka po lewej stronie listę przedmiotów do łączenia.\n" +
                                    "Możesz wkleić przedmioty wraz z cenami i \"SPRZEDAJ\", \"EKWIPUJ\", lecz w jednej linii musi znajdować się jeden przedmiot\n" +
@@ -61,10 +66,13 @@ namespace R19_BW_laczenia
                     break;
 
                 case "Wyniki łączeń":
+                    this.Width = 500;
+                    this.Height = 170;
                     this.Text = "Sugestia dotycząca filtra";
                     rtbText.Text = "Powyżej 60 tyś. wyników do wyświetlenia (" + iloscPrzed.ToString() + " wyników).\n" +
                                    "Jeżeli mimo wszystko chcesz je wyświetlić zaznacz odpowiedni CheckBox.\n" +
                                    "\n" +
+                                   "W trakcie wczytywania program może przestać odpowiadać!\n" +
                                    "Wczytywania przedmiotów nie da się przerwać!";
                     break;
             }
