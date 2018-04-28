@@ -1,27 +1,31 @@
-﻿Version 2.7.3
+﻿Version 2.7.4	[28.04.2018]
+	- Analizator łączeń - poprawiono identyfikację prefiksów przy bazie "Spódnica",
+	- Analizator łączeń - poprawiono czyszczenie okienka tekstu przy pierwszokrotnym kliknięciu na nie.
+
+Version 2.7.3	[7.04.2018]
 	- Analizator łączeń - Zmodyfikowano sposób identyfikacji przedmiotów,
 	- Poprawiono rozmiary okienek pomocy,
 	- Dodano ikonę okienka pomocy.
 
-Version 2.7.2
+Version 2.7.2	[24.03.2018]
 	- Bugfix: Analizator łączeń - poprawiono identyfikację przedmiotu: Szamańska Spódnica,
 	- Bugfix: Poprawiono błąd przy sprawdzaniu aktualizacji podczas łączenia ze stroną GitHub,
 	- Poprawiono wygląd okienka pomocy.
 
-Version 2.7.1
+Version 2.7.1	[10.03.2018]
 	- Hotfix: Wyłączono możliwość zmiany prefiksu / bazy / sufiksu poszukiwanego przedmiotu w trakcie wyszukiwania łączeń.
 
-Version 2.7
+Version 2.7		[10.03.2018]
 	- Analizator łączeń: Dodano możliwość wyszukiwania konkretnego wyniku łączenia z listy wszystkich wyników łączeń w trakcie ich wyszukiwania.
 	Funkcjonalność ta znacząco obniża zużycie pamięci spowodowane przechowywaniem niepotrzebnych wyników łączeń jednocześnie umożliwiając szukanie pożądanego wyniku łączeń z większej listy łączonych przedmiotów.
 	- Poprawiono wygląd okna programu,
 	- Wprowadzono kilka mniejszych poprawek.
 
-Version 2.6.1
+Version 2.6.1	[19.01.2018]
 	- Dodano edytor załadowanych przedmiotów w analizatorze łączeń,
 	- Przystosowano wygląd elementów analizatora łączeń do współpracy z przedmiotami o długich nazwach.
 
-Version 2.6
+Version 2.6		[26.12.2017]
 	- Poprawiono zużycie pamięci przez analizator łączeń,
 	- Dodano timer odmierzający czas analizowania połączeń w analizatorze łączeń,
 	- Dodano tekst "Sortuję wyniki..." wyświetlany w trakcie wyszukiwania łączeń w analizatorze łączeń,
@@ -29,21 +33,21 @@ Version 2.6
 	- Zaktualizowano okienko pomocy,
 	- Dodano screenshoty do repozytorium GitHub'a.
 
-Version 2.5.1
+Version 2.5.1	[28.10.2017]
 	- Wyłączono automatyczne czyszczenie analizatora raportu po zmianie zakładki programu,
 	- Wyłączono ograniczenie ustawienia ilości łączeń w analizatorze łączeń przy wczytaniu mniej niż 10 przedmiotów,
 	- Poprawiono ustawianie ilości łączeń w analizatorze łączeń przy załadowaniu przedmiotów.
 
-Version 2.5
+Version 2.5		[11.10.2017]
 	- Dodano sprawdzenie dostępności nowszej wersji programu na repozytorium GitHub'a.
 
-Version 2.4
+Version 2.4		[11.10.2017]
 	- Dodano procentową wartość wyniku przeprowadzonych ulepszeń w analizatorze raportów,
-	- Dodano możliwosć zwiększenia i zmniejszenia rozmiaru czcionki analizatora raportów,
+	- Dodano możliwość zwiększenia i zmniejszenia rozmiaru czcionki analizatora raportów,
 	- Bugfix: Poprawiono otwieranie nowych tabeli łączeń, gdy okno tabeli łączeń zostało zminimalizowane,
-	- Bugfix: Poprawiono łączenie baz hełów (dodano wyjątek): Czapka + Hełm = Maska.
+	- Bugfix: Poprawiono łączenie baz hełmów (dodano wyjątek): Czapka + Hełm = Maska.
 
-Version 2.3
+Version 2.3		[7.10.2017]
 	- Tabela łączeń: Dodano możliwość zamknięcia wybranej zakładki klikając środkowym przyciskiem myszy (kółkiem),
 	- Poprawki kodu,
 	- Analizator łączeń:
@@ -56,23 +60,23 @@ Version 2.3
 Version 2.2.1
 	- Bugfix: Naprawiono crash ArgumentOutOfRangeException przy zmianie rozmiaru czcionki tabeli łączeń gdy żadna tabela nie jest wyświetlana.
 
-Version 2.2
+Version 2.2		[5.10.2017]
 	- Poprawiono zachowanie przycisków podczas obliczeń / aktualizacji,
 	- Poprawiono tekst okienek pomocy,
 	- Poprawiono czcionkę okienka pomocy oraz sposób wyświetlania okienka pomocy,
-	- Dodano ostrzerzenie przy wczytywaniu powyżej 60 tyś. wyników w analizatorze łączeń,
+	- Dodano ostrzeżenie przy wczytywaniu powyżej 60 tyś. wyników w analizatorze łączeń,
 	- Dodano wsparcie dla wątków:
 		-- Przeniesiono analizę połączeń w analizatorze łączeń do nowego wątku działającego w tle,
 		-- Dodano możliwość przerwania działania analizatora połączeń wciskając klawisz "Esc".
 
-Version 2.1
+Version 2.1		[4.10.2017]
 	- Dodano możliwość wyświetlania kilku tabeli łączeń w oknie tabeli łączeń,
 	- Dodano możliwość zamknięcia wybranej tabeli łączeń w oknie tabeli łączeń klikając prawym przyciskiem myszy na jej zakładce,
 	- Dodano możliwość zmiany wielkości czcionki wyświetlanych elementów tabeli łączeń,
 	- Analizator łączeń:
 		-- Dodano możliwość sortowania załadowanych przedmiotów według: jakość prefiksu -> jakość bazy -> jakość sufiksu.
 
-Version 2.0.1
+Version 2.0.1	[1.10.2017]
 	- Bugfix: Poprawiono sufiks hełmu: "Smoczej łuski" na "Smoczej Łuski",
 	- Bugfix: Poprawiono sufiks zbroi: "Śiewcy śmierci" na "Siewcy Śmierci",
 	- Bugfix: Poprawiono sufiks spodni: "Cichych ruchów" na "Cichych Ruchów",
@@ -83,27 +87,27 @@ Version 2.0.1
 	- Bugfix: Poprawiono bazę broni białej 1h: "Pięść niebios" na "Pięść Niebios",
 	- Bugfix: Poprawiono bazę broni białej 2h: "Piła łancuchowa" na "Piła łańcuchowa".
 
-Version 2.0
+Version 2.0		[27.09.2017]
 	- Dodano możliwość wysłania zaznaczonego przedmiotu do schowka,
 	- Poprawiono opcję kopiowania w menu prawego przycisku myszy,
 	- Analizator łączeń:
 		-- Dodano możliwość edytowania załadowanych przedmiotów,
 		-- Poprawiono ładowanie przedmiotów dystansowych.
 
-Version 1.10.4 (Beta 2.0.1)
+Version 1.10.4 (Beta 2.0.1)		[25.09.2017]
 	- Analizator łączeń:
 		-- Bugfix: Naprawiono crash programu przy kliknięciu "Analizuj połączenia" po kliknięciu "Aktualizuj filtr".
 
-Version 1.10.3 (Beta 2.0.1)
+Version 1.10.3 (Beta 2.0.1)		[25.09.2017]
 	- Analizator łączeń:
 		-- Poprawiono szybkość aktualizowania wyników filtru.
 	- Poprawki kodu.
 
-Version 1.10.2 (Beta 2.0.1)
+Version 1.10.2 (Beta 2.0.1)		[22.09.2017]
 	- Analizator łączeń:
 		-- Dodano okienko pomocy,
 		-- Poprawiono dodawanie przedmiotów do listy załadowanych przedmiotów (usunięto niepotrzebne spacje),
-		-- Poprawiono dodawanie przedmiotów do histori łączeń (usunięto niepotrzebne spacje),
+		-- Poprawiono dodawanie przedmiotów do historii łączeń (usunięto niepotrzebne spacje),
 		-- Poprawiono dodawanie przedmiotów do listy przefiltrowanych wyników (usunięto niepotrzebne spacje),
 		-- Dodano sortowanie wyników - jako pierwsze sortuje według jakości prefiksu, następnie według jakości bazy, następnie według jakości sufiksu, następnie według ilości łączeń,
 		-- Dodano odmianę wyrazów: "1 przedmiot", "2 przedmioty", "20 przedmiotów", itp.,
@@ -112,7 +116,7 @@ Version 1.10.2 (Beta 2.0.1)
 		-- Bugfix: Poprawiono błąd z identyfikacją przedmiotów,
 		-- Bugfix: Poprawiono zachowanie przycisku "Analizuj połączenia" w zależności od ilości załadowanych przedmiotów.
 
-Version 1.10.2 (Beta 2.0)
+Version 1.10.2 (Beta 2.0)		[21.09.2017]
 	- Bugfix: Literówka w tabeli łączeń sufiksów zbroi :)
 	- Analizator łączeń:
 		-- Poprawiono szybkość działania,
@@ -124,35 +128,35 @@ Version 1.10.2 (Beta 2.0)
 		-- Dodano tło,
 		-- Przystosowano czcionki do współpracy z tłem.
 
-Version 1.10.1 (Alpha 2.0)
+Version 1.10.1 (Alpha 2.0)		[20.09.2017]
 	- Dodano analizator łączeń umożliwiający wyszukanie możliwych połączeń przedmiotów z listy.
 
-Version 1.10.1
+Version 1.10.1		[19.09.2017]
 	- Bugfix: IndexOutOfRangeException - Kliknięcie "Oblicz" w analizatorze raportów bez wprowadzenia tekstu.
 
-Version 1.10
+Version 1.10		[15.09.2017]
 	- Zmieniono kolor tła okienek z tekstem,
 	- Dopasowano kolor czcionek do współpracy z tłami,
 	- Dodano kolorowanie tekstu w analizatorze raportów,
 	- Dodano opcję "Wklej" do menu prawego przycisku myszy.
 
-Version 1.09.1
+Version 1.09.1		[13.09.2017]
 	- Bugfix: Poprawiono łączenia baz amuletów.
 
-Version 1.09
+Version 1.09		[12.09.2017]
 	- Dodano ikony aplikacji,
 	- Dodano tła,
 	- Dopasowano kolory czcionek do współpracy z tłami,
 	- Dalsze poprawki kodu.
 	
-Version 1.08
+Version 1.08		[4.09.2017]
 	- Dodano przycisk "Cofnij",
 	- Dodano opcję zapisu do pliku przeprowadzonych łączeń w menu prawego przycisku myszy.
 
-Version 1.07
+Version 1.07		[2.09.2017]
 	- Dodano wynik łączenia aktualizowany na bieżąco.
 
-Version 1.06
+Version 1.06		[2.09.2017]
 	- Dodano quality of life features:
 		-- Poprawiono czcionki,
 		-- Zmieniono kolory wykorzystywane w tabelach łączeń,

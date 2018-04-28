@@ -227,7 +227,7 @@ namespace R19_BW_laczenia
             przedmiotyDoAnalizy.ForeColor = foreColorRTB;
             przedmiotyDoAnalizy.BackColor = bckColorRTB;
             przedmiotyDoAnalizy.ReadOnly = false;
-            przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.\n";
+            przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.";
             iloscLaczen.Minimum = 1;
             checkBoxWyswietl.Text = "Mimo wszystko\nwyświetl!";
 
@@ -236,7 +236,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.7.3"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.7.4"; // Trzeba pamiętać o zmianie :(
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12; // Poprawka do: WebException: "Żądanie zostało przerwane: Nie można utworzyć bezpiecznego kanału SSL/TLS."
             try
             {
@@ -1141,9 +1141,9 @@ namespace R19_BW_laczenia
                 }
                 for (int i = 1; i < TypPrzedmiotu.prefy.Count; i++)
                 {
-                    if (TypPrzedmiotu.prefy[i] == "Szamańskie")
+                    if (TypPrzedmiotu.bazy[przedmiot.baza] == "Spódnica")
                     {
-                        // Wyjątek do sprawdzania "Szamańska Spódnica"
+                        // Wyjątek do sprawdzania prefiksów przy bazie "Spódnica"
                         if (linia.Contains(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 2, 2)))
                         {
                             linia = linia.Remove(linia.IndexOf(TypPrzedmiotu.prefy[i].Remove(TypPrzedmiotu.prefy[i].Length - 2, 2)), TypPrzedmiotu.prefy[i].Length);
@@ -1869,10 +1869,15 @@ namespace R19_BW_laczenia
         private void PrzedmiotyDoAnalizy_Enter(object sender, EventArgs e)
         {
             // Usuń "startowy" tekst w okienku analizatora łączeń po kliknięciu w nie
-            if (doOnceAnalizator)
+            if ((doOnceAnalizator) && przedmiotyDoAnalizy.Text.Contains("Wklej tutaj listę przedmiotów do łączenia."))
             {
                 doOnceAnalizator = false;
                 przedmiotyDoAnalizy.Text = "";
+            }
+            else
+            {
+                // Jeżeli zmieniono zawartość okienka tekstu bez klikania na nie lewym przyciskiem myszy to nie czyść jego zawartości
+                doOnceAnalizator = false;
             }
         }
 
@@ -2279,8 +2284,13 @@ namespace R19_BW_laczenia
             }
             if (GlownyTab.SelectedTab.Text == "Analizator łączeń")
             {
+                if (przedmiotyDoAnalizy.Text.Contains("Wklej tutaj listę przedmiotów do łączenia."))
+                {
+                    przedmiotyDoAnalizy.Text = przedmiotyDoAnalizy.Text.Remove(przedmiotyDoAnalizy.Text.IndexOf("Wklej tutaj listę przedmiotów do łączenia."), "Wklej tutaj listę przedmiotów do łączenia.".Length);
+                }
                 przedmiotyDoAnalizy.Paste();
                 przedmiotyDoAnalizy.ScrollToCaret();
+                przedmiotyDoAnalizy.Focus();
             }
         }
 
