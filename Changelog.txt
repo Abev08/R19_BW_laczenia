@@ -1,4 +1,8 @@
-﻿Version 2.7.4	[28.04.2018]
+﻿Version 2.7.5	[15.07.2018]
+	- Dodano okienko informacyjne po kliknięciu w napis "by Abev",
+	- Wyłączono możliwość minimalizacji i maksymalizacji okienka pomocy.
+
+Version 2.7.4	[28.04.2018]
 	- Analizator łączeń - poprawiono identyfikację prefiksów przy bazie "Spódnica",
 	- Analizator łączeń - poprawiono czyszczenie okienka tekstu przy pierwszokrotnym kliknięciu na nie.
 

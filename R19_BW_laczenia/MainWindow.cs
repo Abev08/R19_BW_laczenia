@@ -236,7 +236,7 @@ namespace R19_BW_laczenia
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
 
             // Sprawdz uaktualnienia !!
-            string version = "Version 2.7.4"; // Trzeba pamiętać o zmianie :(
+            string version = "Version 2.7.5"; // Trzeba pamiętać o zmianie :(
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12; // Poprawka do: WebException: "Żądanie zostało przerwane: Nie można utworzyć bezpiecznego kanału SSL/TLS."
             try
             {
@@ -292,6 +292,9 @@ namespace R19_BW_laczenia
 
         // Obiekt okienka edycji przedmiotów
         EditWindow EditWindow;
+
+        // Obiekt okeinka about
+        About about;
 
         // Zmienne do analizatora łączeń
         List<Item> przedmioty = new List<Item>();
@@ -3104,8 +3107,9 @@ namespace R19_BW_laczenia
 
         private void Label1_Click(object sender, EventArgs e)
         {
-            // Odsyłacz do mojej postaci
-            System.Diagnostics.Process.Start("https://r19.bloodwars.interia.pl/showmsg.php?a=profile&uid=2755");
+            // Wyświetl okienko About
+            about = new About();
+            about.ShowDialog(this);
         }
     }
 }

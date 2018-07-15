@@ -39,10 +39,10 @@
             // pomocOK
             // 
             this.pomocOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pomocOK.Location = new System.Drawing.Point(955, 10);
-            this.pomocOK.Margin = new System.Windows.Forms.Padding(10);
+            this.pomocOK.Location = new System.Drawing.Point(764, 8);
+            this.pomocOK.Margin = new System.Windows.Forms.Padding(8);
             this.pomocOK.Name = "pomocOK";
-            this.pomocOK.Size = new System.Drawing.Size(117, 35);
+            this.pomocOK.Size = new System.Drawing.Size(94, 28);
             this.pomocOK.TabIndex = 0;
             this.pomocOK.Text = "OK";
             this.pomocOK.UseVisualStyleBackColor = true;
@@ -52,9 +52,10 @@
             // 
             this.rtbText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbText.Location = new System.Drawing.Point(0, 0);
+            this.rtbText.Margin = new System.Windows.Forms.Padding(2);
             this.rtbText.Name = "rtbText";
             this.rtbText.ReadOnly = true;
-            this.rtbText.Size = new System.Drawing.Size(1082, 398);
+            this.rtbText.Size = new System.Drawing.Size(866, 318);
             this.rtbText.TabIndex = 4;
             this.rtbText.Text = "";
             // 
@@ -62,9 +63,10 @@
             // 
             this.panel1.Controls.Add(this.pomocOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 398);
+            this.panel1.Location = new System.Drawing.Point(0, 318);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1082, 55);
+            this.panel1.Size = new System.Drawing.Size(866, 44);
             this.panel1.TabIndex = 5;
             // 
             // panel2
@@ -72,18 +74,22 @@
             this.panel2.Controls.Add(this.rtbText);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1082, 398);
+            this.panel2.Size = new System.Drawing.Size(866, 318);
             this.panel2.TabIndex = 6;
             // 
             // Pomoc
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1082, 453);
+            this.ClientSize = new System.Drawing.Size(866, 362);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Pomoc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Pomoc";

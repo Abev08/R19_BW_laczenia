@@ -4,7 +4,8 @@ Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars
 Listy przedmiotów przystosowano do serwera R19.  
    
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
-Aktualna wersja programu: 2.7.4. Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
+Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
+Aktualna wersja programu: 2.7.5.  
    
    
 ## Funkcje programu
@@ -66,4 +67,7 @@ Analizator łączeń.
    
    
 Do poprawnego działania aplikacja wymaga zainstalowanego środowiska .NET Framework 4.5 lub nowszej wersji.  
-[Changelog](Changelog.txt). Proszę zgłaszać wszelkie znalezione błędy / sugestie dotyczące programu :)  
+Proszę zgłaszać wszelkie znalezione błędy / sugestie dotyczące programu :)  
+Problemy proszę zgłaszać znajdując mnie w grze, pisząc na abev088@gmail.com  
+lub wykorzystując zakładkę "Issues" w repozytorium GitHub'a.  
+[Changelog](Changelog.txt). 
