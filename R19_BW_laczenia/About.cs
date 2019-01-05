@@ -6,7 +6,7 @@ namespace R19_BW_laczenia
 {
     public partial class About : Form
     {
-        public About()
+        public About(string v)
         {
             InitializeComponent();
 
@@ -35,9 +35,14 @@ namespace R19_BW_laczenia
                 "pisząc na abev088@gmail.com\n" +
                 "lub wykorzystując zakładkę \"Issues\" w repozytorium GitHub'a.\n\n" +
                 "Zgłaszając problemy i sugestie pomagasz rozwijać program! :)";
+
+            // Przypisanie wersji programu
+            version.ForeColor = Color.FromName("ControlLightLight");
+            version.Font = new System.Drawing.Font("Franklin Gothic Book", 10.2f, FontStyle.Italic);
+            version.Text = "Wersja programu:" + v.Remove(0, v.IndexOf(" "));
         }
 
-        private void pomocOK_Click(object sender, EventArgs e)
+        private void PomocOK_Click(object sender, EventArgs e)
         {
             // Zamknij okno pomocy po kliknięciu OK
             this.Dispose();
@@ -51,13 +56,19 @@ namespace R19_BW_laczenia
             this.Close();
         }
 
-        private void byMe_Click(object sender, EventArgs e)
+        private void ByMe_Click(object sender, EventArgs e)
         {
             // Po kliknięciu w by Abev przekieruj do mojej postaci
             System.Diagnostics.Process.Start("https://r19.bloodwars.interia.pl/showmsg.php?a=profile&uid=2755");
         }
 
-        private void repo_Click(object sender, EventArgs e)
+        private void ByMe2_Click(object sender, EventArgs e)
+        {
+            // Po kliknięciu w by Abev 2 przekieruj do mojej postaci
+            System.Diagnostics.Process.Start("https://r19.bloodwars.interia.pl/showmsg.php?a=profile&uid=13059");
+        }
+
+        private void Repo_Click(object sender, EventArgs e)
         {
             // Po kliknięciu w link repozytorium przekieruj do repozytorium
             System.Diagnostics.Process.Start("https://github.com/Abev08/R19_BW_laczenia");

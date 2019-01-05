@@ -42,7 +42,7 @@ namespace R19_BW_laczenia
                     rtbText.Text = "1. Wklej do okienka po lewej stronie listę przedmiotów do łączenia.\n" +
                                    "Możesz wkleić przedmioty wraz z cenami i \"SPRZEDAJ\", \"EKWIPUJ\", lecz w jednej linii musi znajdować się jeden przedmiot\n" +
                                    "oraz prefiks, baza i sufiks przedmiotu muszą zaczynać się z dużej litery (muszą zgadzać się z nazewnictwem przedmiotów przez Blood Wars).\n" +
-                                   "2. Z listy u góry okna wybierz typ przedmiotu jaki chcesz łączyć.\n" +
+                                   "2. Z listy w górnej części okna wybierz typ przedmiotu jaki chcesz łączyć.\n" +
                                    "3. Kliknij \"Załaduj przedmioty\".\n" +
                                    "4. Sprawdź czy załadowane przedmioty zgadzają się z przedmiotami z listy.\n" +
                                    "Załadowane przedmioty możesz edytować klikając w \"Edytuj przedmioty\" i sortować klikając w \"Sortuj przedmioty\".\n" +

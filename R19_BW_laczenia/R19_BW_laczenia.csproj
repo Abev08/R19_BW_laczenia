@@ -27,7 +27,7 @@
     <PublisherName>Abev</PublisherName>
     <SuiteName>Narzędzie Bloodwars</SuiteName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.7.5.0</ApplicationVersion>
+    <ApplicationVersion>2.8.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>false</BootstrapperEnabled>
@@ -53,10 +53,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FEF7C1F173562A04646FABD58868C8B506E64D4C</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>77AF4F1CE7D54FA92EDF8ECD1683C1991A8E1651</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>R19_BW_laczenia_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -112,6 +113,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Budynek.cs" />
     <Compile Include="EditWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -23,6 +23,10 @@ namespace R19_BW_laczenia
             // Zmiana ikony Form'a
             this.Icon = Properties.Resources.Icon;
 
+            // Zmiana tła Form'a
+            this.BackColor = Color.FromArgb(20, 20, 20);
+            
+
             // Załaduj bazy przedmiotów do list
             BazaHelmow(BazaHelm.prefy, BazaHelm.bazy, BazaHelm.sufy);
             BazaZbroi(BazaZbroja.prefy, BazaZbroja.bazy, BazaZbroja.sufy);
@@ -47,6 +51,8 @@ namespace R19_BW_laczenia
             Color foreColorRTB = Color.FromName("ControlLightLight");   // Kolor czcionki RTB
             ImageLayout imgLayoutTab = ImageLayout.Tile;   // Wybór typu obrazu tła tab'u - kafelka
             Image bckPictureTab = Properties.Resources.Background_black;    // Obraz tła tab'u
+
+            tabReczneTabele.BackColor = Color.FromArgb(20, 20, 20);
 
             // Dodawanie prefiksów, baz i sufiksów do comboBox'ów
             // Hełm
@@ -231,39 +237,60 @@ namespace R19_BW_laczenia
             iloscLaczen.Minimum = 1;
             checkBoxWyswietl.Text = "Mimo wszystko\nwyświetl!";
 
+            // Plac Budowy
+            tabPlacBudowy.BackColor = bckColorTab;
+            tabPlacBudowy.BackgroundImageLayout = imgLayoutTab;
+            tabPlacBudowy.BackgroundImage = bckPictureTab;
+            rtbPlacBodowyKoszty.ForeColor = foreColorRTB;
+            rtbPlacBodowyKoszty.BackColor = bckColorRTB;
+            rtbPlacBodowyKoszty.ReadOnly = true;
+            rtbPlacBudowyKosztyLaczne.ForeColor = foreColorRTB;
+            rtbPlacBudowyKosztyLaczne.BackColor = bckColorRTB;
+            rtbPlacBudowyKosztyLaczne.ReadOnly = true;
+            rtbPlacBudowyWymagania.ForeColor = foreColorRTB;
+            rtbPlacBudowyWymagania.BackColor = bckColorRTB;
+            rtbPlacBudowyWymagania.ReadOnly = true;
+            rtbPlacBudowyCzas.ForeColor = foreColorRTB;
+            rtbPlacBudowyCzas.BackColor = bckColorRTB;
+            rtbPlacBudowyCzas.ReadOnly = true;
+            rtbPlacBudowyEfekt.ForeColor = foreColorRTB;
+            rtbPlacBudowyEfekt.BackColor = bckColorRTB;
+            rtbPlacBudowyEfekt.ReadOnly = true;
+            cbBudynek.Items.Add("-- STREFA 5 --");
+            cbBudynek.Items.Add("Pośredniak");
+            cbBudynek.Items.Add("Dom Publiczny");
+            cbBudynek.Items.Add("Rzeźnia");
+            cbBudynek.Items.Add("Posterunek Policji");
+            cbBudynek.Items.Add("Schronisko dla Bezdomnych");
+            cbBudynek.Items.Add("Agencja Ochrony");
+            cbBudynek.Items.Add("Zbrojownia");
+            cbBudynek.Items.Add("Stary Rynek");
+            cbBudynek.Items.Add("Postój Taxi");
+            cbBudynek.SelectedIndex = 1;
+
             // Wersja programu (tooltip na labelu "by Abev")
             toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() +
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
+            this.ByMe.ForeColor = Color.FromArgb(200, 200, 200);
 
-            // Sprawdz uaktualnienia !!
-            string version = "Version 2.7.5"; // Trzeba pamiętać o zmianie :(
+            // Sprawdz uaktualnienia
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12; // Poprawka do: WebException: "Żądanie zostało przerwane: Nie można utworzyć bezpiecznego kanału SSL/TLS."
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
-
-                    using (var response = client.GetAsync("https://api.github.com/repos/Abev08/R19_BW_laczenia/commits").Result)
-                    {
-                        var json = response.Content.ReadAsStringAsync().Result;
-
-                        dynamic commits = JArray.Parse(json);
-                        string lastCommit = commits[0].commit.message;
-
-                        if (lastCommit != version)
-                        {
-                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualnie używana: " + version + "\nDostępna na GitHub'ie: " + lastCommit + "\n\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                            {
-                                System.Diagnostics.Process.Start("https://github.com/Abev08/R19_BW_laczenia");
-                            }
-                        }
-                    }
-                }
-            }
-            catch
-            { }
+            versionWorker.RunWorkerAsync(); // Uruchom task'a do sprawdzenia uaktualnień
+            
+            // Zapełnienie list budynków
+            Budynek.UtworzPosredniak(Posredniak);
+            Budynek.UtworzDomPubliczny(DomPubliczny);
+            Budynek.UtworzRzeznia(Rzeznia);
+            Budynek.UtworzPosterunekPolicji(PosterunekPolicji);
+            Budynek.UtworzSchroniskoDlaBezdomnych(SchroniskoDlaBezdomnych);
+            Budynek.UtworzAgencjaOchrony(AgencjaOchrony);
+            Budynek.UtworzZbrojownia(Zbrojownia);
+            Budynek.UtworzStaryRynek(StaryRynek);
+            Budynek.UtworzPostojTaxi(PostojTaxi);
         }
+
+        // Zmienna wersji programu
+        public string version = "Version 2.8"; // Trzeba pamiętać o zmianie :(
 
         // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
         ItemType BazaHelm = new ItemType();
@@ -305,6 +332,17 @@ namespace R19_BW_laczenia
         // Zmienne do analizatora raportów
         int fontSizeAnalizRap;
         Font fontAnalizatorRap;
+
+        // Listy budynków
+        List<Budynek> Posredniak = new List<Budynek>();
+        List<Budynek> DomPubliczny = new List<Budynek>();
+        List<Budynek> Rzeznia = new List<Budynek>();
+        List<Budynek> PosterunekPolicji = new List<Budynek>();
+        List<Budynek> SchroniskoDlaBezdomnych = new List<Budynek>();
+        List<Budynek> AgencjaOchrony = new List<Budynek>();
+        List<Budynek> Zbrojownia = new List<Budynek>();
+        List<Budynek> StaryRynek = new List<Budynek>();
+        List<Budynek> PostojTaxi = new List<Budynek>();
 
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
         {
@@ -3108,8 +3146,170 @@ namespace R19_BW_laczenia
         private void Label1_Click(object sender, EventArgs e)
         {
             // Wyświetl okienko About
-            about = new About();
+            about = new About(version);
             about.ShowDialog(this);
+        }
+
+        private void BtnPlacBudowyAktualizuj_Click(object sender, EventArgs e)
+        {
+            rtbPlacBodowyKoszty.Clear(); // Wyczyść okienka
+            rtbPlacBudowyKosztyLaczne.Clear();
+            rtbPlacBudowyWymagania.Clear();
+            rtbPlacBudowyCzas.Clear();
+            rtbPlacBudowyEfekt.Clear();
+            int poziom = Convert.ToInt16(poziomRozbudowy.Value); // Odczytaj poziom rozbudowy budynku
+            string[] koszta = new string[] { "", "" }; // Przygotuj zmienną do odczytania kosztów rozbudowy budynków
+            string wymagania = ""; // Przygotuj zmienną do odczytania wymagań rozbudowy budynku
+            string czas = ""; // Przygotuj zmienną do odczytania czasu budowy
+            string efekt = ""; // Przygotuj zmienną do odczytania efektu budynku
+            int poziomPosredniaka = 0; // Poziom rozbudowy pośredniaka - skraca czas budowy wszystkich budynków
+            if (cbPlacBudowyPosredniak.Checked == true) poziomPosredniaka = Convert.ToInt16(numPoziomPosredniaka.Value);
+            int latwosc = 0; // Procentowa wartość łatwości - zmniejsza wymagania do rozbudowy budynku
+            if (cbPlacBudowyLatwosc.Checked == true) latwosc = Convert.ToInt16(numLatwosc.Value);
+
+            // Aktualizacja okienek z kosztami, wymaganiami i efektami
+            switch (cbBudynek.Text)
+            {
+                case "Pośredniak":
+                    koszta = Budynek.PokazKoszta(Posredniak, poziom);
+                    wymagania = Budynek.PokazWymagania(Posredniak, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(Posredniak, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(Posredniak, poziom);
+                    break;
+
+                case "Dom Publiczny":
+                    koszta = Budynek.PokazKoszta(DomPubliczny, poziom);
+                    wymagania = Budynek.PokazWymagania(DomPubliczny, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(DomPubliczny, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(DomPubliczny, poziom);
+                    break;
+
+                case "Rzeźnia":
+                    koszta = Budynek.PokazKoszta(Rzeznia, poziom);
+                    wymagania = Budynek.PokazWymagania(Rzeznia, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(Rzeznia, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(Rzeznia, poziom);
+                    break;
+
+                case "Posterunek Policji":
+                    koszta = Budynek.PokazKoszta(PosterunekPolicji, poziom);
+                    wymagania = Budynek.PokazWymagania(PosterunekPolicji, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(PosterunekPolicji, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(PosterunekPolicji, poziom);
+                    break;
+
+                case "Schronisko dla Bezdomnych":
+                    koszta = Budynek.PokazKoszta(SchroniskoDlaBezdomnych, poziom);
+                    wymagania = Budynek.PokazWymagania(SchroniskoDlaBezdomnych, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(SchroniskoDlaBezdomnych, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(SchroniskoDlaBezdomnych, poziom);
+                    break;
+
+                case "Agencja Ochrony":
+                    koszta = Budynek.PokazKoszta(AgencjaOchrony, poziom);
+                    wymagania = Budynek.PokazWymagania(AgencjaOchrony, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(AgencjaOchrony, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(AgencjaOchrony, poziom);
+                    break;
+
+                case "Zbrojownia":
+                    koszta = Budynek.PokazKoszta(Zbrojownia, poziom);
+                    wymagania = Budynek.PokazWymagania(Zbrojownia, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(Zbrojownia, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(Zbrojownia, poziom);
+                    break;
+
+                case "Stary Rynek":
+                    koszta = Budynek.PokazKoszta(StaryRynek, poziom);
+                    wymagania = Budynek.PokazWymagania(StaryRynek, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(StaryRynek, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(StaryRynek, poziom);
+                    break;
+
+                case "Postój Taxi":
+                    koszta = Budynek.PokazKoszta(PostojTaxi, poziom);
+                    wymagania = Budynek.PokazWymagania(PostojTaxi, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(PostojTaxi, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(PostojTaxi, poziom);
+                    break;
+            }
+
+            rtbPlacBodowyKoszty.Text = koszta[0];
+            rtbPlacBudowyKosztyLaczne.Text = koszta[1];
+            rtbPlacBudowyWymagania.Text = wymagania;
+            rtbPlacBudowyCzas.Text = czas;
+            rtbPlacBudowyEfekt.Text = efekt;
+
+            // Usunięcie ostatniego niepotrzebnego "entera" jeżeli został dodany
+            if (rtbPlacBodowyKoszty.Text.EndsWith("\n")) rtbPlacBodowyKoszty.Text = rtbPlacBodowyKoszty.Text.Remove(rtbPlacBodowyKoszty.Text.Length - 1, 1);
+            if (rtbPlacBudowyKosztyLaczne.Text.EndsWith("\n")) rtbPlacBudowyKosztyLaczne.Text = rtbPlacBudowyKosztyLaczne.Text.Remove(rtbPlacBudowyKosztyLaczne.Text.Length - 1, 1);
+            if (rtbPlacBudowyWymagania.Text.EndsWith("\n")) rtbPlacBudowyWymagania.Text = rtbPlacBudowyWymagania.Text.Remove(rtbPlacBudowyWymagania.Text.Length - 1, 1);
+            if (rtbPlacBudowyEfekt.Text.EndsWith("\n")) rtbPlacBudowyEfekt.Text = rtbPlacBudowyEfekt.Text.Remove(rtbPlacBudowyEfekt.Text.Length - 1, 1);
+        }
+
+        private void CbBudynek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Jeżeli wybrano napis ze strefą to wymuś wybranie kolejnego indeksu
+            if (cbBudynek.Text.Contains("--")) cbBudynek.SelectedIndex++;
+        }
+
+        private void VersionWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            // Funkcja wywoływana prze backgroundWorker'a - versionWorker
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+
+                    using (var response = client.GetAsync("https://api.github.com/repos/Abev08/R19_BW_laczenia/commits").Result)
+                    {
+                        var json = response.Content.ReadAsStringAsync().Result;
+
+                        dynamic commits = JArray.Parse(json);
+                        string lastCommit = commits[0].commit.message;
+
+                        if (lastCommit != version)
+                        {
+                            if (MessageBox.Show("Nowa wersja programu dostępna na GitHub'ie!\nAktualnie używana: " + version + "\nDostępna na GitHub'ie: " + lastCommit + "\n\nCzy chcesz teraz odwiedzić repozytorium?", "Znaleziono nowszą wersję programu!", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly) == DialogResult.Yes)
+                            {
+                                System.Diagnostics.Process.Start("https://github.com/Abev08/R19_BW_laczenia");
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            { }
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Przy zamykaniu programu zakończ dodatkowe taski jeżeli są aktywne
+            if (analizatorWorker.IsBusy == true) analizatorWorker.CancelAsync();
+            if (versionWorker.IsBusy == true) versionWorker.CancelAsync();
+        }
+
+        private void MainWindow_ResizeBegin(object sender, EventArgs e)
+        {
+            // Przy rozpoczęciu zmiany wielkości okienka programu zawieś rysowanie wnętrza
+            this.SuspendLayout();
+        }
+
+        private void MainWindow_ResizeEnd(object sender, EventArgs e)
+        {
+            // Przy zakończeniu zmiany wielkości okeinka programu wznów rysowanie wnętrza
+            this.ResumeLayout();
+        }
+
+        private void NumPoziomPosredniaka_ValueChanged(object sender, EventArgs e)
+        {
+            // Aktualizacja tekstu pod poziomem rozbudowy pośredniaka
+            if (numPoziomPosredniaka.Value <= (Posredniak.Count - 1))
+            {
+                rozbudowanyPosredniak.Text = "Redukcja czasu budowy: " + Posredniak[(int)numPoziomPosredniaka.Value].Efekt.czasBudowy + "%";
+            }
+            else rozbudowanyPosredniak.Text = "Redukcja czasu budowy: Brak danych";
         }
     }
 }

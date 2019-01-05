@@ -5,7 +5,7 @@ Listy przedmiotów przystosowano do serwera R19.
    
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
 Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
-Aktualna wersja programu: 2.7.5.  
+Aktualna wersja programu: 2.8.  
    
    
 ## Funkcje programu
@@ -25,6 +25,7 @@ Aktualna wersja programu: 2.7.5.
    - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
    - Brak ograniczenia ilości łączonych przedmiotów,
    - Możliwość ustawienia maksymalnej ilości wyszukiwanych połączeń,
+   - Możliwość deklaracji szukanego prefiksu / bazy / sufiksu,
    - Możliwość filtrowania przeanalizowanych połączeń,
    - Możliwość wyświetlenia historii połączeń,
    - Możliwość sortowania załadowanych przedmiotów według: jakość prefiksu -> jakość bazy -> jakość sufiksu,
@@ -34,6 +35,11 @@ Aktualna wersja programu: 2.7.5.
    - Możliwość włączenia wyszukiwania połączeń mieszanych: (A+B) + C + (D+E) + F + itd. (odpowiednio (A+B) + (C+D) + E + itd.),
    - Analizator łączeń do działania wykorzystuje nowy wątek - możliwe jest przerwanie działania po wciśnięciu klawisza Esc,
    - Możliwość wyboru szukanego prefiksu / bazy / sufiksu (wyświetlone zostaną tylko wyniki łączeń pasujące do szukanego przedmiotu).
+ - Plac Budowy umożliwiający wyświetlenie kosztów, wymagań i efektów rozbudowy budynków:
+   - Koszty rozbudowy budynku wyświetlane są dla aktualnie wybranego poziomu rozbudowy oraz łączne koszty rozbudowy wszystkich poziomów do wybranego,
+   - Dla każdego poziomu rozbudowy wyświetlany jest czas budowy wybranego poziomu,
+   - Możliwość włączenia uwzględniania redukcji czasu budowy wszystkich budynków wynikającej z rozbudowy Pośredniaka,
+   - Możliwość włączenia uwzględniania łatwości do wymagań rozbudowy budynków.
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów i analizatorze łączeń),
    - Kopiowanie zaznaczonego tekstu,

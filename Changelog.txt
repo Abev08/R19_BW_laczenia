@@ -1,4 +1,13 @@
-﻿Version 2.7.5	[15.07.2018]
+﻿Version 2.8		[5.01.2019]
+	- Zmieniono wygląd programu:
+		-- Zgrupowano łączenie ręczne i przeniesiono do nowej zakładki,
+		-- Przystosowano program do zmian rozmiarów okienka.
+		-- Zmiana rozmiaru okienka programu zawiesza rysowanie wnętrza programu aż do zakończenia zmiany rozmiaru - redukuje to przycinanie zmian rozmiarów przez rysujące się elementy wewnątrz programu,
+	- Dodano zakładkę "Plac Budowy", w której przedstawione zostały wymagania rozbudowy budynków na kolejne poziomy,
+	- Dodano wersję programu do okienka Info,
+	- Przeniesiono sprawdzanie uaktualnień programu do nowego task'a - przyspiesza to włączanie programu przy braku połączenia lub bardzo wolnym połączeniu z internetem.
+
+Version 2.7.5	[15.07.2018]
 	- Dodano okienko informacyjne po kliknięciu w napis "by Abev",
 	- Wyłączono możliwość minimalizacji i maksymalizacji okienka pomocy.
 
