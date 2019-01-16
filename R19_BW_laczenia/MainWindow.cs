@@ -268,6 +268,16 @@ namespace R19_BW_laczenia
             cbBudynek.Items.Add("Postój Taxi");
             cbBudynek.SelectedIndex = 1;
 
+            // Analizator Walk
+            TabAnalizatorWalk.BackColor = bckColorTab;
+            TabAnalizatorWalk.BackgroundImageLayout = imgLayoutTab;
+            TabAnalizatorWalk.BackgroundImage = bckPictureTab;
+            rtbAnalizatorWalk.ForeColor = foreColorRTB;
+            rtbAnalizatorWalk.BackColor = bckColorRTB;
+            fastObjectListView1.BackColor = bckColorRTB;
+            fastObjectListView1.ForeColor = foreColorRTB;
+            fastObjectListView1.VirtualMode = false;
+
             // Wersja programu (tooltip na labelu "by Abev")
             toolTip1.SetToolTip(this.ByMe, "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() +
                 "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :)");
@@ -290,7 +300,7 @@ namespace R19_BW_laczenia
         }
 
         // Zmienna wersji programu
-        public string version = "Version 2.8"; // Trzeba pamiętać o zmianie :(
+        public string version = "Version 2.9"; // Trzeba pamiętać o zmianie :(
 
         // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
         ItemType BazaHelm = new ItemType();
@@ -2318,107 +2328,131 @@ namespace R19_BW_laczenia
 
         private void WklejToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GlownyTab.SelectedTab.Text == "Analizator raportu")
+            switch (tabControl1.SelectedTab.Text)
             {
-                AnalizatorRaportuTekst.Paste();
-                AnalizatorRaportuTekst.ScrollToCaret();
-            }
-            if (GlownyTab.SelectedTab.Text == "Analizator łączeń")
-            {
-                if (przedmiotyDoAnalizy.Text.Contains("Wklej tutaj listę przedmiotów do łączenia."))
-                {
-                    przedmiotyDoAnalizy.Text = przedmiotyDoAnalizy.Text.Remove(przedmiotyDoAnalizy.Text.IndexOf("Wklej tutaj listę przedmiotów do łączenia."), "Wklej tutaj listę przedmiotów do łączenia.".Length);
-                }
-                przedmiotyDoAnalizy.Paste();
-                przedmiotyDoAnalizy.ScrollToCaret();
-                przedmiotyDoAnalizy.Focus();
+                case "Analizator raportu łączenia":
+                    AnalizatorRaportuTekst.Paste();
+                    AnalizatorRaportuTekst.ScrollToCaret();
+                    AnalizatorRaportuTekst.Focus();
+                    break;
+                case "Analizator łączeń":
+                    if (przedmiotyDoAnalizy.Text.Contains("Wklej tutaj listę przedmiotów do łączenia."))
+                    {
+                        przedmiotyDoAnalizy.Text = przedmiotyDoAnalizy.Text.Remove(przedmiotyDoAnalizy.Text.IndexOf("Wklej tutaj listę przedmiotów do łączenia."), "Wklej tutaj listę przedmiotów do łączenia.".Length);
+                    }
+                    przedmiotyDoAnalizy.Paste();
+                    przedmiotyDoAnalizy.ScrollToCaret();
+                    przedmiotyDoAnalizy.Focus();
+                    break;
+                case "Analizator raportu walki":
+                    rtbAnalizatorWalk.Paste();
+                    rtbAnalizatorWalk.ScrollToCaret();
+                    rtbAnalizatorWalk.Focus();
+                    break;
             }
         }
 
         private void KopiujToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Kopiuj zaznaczony tekst do schowka systemowego
-            switch (GlownyTab.SelectedTab.Text)
+            switch (tabControl1.SelectedTab.Text)
             {
-                case "Hełm":
-                    if (helmWynik.SelectedText != "") Clipboard.SetText(helmWynik.SelectedText);
+                case "Łączenie Ręczne / Tabele Łączeń":
+                    switch (GlownyTab.SelectedTab.Text)
+                    {
+                        case "Hełm":
+                            if (helmWynik.SelectedText != "") Clipboard.SetText(helmWynik.SelectedText);
+                            break;
+                        case "Zbroja":
+                            if (zbrojaWynik.SelectedText != "") Clipboard.SetText(zbrojaWynik.SelectedText);
+                            break;
+                        case "Spodnie":
+                            if (spodnieWynik.SelectedText != "") Clipboard.SetText(spodnieWynik.SelectedText);
+                            break;
+                        case "Pierścień":
+                            if (pierscienWynik.SelectedText != "") Clipboard.SetText(pierscienWynik.SelectedText);
+                            break;
+                        case "Amulet":
+                            if (amuletWynik.SelectedText != "") Clipboard.SetText(amuletWynik.SelectedText);
+                            break;
+                        case "Biała 1h":
+                            if (biala1hWynik.SelectedText != "") Clipboard.SetText(biala1hWynik.SelectedText);
+                            break;
+                        case "Biała 2h":
+                            if (biala2hWynik.SelectedText != "") Clipboard.SetText(biala2hWynik.SelectedText);
+                            break;
+                        case "Palna 1h":
+                            if (palna1hWynik.SelectedText != "") Clipboard.SetText(palna1hWynik.SelectedText);
+                            break;
+                        case "Palna 2h":
+                            if (palna2hWynik.SelectedText != "") Clipboard.SetText(palna2hWynik.SelectedText);
+                            break;
+                        case "Dystansowa":
+                            if (dystansWynik.SelectedText != "") Clipboard.SetText(dystansWynik.SelectedText);
+                            break;
+                    }
                     break;
-                case "Zbroja":
-                    if (zbrojaWynik.SelectedText != "") Clipboard.SetText(zbrojaWynik.SelectedText);
-                    break;
-                case "Spodnie":
-                    if (spodnieWynik.SelectedText != "") Clipboard.SetText(spodnieWynik.SelectedText);
-                    break;
-                case "Pierścień":
-                    if (pierscienWynik.SelectedText != "") Clipboard.SetText(pierscienWynik.SelectedText);
-                    break;
-                case "Amulet":
-                    if (amuletWynik.SelectedText != "") Clipboard.SetText(amuletWynik.SelectedText);
-                    break;
-                case "Biała 1h":
-                    if (biala1hWynik.SelectedText != "") Clipboard.SetText(biala1hWynik.SelectedText);
-                    break;
-                case "Biała 2h":
-                    if (biala2hWynik.SelectedText != "") Clipboard.SetText(biala2hWynik.SelectedText);
-                    break;
-                case "Palna 1h":
-                    if (palna1hWynik.SelectedText != "") Clipboard.SetText(palna1hWynik.SelectedText);
-                    break;
-                case "Palna 2h":
-                    if (palna2hWynik.SelectedText != "") Clipboard.SetText(palna2hWynik.SelectedText);
-                    break;
-                case "Dystans":
-                    if (dystansWynik.SelectedText != "") Clipboard.SetText(dystansWynik.SelectedText);
-                    break;
-                case "Analizator raportu":
+                case "Analizator raportu łączenia":
                     if (AnalizatorRaportuTekst.SelectedText != "") Clipboard.SetText(AnalizatorRaportuTekst.SelectedText);
                     break;
                 case "Analizator łączeń":
                     if (przedmiotyDoAnalizy.SelectedText != "") Clipboard.SetText(przedmiotyDoAnalizy.SelectedText);
                     break;
+                case "Analizator raportu walki":
+                    if (rtbAnalizatorWalk.SelectedText != "") Clipboard.SetText(rtbAnalizatorWalk.SelectedText);
+                    break;
             }
+            
         }
 
         private void KopiujWszystkoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Kopiuj wszystko do schowka systemowego
-            switch (GlownyTab.SelectedTab.Text)
+            switch (tabControl1.SelectedTab.Text)
             {
-                case "Hełm":
-                    if (helmWynik.Text != "") Clipboard.SetText(helmWynik.Text);
+                case "Łączenie Ręczne / Tabele Łączeń":
+                    switch (GlownyTab.SelectedTab.Text)
+                    {
+                        case "Hełm":
+                            if (helmWynik.Text != "") Clipboard.SetText(helmWynik.Text);
+                            break;
+                        case "Zbroja":
+                            if (zbrojaWynik.Text != "") Clipboard.SetText(zbrojaWynik.Text);
+                            break;
+                        case "Spodnie":
+                            if (spodnieWynik.Text != "") Clipboard.SetText(spodnieWynik.Text);
+                            break;
+                        case "Pierścień":
+                            if (pierscienWynik.Text != "") Clipboard.SetText(pierscienWynik.Text);
+                            break;
+                        case "Amulet":
+                            if (amuletWynik.Text != "") Clipboard.SetText(amuletWynik.Text);
+                            break;
+                        case "Biała 1h":
+                            if (biala1hWynik.Text != "") Clipboard.SetText(biala1hWynik.Text);
+                            break;
+                        case "Biała 2h":
+                            if (biala2hWynik.Text != "") Clipboard.SetText(biala2hWynik.Text);
+                            break;
+                        case "Palna 1h":
+                            if (palna1hWynik.Text != "") Clipboard.SetText(palna1hWynik.Text);
+                            break;
+                        case "Palna 2h":
+                            if (palna2hWynik.Text != "") Clipboard.SetText(palna2hWynik.Text);
+                            break;
+                        case "Dystans":
+                            if (dystansWynik.Text != "") Clipboard.SetText(dystansWynik.Text);
+                            break;
+                    }
                     break;
-                case "Zbroja":
-                    if (zbrojaWynik.Text != "") Clipboard.SetText(zbrojaWynik.Text);
-                    break;
-                case "Spodnie":
-                    if (spodnieWynik.Text != "") Clipboard.SetText(spodnieWynik.Text);
-                    break;
-                case "Pierścień":
-                    if (pierscienWynik.Text != "") Clipboard.SetText(pierscienWynik.Text);
-                    break;
-                case "Amulet":
-                    if (amuletWynik.Text != "") Clipboard.SetText(amuletWynik.Text);
-                    break;
-                case "Biała 1h":
-                    if (biala1hWynik.Text != "") Clipboard.SetText(biala1hWynik.Text);
-                    break;
-                case "Biała 2h":
-                    if (biala2hWynik.Text != "") Clipboard.SetText(biala2hWynik.Text);
-                    break;
-                case "Palna 1h":
-                    if (palna1hWynik.Text != "") Clipboard.SetText(palna1hWynik.Text);
-                    break;
-                case "Palna 2h":
-                    if (palna2hWynik.Text != "") Clipboard.SetText(palna2hWynik.Text);
-                    break;
-                case "Dystans":
-                    if (dystansWynik.Text != "") Clipboard.SetText(dystansWynik.Text);
-                    break;
-                case "Analizator raportu":
+                case "Analizator raportu łączenia":
                     if (AnalizatorRaportuTekst.Text != "") Clipboard.SetText(AnalizatorRaportuTekst.Text);
                     break;
                 case "Analizator łączeń":
                     if (przedmiotyDoAnalizy.Text != "") Clipboard.SetText(przedmiotyDoAnalizy.Text);
+                    break;
+                case "Analizator raportu walki":
+                    if (rtbAnalizatorWalk.Text != "") Clipboard.SetText(rtbAnalizatorWalk.Text);
                     break;
             }
         }
@@ -2433,43 +2467,57 @@ namespace R19_BW_laczenia
                 using (Stream a = File.Open(saveFile.FileName, FileMode.Create))
                 using (StreamWriter aa = new StreamWriter(a))
                 {
-                    switch (GlownyTab.SelectedTab.Text)
+                    switch (tabControl1.SelectedTab.Text)
                     {
-                        case "Hełm":
-                            aa.Write(helmWynik.Text);
+                        case "Łączenie Ręczne / Tabele Łączeń":
+                            switch (GlownyTab.SelectedTab.Text)
+                            {
+                                case "Hełm":
+                                    aa.Write(helmWynik.Text);
+                                    break;
+                                case "Zbroja":
+                                    aa.Write(zbrojaWynik.Text);
+                                    break;
+                                case "Spodnie":
+                                    aa.Write(spodnieWynik.Text);
+                                    break;
+                                case "Pierścień":
+                                    aa.Write(pierscienWynik.Text);
+                                    break;
+                                case "Amulet":
+                                    aa.Write(amuletWynik.Text);
+                                    break;
+                                case "Biała 1h":
+                                    aa.Write(biala1hWynik.Text);
+                                    break;
+                                case "Biała 2h":
+                                    aa.Write(biala2hWynik.Text);
+                                    break;
+                                case "Palna 1h":
+                                    aa.Write(palna1hWynik.Text);
+                                    break;
+                                case "Palna 2h":
+                                    aa.Write(palna2hWynik.Text);
+                                    break;
+                                case "Dystans":
+                                    aa.Write(dystansWynik.Text);
+                                    break;
+                                case "Analizator raportu":
+                                    aa.Write(AnalizatorRaportuTekst.Text);
+                                    break;
+                                case "Analizator łączeń":
+                                    aa.Write(przedmiotyDoAnalizy.Text);
+                                    break;
+                            }
                             break;
-                        case "Zbroja":
-                            aa.Write(zbrojaWynik.Text);
-                            break;
-                        case "Spodnie":
-                            aa.Write(spodnieWynik.Text);
-                            break;
-                        case "Pierścień":
-                            aa.Write(pierscienWynik.Text);
-                            break;
-                        case "Amulet":
-                            aa.Write(amuletWynik.Text);
-                            break;
-                        case "Biała 1h":
-                            aa.Write(biala1hWynik.Text);
-                            break;
-                        case "Biała 2h":
-                            aa.Write(biala2hWynik.Text);
-                            break;
-                        case "Palna 1h":
-                            aa.Write(palna1hWynik.Text);
-                            break;
-                        case "Palna 2h":
-                            aa.Write(palna2hWynik.Text);
-                            break;
-                        case "Dystans":
-                            aa.Write(dystansWynik.Text);
-                            break;
-                        case "Analizator raportu":
+                        case "Analizator raportu łączenia":
                             aa.Write(AnalizatorRaportuTekst.Text);
                             break;
                         case "Analizator łączeń":
                             aa.Write(przedmiotyDoAnalizy.Text);
+                            break;
+                        case "Analizator raportu walki":
+                            aa.Write(rtbAnalizatorWalk.Text);
                             break;
                     }
                 }
@@ -2478,8 +2526,9 @@ namespace R19_BW_laczenia
 
         private void WyczyscToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (GlownyTab.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
-            if (GlownyTab.SelectedTab.Text == "Analizator raportu") AnalizatorRaportuTekst.Clear();
+            if (tabControl1.SelectedTab.Text == "Analizator łączeń") przedmiotyDoAnalizy.Clear();
+            if (tabControl1.SelectedTab.Text == "Analizator raportu łączenia") AnalizatorRaportuTekst.Clear();
+            if (tabControl1.SelectedTab.Text == "Analizator raportu walki") rtbAnalizatorWalk.Clear();
             Czyszczenie();
         }
 
@@ -3310,6 +3359,222 @@ namespace R19_BW_laczenia
                 rozbudowanyPosredniak.Text = "Redukcja czasu budowy: " + Posredniak[(int)numPoziomPosredniaka.Value].Efekt.czasBudowy + "%";
             }
             else rozbudowanyPosredniak.Text = "Redukcja czasu budowy: Brak danych";
+        }
+
+        private void BtnAnalizatorWalk_Click(object sender, EventArgs e)
+        {
+            // Wczytanie najważniejszych linii raportu
+            List<string> raport = new List<string>();
+            raport = AnalizatorWalk.PoczatkoweWczytanie(rtbAnalizatorWalk.Text.Split('\n'));
+
+            // Wczytanie uczestników
+            List<string> uczestnicyS = new List<string>();
+            uczestnicyS = AnalizatorWalk.WczytanieUczestnikow(rtbAnalizatorWalk.Text.Split('\n'));
+            List<AnalizatorWalk> uczestnicy = new List<AnalizatorWalk>();
+
+            // Przygotowanie listy uczestników z statystykami
+            foreach (string s in uczestnicyS) uczestnicy.Add(new AnalizatorWalk(s));
+
+            // Wyczyść atakujących, obrońców i efekt
+            labAnalizatorWalkiAtakujacy.Text = "Atakujący:";
+            labAnalizatorWalkiObronca.Text = "Obrońca:";
+            labAnalizatorWalkiEfekt.Text = " ";
+
+            // Interpretacja raportu
+            foreach (string s in raport)
+            {
+                if (s.Contains("komendę"))
+                {
+                    // Komenda specjalna - Atak watahy
+                    if (s.Contains("Atak watahy") && (cbAtakWatahy.Checked == true))
+                    {
+                        string[] linia = s.Split(','); // Podzielenie linii na atakującego i obrońcę
+                        int indexAtakujacy = 0, indexObronca = 0;
+                        int indexWydaje = linia[0].IndexOf("wydaje");
+
+                        // Wyszukanie nicków atakującego i obrońcy
+                        for (int i = 0; i < uczestnicy.Count(); i++)
+                        {
+                            if (linia[0].Substring(0, indexWydaje).Contains(uczestnicy[i].nick)) indexAtakujacy = i;
+                            if (linia[2].Contains(uczestnicy[i].nick)) indexObronca = i;
+                            if ((indexAtakujacy != 0) && (indexObronca != 0)) break;
+                        }
+
+                        string[] temp = linia[2].Split(' ');
+                        int obrazenia = Convert.ToInt32(temp[temp.Count() - 3]);
+                        uczestnicy[indexAtakujacy].iloscObrazenZadanych += obrazenia; // Dodaj atakującemu zadane obrażenia
+                        uczestnicy[indexObronca].iloscObrazenOtrzymanych += obrazenia; // Dodaj obrońcy otrzymane obrażenia
+                    }
+                }
+                else if (s.Contains("specjalny"))
+                {
+                    // Atak specjalny Krwawa Aura
+                    if (s.Contains("Krwawa aura"))
+                    {
+                        string[] linia = s.Split(','); // Podzielenie linii na atakującego i obrońcę
+                        int indexAtakujacy = 0, indexObronca = 0;
+                        int indexWykonuje = linia[0].IndexOf("wykonuje");
+
+                        // Wyszukanie nicków atakującego i obrońcy
+                        for (int i = 0; i < uczestnicy.Count(); i++)
+                        {
+                            if (linia[0].Substring(0, indexWykonuje).Contains(uczestnicy[i].nick)) indexAtakujacy = i;
+                            if (linia[1].Contains(uczestnicy[i].nick)) indexObronca = i;
+                            if ((indexAtakujacy != 0) && (indexObronca != 0)) break;
+                        }
+
+                        string[] temp = linia[1].Split(' ');
+                        int obrazenia = Convert.ToInt32(temp[temp.Count() - 3]);
+                        uczestnicy[indexAtakujacy].iloscObrazenZadanych += obrazenia; // Dodaj atakującemu zadane obrażenia
+                        uczestnicy[indexObronca].iloscObrazenOtrzymanych += obrazenia; // Dodaj obrońcy otrzymane obrażenia
+                    }
+                }
+                else if (s.Contains("odzyskuje"))
+                {
+                    // Linia z regeneracją życia
+                    for (int i = 0; i < uczestnicy.Count(); i++)
+                    {
+                        if (s.Contains(uczestnicy[i].nick))
+                        {
+                            string[] temp = s.Split(' ');
+                            int regen = Convert.ToInt32(temp[temp.Count() - 3]);
+                            uczestnicy[i].iloscZregenerowanychPZ += regen;
+                            break;
+                        }
+                    }
+                }
+                else if (s.Contains(','))
+                {
+                    // Sprawdzana linia zawiera przecinek - linia ataku
+                    string[] linia = s.Split(','); // Podzielenie linii na atakującego i obrońcę
+                    int indexAtakujacy = 0, indexObronca = 0;
+                    int indexBron = linia[0].IndexOf("bron");
+                    // Wyszukanie nicków atakującego i obrońcy
+                    for (int i = 0; i < uczestnicy.Count(); i++)
+                    {
+                        if (linia[0].Substring(0, indexBron).Contains(uczestnicy[i].nick) && (indexAtakujacy == 0)) indexAtakujacy = i;
+                        if (linia[1].Contains(uczestnicy[i].nick) && (indexObronca == 0)) indexObronca = i;
+                        if ((indexAtakujacy != 0) && (indexObronca != 0)) break;
+                    }
+
+                    uczestnicy[indexAtakujacy].iloscAtakow += 1; // Dodaj atak do atakującego
+                    uczestnicy[indexObronca].iloscOtrzymanychAtakow += 1; // Dodaj otrzymany atak do obrońcy
+                    if (linia[0].Contains("cios krytyczny")) uczestnicy[indexAtakujacy].iloscKrytow += 1; // Atakujący zadał cios krytyczny
+                    if (linia[1].Contains("unika")) uczestnicy[indexObronca].iloscUnikow += 1; // Linia zawiera "unika" - obrońca uniknął trafienia
+                    else if (!linia[1].Contains("nie zostaje"))
+                    {
+                        uczestnicy[indexAtakujacy].iloscTrafien += 1; // Linia nie zawiera "nie zostaje" - obronca został trafiony
+                        string[] temp = linia[1].Split(' ');
+                        int obrazenia = Convert.ToInt32(temp[temp.Count() - 3]);
+                        uczestnicy[indexAtakujacy].iloscObrazenZadanych += obrazenia; // Dodaj atakującemu zadane obrażenia
+                        uczestnicy[indexObronca].iloscObrazenOtrzymanych += obrazenia; // Dodaj obrońcy otrzymane obrażenia
+                    }
+                    else if (linia[1].Contains("nie zostaje"))
+                    {
+                        // Obrońca nie został trafiony
+                        uczestnicy[indexObronca].iloscChybien += 1;
+                    }
+
+                    // Sprawdzenie jaką bronią atakował atakujący
+                    string bron = linia[0].Substring(linia[0].LastIndexOf("bron")).Substring(linia[0].Substring(linia[0].LastIndexOf("bron")).IndexOf(' ') + 1);
+                    if (uczestnicy[indexAtakujacy].bronie[0] == "") uczestnicy[indexAtakujacy].bronie[0] = bron;
+                    else if (uczestnicy[indexAtakujacy].bronie[0] == bron) ;// Nic nie rob
+                    else if (uczestnicy[indexAtakujacy].bronie[1] == "") uczestnicy[indexAtakujacy].bronie[1] = bron;
+                }
+                else
+                {
+                    
+                    if (s.Contains("vs"))
+                    {
+                        // Atakujący vs Obrońca
+                        string[] temp = s.Split('\t');
+                        labAnalizatorWalkiAtakujacy.Text = "Atakujący: " + temp[0];
+                        labAnalizatorWalkiObronca.Text = "Obrońca: " + temp[2];
+                    }
+                    else if (s.Contains("Efekt"))
+                    {
+                        // Ewent
+                        labAnalizatorWalkiEfekt.Text = s;
+                    }
+                }
+            }
+
+            // Dodanie wszystkich uczestników do listView
+            fastObjectListView1.Items.Clear();
+            foreach (AnalizatorWalk uczestnik in uczestnicy)
+            {
+                ListViewItem item = new ListViewItem(uczestnik.nick);
+                item.SubItems.Add(uczestnik.iloscAtakow.ToString());
+                if (uczestnik.iloscAtakow != 0) item.SubItems.Add(uczestnik.iloscTrafien.ToString() + " (" + ((uczestnik.iloscTrafien * 100) / uczestnik.iloscAtakow) + "%)");
+                else item.SubItems.Add(uczestnik.iloscTrafien.ToString());
+                if (uczestnik.iloscTrafien != 0) item.SubItems.Add(uczestnik.iloscKrytow.ToString() + " (" + ((uczestnik.iloscKrytow * 100) / uczestnik.iloscTrafien) + "%)");
+                else item.SubItems.Add(uczestnik.iloscKrytow.ToString());
+                item.SubItems.Add(uczestnik.iloscOtrzymanychAtakow.ToString());
+                if (uczestnik.iloscOtrzymanychAtakow != 0) item.SubItems.Add(uczestnik.iloscChybien.ToString() + " (" + ((uczestnik.iloscChybien * 100) / uczestnik.iloscOtrzymanychAtakow) + "%)");
+                else item.SubItems.Add(uczestnik.iloscChybien.ToString());
+                item.SubItems.Add(uczestnik.iloscUnikow.ToString());
+                item.SubItems.Add(uczestnik.iloscObrazenZadanych.ToString());
+                item.SubItems.Add(uczestnik.iloscObrazenOtrzymanych.ToString());
+                item.SubItems.Add(uczestnik.iloscZregenerowanychPZ.ToString());
+                item.SubItems.Add(uczestnik.bronie[0]);
+                item.SubItems.Add(uczestnik.bronie[1]);
+                fastObjectListView1.Items.Add(item);
+            }
+        }
+
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedTab.Text)
+            {
+                case "Łączenie Ręczne / Tabele Łączeń":
+                    wklejToolStripMenuItem.Enabled = false;
+                    kopiujToolStripMenuItem.Enabled = true;
+                    kopiujWszystkoToolStripMenuItem.Enabled = true;
+                    zapiszToolStripMenuItem.Enabled = true;
+                    wyczyscToolStripMenuItem.Enabled = true;
+                    schowekToolStripMenuItem.Enabled = true;
+                    break;
+                case "Analizator raportu łączenia":
+                    wklejToolStripMenuItem.Enabled = true;
+                    kopiujToolStripMenuItem.Enabled = true;
+                    kopiujWszystkoToolStripMenuItem.Enabled = true;
+                    zapiszToolStripMenuItem.Enabled = true;
+                    wyczyscToolStripMenuItem.Enabled = true;
+                    schowekToolStripMenuItem.Enabled = false;
+                    break;
+                case "Analizator łączeń":
+                    wklejToolStripMenuItem.Enabled = true;
+                    kopiujToolStripMenuItem.Enabled = true;
+                    kopiujWszystkoToolStripMenuItem.Enabled = true;
+                    zapiszToolStripMenuItem.Enabled = true;
+                    wyczyscToolStripMenuItem.Enabled = true;
+                    schowekToolStripMenuItem.Enabled = false;
+                    break;
+                case "Analizator raportu walki":
+                    wklejToolStripMenuItem.Enabled = true;
+                    kopiujToolStripMenuItem.Enabled = true;
+                    kopiujWszystkoToolStripMenuItem.Enabled = true;
+                    zapiszToolStripMenuItem.Enabled = true;
+                    wyczyscToolStripMenuItem.Enabled = true;
+                    schowekToolStripMenuItem.Enabled = false;
+                    break;
+                case "Plac Budowy":
+                    wklejToolStripMenuItem.Enabled = false;
+                    kopiujToolStripMenuItem.Enabled = true;
+                    kopiujWszystkoToolStripMenuItem.Enabled = true;
+                    zapiszToolStripMenuItem.Enabled = true;
+                    wyczyscToolStripMenuItem.Enabled = false;
+                    schowekToolStripMenuItem.Enabled = false;
+                    break;
+                default:
+                    wklejToolStripMenuItem.Enabled = false;
+                    kopiujToolStripMenuItem.Enabled = false;
+                    kopiujWszystkoToolStripMenuItem.Enabled = false;
+                    zapiszToolStripMenuItem.Enabled = false;
+                    wyczyscToolStripMenuItem.Enabled = false;
+                    schowekToolStripMenuItem.Enabled = false;
+                    break;
+            }
         }
     }
 }

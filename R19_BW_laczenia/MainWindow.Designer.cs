@@ -414,7 +414,24 @@
             this.label16 = new System.Windows.Forms.Label();
             this.listaTypowPrzedmiotow = new System.Windows.Forms.ComboBox();
             this.analizatorLaczenPomoc = new System.Windows.Forms.Button();
+            this.TabAnalizatorWalk = new System.Windows.Forms.TabPage();
+            this.panel43 = new System.Windows.Forms.Panel();
+            this.panel46 = new System.Windows.Forms.Panel();
+            this.panel45 = new System.Windows.Forms.Panel();
+            this.labAnalizatorWalkiEfekt = new System.Windows.Forms.Label();
+            this.labAnalizatorWalkiObronca = new System.Windows.Forms.Label();
+            this.labAnalizatorWalkiAtakujacy = new System.Windows.Forms.Label();
+            this.panel39 = new System.Windows.Forms.Panel();
+            this.panel42 = new System.Windows.Forms.Panel();
+            this.rtbAnalizatorWalk = new System.Windows.Forms.RichTextBox();
+            this.panel44 = new System.Windows.Forms.Panel();
+            this.cbAtakWatahy = new System.Windows.Forms.CheckBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.panel41 = new System.Windows.Forms.Panel();
+            this.btnAnalizatorWalk = new System.Windows.Forms.Button();
+            this.panel40 = new System.Windows.Forms.Panel();
             this.tabPlacBudowy = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
             this.panel38 = new System.Windows.Forms.Panel();
             this.cbPlacBudowyLatwosc = new System.Windows.Forms.CheckBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -440,7 +457,19 @@
             this.label23 = new System.Windows.Forms.Label();
             this.rtbPlacBodowyKoszty = new System.Windows.Forms.RichTextBox();
             this.versionWorker = new System.ComponentModel.BackgroundWorker();
-            this.label30 = new System.Windows.Forms.Label();
+            this.fastObjectListView1 = new BrightIdeasSoftware.FastObjectListView();
+            this.Nick = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscAtakow = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscTrafien = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscKrytow = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscOtrzymanychAtakow = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscChybionychOtrzymanychAtakow = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscUnikow = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscObrazenZadanych = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscObrazenOtrzymanych = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IloscZregenerowanychPZ = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.Bron1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.Bron2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabReczneTabele.SuspendLayout();
@@ -531,6 +560,14 @@
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.TabAnalizatorWalk.SuspendLayout();
+            this.panel43.SuspendLayout();
+            this.panel46.SuspendLayout();
+            this.panel45.SuspendLayout();
+            this.panel39.SuspendLayout();
+            this.panel42.SuspendLayout();
+            this.panel44.SuspendLayout();
+            this.panel41.SuspendLayout();
             this.tabPlacBudowy.SuspendLayout();
             this.panel38.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLatwosc)).BeginInit();
@@ -540,6 +577,7 @@
             this.panel34.SuspendLayout();
             this.panel35.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poziomRozbudowy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastObjectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ByMe
@@ -585,7 +623,7 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label21.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label21.Location = new System.Drawing.Point(134, 505);
+            this.label21.Location = new System.Drawing.Point(134, 504);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(95, 13);
@@ -739,6 +777,7 @@
             this.tabControl1.Controls.Add(this.tabReczneTabele);
             this.tabControl1.Controls.Add(this.TabAnalizator);
             this.tabControl1.Controls.Add(this.TabLaczenia);
+            this.tabControl1.Controls.Add(this.TabAnalizatorWalk);
             this.tabControl1.Controls.Add(this.tabPlacBudowy);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -748,6 +787,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(984, 561);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // tabReczneTabele
             // 
@@ -1106,9 +1146,9 @@
             this.TabZbroja.Controls.Add(this.panel17);
             this.TabZbroja.Controls.Add(this.panel16);
             this.TabZbroja.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabZbroja.Location = new System.Drawing.Point(4, 28);
+            this.TabZbroja.Location = new System.Drawing.Point(4, 29);
             this.TabZbroja.Name = "TabZbroja";
-            this.TabZbroja.Size = new System.Drawing.Size(968, 497);
+            this.TabZbroja.Size = new System.Drawing.Size(968, 495);
             this.TabZbroja.TabIndex = 1;
             this.TabZbroja.Text = "Zbroja";
             // 
@@ -1120,7 +1160,7 @@
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Name = "panel17";
             this.panel17.Padding = new System.Windows.Forms.Padding(5);
-            this.panel17.Size = new System.Drawing.Size(586, 497);
+            this.panel17.Size = new System.Drawing.Size(586, 495);
             this.panel17.TabIndex = 18;
             // 
             // zbrojaWynik
@@ -1131,7 +1171,7 @@
             this.zbrojaWynik.Location = new System.Drawing.Point(5, 5);
             this.zbrojaWynik.Name = "zbrojaWynik";
             this.zbrojaWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.zbrojaWynik.Size = new System.Drawing.Size(576, 487);
+            this.zbrojaWynik.Size = new System.Drawing.Size(576, 485);
             this.zbrojaWynik.TabIndex = 5;
             this.zbrojaWynik.Text = "";
             // 
@@ -1153,7 +1193,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel16.Location = new System.Drawing.Point(586, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(382, 497);
+            this.panel16.Size = new System.Drawing.Size(382, 495);
             this.panel16.TabIndex = 17;
             // 
             // cbZbrojaPref
@@ -1181,7 +1221,7 @@
             this.ZbrojaPanel.Controls.Add(this.cbZbrojaPref_sh1);
             this.ZbrojaPanel.Controls.Add(this.cbZbrojaBaza_sh1);
             this.ZbrojaPanel.Controls.Add(this.cbZbrojaSuf_sh1);
-            this.ZbrojaPanel.Location = new System.Drawing.Point(4, 362);
+            this.ZbrojaPanel.Location = new System.Drawing.Point(4, 360);
             this.ZbrojaPanel.Name = "ZbrojaPanel";
             this.ZbrojaPanel.Size = new System.Drawing.Size(375, 130);
             this.ZbrojaPanel.TabIndex = 10;
@@ -1426,9 +1466,9 @@
             this.TabSpodnie.Controls.Add(this.panel19);
             this.TabSpodnie.Controls.Add(this.panel18);
             this.TabSpodnie.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabSpodnie.Location = new System.Drawing.Point(4, 28);
+            this.TabSpodnie.Location = new System.Drawing.Point(4, 29);
             this.TabSpodnie.Name = "TabSpodnie";
-            this.TabSpodnie.Size = new System.Drawing.Size(968, 497);
+            this.TabSpodnie.Size = new System.Drawing.Size(968, 495);
             this.TabSpodnie.TabIndex = 2;
             this.TabSpodnie.Text = "Spodnie";
             // 
@@ -1440,7 +1480,7 @@
             this.panel19.Location = new System.Drawing.Point(0, 0);
             this.panel19.Name = "panel19";
             this.panel19.Padding = new System.Windows.Forms.Padding(5);
-            this.panel19.Size = new System.Drawing.Size(586, 497);
+            this.panel19.Size = new System.Drawing.Size(586, 495);
             this.panel19.TabIndex = 24;
             // 
             // spodnieWynik
@@ -1451,7 +1491,7 @@
             this.spodnieWynik.Location = new System.Drawing.Point(5, 5);
             this.spodnieWynik.Name = "spodnieWynik";
             this.spodnieWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.spodnieWynik.Size = new System.Drawing.Size(576, 487);
+            this.spodnieWynik.Size = new System.Drawing.Size(576, 485);
             this.spodnieWynik.TabIndex = 10;
             this.spodnieWynik.Text = "";
             // 
@@ -1473,7 +1513,7 @@
             this.panel18.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel18.Location = new System.Drawing.Point(586, 0);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(382, 497);
+            this.panel18.Size = new System.Drawing.Size(382, 495);
             this.panel18.TabIndex = 23;
             // 
             // cbSpodniePref
@@ -1501,7 +1541,7 @@
             this.SpodniePanel.Controls.Add(this.cbSpodniePref_sh1);
             this.SpodniePanel.Controls.Add(this.cbSpodnieBaza_sh1);
             this.SpodniePanel.Controls.Add(this.cbSpodnieSuf_sh1);
-            this.SpodniePanel.Location = new System.Drawing.Point(4, 362);
+            this.SpodniePanel.Location = new System.Drawing.Point(4, 360);
             this.SpodniePanel.Name = "SpodniePanel";
             this.SpodniePanel.Size = new System.Drawing.Size(375, 130);
             this.SpodniePanel.TabIndex = 15;
@@ -1746,9 +1786,9 @@
             this.TabPierscien.Controls.Add(this.panel21);
             this.TabPierscien.Controls.Add(this.panel20);
             this.TabPierscien.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabPierscien.Location = new System.Drawing.Point(4, 28);
+            this.TabPierscien.Location = new System.Drawing.Point(4, 29);
             this.TabPierscien.Name = "TabPierscien";
-            this.TabPierscien.Size = new System.Drawing.Size(968, 497);
+            this.TabPierscien.Size = new System.Drawing.Size(968, 495);
             this.TabPierscien.TabIndex = 3;
             this.TabPierscien.Text = "Pierścień";
             // 
@@ -1760,7 +1800,7 @@
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
             this.panel21.Padding = new System.Windows.Forms.Padding(5);
-            this.panel21.Size = new System.Drawing.Size(586, 497);
+            this.panel21.Size = new System.Drawing.Size(586, 495);
             this.panel21.TabIndex = 29;
             // 
             // pierscienWynik
@@ -1771,7 +1811,7 @@
             this.pierscienWynik.Location = new System.Drawing.Point(5, 5);
             this.pierscienWynik.Name = "pierscienWynik";
             this.pierscienWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.pierscienWynik.Size = new System.Drawing.Size(576, 487);
+            this.pierscienWynik.Size = new System.Drawing.Size(576, 485);
             this.pierscienWynik.TabIndex = 15;
             this.pierscienWynik.Text = "";
             // 
@@ -1793,7 +1833,7 @@
             this.panel20.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel20.Location = new System.Drawing.Point(586, 0);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(382, 497);
+            this.panel20.Size = new System.Drawing.Size(382, 495);
             this.panel20.TabIndex = 28;
             // 
             // cbPierscienPref
@@ -1821,7 +1861,7 @@
             this.PierscienPanel.Controls.Add(this.cbPierscienPref_sh1);
             this.PierscienPanel.Controls.Add(this.cbPierscienBaza_sh1);
             this.PierscienPanel.Controls.Add(this.cbPierscienSuf_sh1);
-            this.PierscienPanel.Location = new System.Drawing.Point(4, 362);
+            this.PierscienPanel.Location = new System.Drawing.Point(4, 360);
             this.PierscienPanel.Name = "PierscienPanel";
             this.PierscienPanel.Size = new System.Drawing.Size(375, 130);
             this.PierscienPanel.TabIndex = 20;
@@ -2066,9 +2106,9 @@
             this.TabAmulet.Controls.Add(this.panel23);
             this.TabAmulet.Controls.Add(this.panel22);
             this.TabAmulet.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabAmulet.Location = new System.Drawing.Point(4, 28);
+            this.TabAmulet.Location = new System.Drawing.Point(4, 29);
             this.TabAmulet.Name = "TabAmulet";
-            this.TabAmulet.Size = new System.Drawing.Size(968, 497);
+            this.TabAmulet.Size = new System.Drawing.Size(968, 495);
             this.TabAmulet.TabIndex = 4;
             this.TabAmulet.Text = "Amulet";
             // 
@@ -2080,7 +2120,7 @@
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Name = "panel23";
             this.panel23.Padding = new System.Windows.Forms.Padding(5);
-            this.panel23.Size = new System.Drawing.Size(586, 497);
+            this.panel23.Size = new System.Drawing.Size(586, 495);
             this.panel23.TabIndex = 34;
             // 
             // amuletWynik
@@ -2091,7 +2131,7 @@
             this.amuletWynik.Location = new System.Drawing.Point(5, 5);
             this.amuletWynik.Name = "amuletWynik";
             this.amuletWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.amuletWynik.Size = new System.Drawing.Size(576, 487);
+            this.amuletWynik.Size = new System.Drawing.Size(576, 485);
             this.amuletWynik.TabIndex = 20;
             this.amuletWynik.Text = "";
             // 
@@ -2113,7 +2153,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(586, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(382, 497);
+            this.panel22.Size = new System.Drawing.Size(382, 495);
             this.panel22.TabIndex = 33;
             // 
             // cbAmuletPref
@@ -2141,7 +2181,7 @@
             this.AmuletPanel.Controls.Add(this.cbAmuletPref_sh1);
             this.AmuletPanel.Controls.Add(this.cbAmuletBaza_sh1);
             this.AmuletPanel.Controls.Add(this.cbAmuletSuf_sh1);
-            this.AmuletPanel.Location = new System.Drawing.Point(4, 362);
+            this.AmuletPanel.Location = new System.Drawing.Point(4, 360);
             this.AmuletPanel.Name = "AmuletPanel";
             this.AmuletPanel.Size = new System.Drawing.Size(375, 130);
             this.AmuletPanel.TabIndex = 25;
@@ -2386,9 +2426,9 @@
             this.TabBiala1h.Controls.Add(this.panel25);
             this.TabBiala1h.Controls.Add(this.panel24);
             this.TabBiala1h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabBiala1h.Location = new System.Drawing.Point(4, 28);
+            this.TabBiala1h.Location = new System.Drawing.Point(4, 29);
             this.TabBiala1h.Name = "TabBiala1h";
-            this.TabBiala1h.Size = new System.Drawing.Size(968, 497);
+            this.TabBiala1h.Size = new System.Drawing.Size(968, 495);
             this.TabBiala1h.TabIndex = 5;
             this.TabBiala1h.Text = "Biała 1h";
             // 
@@ -2400,7 +2440,7 @@
             this.panel25.Location = new System.Drawing.Point(0, 0);
             this.panel25.Name = "panel25";
             this.panel25.Padding = new System.Windows.Forms.Padding(5);
-            this.panel25.Size = new System.Drawing.Size(586, 497);
+            this.panel25.Size = new System.Drawing.Size(586, 495);
             this.panel25.TabIndex = 39;
             // 
             // biala1hWynik
@@ -2411,7 +2451,7 @@
             this.biala1hWynik.Location = new System.Drawing.Point(5, 5);
             this.biala1hWynik.Name = "biala1hWynik";
             this.biala1hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.biala1hWynik.Size = new System.Drawing.Size(576, 487);
+            this.biala1hWynik.Size = new System.Drawing.Size(576, 485);
             this.biala1hWynik.TabIndex = 25;
             this.biala1hWynik.Text = "";
             // 
@@ -2433,7 +2473,7 @@
             this.panel24.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel24.Location = new System.Drawing.Point(586, 0);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(382, 497);
+            this.panel24.Size = new System.Drawing.Size(382, 495);
             this.panel24.TabIndex = 38;
             // 
             // cbBiala1hPref
@@ -2461,7 +2501,7 @@
             this.Biala1hPanel.Controls.Add(this.cbBiala1hPref_sh1);
             this.Biala1hPanel.Controls.Add(this.cbBiala1hBaza_sh1);
             this.Biala1hPanel.Controls.Add(this.cbBiala1hSuf_sh1);
-            this.Biala1hPanel.Location = new System.Drawing.Point(4, 362);
+            this.Biala1hPanel.Location = new System.Drawing.Point(4, 360);
             this.Biala1hPanel.Name = "Biala1hPanel";
             this.Biala1hPanel.Size = new System.Drawing.Size(375, 130);
             this.Biala1hPanel.TabIndex = 30;
@@ -2706,9 +2746,9 @@
             this.TabBiala2h.Controls.Add(this.panel27);
             this.TabBiala2h.Controls.Add(this.panel26);
             this.TabBiala2h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabBiala2h.Location = new System.Drawing.Point(4, 28);
+            this.TabBiala2h.Location = new System.Drawing.Point(4, 29);
             this.TabBiala2h.Name = "TabBiala2h";
-            this.TabBiala2h.Size = new System.Drawing.Size(968, 497);
+            this.TabBiala2h.Size = new System.Drawing.Size(968, 495);
             this.TabBiala2h.TabIndex = 6;
             this.TabBiala2h.Text = "Biała 2h";
             // 
@@ -2720,7 +2760,7 @@
             this.panel27.Location = new System.Drawing.Point(0, 0);
             this.panel27.Name = "panel27";
             this.panel27.Padding = new System.Windows.Forms.Padding(5);
-            this.panel27.Size = new System.Drawing.Size(586, 497);
+            this.panel27.Size = new System.Drawing.Size(586, 495);
             this.panel27.TabIndex = 44;
             // 
             // biala2hWynik
@@ -2731,7 +2771,7 @@
             this.biala2hWynik.Location = new System.Drawing.Point(5, 5);
             this.biala2hWynik.Name = "biala2hWynik";
             this.biala2hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.biala2hWynik.Size = new System.Drawing.Size(576, 487);
+            this.biala2hWynik.Size = new System.Drawing.Size(576, 485);
             this.biala2hWynik.TabIndex = 30;
             this.biala2hWynik.Text = "";
             // 
@@ -2753,7 +2793,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel26.Location = new System.Drawing.Point(586, 0);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(382, 497);
+            this.panel26.Size = new System.Drawing.Size(382, 495);
             this.panel26.TabIndex = 43;
             // 
             // cbBiala2hPref
@@ -2781,7 +2821,7 @@
             this.Biala2hPanel.Controls.Add(this.cbBiala2hPref_sh1);
             this.Biala2hPanel.Controls.Add(this.cbBiala2hBaza_sh1);
             this.Biala2hPanel.Controls.Add(this.cbBiala2hSuf_sh1);
-            this.Biala2hPanel.Location = new System.Drawing.Point(4, 362);
+            this.Biala2hPanel.Location = new System.Drawing.Point(4, 360);
             this.Biala2hPanel.Name = "Biala2hPanel";
             this.Biala2hPanel.Size = new System.Drawing.Size(375, 130);
             this.Biala2hPanel.TabIndex = 35;
@@ -3026,9 +3066,9 @@
             this.TabPalna1h.Controls.Add(this.panel29);
             this.TabPalna1h.Controls.Add(this.panel28);
             this.TabPalna1h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabPalna1h.Location = new System.Drawing.Point(4, 28);
+            this.TabPalna1h.Location = new System.Drawing.Point(4, 29);
             this.TabPalna1h.Name = "TabPalna1h";
-            this.TabPalna1h.Size = new System.Drawing.Size(968, 497);
+            this.TabPalna1h.Size = new System.Drawing.Size(968, 495);
             this.TabPalna1h.TabIndex = 7;
             this.TabPalna1h.Text = "Palna 1h";
             // 
@@ -3040,7 +3080,7 @@
             this.panel29.Location = new System.Drawing.Point(0, 0);
             this.panel29.Name = "panel29";
             this.panel29.Padding = new System.Windows.Forms.Padding(5);
-            this.panel29.Size = new System.Drawing.Size(586, 497);
+            this.panel29.Size = new System.Drawing.Size(586, 495);
             this.panel29.TabIndex = 49;
             // 
             // palna1hWynik
@@ -3051,7 +3091,7 @@
             this.palna1hWynik.Location = new System.Drawing.Point(5, 5);
             this.palna1hWynik.Name = "palna1hWynik";
             this.palna1hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.palna1hWynik.Size = new System.Drawing.Size(576, 487);
+            this.palna1hWynik.Size = new System.Drawing.Size(576, 485);
             this.palna1hWynik.TabIndex = 35;
             this.palna1hWynik.Text = "";
             // 
@@ -3073,7 +3113,7 @@
             this.panel28.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel28.Location = new System.Drawing.Point(586, 0);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(382, 497);
+            this.panel28.Size = new System.Drawing.Size(382, 495);
             this.panel28.TabIndex = 48;
             // 
             // cbPalna1hPref
@@ -3101,7 +3141,7 @@
             this.Palna1hPanel.Controls.Add(this.cbPalna1hPref_sh1);
             this.Palna1hPanel.Controls.Add(this.cbPalna1hBaza_sh1);
             this.Palna1hPanel.Controls.Add(this.cbPalna1hSuf_sh1);
-            this.Palna1hPanel.Location = new System.Drawing.Point(4, 362);
+            this.Palna1hPanel.Location = new System.Drawing.Point(4, 360);
             this.Palna1hPanel.Name = "Palna1hPanel";
             this.Palna1hPanel.Size = new System.Drawing.Size(375, 130);
             this.Palna1hPanel.TabIndex = 40;
@@ -3346,9 +3386,9 @@
             this.TabPalna2h.Controls.Add(this.panel31);
             this.TabPalna2h.Controls.Add(this.panel30);
             this.TabPalna2h.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabPalna2h.Location = new System.Drawing.Point(4, 28);
+            this.TabPalna2h.Location = new System.Drawing.Point(4, 29);
             this.TabPalna2h.Name = "TabPalna2h";
-            this.TabPalna2h.Size = new System.Drawing.Size(968, 497);
+            this.TabPalna2h.Size = new System.Drawing.Size(968, 495);
             this.TabPalna2h.TabIndex = 8;
             this.TabPalna2h.Text = "Palna 2h";
             // 
@@ -3360,7 +3400,7 @@
             this.panel31.Location = new System.Drawing.Point(0, 0);
             this.panel31.Name = "panel31";
             this.panel31.Padding = new System.Windows.Forms.Padding(5);
-            this.panel31.Size = new System.Drawing.Size(586, 497);
+            this.panel31.Size = new System.Drawing.Size(586, 495);
             this.panel31.TabIndex = 54;
             // 
             // palna2hWynik
@@ -3371,7 +3411,7 @@
             this.palna2hWynik.Location = new System.Drawing.Point(5, 5);
             this.palna2hWynik.Name = "palna2hWynik";
             this.palna2hWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.palna2hWynik.Size = new System.Drawing.Size(576, 487);
+            this.palna2hWynik.Size = new System.Drawing.Size(576, 485);
             this.palna2hWynik.TabIndex = 40;
             this.palna2hWynik.Text = "";
             // 
@@ -3393,7 +3433,7 @@
             this.panel30.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel30.Location = new System.Drawing.Point(586, 0);
             this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(382, 497);
+            this.panel30.Size = new System.Drawing.Size(382, 495);
             this.panel30.TabIndex = 53;
             // 
             // cbPalna2hPref
@@ -3421,7 +3461,7 @@
             this.Palna2hPanel.Controls.Add(this.cbPalna2hPref_sh1);
             this.Palna2hPanel.Controls.Add(this.cbPalna2hBaza_sh1);
             this.Palna2hPanel.Controls.Add(this.cbPalna2hSuf_sh1);
-            this.Palna2hPanel.Location = new System.Drawing.Point(4, 362);
+            this.Palna2hPanel.Location = new System.Drawing.Point(4, 360);
             this.Palna2hPanel.Name = "Palna2hPanel";
             this.Palna2hPanel.Size = new System.Drawing.Size(375, 130);
             this.Palna2hPanel.TabIndex = 45;
@@ -3666,9 +3706,9 @@
             this.TabDystans.Controls.Add(this.panel33);
             this.TabDystans.Controls.Add(this.panel32);
             this.TabDystans.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TabDystans.Location = new System.Drawing.Point(4, 28);
+            this.TabDystans.Location = new System.Drawing.Point(4, 29);
             this.TabDystans.Name = "TabDystans";
-            this.TabDystans.Size = new System.Drawing.Size(968, 497);
+            this.TabDystans.Size = new System.Drawing.Size(968, 495);
             this.TabDystans.TabIndex = 9;
             this.TabDystans.Text = "Dystansowa";
             // 
@@ -3680,7 +3720,7 @@
             this.panel33.Location = new System.Drawing.Point(0, 0);
             this.panel33.Name = "panel33";
             this.panel33.Padding = new System.Windows.Forms.Padding(5);
-            this.panel33.Size = new System.Drawing.Size(586, 497);
+            this.panel33.Size = new System.Drawing.Size(586, 495);
             this.panel33.TabIndex = 57;
             // 
             // dystansWynik
@@ -3691,7 +3731,7 @@
             this.dystansWynik.Location = new System.Drawing.Point(5, 5);
             this.dystansWynik.Name = "dystansWynik";
             this.dystansWynik.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.dystansWynik.Size = new System.Drawing.Size(576, 487);
+            this.dystansWynik.Size = new System.Drawing.Size(576, 485);
             this.dystansWynik.TabIndex = 35;
             this.dystansWynik.Text = "";
             // 
@@ -3713,7 +3753,7 @@
             this.panel32.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel32.Location = new System.Drawing.Point(586, 0);
             this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(382, 497);
+            this.panel32.Size = new System.Drawing.Size(382, 495);
             this.panel32.TabIndex = 56;
             // 
             // cbDystansPref
@@ -3741,7 +3781,7 @@
             this.DystansPanel.Controls.Add(this.cbDystansPref_sh1);
             this.DystansPanel.Controls.Add(this.cbDystansBaza_sh1);
             this.DystansPanel.Controls.Add(this.cbDystansSuf_sh1);
-            this.DystansPanel.Location = new System.Drawing.Point(4, 362);
+            this.DystansPanel.Location = new System.Drawing.Point(4, 360);
             this.DystansPanel.Name = "DystansPanel";
             this.DystansPanel.Size = new System.Drawing.Size(375, 130);
             this.DystansPanel.TabIndex = 46;
@@ -3986,9 +4026,9 @@
             this.TabAnalizator.Controls.Add(this.panel13);
             this.TabAnalizator.Controls.Add(this.panel12);
             this.TabAnalizator.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.TabAnalizator.Location = new System.Drawing.Point(4, 28);
+            this.TabAnalizator.Location = new System.Drawing.Point(4, 29);
             this.TabAnalizator.Name = "TabAnalizator";
-            this.TabAnalizator.Size = new System.Drawing.Size(976, 529);
+            this.TabAnalizator.Size = new System.Drawing.Size(976, 528);
             this.TabAnalizator.TabIndex = 11;
             this.TabAnalizator.Text = "Analizator raportu łączenia";
             // 
@@ -4000,7 +4040,7 @@
             this.panel13.Location = new System.Drawing.Point(0, 0);
             this.panel13.Name = "panel13";
             this.panel13.Padding = new System.Windows.Forms.Padding(5);
-            this.panel13.Size = new System.Drawing.Size(676, 529);
+            this.panel13.Size = new System.Drawing.Size(676, 528);
             this.panel13.TabIndex = 68;
             // 
             // AnalizatorRaportuTekst
@@ -4011,7 +4051,7 @@
             this.AnalizatorRaportuTekst.Location = new System.Drawing.Point(5, 5);
             this.AnalizatorRaportuTekst.Name = "AnalizatorRaportuTekst";
             this.AnalizatorRaportuTekst.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.AnalizatorRaportuTekst.Size = new System.Drawing.Size(666, 519);
+            this.AnalizatorRaportuTekst.Size = new System.Drawing.Size(666, 518);
             this.AnalizatorRaportuTekst.TabIndex = 36;
             this.AnalizatorRaportuTekst.Text = "";
             // 
@@ -4026,7 +4066,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel12.Location = new System.Drawing.Point(676, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(300, 529);
+            this.panel12.Size = new System.Drawing.Size(300, 528);
             this.panel12.TabIndex = 67;
             // 
             // panel7
@@ -4313,7 +4353,7 @@
             // 
             this.analizRapFontPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.analizRapFontPlus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.analizRapFontPlus.Location = new System.Drawing.Point(233, 498);
+            this.analizRapFontPlus.Location = new System.Drawing.Point(233, 497);
             this.analizRapFontPlus.Margin = new System.Windows.Forms.Padding(2);
             this.analizRapFontPlus.Name = "analizRapFontPlus";
             this.analizRapFontPlus.Size = new System.Drawing.Size(28, 24);
@@ -4327,7 +4367,7 @@
             // 
             this.analizRapFontMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.analizRapFontMinus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.analizRapFontMinus.Location = new System.Drawing.Point(265, 498);
+            this.analizRapFontMinus.Location = new System.Drawing.Point(265, 497);
             this.analizRapFontMinus.Margin = new System.Windows.Forms.Padding(2);
             this.analizRapFontMinus.Name = "analizRapFontMinus";
             this.analizRapFontMinus.Size = new System.Drawing.Size(28, 24);
@@ -4343,9 +4383,9 @@
             this.TabLaczenia.Controls.Add(this.panel10);
             this.TabLaczenia.Controls.Add(this.panel9);
             this.TabLaczenia.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.TabLaczenia.Location = new System.Drawing.Point(4, 28);
+            this.TabLaczenia.Location = new System.Drawing.Point(4, 29);
             this.TabLaczenia.Name = "TabLaczenia";
-            this.TabLaczenia.Size = new System.Drawing.Size(976, 529);
+            this.TabLaczenia.Size = new System.Drawing.Size(976, 528);
             this.TabLaczenia.TabIndex = 12;
             this.TabLaczenia.Text = "Analizator łączeń";
             // 
@@ -4357,7 +4397,7 @@
             this.panel11.Location = new System.Drawing.Point(0, 35);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(5);
-            this.panel11.Size = new System.Drawing.Size(531, 494);
+            this.panel11.Size = new System.Drawing.Size(531, 493);
             this.panel11.TabIndex = 65;
             // 
             // przedmiotyDoAnalizy
@@ -4367,7 +4407,7 @@
             this.przedmiotyDoAnalizy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.przedmiotyDoAnalizy.Location = new System.Drawing.Point(5, 5);
             this.przedmiotyDoAnalizy.Name = "przedmiotyDoAnalizy";
-            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(521, 484);
+            this.przedmiotyDoAnalizy.Size = new System.Drawing.Size(521, 483);
             this.przedmiotyDoAnalizy.TabIndex = 37;
             this.przedmiotyDoAnalizy.Text = "Wklej tutaj listę przedmiotów do łączenia.";
             this.przedmiotyDoAnalizy.Enter += new System.EventHandler(this.PrzedmiotyDoAnalizy_Enter);
@@ -4382,7 +4422,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel10.Location = new System.Drawing.Point(531, 35);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(445, 494);
+            this.panel10.Size = new System.Drawing.Size(445, 493);
             this.panel10.TabIndex = 64;
             // 
             // panel3
@@ -4787,6 +4827,181 @@
             this.analizatorLaczenPomoc.UseVisualStyleBackColor = true;
             this.analizatorLaczenPomoc.Click += new System.EventHandler(this.AnalizatorLaczenPomoc_Click);
             // 
+            // TabAnalizatorWalk
+            // 
+            this.TabAnalizatorWalk.Controls.Add(this.panel43);
+            this.TabAnalizatorWalk.Controls.Add(this.panel39);
+            this.TabAnalizatorWalk.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.TabAnalizatorWalk.Location = new System.Drawing.Point(4, 29);
+            this.TabAnalizatorWalk.Name = "TabAnalizatorWalk";
+            this.TabAnalizatorWalk.Size = new System.Drawing.Size(976, 528);
+            this.TabAnalizatorWalk.TabIndex = 14;
+            this.TabAnalizatorWalk.Text = "Analizator raportu walki";
+            // 
+            // panel43
+            // 
+            this.panel43.BackColor = System.Drawing.Color.Transparent;
+            this.panel43.Controls.Add(this.panel46);
+            this.panel43.Controls.Add(this.panel45);
+            this.panel43.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel43.Location = new System.Drawing.Point(200, 0);
+            this.panel43.Name = "panel43";
+            this.panel43.Size = new System.Drawing.Size(776, 528);
+            this.panel43.TabIndex = 69;
+            // 
+            // panel46
+            // 
+            this.panel46.Controls.Add(this.fastObjectListView1);
+            this.panel46.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel46.Location = new System.Drawing.Point(0, 60);
+            this.panel46.Name = "panel46";
+            this.panel46.Size = new System.Drawing.Size(776, 468);
+            this.panel46.TabIndex = 69;
+            // 
+            // panel45
+            // 
+            this.panel45.Controls.Add(this.labAnalizatorWalkiEfekt);
+            this.panel45.Controls.Add(this.labAnalizatorWalkiObronca);
+            this.panel45.Controls.Add(this.labAnalizatorWalkiAtakujacy);
+            this.panel45.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel45.Location = new System.Drawing.Point(0, 0);
+            this.panel45.Name = "panel45";
+            this.panel45.Size = new System.Drawing.Size(776, 60);
+            this.panel45.TabIndex = 68;
+            // 
+            // labAnalizatorWalkiEfekt
+            // 
+            this.labAnalizatorWalkiEfekt.BackColor = System.Drawing.Color.Transparent;
+            this.labAnalizatorWalkiEfekt.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labAnalizatorWalkiEfekt.Location = new System.Drawing.Point(5, 33);
+            this.labAnalizatorWalkiEfekt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labAnalizatorWalkiEfekt.Name = "labAnalizatorWalkiEfekt";
+            this.labAnalizatorWalkiEfekt.Size = new System.Drawing.Size(764, 23);
+            this.labAnalizatorWalkiEfekt.TabIndex = 71;
+            this.labAnalizatorWalkiEfekt.Text = " ";
+            this.labAnalizatorWalkiEfekt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labAnalizatorWalkiObronca
+            // 
+            this.labAnalizatorWalkiObronca.BackColor = System.Drawing.Color.Transparent;
+            this.labAnalizatorWalkiObronca.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labAnalizatorWalkiObronca.Location = new System.Drawing.Point(389, 5);
+            this.labAnalizatorWalkiObronca.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labAnalizatorWalkiObronca.Name = "labAnalizatorWalkiObronca";
+            this.labAnalizatorWalkiObronca.Size = new System.Drawing.Size(380, 23);
+            this.labAnalizatorWalkiObronca.TabIndex = 70;
+            this.labAnalizatorWalkiObronca.Text = "Obrońca:";
+            this.labAnalizatorWalkiObronca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labAnalizatorWalkiAtakujacy
+            // 
+            this.labAnalizatorWalkiAtakujacy.BackColor = System.Drawing.Color.Transparent;
+            this.labAnalizatorWalkiAtakujacy.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labAnalizatorWalkiAtakujacy.Location = new System.Drawing.Point(5, 5);
+            this.labAnalizatorWalkiAtakujacy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labAnalizatorWalkiAtakujacy.Name = "labAnalizatorWalkiAtakujacy";
+            this.labAnalizatorWalkiAtakujacy.Size = new System.Drawing.Size(380, 23);
+            this.labAnalizatorWalkiAtakujacy.TabIndex = 69;
+            this.labAnalizatorWalkiAtakujacy.Text = "Atakujący:";
+            this.labAnalizatorWalkiAtakujacy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel39
+            // 
+            this.panel39.BackColor = System.Drawing.Color.Transparent;
+            this.panel39.Controls.Add(this.panel42);
+            this.panel39.Controls.Add(this.panel44);
+            this.panel39.Controls.Add(this.panel41);
+            this.panel39.Controls.Add(this.panel40);
+            this.panel39.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel39.Location = new System.Drawing.Point(0, 0);
+            this.panel39.Name = "panel39";
+            this.panel39.Size = new System.Drawing.Size(200, 528);
+            this.panel39.TabIndex = 68;
+            // 
+            // panel42
+            // 
+            this.panel42.Controls.Add(this.rtbAnalizatorWalk);
+            this.panel42.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel42.Location = new System.Drawing.Point(0, 54);
+            this.panel42.Name = "panel42";
+            this.panel42.Padding = new System.Windows.Forms.Padding(5);
+            this.panel42.Size = new System.Drawing.Size(200, 432);
+            this.panel42.TabIndex = 69;
+            // 
+            // rtbAnalizatorWalk
+            // 
+            this.rtbAnalizatorWalk.ContextMenuStrip = this.contextMenuStrip1;
+            this.rtbAnalizatorWalk.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbAnalizatorWalk.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.rtbAnalizatorWalk.Location = new System.Drawing.Point(5, 5);
+            this.rtbAnalizatorWalk.Name = "rtbAnalizatorWalk";
+            this.rtbAnalizatorWalk.Size = new System.Drawing.Size(190, 422);
+            this.rtbAnalizatorWalk.TabIndex = 65;
+            this.rtbAnalizatorWalk.Text = "";
+            this.rtbAnalizatorWalk.WordWrap = false;
+            // 
+            // panel44
+            // 
+            this.panel44.Controls.Add(this.cbAtakWatahy);
+            this.panel44.Controls.Add(this.label31);
+            this.panel44.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel44.Location = new System.Drawing.Point(0, 0);
+            this.panel44.Name = "panel44";
+            this.panel44.Size = new System.Drawing.Size(200, 54);
+            this.panel44.TabIndex = 68;
+            // 
+            // cbAtakWatahy
+            // 
+            this.cbAtakWatahy.AutoSize = true;
+            this.cbAtakWatahy.BackColor = System.Drawing.Color.Transparent;
+            this.cbAtakWatahy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbAtakWatahy.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cbAtakWatahy.Location = new System.Drawing.Point(23, 30);
+            this.cbAtakWatahy.Margin = new System.Windows.Forms.Padding(2);
+            this.cbAtakWatahy.Name = "cbAtakWatahy";
+            this.cbAtakWatahy.Size = new System.Drawing.Size(152, 19);
+            this.cbAtakWatahy.TabIndex = 69;
+            this.cbAtakWatahy.Text = "Uwzględnij Atak watahy";
+            this.cbAtakWatahy.UseVisualStyleBackColor = false;
+            // 
+            // label31
+            // 
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label31.Location = new System.Drawing.Point(9, 5);
+            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(182, 23);
+            this.label31.TabIndex = 68;
+            this.label31.Text = "Analizowany raport";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel41
+            // 
+            this.panel41.Controls.Add(this.btnAnalizatorWalk);
+            this.panel41.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel41.Location = new System.Drawing.Point(0, 486);
+            this.panel41.Name = "panel41";
+            this.panel41.Size = new System.Drawing.Size(200, 42);
+            this.panel41.TabIndex = 1;
+            // 
+            // btnAnalizatorWalk
+            // 
+            this.btnAnalizatorWalk.Location = new System.Drawing.Point(31, 5);
+            this.btnAnalizatorWalk.Name = "btnAnalizatorWalk";
+            this.btnAnalizatorWalk.Size = new System.Drawing.Size(139, 32);
+            this.btnAnalizatorWalk.TabIndex = 66;
+            this.btnAnalizatorWalk.Text = "Załaduj";
+            this.btnAnalizatorWalk.UseVisualStyleBackColor = true;
+            this.btnAnalizatorWalk.Click += new System.EventHandler(this.BtnAnalizatorWalk_Click);
+            // 
+            // panel40
+            // 
+            this.panel40.Location = new System.Drawing.Point(205, 115);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(200, 100);
+            this.panel40.TabIndex = 0;
+            // 
             // tabPlacBudowy
             // 
             this.tabPlacBudowy.BackColor = System.Drawing.SystemColors.Control;
@@ -4805,11 +5020,26 @@
             this.tabPlacBudowy.Controls.Add(this.label23);
             this.tabPlacBudowy.Controls.Add(this.rtbPlacBodowyKoszty);
             this.tabPlacBudowy.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.tabPlacBudowy.Location = new System.Drawing.Point(4, 28);
+            this.tabPlacBudowy.Location = new System.Drawing.Point(4, 29);
             this.tabPlacBudowy.Name = "tabPlacBudowy";
-            this.tabPlacBudowy.Size = new System.Drawing.Size(976, 529);
+            this.tabPlacBudowy.Size = new System.Drawing.Size(976, 528);
             this.tabPlacBudowy.TabIndex = 13;
             this.tabPlacBudowy.Text = "Plac Budowy";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label30.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label30.Location = new System.Drawing.Point(503, 495);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(454, 24);
+            this.label30.TabIndex = 77;
+            this.label30.Text = "Przydałaby mi się Wasza pomoc w uzupełnianiu tego - będę wdzięczny za każdy przes" +
+    "łany\r\nscreenshot poziomu rozbudowy budynku z informacją o rozbudowie pośredniaka" +
+    " (% redukcji) :)";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel38
             // 
@@ -5071,20 +5301,182 @@
             this.versionWorker.WorkerSupportsCancellation = true;
             this.versionWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.VersionWorker_DoWork);
             // 
-            // label30
+            // fastObjectListView1
             // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label30.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label30.Location = new System.Drawing.Point(503, 495);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(454, 24);
-            this.label30.TabIndex = 77;
-            this.label30.Text = "Przydałaby mi się Wasza pomoc w uzupełnianiu tego - będę wdzięczny za każdy przes" +
-    "łany\r\nscreenshot poziomu rozbudowy budynku z informacją o rozbudowie pośredniaka" +
-    " (% redukcji) :)";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fastObjectListView1.AllColumns.Add(this.Nick);
+            this.fastObjectListView1.AllColumns.Add(this.IloscAtakow);
+            this.fastObjectListView1.AllColumns.Add(this.IloscTrafien);
+            this.fastObjectListView1.AllColumns.Add(this.IloscKrytow);
+            this.fastObjectListView1.AllColumns.Add(this.IloscOtrzymanychAtakow);
+            this.fastObjectListView1.AllColumns.Add(this.IloscChybionychOtrzymanychAtakow);
+            this.fastObjectListView1.AllColumns.Add(this.IloscUnikow);
+            this.fastObjectListView1.AllColumns.Add(this.IloscObrazenZadanych);
+            this.fastObjectListView1.AllColumns.Add(this.IloscObrazenOtrzymanych);
+            this.fastObjectListView1.AllColumns.Add(this.IloscZregenerowanychPZ);
+            this.fastObjectListView1.AllColumns.Add(this.Bron1);
+            this.fastObjectListView1.AllColumns.Add(this.Bron2);
+            this.fastObjectListView1.AllowColumnReorder = true;
+            this.fastObjectListView1.CellEditUseWholeCell = false;
+            this.fastObjectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Nick,
+            this.IloscAtakow,
+            this.IloscTrafien,
+            this.IloscKrytow,
+            this.IloscOtrzymanychAtakow,
+            this.IloscChybionychOtrzymanychAtakow,
+            this.IloscUnikow,
+            this.IloscObrazenZadanych,
+            this.IloscObrazenOtrzymanych,
+            this.IloscZregenerowanychPZ,
+            this.Bron1,
+            this.Bron2});
+            this.fastObjectListView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastObjectListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastObjectListView1.FullRowSelect = true;
+            this.fastObjectListView1.GridLines = true;
+            this.fastObjectListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.fastObjectListView1.HeaderWordWrap = true;
+            this.fastObjectListView1.Location = new System.Drawing.Point(0, 0);
+            this.fastObjectListView1.Name = "fastObjectListView1";
+            this.fastObjectListView1.SelectColumnsMenuStaysOpen = false;
+            this.fastObjectListView1.SelectColumnsOnRightClick = false;
+            this.fastObjectListView1.SelectColumnsOnRightClickBehaviour = BrightIdeasSoftware.ObjectListView.ColumnSelectBehaviour.None;
+            this.fastObjectListView1.ShowGroups = false;
+            this.fastObjectListView1.Size = new System.Drawing.Size(776, 468);
+            this.fastObjectListView1.TabIndex = 70;
+            this.fastObjectListView1.UseCompatibleStateImageBehavior = false;
+            this.fastObjectListView1.View = System.Windows.Forms.View.Details;
+            this.fastObjectListView1.VirtualMode = true;
+            // 
+            // Nick
+            // 
+            this.Nick.AutoCompleteEditor = false;
+            this.Nick.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.Nick.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Nick.Hideable = false;
+            this.Nick.IsEditable = false;
+            this.Nick.MinimumWidth = 30;
+            this.Nick.Text = "Nick";
+            this.Nick.Width = 150;
+            // 
+            // IloscAtakow
+            // 
+            this.IloscAtakow.AutoCompleteEditor = false;
+            this.IloscAtakow.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscAtakow.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscAtakow.Hideable = false;
+            this.IloscAtakow.IsEditable = false;
+            this.IloscAtakow.MinimumWidth = 30;
+            this.IloscAtakow.Text = "Ilość Ataków";
+            // 
+            // IloscTrafien
+            // 
+            this.IloscTrafien.AutoCompleteEditor = false;
+            this.IloscTrafien.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscTrafien.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscTrafien.Hideable = false;
+            this.IloscTrafien.IsEditable = false;
+            this.IloscTrafien.MinimumWidth = 30;
+            this.IloscTrafien.Text = "Ilość Trafionych Ataków";
+            this.IloscTrafien.Width = 90;
+            // 
+            // IloscKrytow
+            // 
+            this.IloscKrytow.AutoCompleteEditor = false;
+            this.IloscKrytow.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscKrytow.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscKrytow.Hideable = false;
+            this.IloscKrytow.IsEditable = false;
+            this.IloscKrytow.MinimumWidth = 30;
+            this.IloscKrytow.Text = "Ilość Trafień Krytycznych";
+            this.IloscKrytow.Width = 90;
+            // 
+            // IloscOtrzymanychAtakow
+            // 
+            this.IloscOtrzymanychAtakow.AutoCompleteEditor = false;
+            this.IloscOtrzymanychAtakow.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscOtrzymanychAtakow.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscOtrzymanychAtakow.Hideable = false;
+            this.IloscOtrzymanychAtakow.IsEditable = false;
+            this.IloscOtrzymanychAtakow.MinimumWidth = 30;
+            this.IloscOtrzymanychAtakow.Text = "Ilość Otrzymanych Ataków";
+            this.IloscOtrzymanychAtakow.Width = 90;
+            // 
+            // IloscChybionychOtrzymanychAtakow
+            // 
+            this.IloscChybionychOtrzymanychAtakow.AutoCompleteEditor = false;
+            this.IloscChybionychOtrzymanychAtakow.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscChybionychOtrzymanychAtakow.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscChybionychOtrzymanychAtakow.Hideable = false;
+            this.IloscChybionychOtrzymanychAtakow.IsEditable = false;
+            this.IloscChybionychOtrzymanychAtakow.MinimumWidth = 30;
+            this.IloscChybionychOtrzymanychAtakow.Text = "Ilość Chybień Otrzymanych Ataków";
+            this.IloscChybionychOtrzymanychAtakow.Width = 90;
+            // 
+            // IloscUnikow
+            // 
+            this.IloscUnikow.AutoCompleteEditor = false;
+            this.IloscUnikow.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscUnikow.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscUnikow.Hideable = false;
+            this.IloscUnikow.IsEditable = false;
+            this.IloscUnikow.MinimumWidth = 30;
+            this.IloscUnikow.Text = "Ilość Uników";
+            // 
+            // IloscObrazenZadanych
+            // 
+            this.IloscObrazenZadanych.AutoCompleteEditor = false;
+            this.IloscObrazenZadanych.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscObrazenZadanych.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscObrazenZadanych.Hideable = false;
+            this.IloscObrazenZadanych.IsEditable = false;
+            this.IloscObrazenZadanych.MinimumWidth = 30;
+            this.IloscObrazenZadanych.Text = "Ilość Obrażeń Zadanych";
+            this.IloscObrazenZadanych.Width = 90;
+            // 
+            // IloscObrazenOtrzymanych
+            // 
+            this.IloscObrazenOtrzymanych.AutoCompleteEditor = false;
+            this.IloscObrazenOtrzymanych.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscObrazenOtrzymanych.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscObrazenOtrzymanych.Hideable = false;
+            this.IloscObrazenOtrzymanych.IsEditable = false;
+            this.IloscObrazenOtrzymanych.MinimumWidth = 30;
+            this.IloscObrazenOtrzymanych.Text = "Ilość Obrażeń Otrzymanych";
+            this.IloscObrazenOtrzymanych.Width = 90;
+            // 
+            // IloscZregenerowanychPZ
+            // 
+            this.IloscZregenerowanychPZ.AutoCompleteEditor = false;
+            this.IloscZregenerowanychPZ.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.IloscZregenerowanychPZ.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IloscZregenerowanychPZ.Hideable = false;
+            this.IloscZregenerowanychPZ.IsEditable = false;
+            this.IloscZregenerowanychPZ.MinimumWidth = 30;
+            this.IloscZregenerowanychPZ.Text = "Ilość Zregenerowanych PKT ŻYCIA";
+            this.IloscZregenerowanychPZ.Width = 120;
+            // 
+            // Bron1
+            // 
+            this.Bron1.AutoCompleteEditor = false;
+            this.Bron1.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.Bron1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Bron1.Hideable = false;
+            this.Bron1.IsEditable = false;
+            this.Bron1.MinimumWidth = 30;
+            this.Bron1.Text = "Broń 1";
+            this.Bron1.Width = 400;
+            // 
+            // Bron2
+            // 
+            this.Bron2.AutoCompleteEditor = false;
+            this.Bron2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.Bron2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Bron2.Hideable = false;
+            this.Bron2.IsEditable = false;
+            this.Bron2.MinimumWidth = 30;
+            this.Bron2.Text = "Broń 2";
+            this.Bron2.Width = 400;
             // 
             // MainWindow
             // 
@@ -5207,6 +5599,15 @@
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.TabAnalizatorWalk.ResumeLayout(false);
+            this.panel43.ResumeLayout(false);
+            this.panel46.ResumeLayout(false);
+            this.panel45.ResumeLayout(false);
+            this.panel39.ResumeLayout(false);
+            this.panel42.ResumeLayout(false);
+            this.panel44.ResumeLayout(false);
+            this.panel44.PerformLayout();
+            this.panel41.ResumeLayout(false);
             this.tabPlacBudowy.ResumeLayout(false);
             this.tabPlacBudowy.PerformLayout();
             this.panel38.ResumeLayout(false);
@@ -5220,6 +5621,7 @@
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poziomRozbudowy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastObjectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5638,6 +6040,35 @@
         private System.Windows.Forms.NumericUpDown numLatwosc;
         private System.Windows.Forms.Label rozbudowanyPosredniak;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TabPage TabAnalizatorWalk;
+        private System.Windows.Forms.Button btnAnalizatorWalk;
+        private System.Windows.Forms.RichTextBox rtbAnalizatorWalk;
+        private System.Windows.Forms.Panel panel39;
+        private System.Windows.Forms.Panel panel41;
+        private System.Windows.Forms.Panel panel40;
+        private System.Windows.Forms.Panel panel43;
+        private System.Windows.Forms.Panel panel42;
+        private System.Windows.Forms.Panel panel44;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Panel panel46;
+        private System.Windows.Forms.Panel panel45;
+        private System.Windows.Forms.Label labAnalizatorWalkiObronca;
+        private System.Windows.Forms.Label labAnalizatorWalkiAtakujacy;
+        private System.Windows.Forms.Label labAnalizatorWalkiEfekt;
+        private System.Windows.Forms.CheckBox cbAtakWatahy;
+        private BrightIdeasSoftware.FastObjectListView fastObjectListView1;
+        private BrightIdeasSoftware.OLVColumn Nick;
+        private BrightIdeasSoftware.OLVColumn IloscAtakow;
+        private BrightIdeasSoftware.OLVColumn IloscTrafien;
+        private BrightIdeasSoftware.OLVColumn IloscKrytow;
+        private BrightIdeasSoftware.OLVColumn IloscOtrzymanychAtakow;
+        private BrightIdeasSoftware.OLVColumn IloscChybionychOtrzymanychAtakow;
+        private BrightIdeasSoftware.OLVColumn IloscUnikow;
+        private BrightIdeasSoftware.OLVColumn IloscObrazenZadanych;
+        private BrightIdeasSoftware.OLVColumn IloscObrazenOtrzymanych;
+        private BrightIdeasSoftware.OLVColumn IloscZregenerowanychPZ;
+        private BrightIdeasSoftware.OLVColumn Bron1;
+        private BrightIdeasSoftware.OLVColumn Bron2;
     }
 }
 

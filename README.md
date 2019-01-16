@@ -5,7 +5,7 @@ Listy przedmiotów przystosowano do serwera R19.
    
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
 Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
-Aktualna wersja programu: 2.8.  
+Aktualna wersja programu: 2.9.  
    
    
 ## Funkcje programu
@@ -40,32 +40,60 @@ Aktualna wersja programu: 2.8.
    - Dla każdego poziomu rozbudowy wyświetlany jest czas budowy wybranego poziomu,
    - Możliwość włączenia uwzględniania redukcji czasu budowy wszystkich budynków wynikającej z rozbudowy Pośredniaka,
    - Możliwość włączenia uwzględniania łatwości do wymagań rozbudowy budynków.
+ - Analizator raportów walk przedstawiający statystyki każdego z uczestników oblężenia:
+   - Ilość ataków,
+   - Ilość trafionych ataków oraz procentową wartość trafionych ataków,
+   - Ilość trafionych ataków z ciosem krytycznym oraz procentową wartość trafionych ataków z ciosem krytycznym,
+   - Ilość otrzymanych ataków,
+   - Ilość uniknięć otrzymanych ataków oraz procentową wartość unikniętych otrzymanych ataków,
+   - Ilość uników,
+   - Ilość zadanych punktów obrażeń,
+   - Ilość otrzymanych punktów obrażeń,
+   - Ilość zregenerowanych punktów życia,
+   - Nazwy używanych broni,
+   - Możliwość włączenia uwzględniania obrażeń z komendy "Atak watahy".
  - Menu prawego przycisku myszy umożliwiające:
-   - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportów i analizatorze łączeń),
+   - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportu łączenia, analizatorze łączeń i analizatorze raportu walki),
    - Kopiowanie zaznaczonego tekstu,
    - Kopiowanie całego wyświetlanego tekstu,
    - Zapisywanie wyświetlanego tekstu do pliku,
-   - Czyszczenie przebiegu łączeń / raportu w analizatorze raportów,
-   - Wysłanie zaznaczonego przedmiotu do schowka programowego (nie dostępne w analizatorze raportów i analizatorze łączeń).
+   - Czyszczenie przebiegu łączeń / zawartości okienek tekstowych,
+   - Wysłanie zaznaczonego przedmiotu do schowka programowego (dostępne przy łączeniu ręcznym).
  - Podczas uruchamiania program informuje o dostępności nowszych wersji.   
    
    
    
 ## Screenshoty
 Ręczne łączenie.
-![Ręczne łączenie](Screenshots/Ręczne_łączenie.png?raw=true "Ręczne łączenie")   
+![Ręczne łączenie](Screenshots/Reczne_laczenie.png?raw=true "Ręczne łączenie")   
    
    
 Tabela łączeń.
-![Tabela łączeń](Screenshots/Tabela_łączeń.png?raw=true "Tabela łączeń")   
+![Tabela łączeń](Screenshots/Tabela_laczen.png?raw=true "Tabela łączeń")   
    
    
-Analizator raportów.
-![Analizator raportów](Screenshots/Analizator_raportu.png?raw=true "Analizator raportów")   
+Analizator raportu łączenia.
+![Analizator raportu łączenia](Screenshots/Analizator_raportu_laczenia.png?raw=true "Analizator raportu łączenia")   
    
    
 Analizator łączeń.
-![Analizator łączeń](Screenshots/Analizator_łączeń.png?raw=true "Analizator łączeń") 
+![Analizator łączeń](Screenshots/Analizator_laczen.png?raw=true "Analizator łączeń") 
+   
+   
+Analizator raportu walki.
+![Analizator raportu walki](Screenshots/Analizator_raportu_walki.png?raw=true "Analizator raportu walki") 
+   
+   
+Plac Budowy.
+![Plac Budowy](Screenshots/Plac_budowy.png?raw=true "Plac Budowy") 
+   
+   
+Aktualizacja (przykładowe okienko).
+![Aktualizacja](Screenshots/Aktualizacja.png?raw=true "Aktualizacja") 
+   
+   
+Pomoc (przykładowe okienko).
+![Pomoc](Screenshots/Pomoc.png?raw=true "Pomoc") 
    
    
    

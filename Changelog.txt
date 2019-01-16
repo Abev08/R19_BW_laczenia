@@ -1,4 +1,11 @@
-﻿Version 2.8		[5.01.2019]
+﻿Version 2.9		[16.01.2019]
+	- Dodano analizator raportu walk,
+	- Dodano kolejne poziomy rozbudowy budynków w Placu Budowy,
+	- Poprawiono funkcjonalność menu prawego przycisku myszy,
+	- Poprawiono wyświetlanie nowych okienek tabeli łączeń - kolejne okienka będą pojawiały się na środku okna głównego programu,
+	- Zaktualizowano (oraz dodano nowe) screenshoty w repozytorium GitHub'a.
+
+Version 2.8		[5.01.2019]
 	- Zmieniono wygląd programu:
 		-- Zgrupowano łączenie ręczne i przeniesiono do nowej zakładki,
 		-- Przystosowano program do zmian rozmiarów okienka.

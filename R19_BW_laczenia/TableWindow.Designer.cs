@@ -39,17 +39,19 @@
             // 
             this.tabTabela.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabTabela.Location = new System.Drawing.Point(0, 0);
+            this.tabTabela.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabTabela.Name = "tabTabela";
             this.tabTabela.SelectedIndex = 0;
-            this.tabTabela.Size = new System.Drawing.Size(462, 223);
+            this.tabTabela.Size = new System.Drawing.Size(346, 181);
             this.tabTabela.TabIndex = 1;
             this.tabTabela.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TabTabela_MouseUp);
             // 
             // tabMinus
             // 
-            this.tabMinus.Location = new System.Drawing.Point(58, 0);
+            this.tabMinus.Location = new System.Drawing.Point(44, 0);
+            this.tabMinus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabMinus.Name = "tabMinus";
-            this.tabMinus.Size = new System.Drawing.Size(50, 30);
+            this.tabMinus.Size = new System.Drawing.Size(38, 24);
             this.tabMinus.TabIndex = 2;
             this.tabMinus.Text = "-";
             this.tabMinus.UseVisualStyleBackColor = true;
@@ -58,8 +60,9 @@
             // tabPlus
             // 
             this.tabPlus.Location = new System.Drawing.Point(0, 0);
+            this.tabPlus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPlus.Name = "tabPlus";
-            this.tabPlus.Size = new System.Drawing.Size(50, 30);
+            this.tabPlus.Size = new System.Drawing.Size(38, 24);
             this.tabPlus.TabIndex = 3;
             this.tabPlus.Text = "+";
             this.tabPlus.UseVisualStyleBackColor = true;
@@ -69,21 +72,22 @@
             // 
             this.panel1.Controls.Add(this.tabPlus);
             this.panel1.Controls.Add(this.tabMinus);
-            this.panel1.Location = new System.Drawing.Point(300, 2);
+            this.panel1.Location = new System.Drawing.Point(225, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(108, 30);
+            this.panel1.Size = new System.Drawing.Size(81, 24);
             this.panel1.TabIndex = 4;
             // 
             // TableWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 223);
+            this.ClientSize = new System.Drawing.Size(346, 181);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabTabela);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TableWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tabela łączeń";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Resize += new System.EventHandler(this.TableWindow_Resize);
