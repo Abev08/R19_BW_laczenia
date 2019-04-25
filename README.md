@@ -5,7 +5,7 @@ Listy przedmiotów przystosowano do serwera R19.
    
 Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
 Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
-Aktualna wersja programu: 2.9.  
+Aktualna wersja programu: 2.9.1.  
    
    
 ## Funkcje programu

@@ -36,6 +36,11 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(9, new KosztBudynku(12814, 333, 0), new WymaganiaBudynku(_inteligencja: 21), new TimeSpan(0, 27, 56), new EfektBudynku(_przyrostLudzi: 54, _czasBudowy: 18)));
             lb.Add(new Budynek(10, new KosztBudynku(19221, 516, 0), new WymaganiaBudynku(_inteligencja: 23), new TimeSpan(0, 33, 32), new EfektBudynku(_przyrostLudzi: 63, _czasBudowy: 20)));
             lb.Add(new Budynek(11, new KosztBudynku(28832, 800, 0), new WymaganiaBudynku(_inteligencja: 25), new TimeSpan(0, 40, 15), new EfektBudynku(_przyrostLudzi: 75, _czasBudowy: 22)));
+            lb.Add(new Budynek(12, new KosztBudynku(43248, 1240, 0), new WymaganiaBudynku(_inteligencja: 27), new TimeSpan(0, 48, 17), new EfektBudynku(_przyrostLudzi: 88, _czasBudowy: 24)));
+            lb.Add(new Budynek(13, new KosztBudynku(64873, 1923, 0), new WymaganiaBudynku(_inteligencja: 29), new TimeSpan(0, 57, 57), new EfektBudynku(_przyrostLudzi: 104, _czasBudowy: 26)));
+            lb.Add(new Budynek(14, new KosztBudynku(97309, 2980, 0), new WymaganiaBudynku(_inteligencja: 31), new TimeSpan(1, 9, 32), new EfektBudynku(_przyrostLudzi: 122, _czasBudowy: 28)));
+            lb.Add(new Budynek(15, new KosztBudynku(145964, 4620, 0), new WymaganiaBudynku(_inteligencja: 33), new TimeSpan(1, 23, 28), new EfektBudynku(_przyrostLudzi: 144, _czasBudowy: 30)));
+            lb.Add(new Budynek(16, new KosztBudynku(218946, 7161, 0), new WymaganiaBudynku(_inteligencja: 35), new TimeSpan(1, 40, 8), new EfektBudynku(_przyrostLudzi: 170, _czasBudowy: 32)));
 
             return lb;
         }
@@ -50,6 +55,9 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(4, new KosztBudynku(898, 174, 0), new WymaganiaBudynku(_wplywy: 20, _inteligencja: 15), new TimeSpan(0, 9, 30), new EfektBudynku(_przyrostKasy: 208)));
             lb.Add(new Budynek(5, new KosztBudynku(1482, 314, 0), new WymaganiaBudynku(_wplywy: 24, _inteligencja: 18), new TimeSpan(0, 11, 25), new EfektBudynku(_przyrostKasy: 250)));
             lb.Add(new Budynek(6, new KosztBudynku(2445, 556, 0), new WymaganiaBudynku(_wplywy: 28, _inteligencja: 21), new TimeSpan(0, 13, 42), new EfektBudynku(_przyrostKasy: 300)));
+            lb.Add(new Budynek(7, new KosztBudynku(4035, 1020, 0), new WymaganiaBudynku(_wplywy: 32, _inteligencja: 24), new TimeSpan(0, 16, 25), new EfektBudynku(_przyrostKasy: 360)));
+            lb.Add(new Budynek(8, new KosztBudynku(6659, 1836, 0), new WymaganiaBudynku(_wplywy: 36, _inteligencja: 27), new TimeSpan(0, 19, 42), new EfektBudynku(_przyrostKasy: 430)));
+            lb.Add(new Budynek(9, new KosztBudynku(10987, 3305, 0), new WymaganiaBudynku(_wplywy: 40, _inteligencja: 30), new TimeSpan(0, 23, 39), new EfektBudynku(_przyrostKasy: 516)));
 
             return lb;
         }
@@ -66,6 +74,10 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(6, new KosztBudynku(4891, 759, 0), new WymaganiaBudynku(_sila: 27), new TimeSpan(0, 19, 55), new EfektBudynku(_przyrostKrwi: 45)));
             lb.Add(new Budynek(7, new KosztBudynku(8071, 1139, 0), new WymaganiaBudynku(_sila: 31), new TimeSpan(0, 23, 53), new EfektBudynku(_przyrostKrwi: 50)));
             lb.Add(new Budynek(8, new KosztBudynku(13318, 1708, 0), new WymaganiaBudynku(_sila: 35), new TimeSpan(0, 28, 40), new EfektBudynku(_przyrostKrwi: 55)));
+            lb.Add(new Budynek(9, new KosztBudynku(21975, 2562, 0), new WymaganiaBudynku(_sila: 39), new TimeSpan(0, 34, 23), new EfektBudynku(_przyrostKrwi: 60)));
+            lb.Add(new Budynek(10, new KosztBudynku(36258, 3844, 0), new WymaganiaBudynku(_sila: 43), new TimeSpan(0, 41, 16), new EfektBudynku(_przyrostKrwi: 65)));
+            lb.Add(new Budynek(11, new KosztBudynku(59827, 5766, 0), new WymaganiaBudynku(_sila: 47), new TimeSpan(0, 49, 33), new EfektBudynku(_przyrostKrwi: 70)));
+			lb.Add(new Budynek(12, new KosztBudynku(98715, 8649, 0), new WymaganiaBudynku(_sila: 51), new TimeSpan(0, 59, 26), new EfektBudynku(_przyrostKrwi: 75)));
 
             return lb;
         }
@@ -76,6 +88,9 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(), new EfektBudynku()));
             lb.Add(new Budynek(1, new KosztBudynku(2000, 70, 0), new WymaganiaBudynku(_charyzma: 20, _wiedza: 11), new TimeSpan(0, 5, 0), new EfektBudynku(_spostWZasadzce: 1, _zycieWObronie: 15)));
             lb.Add(new Budynek(2, new KosztBudynku(3200, 119, 0), new WymaganiaBudynku(_charyzma: 29, _wiedza: 16), new TimeSpan(0, 6, 0), new EfektBudynku(_spostWZasadzce: 2, _zycieWObronie: 42)));
+            lb.Add(new Budynek(3, new KosztBudynku(5120, 202, 0), new WymaganiaBudynku(_charyzma: 38, _wiedza: 21), new TimeSpan(0, 7, 12), new EfektBudynku(_spostWZasadzce: 3, _zycieWObronie: 69)));
+            lb.Add(new Budynek(4, new KosztBudynku(8192, 343, 0), new WymaganiaBudynku(_charyzma: 47, _wiedza: 26), new TimeSpan(0, 8, 39), new EfektBudynku(_spostWZasadzce: 4, _zycieWObronie: 92)));
+            lb.Add(new Budynek(5, new KosztBudynku(13107, 584, 0), new WymaganiaBudynku(_charyzma: 56, _wiedza: 31), new TimeSpan(0, 10, 22), new EfektBudynku(_spostWZasadzce: 5, _zycieWObronie: 165)));
 
             return lb;
         }
@@ -87,6 +102,7 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(1, new KosztBudynku(200, 2, 0), new WymaganiaBudynku(_inteligencja: 10, _wiedza: 10), new TimeSpan(0, 4, 30), new EfektBudynku(_szpiegowanie: 2, _wplywyWZasadzce: 1)));
             lb.Add(new Budynek(2, new KosztBudynku(400, 4, 0), new WymaganiaBudynku(_inteligencja: 17, _wiedza: 18), new TimeSpan(0, 5, 24), new EfektBudynku(_szpiegowanie: 4, _wplywyWZasadzce: 2)));
             lb.Add(new Budynek(3, new KosztBudynku(800, 8, 0), new WymaganiaBudynku(_inteligencja: 24, _wiedza: 26), new TimeSpan(0, 6, 29), new EfektBudynku(_szpiegowanie: 6, _wplywyWZasadzce: 3)));
+            lb.Add(new Budynek(4, new KosztBudynku(1600, 18, 0), new WymaganiaBudynku(_inteligencja: 31, _wiedza: 34), new TimeSpan(0, 7, 46), new EfektBudynku(_szpiegowanie: 8, _wplywyWZasadzce: 4)));
 
             return lb;
         }
@@ -99,6 +115,9 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(2, new KosztBudynku(850, 85, 0), new WymaganiaBudynku(_wplywy: 20, _inteligencja: 10), new TimeSpan(0, 4, 49), new EfektBudynku(_zycieWAtaku: 32, _obrazeniaWAtaku: 2)));
             lb.Add(new Budynek(3, new KosztBudynku(1444, 144, 0), new WymaganiaBudynku(_wplywy: 26, _inteligencja: 15), new TimeSpan(0, 5, 45), new EfektBudynku(_zycieWAtaku: 60, _obrazeniaWAtaku: 3)));
             lb.Add(new Budynek(4, new KosztBudynku(2456, 245, 0), new WymaganiaBudynku(_wplywy: 32, _inteligencja: 20), new TimeSpan(0, 6, 55), new EfektBudynku(_zycieWAtaku: 116, _obrazeniaWAtaku: 4)));
+            lb.Add(new Budynek(5, new KosztBudynku(4176, 417, 0), new WymaganiaBudynku(_wplywy: 38, _inteligencja: 25), new TimeSpan(0, 8, 17), new EfektBudynku(_zycieWAtaku: 160, _obrazeniaWAtaku: 5)));
+            lb.Add(new Budynek(6, new KosztBudynku(7099, 709, 0), new WymaganiaBudynku(_wplywy: 44, _inteligencja: 30), new TimeSpan(0, 9, 57), new EfektBudynku(_zycieWAtaku: 240, _obrazeniaWAtaku: 6)));
+            lb.Add(new Budynek(7, new KosztBudynku(12068, 1206, 0), new WymaganiaBudynku(_wplywy: 50, _inteligencja: 35), new TimeSpan(0, 11, 57), new EfektBudynku(_zycieWAtaku: 308, _obrazeniaWAtaku: 7)));
 
             return lb;
         }
@@ -111,6 +130,9 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(2, new KosztBudynku(1400, 0, 15), new WymaganiaBudynku(_wiedza: 12), new TimeSpan(0, 24, 0), new EfektBudynku(_miejsceWZbrojowni: 15)));
             lb.Add(new Budynek(3, new KosztBudynku(1959, 0, 22), new WymaganiaBudynku(_wiedza: 16), new TimeSpan(0, 28, 48), new EfektBudynku(_miejsceWZbrojowni: 20)));
             lb.Add(new Budynek(4, new KosztBudynku(2743, 0, 33), new WymaganiaBudynku(_wiedza: 20), new TimeSpan(0, 34, 33), new EfektBudynku(_miejsceWZbrojowni: 25)));
+            lb.Add(new Budynek(5, new KosztBudynku(3841, 0, 50), new WymaganiaBudynku(_wiedza: 24), new TimeSpan(0, 41, 28), new EfektBudynku(_miejsceWZbrojowni: 30)));
+            lb.Add(new Budynek(6, new KosztBudynku(5378, 0, 75), new WymaganiaBudynku(_wiedza: 28), new TimeSpan(0, 49, 45), new EfektBudynku(_miejsceWZbrojowni: 35)));
+            lb.Add(new Budynek(7, new KosztBudynku(7529, 0, 113), new WymaganiaBudynku(_wiedza: 32), new TimeSpan(0, 59, 44), new EfektBudynku(_miejsceWZbrojowni: 40)));
 
             return lb;
         }
@@ -119,7 +141,8 @@ namespace R19_BW_laczenia
         {
             // Lista Poziomów Sterego Rynku
             lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(), new EfektBudynku()));
-            lb.Add(new Budynek(1, new KosztBudynku(20000, 8000, 2000), new WymaganiaBudynku(_wyglad: 30, _wiedza: 25, _domPubliczny: 7), new TimeSpan(1, 0, 0), new EfektBudynku(_iloscOfert: 4, _iloscOfertDodatek: 1)));
+            lb.Add(new Budynek(1, new KosztBudynku(20000, 8000, 2000), new WymaganiaBudynku(_wyglad: 30, _wiedza: 25, _domPubliczny: 7), new TimeSpan(1, 0, 0), new EfektBudynku(_iloscOfert: 2, _iloscOfertDodatek: 1)));
+            lb.Add(new Budynek(2, new KosztBudynku(60000, 24000, 6000), new WymaganiaBudynku(_wyglad: 40, _wiedza: 35, _domPubliczny: 7), new TimeSpan(1, 30, 0), new EfektBudynku(_iloscOfert: 2, _iloscOfertDodatek: 1)));
 
             return lb;
         }
@@ -129,7 +152,44 @@ namespace R19_BW_laczenia
             // Lista poziomów Postoju Taxi
             lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(0, 0, 0), new EfektBudynku()));
             lb.Add(new Budynek(1, new KosztBudynku(1300, 20, 120), new WymaganiaBudynku(_wplywy: 13, _wiedza: 12), new TimeSpan(0, 30, 0), new EfektBudynku(_szybkoscTaxi: 1)));
-            lb.Add(new Budynek(2, new KosztBudynku(6500, 100, 600), new WymaganiaBudynku(_wplywy: 28, _wiedza: 22), new TimeSpan(1, 30, 0), new EfektBudynku(_szybkoscTaxi: 1)));
+            lb.Add(new Budynek(2, new KosztBudynku(6500, 100, 600), new WymaganiaBudynku(_wplywy: 28, _wiedza: 22), new TimeSpan(1, 30, 0), new EfektBudynku(_szybkoscTaxi: 2)));
+            lb.Add(new Budynek(3, new KosztBudynku(32500, 500, 3000), new WymaganiaBudynku(_wplywy: 43, _wiedza: 32), new TimeSpan(4, 30, 0), new EfektBudynku(_szybkoscTaxi: 3)));
+
+            return lb;
+        }
+
+        public static List<Budynek> UtworzGarnizon(List<Budynek> lb)
+        {
+            // Lista poziomów Garnizonu
+            lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(0, 0, 0), new EfektBudynku()));
+            lb.Add(new Budynek(1, new KosztBudynku(10000, 1000, 0), new WymaganiaBudynku(_charyzma: 70, _wplywy: 70, _posterunek: 10), new TimeSpan(0, 30, 0), new EfektBudynku(_zycieWObronie: 39)));
+
+            return lb;
+        }
+
+        public static List<Budynek> UtworzHandlarzBronia(List<Budynek> lb)
+        {
+            // Lista poziomów Garnizonu
+            lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(0, 0, 0), new EfektBudynku()));
+            lb.Add(new Budynek(1, new KosztBudynku(5000, 1100, 0), new WymaganiaBudynku(_wplywy: 60, _inteligencja: 50, _agencja: 7), new TimeSpan(0, 25, 0), new EfektBudynku(_zycieWAtaku: 122)));
+
+            return lb;
+        }
+
+        public static List<Budynek> UtworzPogotowie(List<Budynek> lb)
+        {
+            // Lista poziomów Garnizonu
+            lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(0, 0, 0), new EfektBudynku()));
+            lb.Add(new Budynek(1, new KosztBudynku(7000, 600, 0), new WymaganiaBudynku(_charyzma: 60, _wiedza: 35), new TimeSpan(0, 40, 0), new EfektBudynku(_przyrostKrwi: 10)));
+
+            return lb;
+        }
+
+        public static List<Budynek> UtworzLombard(List<Budynek> lb)
+        {
+            // Lista poziomów Garnizonu
+            lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(0, 0, 0), new EfektBudynku()));
+            lb.Add(new Budynek(1, new KosztBudynku(45000, 1750, 0), new WymaganiaBudynku(_wiedza: 50), new TimeSpan(0, 27, 0), new EfektBudynku(_przyrostKasy: 300)));
 
             return lb;
         }
@@ -194,6 +254,8 @@ namespace R19_BW_laczenia
                     if (lb[poziom].Wymagania.Inteligencja != 0) wymagania += "Inteligencja: " + Convert.ToString(Math.Round((double)lb[poziom].Wymagania.Inteligencja * (100d - (double)latwosc) / 100d)) + " (" + Convert.ToString(lb[poziom].Wymagania.Inteligencja) + ")\n";
                     if (lb[poziom].Wymagania.Wiedza != 0) wymagania += "Wiedza: " + Convert.ToString(Math.Round((double)lb[poziom].Wymagania.Wiedza * (100d - (double)latwosc) / 100d)) + " (" + Convert.ToString(lb[poziom].Wymagania.Wiedza) + ")\n";
                     if (lb[poziom].Wymagania.DomPubliczny != 0) wymagania += "Dom Publiczny: " + Convert.ToString(lb[poziom].Wymagania.DomPubliczny) + '\n';
+                    if (lb[poziom].Wymagania.PosterunekPolicji != 0) wymagania += "Posterunek Policji: " + Convert.ToString(lb[poziom].Wymagania.PosterunekPolicji) + '\n';
+                    if (lb[poziom].Wymagania.AgencjaOchrony != 0) wymagania += "Agencja Ochrony: " + Convert.ToString(lb[poziom].Wymagania.AgencjaOchrony) + '\n';
                 }
                 else
                 {
@@ -207,6 +269,8 @@ namespace R19_BW_laczenia
                     if (lb[poziom].Wymagania.Inteligencja != 0) wymagania += "Inteligencja: " + Convert.ToString(lb[poziom].Wymagania.Inteligencja) + '\n';
                     if (lb[poziom].Wymagania.Wiedza != 0) wymagania += "Wiedza: " + Convert.ToString(lb[poziom].Wymagania.Wiedza) + '\n';
                     if (lb[poziom].Wymagania.DomPubliczny != 0) wymagania += "Dom Publiczny: " + Convert.ToString(lb[poziom].Wymagania.DomPubliczny) + '\n';
+                    if (lb[poziom].Wymagania.PosterunekPolicji != 0) wymagania += "Posterunek Policji: " + Convert.ToString(lb[poziom].Wymagania.PosterunekPolicji) + '\n';
+                    if (lb[poziom].Wymagania.AgencjaOchrony != 0) wymagania += "Agencja Ochrony: " + Convert.ToString(lb[poziom].Wymagania.AgencjaOchrony) + '\n';
                 }
             }
             else if (poziom == 0) wymagania = "Brak";
@@ -337,7 +401,7 @@ namespace R19_BW_laczenia
     public class WymaganiaBudynku
     {
         // Klasa wymagań statystyk postaci / rozbudowy innych budynków do rozbudowy danego budynku
-        public WymaganiaBudynku(int _sila = 0, int _zwinnosc = 0, int _odpornosc = 0, int _wyglad = 0, int _charyzma = 0, int _wplywy = 0, int _spostrzegawczosc = 0, int _inteligencja = 0, int _wiedza = 0, int _domPubliczny = 0)
+        public WymaganiaBudynku(int _sila = 0, int _zwinnosc = 0, int _odpornosc = 0, int _wyglad = 0, int _charyzma = 0, int _wplywy = 0, int _spostrzegawczosc = 0, int _inteligencja = 0, int _wiedza = 0, int _domPubliczny = 0, int _posterunek = 0, int _agencja = 0)
         {
             this.Sila = _sila;
             this.Zwinnosc = _zwinnosc;
@@ -349,6 +413,8 @@ namespace R19_BW_laczenia
             this.Inteligencja = _inteligencja;
             this.Wiedza = _wiedza;
             this.DomPubliczny = _domPubliczny;
+            this.PosterunekPolicji = _posterunek;
+            this.AgencjaOchrony = _agencja;
         }
 
         public int Sila; // Wymagania statystyki Siły
@@ -361,6 +427,8 @@ namespace R19_BW_laczenia
         public int Inteligencja; // Wymagania statystyki Inteligencji
         public int Wiedza; // Wymagania statystyki Wiedzy
         public int DomPubliczny; // Wymagania rozbudowy budynku - Dom Publiczny
+        public int PosterunekPolicji; // Wymagania rozbudowy budynku - Posterunek Policji
+        public int AgencjaOchrony; // Wymagania rozbudowy budynku - Agencja Ochrony
     }
 
     public class EfektBudynku

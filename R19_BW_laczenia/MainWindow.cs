@@ -266,6 +266,11 @@ namespace R19_BW_laczenia
             cbBudynek.Items.Add("Zbrojownia");
             cbBudynek.Items.Add("Stary Rynek");
             cbBudynek.Items.Add("Postój Taxi");
+            cbBudynek.Items.Add("-- STREFA 4 --");
+            cbBudynek.Items.Add("Garnizon");
+            cbBudynek.Items.Add("Handlarz Bronią");
+            cbBudynek.Items.Add("Pogotowie");
+            cbBudynek.Items.Add("Lombard");
             cbBudynek.SelectedIndex = 1;
 
             // Analizator Walk
@@ -297,10 +302,14 @@ namespace R19_BW_laczenia
             Budynek.UtworzZbrojownia(Zbrojownia);
             Budynek.UtworzStaryRynek(StaryRynek);
             Budynek.UtworzPostojTaxi(PostojTaxi);
+            Budynek.UtworzGarnizon(Garnizon);
+            Budynek.UtworzHandlarzBronia(HandlarzBronia);
+            Budynek.UtworzPogotowie(Pogotowie);
+            Budynek.UtworzLombard(Lombard);
         }
 
         // Zmienna wersji programu
-        public string version = "Version 2.9"; // Trzeba pamiętać o zmianie :(
+        public string version = "Version 2.9.1"; // Trzeba pamiętać o zmianie :(
 
         // Listy prefiksów, baz i sufiksów każdego typu przedmiotów
         ItemType BazaHelm = new ItemType();
@@ -344,6 +353,7 @@ namespace R19_BW_laczenia
         Font fontAnalizatorRap;
 
         // Listy budynków
+        // -- Strefa 5
         List<Budynek> Posredniak = new List<Budynek>();
         List<Budynek> DomPubliczny = new List<Budynek>();
         List<Budynek> Rzeznia = new List<Budynek>();
@@ -353,6 +363,11 @@ namespace R19_BW_laczenia
         List<Budynek> Zbrojownia = new List<Budynek>();
         List<Budynek> StaryRynek = new List<Budynek>();
         List<Budynek> PostojTaxi = new List<Budynek>();
+        // -- Strefa 4
+        List<Budynek> Garnizon = new List<Budynek>();
+        List<Budynek> HandlarzBronia = new List<Budynek>();
+        List<Budynek> Pogotowie = new List<Budynek>();
+        List<Budynek> Lombard = new List<Budynek>();
 
         private void DodajElementyCB(List<string> Baza, ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cb4)
         {
@@ -3281,6 +3296,34 @@ namespace R19_BW_laczenia
                     czas = Budynek.PokazCzasBudowy(PostojTaxi, poziom, poziomPosredniaka, Posredniak);
                     efekt = Budynek.PokazEfekty(PostojTaxi, poziom);
                     break;
+
+                case "Garnizon":
+                    koszta = Budynek.PokazKoszta(Garnizon, poziom);
+                    wymagania = Budynek.PokazWymagania(Garnizon, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(Garnizon, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(Garnizon, poziom);
+                    break;
+
+                case "Handlarz Bronią":
+                    koszta = Budynek.PokazKoszta(HandlarzBronia, poziom);
+                    wymagania = Budynek.PokazWymagania(HandlarzBronia, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(HandlarzBronia, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(HandlarzBronia, poziom);
+                    break;
+
+                case "Pogotowie":
+                    koszta = Budynek.PokazKoszta(Pogotowie, poziom);
+                    wymagania = Budynek.PokazWymagania(Pogotowie, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(Pogotowie, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(Pogotowie, poziom);
+                    break;
+
+                case "Lombard":
+                    koszta = Budynek.PokazKoszta(Lombard, poziom);
+                    wymagania = Budynek.PokazWymagania(Lombard, poziom, latwosc);
+                    czas = Budynek.PokazCzasBudowy(Lombard, poziom, poziomPosredniaka, Posredniak);
+                    efekt = Budynek.PokazEfekty(Lombard, poziom);
+                    break;
             }
 
             rtbPlacBodowyKoszty.Text = koszta[0];
@@ -3483,7 +3526,6 @@ namespace R19_BW_laczenia
                 }
                 else
                 {
-                    
                     if (s.Contains("vs"))
                     {
                         // Atakujący vs Obrońca
