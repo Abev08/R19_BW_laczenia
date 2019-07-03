@@ -1,0 +1,22 @@
+﻿<Window x:Class="Narzędzie_Blood_Wars___R19.TableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Narzędzie_Blood_Wars___R19"
+        mc:Ignorable="d"
+        Title="Tabela łączeń"
+        Height="450"
+        Width="800"
+        Closing="Window_Closing" Background="LightGray" Icon="Resources/Table_icon.ico">
+    <Grid>
+        <TabControl x:Name="Tabela" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="LightGray">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Header" Value="{Binding Header}"/>
+                    <Setter Property="Content" Value="{Binding Content}"/>
+                </Style>
+            </TabControl.ItemContainerStyle>
+        </TabControl>
+    </Grid>
+</Window>

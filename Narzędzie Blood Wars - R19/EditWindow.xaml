@@ -1,0 +1,31 @@
+﻿<Window x:Class="Narzędzie_Blood_Wars___R19.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Narzędzie_Blood_Wars___R19"
+        mc:Ignorable="d"
+        Title="Edytor załadowanych przedmiotów" Height="160" Width="480" Closing="Window_Closing" ResizeMode="NoResize" Background="#FF050505" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <WrapPanel x:Name="wrapPanel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10,0,10,0">
+            <Label Content="Załadowane przedmioty:" FontSize="14" Padding="0" VerticalContentAlignment="Center" Foreground="White"/>
+            <ComboBox Name="cbEditLoadedItems" Height="28" SelectionChanged="CbEditLoadedItems_SelectedIndexChanged" VerticalContentAlignment="Center" FontSize="14" Width="295" Margin="5,0,0,0" MouseEnter="MouseEnterFocus"/>
+        </WrapPanel>
+        <ComboBox Name="cbEditPref" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="140" Height="28" FontSize="14" MouseEnter="MouseEnterFocus"/>
+        <ComboBox Name="cbEditBaza" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="140" Height="28" FontSize="14" MouseEnter="MouseEnterFocus"/>
+        <ComboBox Name="cbEditSuf" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="140" Height="28" FontSize="14" MouseEnter="MouseEnterFocus"/>
+        <Button Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" Height="28" FontSize="14" Content="Zamień" Click="BtnEdit_Click"/>
+        <Button Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" Height="28" FontSize="14" Content="Dodaj" Click="BtnAdd_Click"/>
+        <Button Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" Height="28" FontSize="14" Content="Usuń" Click="BtnDelete_Click"/>
+    </Grid>
+</Window>

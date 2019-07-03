@@ -1,11 +1,11 @@
-# R19 Blood Wars Łączenia
+# Narzędzie Blood Wars - R19 (R19 Blood Wars Łączenia)
    
-Aplikacja wspomagająca łączenie przedmiotów w grze Blood Wars (www.bloodwars.interia.pl).  
+Aplikacja wspomagająca graczy Blood Wars (www.bloodwars.interia.pl).  
 Listy przedmiotów przystosowano do serwera R19.  
    
-Wewnątrz archiwum R19_BW_laczenia.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/R19_BW_laczenia.zip) - wystarczy to pobrać).  
+Wewnątrz archiwum NarzedzieBW_R_19.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/NarzedzieBW_R_19.zip) - wystarczy to pobrać).  
 Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
-Aktualna wersja programu: 2.9.1.  
+Aktualna wersja programu: 3.0.  
    
    
 ## Funkcje programu
@@ -16,10 +16,10 @@ Aktualna wersja programu: 2.9.1.
  - Możliwość wyświetlenia tabeli łączeń prefiksów / baz / sufiksów każdego typu przedmiotu,
  - Tabela łączeń:
    - Możliwość wyświetlania jednocześnie wielu tabeli łączeń w formie zakładek,
-   - Możliwość zamknięcia wybranej zakładki tabeli łączeń klikając prawym przyciskiem lub środkowym przyciskiem (kółkiem) myszy na jej zakładce,
-   - Możliwość zmiany rozmiaru czcionki wyświetlanych elementów tabeli łączeń,
+   - Możliwość zamknięcia wybranej zakładki tabeli łączeń klikając prawym przyciskiem ~~lub środkowym przyciskiem (kółkiem)~~ myszy na jej zakładce,
+   - ~~Możliwość zmiany rozmiaru czcionki wyświetlanych elementów tabeli łączeń,~~
    - Podświetlanie wiersza i kolumny wybranego elementu tabeli łączeń,
- - Analizator raportów łączenia umożliwiający wyświetlenie podsumowania przeprowadzonych ulepszeń,
+ - Analizator raportów ulepszania umożliwiający wyświetlenie podsumowania przeprowadzonych ulepszeń,
  - Analizator łączeń wyszukujący możliwe połączenia z listy przedmiotów:
    - Możliwość załadowania listy przedmiotów z tekstu lub poprzez edytor załadowanych przedmiotów,
    - Możliwość łączenia każdego dostępnego w grze typu przedmiotu,
@@ -40,7 +40,8 @@ Aktualna wersja programu: 2.9.1.
    - Dla każdego poziomu rozbudowy wyświetlany jest czas budowy wybranego poziomu,
    - Możliwość włączenia uwzględniania redukcji czasu budowy wszystkich budynków wynikającej z rozbudowy Pośredniaka,
    - Możliwość włączenia uwzględniania łatwości do wymagań rozbudowy budynków.
- - Analizator raportów walk przedstawiający statystyki każdego z uczestników oblężenia:
+ - Analizator raportów walk przedstawiający statystyki każdego z uczestników:
+   - Możliwość analizowania raportów: oblężenia, zasadzki, ekspedycji, Króla Wzgórza i Nowej Areny,
    - Ilość ataków,
    - Ilość trafionych ataków oraz procentową wartość trafionych ataków,
    - Ilość trafionych ataków z ciosem krytycznym oraz procentową wartość trafionych ataków z ciosem krytycznym,
@@ -51,16 +52,19 @@ Aktualna wersja programu: 2.9.1.
    - Ilość otrzymanych punktów obrażeń,
    - Ilość zregenerowanych punktów życia,
    - Nazwy używanych broni,
+   - Nazw ataków specjalnych,
    - Możliwość włączenia uwzględniania obrażeń z komendy "Atak watahy".
  - Menu prawego przycisku myszy umożliwiające:
    - Wklejenie tekstu do okienka (dostępne wyłącznie w analizatorze raportu łączenia, analizatorze łączeń i analizatorze raportu walki),
    - Kopiowanie zaznaczonego tekstu,
-   - Kopiowanie całego wyświetlanego tekstu,
-   - Zapisywanie wyświetlanego tekstu do pliku,
-   - Czyszczenie przebiegu łączeń / zawartości okienek tekstowych,
-   - Wysłanie zaznaczonego przedmiotu do schowka programowego (dostępne przy łączeniu ręcznym).
+   - ~~Kopiowanie całego wyświetlanego tekstu,~~
+   - ~~Zapisywanie wyświetlanego tekstu do pliku,~~
+   - ~~Czyszczenie przebiegu łączeń / zawartości okienek tekstowych,~~
+   - ~~Wysłanie zaznaczonego przedmiotu do schowka programowego (dostępne przy łączeniu ręcznym).~~
  - Podczas uruchamiania program informuje o dostępności nowszych wersji.   
    
+Przekreślone elementy są niedostępne w wersji 3.0 i nowszych.   
+Sprawdzanie aktualizacji może nie działać na Windowsie XP, ponieważ nie wspiera on szyfrowania w wersji TLS1.2.   
    
    
 ## Screenshoty
@@ -100,7 +104,7 @@ Pomoc (przykładowe okienko).
 --------------------------
    
    
-Do poprawnego działania aplikacja wymaga zainstalowanego środowiska .NET Framework 4.5 lub nowszej wersji.  
+Do poprawnego działania aplikacja wymaga zainstalowanego środowiska .NET Framework 4.0 lub nowszej wersji.  
 Proszę zgłaszać wszelkie znalezione błędy / sugestie dotyczące programu :)  
 Problemy proszę zgłaszać znajdując mnie w grze, pisząc na abev088@gmail.com  
 lub wykorzystując zakładkę "Issues" w repozytorium GitHub'a.  

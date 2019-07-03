@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace R19_BW_laczenia.Properties {
+namespace Narzędzie_Blood_Wars___R19.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace R19_BW_laczenia.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("R19_BW_laczenia.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Narzędzie_Blood_Wars___R19.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,46 +57,6 @@ namespace R19_BW_laczenia.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Background_black {
-            get {
-                object obj = ResourceManager.GetObject("Background_black", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
-        /// </summary>
-        internal static System.Drawing.Icon Help_icon {
-            get {
-                object obj = ResourceManager.GetObject("Help_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
-        /// </summary>
-        internal static System.Drawing.Icon Icon {
-            get {
-                object obj = ResourceManager.GetObject("Icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
-        /// </summary>
-        internal static System.Drawing.Icon Table_icon {
-            get {
-                object obj = ResourceManager.GetObject("Table_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
     }

@@ -1,0 +1,17 @@
+﻿<Window x:Class="Narzędzie_Blood_Wars___R19.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Narzędzie_Blood_Wars___R19"
+        mc:Ignorable="d"
+        Title="Pomoc - " Height="400" Width="800" ResizeMode="NoResize" Background="#FF050505" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Icon="Resources/Help_icon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="38"/>
+        </Grid.RowDefinitions>
+        <RichTextBox Name="rtbHelp" Grid.Row="0" Grid.Column="0" Margin="5" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Block.LineHeight="3" Foreground="White" Background="#FF191919" FontFamily="Franklin Gothic Book" FontSize="15"/>
+        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="28" Width="84" Margin="0,0,20,5" Content="OK" FontSize="14" Click="PomocOK_Click"/>
+    </Grid>
+</Window>

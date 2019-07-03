@@ -1,4 +1,20 @@
-﻿Version 2.9.1	[25.04.2019]
+﻿Version 3.0		[3.07.2019]
+	- Zmieniono nazwę programu z "R19 Blood Wars - Łączenia" na "Narzędzie Blood Wars - R19",
+	- Zaktualizowano wygląd programu przechodząc z WinForms na WPF,
+	- Zmniejszono wymaganą wersję .NET Framework do 4.0 aby możliwe było uruchomienie programu na Windowsie XP,
+	- Analizator raportu walki:
+		-- Dodano możliwość analizy wszystkich typów raportów walk: oblężenia, zasadzki, ekspedycji, Króla Wzgórza, Nowej Areny,
+		-- Dodano możliwość sortowania wyników poprzez kliknięcie na nagłówek kolumny,
+		-- Dodano możliwość zmiany kolejności kolumn poprzez ich przeciąganie,
+		-- Dodano nagłówek "Atak Specjalny" wyświetlający nazwę ataku specjalnego użytego przez uczestnika,
+		-- Ogólnie poprawiono działanie analizatora raportów walk.
+	- Plac Budowy:
+		-- Utworzono dla każdego z budynków wzorów określających koszta, wymagania i efekty dla danego poziomu,
+		-- Doprecyzowano efekty budynków dodających PKT ŻYCIA,
+		-- Uwzględniono wartości maksymalne efektów budynków i maksymalne poziomy rozbudowy.
+	- Poprawiono kod programu w wielu miejscach.
+
+Version 2.9.1	[25.04.2019]
 	- Dodano kolejne poziomy rozbudowy budynków w Placu Budowy,
 	- Dodano budynki Strefy 4 do listy budynków w Placu Budowy.
 
