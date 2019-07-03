@@ -1,4 +1,7 @@
-﻿Version 3.0		[3.07.2019]
+﻿Version 3.0.1 Hotfix		[3.07.2019]
+	- Poprawiono błędnie wyskakujące okienko informujące o aktualizacji, mimo korzystania z najnowszej wersji.
+
+Version 3.0		[3.07.2019]
 	- Zmieniono nazwę programu z "R19 Blood Wars - Łączenia" na "Narzędzie Blood Wars - R19",
 	- Zaktualizowano wygląd programu przechodząc z WinForms na WPF,
 	- Zmniejszono wymaganą wersję .NET Framework do 4.0 aby możliwe było uruchomienie programu na Windowsie XP,

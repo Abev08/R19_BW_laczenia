@@ -5,7 +5,7 @@ Listy przedmiotów przystosowano do serwera R19.
    
 Wewnątrz archiwum NarzedzieBW_R_19.zip znajduje się wykonywalna wersja programu ([.exe](https://github.com/Abev08/R19_BW_laczenia/raw/master/NarzedzieBW_R_19.zip) - wystarczy to pobrać).  
 Wersję używanego programu można sprawdzić najeżdżając myszką na "by Abev".  
-Aktualna wersja programu: 3.0.  
+Aktualna wersja programu: 3.0.1.  
    
    
 ## Funkcje programu

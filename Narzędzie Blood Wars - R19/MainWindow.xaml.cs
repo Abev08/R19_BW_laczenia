@@ -85,7 +85,7 @@ namespace Narzędzie_Blood_Wars___R19
             byMe.ToolTip = "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() + "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :D";
         }
 
-        const string Version = "Version 3.0"; // Aktuwalna wersja programu, trzeba pamiętać o zmianie :(
+        const string Version = "Version 3.0.1"; // Aktuwalna wersja programu, trzeba pamiętać o zmianie :(
         BackgroundWorker VersionWorker;
 
         TableWindow TableWindow;
@@ -113,7 +113,7 @@ namespace Narzędzie_Blood_Wars___R19
                 dynamic commits = JArray.Parse(reader.ReadToEnd());
                 string lastCommit = commits[0].commit.message;
 
-                if (lastCommit != null)
+                if (lastCommit != Version)
                 {
                     this.Dispatcher.Invoke(new Action(() =>
                     {
