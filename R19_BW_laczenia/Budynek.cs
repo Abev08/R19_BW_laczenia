@@ -204,6 +204,7 @@ namespace R19_BW_laczenia
             lb.Add(new Budynek(0, new KosztBudynku(0, 0, 0), new WymaganiaBudynku(), new TimeSpan(0, 0, 0), new EfektBudynku()));
             lb.Add(new Budynek(1, new KosztBudynku(7000, 600, 0), new WymaganiaBudynku(_charyzma: 60, _wiedza: 35), new TimeSpan(0, 40, 0), new EfektBudynku(_przyrostKrwi: 10)));
             lb.Add(new Budynek(2, new KosztBudynku(10500, 840, 0), new WymaganiaBudynku(_charyzma: 75, _wiedza: 42), new TimeSpan(0, 48, 0), new EfektBudynku(_przyrostKrwi: 13)));
+            lb.Add(new Budynek(3, new KosztBudynku(15750, 1175, 0), new WymaganiaBudynku(_charyzma: 90, _wiedza: 49), new TimeSpan(0, 0, 0), new EfektBudynku(_przyrostKrwi: 17)));
 
             return lb;
         }

@@ -13,9 +13,12 @@ namespace Narzędzie_Blood_Wars___R19
             this.Weapons = new string[] { "", "" };
             this.NumAttack = 0; // Ilość ataków
             this.NumCrits = 0; // Ilość ataków krytycznych
+            this.NumCritsText = "0"; // Ilość ataków krytycznych z wartością procentową w postaci stringa
             this.NumHits = 0; // Ilość trafień
+            this.NumHitsText = "0"; // Ilość trafień z wartością procentową w postaci stringa
             this.NumGotAttacked = 0; // Ilość trafionych otrzymanych ataków
             this.NumMisses = 0; // Ilość chybień (atakujący chybił atak we mnie)
+            this.NumMissesText = "0"; // Ilość chybeiń (atakujący chybił atak we mnie) z wartością procentową w postaci stringa
             this.NumDodges = 0; // Ilość uników
             this.NumDmg = 0; // Ilość zadanych obrażeń
             this.NumGotDmg = 0; // Ilość otrzymanych obrażeń
@@ -27,9 +30,12 @@ namespace Narzędzie_Blood_Wars___R19
         public string[] Weapons { get; set; }
         public int NumAttack { get; set; }
         public int NumCrits { get; set; }
+        public string NumCritsText { get; set; }
         public int NumHits { get; set; }
+        public string NumHitsText { get; set; }
         public int NumGotAttacked { get; set; }
         public int NumMisses { get; set; }
+        public string NumMissesText { get; set; }
         public int NumDodges { get; set; }
         public int NumRegenHP { get; set; }
         public int NumDmg { get; set; }
@@ -158,6 +164,9 @@ namespace Narzędzie_Blood_Wars___R19
                         // Obrońca nie został trafiony
                         result.Participants[indexDefender].NumMisses += 1;
                     }
+                    result.Participants[indexAttacker].NumCritsText = result.Participants[indexAttacker].NumCrits.ToString() + " (" + (Math.Round((double)result.Participants[indexAttacker].NumCrits / (double)result.Participants[indexAttacker].NumHits, 2) * 100d).ToString() + "% )";
+                    result.Participants[indexAttacker].NumHitsText = result.Participants[indexAttacker].NumHits.ToString() + " (" + (Math.Round((double)result.Participants[indexAttacker].NumHits / (double)result.Participants[indexAttacker].NumAttack, 2) * 100d).ToString() + "% )";
+                    result.Participants[indexDefender].NumMissesText = result.Participants[indexDefender].NumMisses.ToString() + " (" + (Math.Round((double)result.Participants[indexDefender].NumMisses / (double)result.Participants[indexDefender].NumGotAttacked, 2) * 100d).ToString() + "% )";
                 }
                 else if (s.Contains("odzyskuje"))
                 {
@@ -230,7 +239,6 @@ namespace Narzędzie_Blood_Wars___R19
                     else if (!line[1].Contains(" nie zostaje"))
                     {
                         result.Participants[indexAttacker].NumHits += 1; // Linia nie zawiera "nie zostaje" - obronca został trafiony
-
                         int offset = line[1].LastIndexOf(" za ") + 4;
                         int dmg = Convert.ToInt32(line[1].Substring(offset, line[1].IndexOf(" PKT ŻYCIA") - offset));
                         if (dmg < 0) dmg = 0;
@@ -251,6 +259,9 @@ namespace Narzędzie_Blood_Wars___R19
                     if (result.Participants[indexAttacker].Weapons[0] == "") result.Participants[indexAttacker].Weapons[0] = weapon;
                     else if (result.Participants[indexAttacker].Weapons[0] == weapon) { } // Nic nie rob
                     else if (result.Participants[indexAttacker].Weapons[1] == "") result.Participants[indexAttacker].Weapons[1] = weapon;
+                    result.Participants[indexAttacker].NumCritsText = result.Participants[indexAttacker].NumCrits.ToString() + " (" + (Math.Round((double)result.Participants[indexAttacker].NumCrits / (double)result.Participants[indexAttacker].NumHits, 2) * 100d).ToString() + "% )";
+                    result.Participants[indexAttacker].NumHitsText = result.Participants[indexAttacker].NumHits.ToString() + " (" + (Math.Round((double)result.Participants[indexAttacker].NumHits / (double)result.Participants[indexAttacker].NumAttack, 2) * 100d).ToString() + "% )";
+                    result.Participants[indexDefender].NumMissesText = result.Participants[indexDefender].NumMisses.ToString() + " (" + (Math.Round((double)result.Participants[indexDefender].NumMisses / (double)result.Participants[indexDefender].NumGotAttacked, 2) * 100d).ToString() + "% )";
                 }
                 else
                 {

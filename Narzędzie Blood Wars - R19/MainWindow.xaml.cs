@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace Narzędzie_Blood_Wars___R19
 {
@@ -45,7 +46,7 @@ namespace Narzędzie_Blood_Wars___R19
             BazaPalna2h = new ItemType(ItemType.Items[8]); // Palna 2h
             BazaDystans = new ItemType(ItemType.Items[9]); // Dystansowa
 
-            byHand = new JoinByHand(); // Obiekt do łączenia ręcznego
+            ByHand = new JoinByHand(); // Obiekt do łączenia ręcznego
 
             // Dodanie elementów ComboBox'a na stronie łączeń ręcznych
             cbLaczenieReczne.ItemsSource = ItemType.Items;
@@ -56,8 +57,7 @@ namespace Narzędzie_Blood_Wars___R19
             cbAnalizatorLaczenItemType.SelectedIndex = 0;
 
             // Inicjowanie zmiennych analizatora łączeń
-            AnaLaczItems = new List<Item>();
-            AnaLaczResults = new List<Item>();
+            AnaLaczResults = new System.Collections.Concurrent.ConcurrentBag<Item>();
             AnaLaczItemsFiltered = new List<int>();
             AnaLaczWorker = new BackgroundWorker();
             AnaLaczWorker.WorkerSupportsCancellation = true;
@@ -85,7 +85,7 @@ namespace Narzędzie_Blood_Wars___R19
             byMe.ToolTip = "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() + "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :D";
         }
 
-        const string Version = "Version 3.0.1"; // Aktuwalna wersja programu, trzeba pamiętać o zmianie :(
+        const string Version = "Version 3.1"; // Aktuwalna wersja programu, trzeba pamiętać o zmianie :(
         BackgroundWorker VersionWorker;
 
         TableWindow TableWindow;
@@ -94,9 +94,11 @@ namespace Narzędzie_Blood_Wars___R19
         AboutWindow AboutWindow;
 
         static ItemType BazaHelm, BazaZbroja, BazaSpodnie, BazaPierscien, BazaAmulet, BazaBiala1h, BazaBiala2h, BazaPalna1h, BazaPalna2h, BazaDystans;
-        JoinByHand byHand;
+        JoinByHand ByHand;
 
-        List<Item> AnaLaczItems, AnaLaczResults;
+        List<Item> AnaLaczItems = new List<Item>();
+        System.Collections.Concurrent.ConcurrentBag<Item> AnaLaczResults;
+        Item[] AnaLaczResults2;
         BackgroundWorker AnaLaczWorker;
         List<int> AnaLaczItemsFiltered;
         bool DoOnceAnalizator = true;
@@ -105,6 +107,7 @@ namespace Narzędzie_Blood_Wars___R19
 
         private void VersionWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            /// Funkcja sprawdzania aktualizacji
             WebClient conn = new WebClient();
             conn.Headers.Add("User-Agent: Other");
             Stream stream = conn.OpenRead("https://api.github.com/repos/Abev08/R19_BW_laczenia/commits");
@@ -128,8 +131,8 @@ namespace Narzędzie_Blood_Wars___R19
 
         private void CbLaczenieReczne_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Zakutualizuj zawartosc ComboBoxow z prefami, bazami i sufami
-            if (byHand != null) byHand.Clear(); // Zresetuj łączenie ręczne
+            /// Zakutualizuj zawartosc ComboBoxow z prefami, bazami i sufami
+            if (ByHand != null) ByHand.Clear(); // Zresetuj łączenie ręczne
             rtbLaczenieReczne.Document.Blocks.Clear();
             rtbLaczenieReczne.ScrollToEnd();
 
@@ -163,62 +166,37 @@ namespace Narzędzie_Blood_Wars___R19
 
         private void CbLaczenieReczne_SelectionChanged2(object sender, SelectionChangedEventArgs e)
         {
-            // Zmieniono wybrany prefiks / bazę / sufiks przy łaczeniu ręcznym - zaktualizuj potencjalny wynik łaczenia
-            UpdateLabelByHand();
+            UpdateLabelByHand(); // Zmieniono wybrany prefiks / bazę / sufiks przy łaczeniu ręcznym - zaktualizuj potencjalny wynik łaczenia
         }
 
         private void UpdateLabelByHand()
         {
-            // Zmieniono wybrany prefiks / bazę / sufiks przy łaczeniu ręcznym - zaktualizuj potencjalny wynik łaczenia
+            /// Zmieniono wybrany prefiks / bazę / sufiks przy łaczeniu ręcznym - zaktualizuj potencjalny wynik łaczenia
             Item i = new Item(cbLaczenieRecznePref.SelectedIndex, cbLaczenieReczneBaza.SelectedIndex, cbLaczenieReczneSuf.SelectedIndex);
-            if ((byHand.i1.Sum() == 0) || (i.Sum() == 0))
+            if ((ByHand.i1.Sum() == 0) || (i.Sum() == 0))
             {
                 labelLaczenieRecznePref.Content = "";
                 labelLaczenieReczneBaza.Content = "";
                 labelLaczenieReczneSuf.Content = "";
                 return;
             }
-
             string selectedItem = cbLaczenieReczne.SelectedItem.ToString();
-            if (selectedItem == ItemType.Items[0]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaHelm, true);
-            else if (selectedItem == ItemType.Items[1]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaZbroja);
-            else if (selectedItem == ItemType.Items[2]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaSpodnie);
-            else if (selectedItem == ItemType.Items[3]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaPierscien);
-            else if (selectedItem == ItemType.Items[4]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaAmulet);
-            else if (selectedItem == ItemType.Items[5]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaBiala1h);
-            else if (selectedItem == ItemType.Items[6]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaBiala2h);
-            else if (selectedItem == ItemType.Items[7]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaPalna1h);
-            else if (selectedItem == ItemType.Items[8]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaPalna2h);
-            else if (selectedItem == ItemType.Items[9]) byHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaDystans);
-        }
-
-        private void PopulateComboBox(ComboBox cbP, ComboBox cbB, ComboBox cbS, ItemType it)
-        {
-            if (it == null) return;
-
-            // Ustawia listy ComboBox'ów i resetuje wybrany element
-            if ((cbP != null) && (it.pref != null))
-            {
-                cbP.ItemsSource = it.pref;
-                cbP.SelectedIndex = 0;
-            }
-            if ((cbB != null) && (it.baza != null))
-            {
-                cbB.ItemsSource = it.baza;
-                cbB.SelectedIndex = 0;
-            }
-            if ((cbS != null) && (it.suf != null))
-            {
-                cbS.ItemsSource = it.suf;
-                cbS.SelectedIndex = 0;
-            }
+            if (selectedItem == ItemType.Items[0]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaHelm, true);
+            else if (selectedItem == ItemType.Items[1]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaZbroja);
+            else if (selectedItem == ItemType.Items[2]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaSpodnie);
+            else if (selectedItem == ItemType.Items[3]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaPierscien);
+            else if (selectedItem == ItemType.Items[4]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaAmulet);
+            else if (selectedItem == ItemType.Items[5]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaBiala1h);
+            else if (selectedItem == ItemType.Items[6]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaBiala2h);
+            else if (selectedItem == ItemType.Items[7]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaPalna1h);
+            else if (selectedItem == ItemType.Items[8]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaPalna2h);
+            else if (selectedItem == ItemType.Items[9]) ByHand.UpdateLabel(labelLaczenieRecznePref, labelLaczenieReczneBaza, labelLaczenieReczneSuf, i, BazaDystans);
         }
 
         private void PopulateComboBox(ComboBox[] cbP, ComboBox[] cbB, ComboBox[] cbS, ItemType it)
         {
+            /// Ustawia listy ComboBox'ów i resetuje wybrany element (działa dla tablic ComboBox'ów)
             if (it == null) return;
-
-            // Ustawia listy ComboBox'ów i resetuje wybrany element (działa dla tablic ComboBox'ów)
             foreach (ComboBox cb in cbP)
             {
                 cb.ItemsSource = it.pref;
@@ -238,7 +216,7 @@ namespace Narzędzie_Blood_Wars___R19
 
         private void RtbAnalizatorLaczen_GotFocus(object sender, RoutedEventArgs e)
         {
-            // Usuń "startowy" tekst w okienku analizatora łączeń po kliknięciu w nie
+            /// Usuń "startowy" tekst w okienku analizatora łączeń po kliknięciu w nie
             if (DoOnceAnalizator == false) return;
             string txt = new TextRange(rtbAnalizatorLaczen.Document.ContentStart, rtbAnalizatorLaczen.Document.ContentEnd).Text;
             if (txt.Contains("Wklej tutaj listę przedmiotów do łączenia.")) rtbAnalizatorLaczen.Document.Blocks.Clear();
@@ -250,72 +228,62 @@ namespace Narzędzie_Blood_Wars___R19
             /// Funkcja do łączenia przedmiotów przy łączeniu ręcznym
             // Opuść funkcję jeżeli nie wybrano żadnego prefiksu / bazy / sufiksu
             if (cbLaczenieRecznePref.SelectedIndex + cbLaczenieReczneBaza.SelectedIndex + cbLaczenieReczneSuf.SelectedIndex == 0) return;
-
-            if (byHand.i1.Sum() == 0)
+            if (ByHand.i1.Sum() == 0)
             {
-                byHand.i1 = new Item(cbLaczenieRecznePref.SelectedIndex, cbLaczenieReczneBaza.SelectedIndex, cbLaczenieReczneSuf.SelectedIndex);
-                if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[0]) byHand.historyJoin.Add(byHand.i1.ToString(BazaHelm));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[1]) byHand.historyJoin.Add(byHand.i1.ToString(BazaZbroja));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[2]) byHand.historyJoin.Add(byHand.i1.ToString(BazaSpodnie));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[3]) byHand.historyJoin.Add(byHand.i1.ToString(BazaPierscien));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[4]) byHand.historyJoin.Add(byHand.i1.ToString(BazaAmulet));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[5]) byHand.historyJoin.Add(byHand.i1.ToString(BazaBiala1h));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[6]) byHand.historyJoin.Add(byHand.i1.ToString(BazaBiala2h));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[7]) byHand.historyJoin.Add(byHand.i1.ToString(BazaPalna1h));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[8]) byHand.historyJoin.Add(byHand.i1.ToString(BazaPalna2h));
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[9]) byHand.historyJoin.Add(byHand.i1.ToString(BazaDystans));
-
-                byHand.historyItem.Add(new Item(byHand.i1)); // Dodaj przedmiot do historii przedmiotów
+                ByHand.i1 = new Item(cbLaczenieRecznePref.SelectedIndex, cbLaczenieReczneBaza.SelectedIndex, cbLaczenieReczneSuf.SelectedIndex);
+                if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[0]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaHelm));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[1]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaZbroja));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[2]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaSpodnie));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[3]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaPierscien));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[4]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaAmulet));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[5]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaBiala1h));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[6]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaBiala2h));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[7]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaPalna1h));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[8]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaPalna2h));
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[9]) ByHand.historyJoin.Add(ByHand.i1.ToString(BazaDystans));
+                ByHand.historyItem.Add(new Item(ByHand.i1)); // Dodaj przedmiot do historii przedmiotów
             }
             else
             {
-                byHand.i2 = new Item(cbLaczenieRecznePref.SelectedIndex, cbLaczenieReczneBaza.SelectedIndex, cbLaczenieReczneSuf.SelectedIndex);
-                byHand.historyItem.Add(new Item(byHand.i2)); // Dodaj przedmiot do historii przedmiotów
-
-                if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[0]) byHand.Polacz(BazaHelm, true);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[1]) byHand.Polacz(BazaZbroja);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[2]) byHand.Polacz(BazaSpodnie);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[3]) byHand.Polacz(BazaPierscien);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[4]) byHand.Polacz(BazaAmulet);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[5]) byHand.Polacz(BazaBiala1h);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[6]) byHand.Polacz(BazaBiala2h);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[7]) byHand.Polacz(BazaPalna1h);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[8]) byHand.Polacz(BazaPalna2h);
-                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[9]) byHand.Polacz(BazaDystans);
-
-                byHand.historyItem.Add(new Item(byHand.i1)); // Dodaj wynik łączenia do historii przedmiotów
+                ByHand.i2 = new Item(cbLaczenieRecznePref.SelectedIndex, cbLaczenieReczneBaza.SelectedIndex, cbLaczenieReczneSuf.SelectedIndex);
+                ByHand.historyItem.Add(new Item(ByHand.i2)); // Dodaj przedmiot do historii przedmiotów
+                if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[0]) ByHand.Polacz(BazaHelm, true);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[1]) ByHand.Polacz(BazaZbroja);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[2]) ByHand.Polacz(BazaSpodnie);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[3]) ByHand.Polacz(BazaPierscien);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[4]) ByHand.Polacz(BazaAmulet);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[5]) ByHand.Polacz(BazaBiala1h);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[6]) ByHand.Polacz(BazaBiala2h);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[7]) ByHand.Polacz(BazaPalna1h);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[8]) ByHand.Polacz(BazaPalna2h);
+                else if (cbLaczenieReczne.SelectedItem.ToString() == ItemType.Items[9]) ByHand.Polacz(BazaDystans);
+                ByHand.historyItem.Add(new Item(ByHand.i1)); // Dodaj wynik łączenia do historii przedmiotów
             }
-
             // Zaktualizuj wyświetlane połączenia
             rtbLaczenieReczne.Document.Blocks.Clear();
-            foreach (string s in byHand.historyJoin) rtbLaczenieReczne.AppendText(s);
+            foreach (string s in ByHand.historyJoin) rtbLaczenieReczne.AppendText(s);
             rtbLaczenieReczne.ScrollToEnd();
-
             UpdateLabelByHand(); // Zaktualizuj potencjalny wynik łączenia
         }
 
         private void Cofnij_Click(object sender, RoutedEventArgs e)
         {
             /// Funkcja "wróć" przy łączeniu ręcznym
-            if (byHand.historyJoin.Count > 0)
+            if (ByHand.historyJoin.Count > 0)
             {
                 // Usuń ostatnie łączenie i zaktualizuj tekst
-                byHand.historyJoin.RemoveAt(byHand.historyJoin.Count - 1);
-
+                ByHand.historyJoin.RemoveAt(ByHand.historyJoin.Count - 1);
                 // Usuń drugi składnik i wynik łączenia
-                if (byHand.historyItem.Count > 0) byHand.historyItem.RemoveAt(byHand.historyItem.Count - 1);
-                if (byHand.historyItem.Count > 0) byHand.historyItem.RemoveAt(byHand.historyItem.Count - 1);
-
+                if (ByHand.historyItem.Count > 0) ByHand.historyItem.RemoveAt(ByHand.historyItem.Count - 1);
+                if (ByHand.historyItem.Count > 0) ByHand.historyItem.RemoveAt(ByHand.historyItem.Count - 1);
                 // Przywróć wynik poprzedniego łączenia jako pierwszy składnik, wyczyść drugi składnik
-                if (byHand.historyItem.Count > 0) byHand.i1 = byHand.historyItem[byHand.historyItem.Count - 1];
-                else byHand.i1 = new Item();
-                byHand.i2 = new Item();
-
+                if (ByHand.historyItem.Count > 0) ByHand.i1 = ByHand.historyItem[ByHand.historyItem.Count - 1];
+                else ByHand.i1 = new Item();
+                ByHand.i2 = new Item();
                 // Zaktualizuj tekst łączenia
                 rtbLaczenieReczne.Document.Blocks.Clear();
-                foreach (string s in byHand.historyJoin) rtbLaczenieReczne.AppendText(s);
+                foreach (string s in ByHand.historyJoin) rtbLaczenieReczne.AppendText(s);
                 rtbLaczenieReczne.ScrollToEnd();
-
                 UpdateLabelByHand(); // Zaktualizuj potencjalny wynik łączenia
             }
         }
@@ -329,6 +297,7 @@ namespace Narzędzie_Blood_Wars___R19
 
         private void ChkBAnalizatorLaczenDodatkowe_CheckedChanged(object sender, RoutedEventArgs e)
         {
+            if (chkBAnalizatorLaczenMieszane == null) return;
             if (((CheckBox)sender).IsChecked == true) chkBAnalizatorLaczenMieszane.IsEnabled = true;
             else
             {
@@ -415,6 +384,7 @@ namespace Narzędzie_Blood_Wars___R19
                 cbAnalizatorLaczenFiltrBaza.ItemsSource = null;
                 cbAnalizatorLaczenFiltrSuf.ItemsSource = null;
             }
+            ZalPrzedAnalizatorLaczen_Click(null, e); // Wyczyść załadowane przedmioty
         }
 
         private void ZalPrzedAnalizatorLaczen_Click(object sender, RoutedEventArgs e)
@@ -428,34 +398,30 @@ namespace Narzędzie_Blood_Wars___R19
             cbAnalizatorLaczenFiltrPref.IsEnabled = false; // Wyłącz okienka filtra
             cbAnalizatorLaczenFiltrBaza.IsEnabled = false;
             cbAnalizatorLaczenFiltrSuf.IsEnabled = false;
-            chkBAnalizatorLaczenDodatkowe.IsEnabled = false;
-            chkBAnalizatorLaczenDodatkowe.IsChecked = false; // Odznacz dodatkowe łączenia
-            chkBAnalizatorLaczenMieszane.IsEnabled = false;
-            chkBAnalizatorLaczenMieszane.IsChecked = false; // Odznacz mieszane łączenia
             chkBAnalizatorLaczenWyswietl.IsEnabled = false; // Wyłącz checkBox "Wyświetl mimio wszystko"
             chkBAnalizatorLaczenWyswietl.IsChecked = false; // Odznacz checkBox "Wyświetl mimio wszystko"
             btnAnalizatorLaczenEdytuj.IsEnabled = false; // Wyłącz przyciski "Edytuj przedmioty" i "Sortuj przedmioty"
             btnAnalizatorLaczenSortuj.IsEnabled = false;
-
             // Wyczyść listę załadowanych przedmiotów
             AnaLaczItems.Clear();
             AnaLaczItems.TrimExcess();
-
             // Załaduj przedmioty
-            string selectedItem = cbAnalizatorLaczenItemType.SelectedItem.ToString();
-            if (selectedItem == ItemType.Items[0]) Zaladuj(BazaHelm);
-            else if (selectedItem == ItemType.Items[1]) Zaladuj(BazaZbroja);
-            else if (selectedItem == ItemType.Items[2]) Zaladuj(BazaSpodnie);
-            else if (selectedItem == ItemType.Items[3]) Zaladuj(BazaPierscien);
-            else if (selectedItem == ItemType.Items[4]) Zaladuj(BazaAmulet);
-            else if (selectedItem == ItemType.Items[5]) Zaladuj(BazaBiala1h);
-            else if (selectedItem == ItemType.Items[6]) Zaladuj(BazaBiala2h);
-            else if (selectedItem == ItemType.Items[7]) Zaladuj(BazaPalna1h);
-            else if (selectedItem == ItemType.Items[8]) Zaladuj(BazaPalna2h);
-            else if (selectedItem == ItemType.Items[9]) Zaladuj(BazaDystans);
+            if (sender != null)
+            {
+                string selectedItem = cbAnalizatorLaczenItemType.SelectedItem.ToString();
+                if (selectedItem == ItemType.Items[0]) Zaladuj(BazaHelm);
+                else if (selectedItem == ItemType.Items[1]) Zaladuj(BazaZbroja);
+                else if (selectedItem == ItemType.Items[2]) Zaladuj(BazaSpodnie);
+                else if (selectedItem == ItemType.Items[3]) Zaladuj(BazaPierscien);
+                else if (selectedItem == ItemType.Items[4]) Zaladuj(BazaAmulet);
+                else if (selectedItem == ItemType.Items[5]) Zaladuj(BazaBiala1h);
+                else if (selectedItem == ItemType.Items[6]) Zaladuj(BazaBiala2h);
+                else if (selectedItem == ItemType.Items[7]) Zaladuj(BazaPalna1h);
+                else if (selectedItem == ItemType.Items[8]) Zaladuj(BazaPalna2h);
+                else if (selectedItem == ItemType.Items[9]) Zaladuj(BazaDystans);
 
-            AnaLaczItems.TrimExcess();
-
+                AnaLaczItems.TrimExcess();
+            }
             // W zależności od ilości załadowanych przedmiotów wyświetl poprawną (słownie) ilość
             if (AnaLaczItems.Count == 1) lbAnalizatorLaczenZalPrzed.Content = "Załadowano " + AnaLaczItems.Count + " przedmiot:";
             if (AnaLaczItems.Count > 1 && AnaLaczItems.Count < 5) lbAnalizatorLaczenZalPrzed.Content = "Załadowano " + AnaLaczItems.Count + " przedmioty:";
@@ -471,8 +437,6 @@ namespace Narzędzie_Blood_Wars___R19
             if (AnaLaczItems.Count > 1)
             {
                 btnAnalizatorLaczenAnalizuj.IsEnabled = true;
-                chkBAnalizatorLaczenDodatkowe.IsEnabled = true;
-                chkBAnalizatorLaczenMieszane.IsChecked = false;
                 if (AnaLaczItems.Count < 8) tbAnalizatorLaczenIloscLacz.Value = AnaLaczItems.Count - 1; // Jeżeli załadowano poniżej 8 przedmiotów ustaw ilość łączeń na ilość przedmiotów
                 else tbAnalizatorLaczenIloscLacz.Value = 1; // Jeżeli załadowano więcej przedmiotów ustaw wartość początkową równą 1
                 tbAnalizatorLaczenIloscLacz.IsEnabled = true; // Aktywuj kontrolkę
@@ -481,9 +445,6 @@ namespace Narzędzie_Blood_Wars___R19
             {
                 // Jeżeli załadowano mniej niż 2 przedmioty wyłącz przycisk "Analizuj połączenia" oraz checkBox dodatkoweLaczenia i ustaw ilość łączeń na 1
                 btnAnalizatorLaczenAnalizuj.IsEnabled = false;
-                chkBAnalizatorLaczenDodatkowe.IsEnabled = false;
-                chkBAnalizatorLaczenDodatkowe.IsChecked = false;
-                chkBAnalizatorLaczenMieszane.IsChecked = false;
                 tbAnalizatorLaczenIloscLacz.Value = 1;
             }
         }
@@ -493,12 +454,10 @@ namespace Narzędzie_Blood_Wars___R19
             /// Funkcja ładująca przedmioty - identyfikuje przedmioty z ciągu znaków
             string[] linie = (new TextRange(rtbAnalizatorLaczen.Document.ContentStart, rtbAnalizatorLaczen.Document.ContentEnd).Text).Split('\n', '\r'); // Podziel wklejony tekst na linie
             Item item; // Identyfikowany przedmiot
-
             foreach (string line in linie)
             {
                 item = new Item();
                 string linia = line;
-
                 for (int i = 1; i < TypPrzedmiotu.suf.Count; i++)
                 {
                     if (linia.Contains(TypPrzedmiotu.suf[i]))
@@ -539,7 +498,6 @@ namespace Narzędzie_Blood_Wars___R19
                         }
                     }
                 }
-
                 if (item.Sum() > 0)
                 {
                     AnaLaczItems.Add(item);
@@ -553,20 +511,19 @@ namespace Narzędzie_Blood_Wars___R19
         {
             /// Funkcja do sortowania załadowanych przedmiotów
             rtbAnalizatorLaczen.Document.Blocks.Clear();
+            rtbAnalizatorLaczen.AppendText(string.Empty);
             AnaLaczItems = AnaLaczItems.OrderBy(y => y.pref).ThenBy(z => z.baza).ThenBy(k => k.suf).ToList();
-
             string selectedItem = cbAnalizatorLaczenItemType.SelectedItem.ToString();
-            if (selectedItem == ItemType.Items[0]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaHelm) + '\r');
-            else if (selectedItem == ItemType.Items[1]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaZbroja) + '\r');
-            else if (selectedItem == ItemType.Items[2]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaSpodnie) + '\r');
-            else if (selectedItem == ItemType.Items[3]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPierscien) + '\r');
-            else if (selectedItem == ItemType.Items[4]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaAmulet) + '\r');
-            else if (selectedItem == ItemType.Items[5]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaBiala1h) + '\r');
-            else if (selectedItem == ItemType.Items[6]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaBiala2h) + '\r');
-            else if (selectedItem == ItemType.Items[7]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPalna1h) + '\r');
-            else if (selectedItem == ItemType.Items[8]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPalna2h) + '\r');
-            else if (selectedItem == ItemType.Items[9]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaDystans) + '\r');
-
+            if (selectedItem == ItemType.Items[0]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaHelm) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[1]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaZbroja) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[2]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaSpodnie) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[3]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPierscien) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[4]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaAmulet) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[5]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaBiala1h) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[6]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaBiala2h) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[7]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPalna1h) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[8]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPalna2h) + "\r\n\0");
+            else if (selectedItem == ItemType.Items[9]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaDystans) + "\r\n\0");
             rtbAnalizatorLaczen.ScrollToEnd();
         }
 
@@ -591,9 +548,8 @@ namespace Narzędzie_Blood_Wars___R19
             chkBAnalizatorLaczenWyswietl.IsEnabled = false;
             chkBAnalizatorLaczenWyswietl.IsChecked = false;
             // Wyczyść wyniki łączeń
-            AnaLaczResults.Clear();
-            AnaLaczResults.TrimExcess();
-
+            AnaLaczResults = new System.Collections.Concurrent.ConcurrentBag<Item>();
+            if (AnaLaczResults2 != null) Array.Clear(AnaLaczResults2, 0, AnaLaczResults2.Length);
             // Lista z listami prefiksów, baz i sufiksów wysyłana do backgroundWorker'a
             string selectedItem = cbAnalizatorLaczenItemType.SelectedItem.ToString();
             if (selectedItem == ItemType.Items[0]) AnaLaczWorker.RunWorkerAsync(BazaHelm);
@@ -613,7 +569,6 @@ namespace Narzędzie_Blood_Wars___R19
             /// Wątek do analizowania połączeń przedmiotów w analizatorze łączeń
             ItemType arg = (ItemType)e.Argument; // Potraktuj otrzymany argument jako lista list prefiksów, baz i sufiksów
             AnalizujPolaczenia(arg); // Wywołaj analizator połączeń
-
             // Po skończonej analizie zaktualizuj tekst przycisku i włącz kontrolki wyłączone na czas analizy
             this.Dispatcher.Invoke(new Action(() =>
             {
@@ -642,9 +597,6 @@ namespace Narzędzie_Blood_Wars___R19
             /// Główna funkcja analizatora połączeń sprawdzająca pierwsze połączenie
             Stopwatch sw = new Stopwatch(); // Stoper do mierzenia czasu analizy
             sw.Start();
-
-            List<int> indeksy = new List<int>(); // Lista wykorzystanych indeksów przedmiotów
-            Item wynik = new Item(); // Zmienna do przechowywania wyniku łączenia
             int iloscPrzedmiotów = AnaLaczItems.Count; // Zmienna do przechowywania ilości łączonych przedmiotów
             int iloscLacz = 1; // Początkowa ilość łączeń = 1
             int maxIloscLaczen = 0;
@@ -659,97 +611,109 @@ namespace Narzędzie_Blood_Wars___R19
                 mieszaneLaczenia = (bool)chkBAnalizatorLaczenMieszane.IsChecked;
             }));
             bool helmetException = TypPrzedmiotu.baza == BazaHelm.baza; // Sprawdź czy łączone są bazy hełmów
+            double complete = 0;
+            double[] arr = new double[iloscPrzedmiotów]; // Statusy zakończenia wykonywania poszczególnych Tasków łączenia
+            CancellationTokenSource ct = new CancellationTokenSource(); // Token do zakończenia taska aktualizacji ilości znalezionych połączeń
+            Task b = Task.Factory.StartNew(() =>
+            {
+                while (!ct.IsCancellationRequested)
+                {
+                    complete = Math.Round(arr.Average()); // Uśrednij wartość zakończenia poszczególnych tasków
+                    this.Dispatcher.Invoke(new Action(() => { laAnalizatorLaczenZnalPol.Content = "Znaleziono " + complete.ToString() + "% połączeń w " + GetElapsedTimeAsString((double)sw.ElapsedMilliseconds); })); // Wyświetl % zakończenia
+                    //new AutoResetEvent(false).WaitOne(5000); // Przed kolejną aktualizacją zaczekaj 5000 ms
+                    Task.Factory.StartNew(() => { Thread.Sleep(1000); }).Wait();
+                }
+            }, ct.Token);
 
-            for (int sk1 = 0; sk1 < iloscPrzedmiotów; sk1++)
+            List<Task> tasks = new List<Task>(); // Lista Tasków poszczególnych łączeń
+            for (int sk1 = 0; sk1 < iloscPrzedmiotów - 1; sk1++)
             {
                 // Wyczyść listę wykorzystanych indeksów oraz dodaj aktualnie wykorzystywany indeks
-                indeksy.Clear();
-                indeksy.TrimExcess();
+                List<int> indeksy = new List<int>();
                 indeksy.Add(sk1);
-
-                // Zaktualizuj procentowy postęp analizy połączeń
-                this.Dispatcher.Invoke(new Action(() =>
+                int sk1Copy = sk1; // Zapisz kopię, od którego przedmiotu rozpoczęto łączenie
+                Task t = Task.Factory.StartNew(() =>
                 {
-                    laAnalizatorLaczenZnalPol.Content = "Znaleziono " + Math.Ceiling(((double)sk1 / ((double)iloscPrzedmiotów)) * 100d) + "% połączeń.";
-                }));
-
-                // Rozpocznij drugą pętlę od następnego przedmiotu
-                for (int sk2 = sk1 + 1; sk2 < iloscPrzedmiotów; sk2++)
-                {
-                    // Dodaj wykorzystany "indeks" przedmiotu z listy
-                    indeksy.Add(sk2);
-                    
-                    // Połącz składniki, dodaj historię łączenia oraz zwiększ ilość łączeń wyniku o 1, uwzględnij wyjątek przy łączeniu baz hełmów
-                    wynik = new Item(AnaLaczItems[sk1].Polacz(AnaLaczItems[sk2], TypPrzedmiotu, helmetException));
-
-                    // Dodaj historię łączenia
-                    wynik.history.Add(new int[] { AnaLaczItems[sk1].pref, AnaLaczItems[sk1].baza, AnaLaczItems[sk1].suf, 0 });
-                    wynik.history.Add(new int[] { AnaLaczItems[sk2].pref, AnaLaczItems[sk2].baza, AnaLaczItems[sk2].suf, -1 });
-                    wynik.history.Add(new int[] { wynik.pref, wynik.baza, wynik.suf, -2 });
-                    wynik.history.TrimExcess();
-                    wynik.jointsNumber += 1;
-
-                    if ((wynik.pref == szukanyItem.pref || szukanyItem.pref == 0) && (wynik.baza == szukanyItem.baza || szukanyItem.baza == 0) && (wynik.suf == szukanyItem.suf || szukanyItem.suf == 0))
+                    arr[sk1Copy] = sk1Copy; // Wartość ominiętych przedmiotów
+                    // Rozpocznij drugą pętlę od następnego przedmiotu
+                    for (int sk2 = sk1Copy + 1; sk2 < iloscPrzedmiotów; sk2++)
                     {
-                        AnaLaczResults.Add(new Item(wynik));
-                    }
+                        indeksy.Add(sk2); // Dodaj wykorzystany "indeks" przedmiotu z listy
+                        arr[sk1Copy] = ((double)sk2 - (double)sk1Copy) / ((double)iloscPrzedmiotów - (double)sk1Copy - 1) * 100d; // Zwiększ wartość przerobionych przedmiotów
 
-                    // Wywołaj pętle sprawdzające pozostałe łączenia
-                    // Połączenia (((A+B)+C)+D) itd.
-                    if (iloscLacz < maxIloscLaczen && AnaLaczWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem, helmetException, mieszaneLaczenia);
-                    // Połączenia dodatkowe ((A+B)+(C+D)) itd.
-                    if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia == true && AnaLaczWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem, helmetException, mieszaneLaczenia);
+                        // Połącz składniki, dodaj historię łączenia oraz zwiększ ilość łączeń wyniku o 1, uwzględnij wyjątek przy łączeniu baz hełmów
+                        Item wynik = new Item(AnaLaczItems[sk1Copy].Polacz(AnaLaczItems[sk2], TypPrzedmiotu, helmetException));
 
-                    indeksy.Remove(sk2); // Usuń wykorzystany "indeks" przedmiotu z listy
-                    // Jeżeli wciśnięto klawisz Esc przerwij analizowanie
-                    if (AnaLaczWorker.CancellationPending == true)
-                    {
-                        this.Dispatcher.Invoke(new Action(() =>
+                        // Dodaj historię łączenia
+                        wynik.history.Add(new int[] { AnaLaczItems[sk1Copy].pref, AnaLaczItems[sk1Copy].baza, AnaLaczItems[sk1Copy].suf, 0 });
+                        wynik.history.Add(new int[] { AnaLaczItems[sk2].pref, AnaLaczItems[sk2].baza, AnaLaczItems[sk2].suf, -1 });
+                        wynik.history.Add(new int[] { wynik.pref, wynik.baza, wynik.suf, -2 });
+                        wynik.history.TrimExcess();
+                        wynik.jointsNumber += 1;
+
+                        if ((wynik.pref == szukanyItem.pref || szukanyItem.pref == 0) && (wynik.baza == szukanyItem.baza || szukanyItem.baza == 0) && (wynik.suf == szukanyItem.suf || szukanyItem.suf == 0))
                         {
-                            laAnalizatorLaczenZnalPol.Content = "Przerwano analizę."; // Daj użytkownikowi znać, że przerwał analizę
-                        }));
-                        return;
+                            AnaLaczResults.Add(new Item(wynik));
+                        }
+
+                        // Wywołaj pętle sprawdzające pozostałe łączenia
+                        // Połączenia (((A+B)+C)+D) itd.
+                        if (iloscLacz < maxIloscLaczen && AnaLaczWorker.CancellationPending == false) AnalizujRekFunc(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem, helmetException, mieszaneLaczenia);
+                        // Połączenia dodatkowe ((A+B)+(C+D)) itd.
+                        if (iloscLacz + 2 <= maxIloscLaczen && dodatkoweLaczenia == true && AnaLaczWorker.CancellationPending == false) AnalizujRekFunc2(indeksy, iloscPrzedmiotów, iloscLacz, maxIloscLaczen, wynik, TypPrzedmiotu, szukanyItem, helmetException, mieszaneLaczenia);
+
+                        indeksy.Remove(sk2); // Usuń wykorzystany "indeks" przedmiotu z listy
+                        if (AnaLaczWorker.CancellationPending == true) break; // Jeżeli wciśnięto klawisz Esc przerwij analizowanie
                     }
-                }
-
-                AnaLaczResults.TrimExcess();
+                });
+                tasks.Add(t); // Dodaj task łączenia do listy tasków
             }
-
+            Task.WaitAll(tasks.ToArray()); // Zaczekaj na zakończenie wszystkich tasków łączenia
             sw.Stop();
+            ct.Cancel();
 
-            string elapsedTime = "";
-            
-            if ((double)sw.ElapsedMilliseconds >= 60000d)
-            {
-                // Analiza trwała ponad 1 min
-                elapsedTime = Math.Round(((double)sw.ElapsedMilliseconds / 60000d), 3).ToString();
-                elapsedTime += " min.";
-            }
-            else if ((double)sw.ElapsedMilliseconds > 1000d)
-            {
-                // Analiza trwała ponad 1 sec
-                elapsedTime = Math.Round(((double)sw.ElapsedMilliseconds / 1000d), 3).ToString();
-                elapsedTime += " s.";
-            }
-            else
-            {
-                // Analiza trwała poniżej 1 sec
-                elapsedTime = Math.Round(((double)sw.ElapsedMilliseconds), 3).ToString();
-                elapsedTime += " ms.";
-            }
-
+            string elapsedTime = GetElapsedTimeAsString((double)sw.ElapsedMilliseconds);
             // Po zakończonej analizie połączeń wyświetl ilość znalezionych wyników
             this.Dispatcher.Invoke(new Action(() =>
             {
-                if (AnaLaczResults.Count == 1) laAnalizatorLaczenZnalPol.Content = "Znaleziono " + AnaLaczResults.Count + " połączenie w " + elapsedTime;
-                if (AnaLaczResults.Count > 1 && AnaLaczResults.Count < 5) laAnalizatorLaczenZnalPol.Content = "Znaleziono " + AnaLaczResults.Count + " połączenia w " + elapsedTime;
-                if (AnaLaczResults.Count >= 5 || AnaLaczResults.Count == 0) laAnalizatorLaczenZnalPol.Content = "Znaleziono " + AnaLaczResults.Count + " połączeń w " + elapsedTime;
+                if (AnaLaczWorker.CancellationPending == true) laAnalizatorLaczenZnalPol.Content = "Przerwano analizę. "; // Jeżeli przerwano analizę dodaj odpowiedni tekst
+                else laAnalizatorLaczenZnalPol.Content = "";
+                if (AnaLaczResults.Count == 1) laAnalizatorLaczenZnalPol.Content += "Znaleziono " + AnaLaczResults.Count + " połączenie w " + elapsedTime;
+                if (AnaLaczResults.Count > 1 && AnaLaczResults.Count < 5) laAnalizatorLaczenZnalPol.Content += "Znaleziono " + AnaLaczResults.Count + " połączenia w " + elapsedTime;
+                if (AnaLaczResults.Count >= 5 || AnaLaczResults.Count == 0) laAnalizatorLaczenZnalPol.Content += "Znaleziono " + AnaLaczResults.Count + " połączeń w " + elapsedTime;
 
                 btnAnalizatorLaczenAnalizuj.Content = "Sortuję wyniki...";
             }));
 
             // Sortowanie wyników: jakość prefiksu -> jakość bazy -> jakość sufiksu -> ilość łączeń
-            AnaLaczResults = AnaLaczResults.OrderBy(x => x.pref).ThenBy(y => y.baza).ThenBy(z => z.suf).ThenBy(l => l.jointsNumber).ToList();
+            AnaLaczResults2 = AnaLaczResults.OrderBy(x => x.pref).ThenBy(y => y.baza).ThenBy(z => z.suf).ThenBy(l => l.jointsNumber).ToArray();
+            AnaLaczResults = new System.Collections.Concurrent.ConcurrentBag<Item>();
+        }
+
+        private string GetElapsedTimeAsString(double milliseconds)
+        {
+            string ret = "";
+            if (milliseconds >= 3600000d)
+            {
+                ret = Math.Round((milliseconds / 3600000d), 3).ToString(); // Ponad 1 godz
+                ret += " godz.";
+            }
+            else if (milliseconds >= 60000d)
+            {
+                ret = Math.Round((milliseconds / 60000d), 3).ToString(); // Ponad 1 min
+                ret += " min.";
+            }
+            else if (milliseconds >= 1000d)
+            {
+                ret = Math.Round((milliseconds / 1000d), 3).ToString(); // Ponad 1 sec
+                ret += " s.";
+            }
+            else
+            {
+                ret = Math.Round(milliseconds, 3).ToString(); // Poniżej 1 sec
+                ret += " ms.";
+            }
+            return ret;
         }
 
         private void AnalizujRekFunc(List<int> indeksy, int iloscPrzed, int iloscLacz, int maxIloscLaczen, Item skladnik, ItemType TypPrzedmiotu, Item szukanyItem, bool helmetException, bool mieszaneLaczenia)
@@ -757,7 +721,6 @@ namespace Narzędzie_Blood_Wars___R19
             /// Funkcja sprawdzająca proste łączenia - ((A+B)+C)+D
             Item wynik = new Item(); // Zmienna do przechowywania wyniku łączenia
             int iloscL = iloscLacz + 1; // Zwiększ ilość łączeń o 1
-
             // Połącz wszystkie pozostałe przedmioty
             for (int i = 0; i < iloscPrzed; i++)
             {
@@ -797,7 +760,6 @@ namespace Narzędzie_Blood_Wars___R19
             Item skladnikTemp = new Item(); // Zmienna do przechowywania tymczasowego składnika - wyniku łączenia dwóch przedmiotów, które zostaną połączone z otrzymanym składnikiem w argumentach funkcji
             Item wynik = new Item(); // Zmienna do przechowywania wyniku łączenia
             int iloscL = iloscLacz + 2; // Zwiększ ilość łączeń o 2
-
             for (int i = 0; i < iloscPrzed; i++)
             {
                 if (indeksy.Contains(i)) continue; // Jeżeli wcześniej wykorzystano "indeks" przedmiotu to go pomiń
@@ -861,7 +823,6 @@ namespace Narzędzie_Blood_Wars___R19
             cbAnalizatorLaczenFiltrSuf.IsEnabled = false;
             chkBAnalizatorLaczenWyswietl.IsEnabled = false;
             cbAnalizatorLaczenPolPrzed.IsEnabled = false;
-
             // Dispatcher jest wykorzystywany do "opóźnienia" aktualizacji comboBox'a - po wszystkich zdarzeniach renderowania
             this.InvalidateVisual();
             Dispatcher.Invoke(new Action(() =>
@@ -879,7 +840,6 @@ namespace Narzędzie_Blood_Wars___R19
                 else if (selectedItem == ItemType.Items[8]) FiltrUpdate(BazaPalna2h);
                 else if (selectedItem == ItemType.Items[9]) FiltrUpdate(BazaDystans);
             }), DispatcherPriority.Background, null);
-
             // Po zakończonym filtorwaniu wyników włącz listę wyświetlającą wyniki oraz dodaj obsługę zdarzeń
             btnAnalizatorLaczenAktuFiltr.Content = "Aktualizuj filtr";
             btnAnalizatorLaczenAktuFiltr.IsEnabled = true;
@@ -899,46 +859,44 @@ namespace Narzędzie_Blood_Wars___R19
             int filtrPref = cbAnalizatorLaczenFiltrPref.SelectedIndex; // Zmienne do przechowywania wybranych parametrów filtra
             int filtrBaza = cbAnalizatorLaczenFiltrBaza.SelectedIndex;
             int filtrSuf = cbAnalizatorLaczenFiltrSuf.SelectedIndex;
-            
             AnaLaczItemsFiltered.Clear(); // Lista wiążąca przefiltorwane wyniki w postaci tekstu z listą wszystkich wyników, lista ta przechowuje "indeks" wyniku dodawanego do listy przefiltorwanych wyników
             AnaLaczItemsFiltered.TrimExcess();
-
-            for (int i = 0; i < AnaLaczResults.Count; i++) // Przefiltruj wyniki
+            for (int i = 0; i < AnaLaczResults2.Length; i++) // Przefiltruj wyniki
             {
                 if (filtrPref == 0 && filtrBaza == 0 && filtrSuf == 0)
                 {
-                    wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Pref, baza i suf dowolny - pokaż wszystko
+                    wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Pref, baza i suf dowolny - pokaż wszystko
                     AnaLaczItemsFiltered.Add(i);
                     continue;
                 }
-                else if (AnaLaczResults[i].pref == filtrPref)
+                else if (AnaLaczResults2[i].pref == filtrPref)
                 {
-                    if (AnaLaczResults[i].baza == filtrBaza) // Wybrano prefiks do filtrowania
+                    if (AnaLaczResults2[i].baza == filtrBaza) // Wybrano prefiks do filtrowania
                     {
-                        if (AnaLaczResults[i].suf == filtrSuf) // Wybrano prefiks i bazę do filtrowania
+                        if (AnaLaczResults2[i].suf == filtrSuf) // Wybrano prefiks i bazę do filtrowania
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano prefiks, bazę i sufiks do filtrowania
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano prefiks, bazę i sufiks do filtrowania
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano prefiks i bazę do filtrowania, dowolny sufiks
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano prefiks i bazę do filtrowania, dowolny sufiks
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                     }
                     else if (filtrBaza == 0)
                     {
-                        if (AnaLaczResults[i].suf == filtrSuf) // Wybrano prefiks do filtrowania i dowolną bazę
+                        if (AnaLaczResults2[i].suf == filtrSuf) // Wybrano prefiks do filtrowania i dowolną bazę
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano prefiks i sufiks do filtrowania
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano prefiks i sufiks do filtrowania
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano prefiks do filtrowania, dowolna baza i sufiks
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano prefiks do filtrowania, dowolna baza i sufiks
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
@@ -946,48 +904,46 @@ namespace Narzędzie_Blood_Wars___R19
                 }
                 else if (filtrPref == 0)
                 {
-                    if (AnaLaczResults[i].baza == filtrBaza) // Dowolny prefiks
+                    if (AnaLaczResults2[i].baza == filtrBaza) // Dowolny prefiks
                     {
-                        if (AnaLaczResults[i].suf == filtrSuf) // Wybrano bazę do filtrowania, dowolny prefiks
+                        if (AnaLaczResults2[i].suf == filtrSuf) // Wybrano bazę do filtrowania, dowolny prefiks
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano bazę i sufiks do filtrowania, dowolny prefiks
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano bazę i sufiks do filtrowania, dowolny prefiks
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano bazę do filtrowania, dowolny prefiks i sufiks
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano bazę do filtrowania, dowolny prefiks i sufiks
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                     }
                     else if (filtrBaza == 0)
                     {
-                        if (AnaLaczResults[i].suf == filtrSuf) // Dowolny prefiks i baza
+                        if (AnaLaczResults2[i].suf == filtrSuf) // Dowolny prefiks i baza
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Wybrano sufiks do filtrowania, dowolny prefiks i baza
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Wybrano sufiks do filtrowania, dowolny prefiks i baza
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                         else if (filtrSuf == 0)
                         {
-                            wynikiTekst.Add(AnaLaczResults[i].ToString(TypPrzedmiotu)); // Dowolny prefiks, baza i sufiks
+                            wynikiTekst.Add(AnaLaczResults2[i].ToString(TypPrzedmiotu)); // Dowolny prefiks, baza i sufiks
                             AnaLaczItemsFiltered.Add(i);
                             continue;
                         }
                     }
                 }
             }
-
             // Jeżeli ilość przefiltrowanych wyników jest większa niż 62 tyś. wyświetl ostrzeżenie i wyjdź z funkcji
-            if (wynikiTekst.Count > 62000 && chkBAnalizatorLaczenWyswietl.IsChecked == false)
+            if (wynikiTekst.Count > 60000 && chkBAnalizatorLaczenWyswietl.IsChecked == false)
             {
                 HelpWindow = new HelpWindow("Wyniki łączeń", wynikiTekst.Count);
                 HelpWindow.Owner = this;
                 HelpWindow.ShowDialog();
                 return;
             }
-
             // Dodaj przefiltrowane wyniki do listy wyświetlanych wyników
             cbAnalizatorLaczenPolPrzed.ItemsSource = wynikiTekst;
             cbAnalizatorLaczenPolPrzed.IsDropDownOpen = true; // Wymuszenie załadowania przedmiotów do comboBox'a
@@ -1013,35 +969,33 @@ namespace Narzędzie_Blood_Wars___R19
                 else if (selectedItem == ItemType.Items[7]) itemType = BazaPalna1h;
                 else if (selectedItem == ItemType.Items[8]) itemType = BazaPalna2h;
                 else if (selectedItem == ItemType.Items[9]) itemType = BazaDystans;
-                
                 string text = "";
-                for (int i = 0; i < AnaLaczResults[index].history.Count; i++)
+                for (int i = 0; i < AnaLaczResults2[index].history.Count; i++)
                 {
-                    switch (AnaLaczResults[index].history[i][3])
+                    switch (AnaLaczResults2[index].history[i][3])
                     {
                         case 0:
                             // Nic nie dodawaj
-                            text += (new Item(AnaLaczResults[index].history[i][0], AnaLaczResults[index].history[i][1], AnaLaczResults[index].history[i][2])).ToString(itemType);
+                            text += (new Item(AnaLaczResults2[index].history[i][0], AnaLaczResults2[index].history[i][1], AnaLaczResults2[index].history[i][2])).ToString(itemType);
                             break;
                         case -1:
                             // Dodaj " + "
-                            text += " + " + (new Item(AnaLaczResults[index].history[i][0], AnaLaczResults[index].history[i][1], AnaLaczResults[index].history[i][2])).ToString(itemType);
+                            text += " + " + (new Item(AnaLaczResults2[index].history[i][0], AnaLaczResults2[index].history[i][1], AnaLaczResults2[index].history[i][2])).ToString(itemType);
                             break;
                         case -2:
                             // Dodaj "\n= "
-                            text += "\n= " + (new Item(AnaLaczResults[index].history[i][0], AnaLaczResults[index].history[i][1], AnaLaczResults[index].history[i][2])).ToString(itemType);
+                            text += "\n= " + (new Item(AnaLaczResults2[index].history[i][0], AnaLaczResults2[index].history[i][1], AnaLaczResults2[index].history[i][2])).ToString(itemType);
                             break;
                         case -3:
                             // Dodaj " + ("
-                            text += " + (" + (new Item(AnaLaczResults[index].history[i][0], AnaLaczResults[index].history[i][1], AnaLaczResults[index].history[i][2])).ToString(itemType);
+                            text += " + (" + (new Item(AnaLaczResults2[index].history[i][0], AnaLaczResults2[index].history[i][1], AnaLaczResults2[index].history[i][2])).ToString(itemType);
                             break;
                         case -4:
                             // Dodaj " + " i ")"
-                            text += " + " + (new Item(AnaLaczResults[index].history[i][0], AnaLaczResults[index].history[i][1], AnaLaczResults[index].history[i][2])).ToString(itemType) + ")";
+                            text += " + " + (new Item(AnaLaczResults2[index].history[i][0], AnaLaczResults2[index].history[i][1], AnaLaczResults2[index].history[i][2])).ToString(itemType) + ")";
                             break;
                     }
                 }
-
                 rtbAnalizatorLaczen.AppendText(text);
                 rtbAnalizatorLaczen.ScrollToEnd();
             }
@@ -1072,7 +1026,6 @@ namespace Narzędzie_Blood_Wars___R19
             AnaLaczItems.TrimExcess();
             cbAnalizatorLaczenZalPrzed.Items.Clear(); // Wyczyść comoBox z załadowanymi przedtmiotami
             foreach (Item i in AnaLaczItems) cbAnalizatorLaczenZalPrzed.Items.Add(i.ToString(_it)); // Dodaj załadowane przedmioty do comboBox'a
-
             // W zależności od ilości załadowanych przedmiotów wyświetl poprawną (słownie) ilość
             if (AnaLaczItems.Count == 1) lbAnalizatorLaczenZalPrzed.Content = "Załadowano " + AnaLaczItems.Count + " przedmiot:";
             if (AnaLaczItems.Count > 1 && AnaLaczItems.Count < 5) lbAnalizatorLaczenZalPrzed.Content = "Załadowano " + AnaLaczItems.Count + " przedmioty:";
@@ -1092,9 +1045,6 @@ namespace Narzędzie_Blood_Wars___R19
             if (AnaLaczItems.Count > 1)
             {
                 btnAnalizatorLaczenAnalizuj.IsEnabled = true;
-                chkBAnalizatorLaczenDodatkowe.IsEnabled = true;
-                chkBAnalizatorLaczenDodatkowe.IsChecked = false;
-                chkBAnalizatorLaczenMieszane.IsChecked = false;
                 // Jeżeli załadowano poniżej 10 przedmiotów ustaw ilość łączeń na ilość przedmiotów
                 if (AnaLaczItems.Count < 8) tbAnalizatorLaczenIloscLacz.Value = AnaLaczItems.Count - 1;
                 // Jeżeli załadowano więcej przedmiotów ustaw wartość początkową równą 1
@@ -1106,10 +1056,6 @@ namespace Narzędzie_Blood_Wars___R19
             {
                 // Jeżeli załadowano mniej niż 2 przedmioty wyłącz przycisk "Analizuj połączenia" oraz checkBox dodatkoweLaczenia i ustaw ilość łączeń na 1
                 btnAnalizatorLaczenAnalizuj.IsEnabled = false;
-                chkBAnalizatorLaczenDodatkowe.IsEnabled = false;
-                chkBAnalizatorLaczenDodatkowe.IsChecked = false;
-                chkBAnalizatorLaczenMieszane.IsEnabled = false;
-                chkBAnalizatorLaczenMieszane.IsChecked = false;
                 tbAnalizatorLaczenIloscLacz.Value = 1;
             }
         }
@@ -1137,11 +1083,9 @@ namespace Narzędzie_Blood_Wars___R19
             tbAnalizatorRaportuWynik1.Text = result.Item1[0]; // Wprowadź obliczone wartości
             tbAnalizatorRaportuWynik2.Text = result.Item1[1];
             tbAnalizatorRaportuWynik3.Text = result.Item1[2];
-
             // Pokoloruj tekst
             TextRange txtRange = new TextRange(rtbAnalizatorRaportu.Document.ContentStart, rtbAnalizatorRaportu.Document.ContentEnd);
             string[] txt = txtRange.Text.Split(new string[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
-
             for (int j = 0; j < txt.Count() - 1; j++)
             {
                 int offset1 = 0, offset2 = 0;
@@ -1161,7 +1105,6 @@ namespace Narzędzie_Blood_Wars___R19
                         offset2 += txt[i].Length + 4;
                     }
                 }
-
                 txtRange.Select(rtbAnalizatorRaportu.Document.ContentStart.GetPositionAtOffset(offset1), rtbAnalizatorRaportu.Document.ContentStart.GetPositionAtOffset(offset2));
                 if (result.Item2[j] == 1) txtRange.ApplyPropertyValue(ForegroundProperty, Brushes.ForestGreen);
                 if (result.Item2[j] == 2) txtRange.ApplyPropertyValue(ForegroundProperty, Brushes.Red);
@@ -1183,19 +1126,23 @@ namespace Narzędzie_Blood_Wars___R19
         {
             /// Kliknięto "Wyświetl" na Placu Budowy - zapytaj klasę Building o statystyki budynku i je wyświetl
             Building building = Building.Wyswietl(cbPlacBudowyBudynki.SelectedIndex, numPlacBudowyPoziom.Value);
-
             rtbPlacBudowyKoszty.Document.Blocks.Clear();
             rtbPlacBudowyKoszty.AppendText(building.Koszt.ToString(single: true));
-
             rtbPlacBudowyKosztyLaczne.Document.Blocks.Clear();
             rtbPlacBudowyKosztyLaczne.AppendText(building.Koszt.ToString(single: false));
-
             rtbPlacBudowyWymagania.Document.Blocks.Clear();
             rtbPlacBudowyWymagania.AppendText(building.Wymagania.ToString(numPlacBudowyLatwosc.Value));
-
             rtbPlacBudowyEfekt.Document.Blocks.Clear();
-            rtbPlacBudowyEfekt.AppendText(building.Efekt.ToString());
-
+            int charyzma, wplywy, pp, ao;
+            try { charyzma = Convert.ToInt32(tbPlacBudowyCharyzma.Text); }
+            catch { charyzma = 0; }
+            try { wplywy = Convert.ToInt32(tbPlacBudowyWpływy.Text); }
+            catch { wplywy = 0; }
+            try { pp = Convert.ToInt32(tbPlacBudowyPP.Text); }
+            catch { pp = 0; }
+            try { ao = Convert.ToInt32(tbPlacBudowyAO.Text); }
+            catch { ao = 0; }
+            rtbPlacBudowyEfekt.AppendText(building.Efekt.ToString(charyzma, wplywy, pp, ao));
             rtbPlacBudowyCzasBudowy.Document.Blocks.Clear();
             rtbPlacBudowyCzasBudowy.AppendText(building.Czas(numPlacBudowyPosredniak.Value * 2));
         }
@@ -1234,6 +1181,12 @@ namespace Narzędzie_Blood_Wars___R19
                 numPlacBudowyLatwosc.IsEnabled = false;
                 numPlacBudowyLatwosc.Value = 0;
             }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void HandleEsc(object sender, KeyEventArgs e)

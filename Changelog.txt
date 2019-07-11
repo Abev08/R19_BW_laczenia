@@ -1,4 +1,28 @@
-﻿Version 3.0.1 Hotfix		[3.07.2019]
+﻿Version 3.1		[11.07.2019]
+	- Plac Budowy:
+		-- Poprawiono efekt budynku Lombard,
+		-- Poprawiono efekt budynku Pogotowie,
+		-- Poprawiono efekt budynku Handlarz Bronią,
+		-- Uproszczono wzór efektu budynku Garnizon,
+		-- Dodano możliwość wprowadzenia wartości: charyzmy, wpływów, poziomu rozbudowy Posterunku Policji i poziomu rozbudowy Agencji Ochrony,
+		-- Dodano obliczenie wartości PKT ŻYCIA otrzymywanych z Posterunku Policji, Agencji Ochrony, Garnizonu i Handlarza Bronią na podstawie wybranego poziomu rozbudowy budynku i wprowadzonych dodatkowych informacji,
+		-- Dodano koszta, wymagania i czas budowy budynku Dziennik Lokalny "Nocna Zmiana",
+		-- Dodano wymagania i czas budowy budynku Szpital.
+	- Analizator raportu walki:
+		-- Dodano procentową wartość ilości trafionych ataków, ilości trafień krytycznych, ilości chybień otrzymanych ataków.
+	- Analizator łączeń:
+		-- Poprawiono czyszczenie załadowanych przedmiotów przy zmianie typu łączonego przedmiotu,
+		-- Podzielono główne pętle wyszukujące łączenia na osobne wątki (ilość wątków = ilość załadowanych przedmiotów) co znacząco przyspieszyło działanie analizatora łączeń,
+		-- Przyspieszono filtrowanie wyników i ładowanie ich do odpowiedniej kontrolki,
+		-- Zmieniono sposób obliczenia procentowej wartości znalezionych połączeń - wartość będzie częściej aktualizowana,
+		-- Anulowanie rozpoczętej analizy (klawiszem Esc) będzie bardziej responsywne,
+		-- Anulowanie rozpoczętej analizy będzie podawało wyniki analizy do momentu naciśnięcia klawisza Esc,
+		-- Dodano wyświetlanie czasu trwania analizy w jednostkach godzinnych,
+		-- Poprawiono zaznaczania linii trzykrotnym kliknięciem,
+		-- Dodatkowe opcje łączenia zostały ustawione na domyślnie włączone,
+		-- Dodano czas trwania analizy wyświetlany za procentowym postępem.
+
+Version 3.0.1 Hotfix		[3.07.2019]
 	- Poprawiono błędnie wyskakujące okienko informujące o aktualizacji, mimo korzystania z najnowszej wersji.
 
 Version 3.0		[3.07.2019]

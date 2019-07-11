@@ -52,7 +52,7 @@ namespace Narzędzie_Blood_Wars___R19
                                    "Ilość łączeń określa ilość sprawdzanych połączeń \"w głąb\".\n" +
                                    "Dla dużej ilości przedmiotów warto zacząć od niskiej wartości (1 - 2) i zwiększać o 1 jeżeli komputer daje radę z obliczeniami :).\n" +
                                    "7. Kliknij \"Analizuj połączenia\".\n" +
-                                   "Postęp analizowania połączeń aktualizowany jest stopniowo z krokiem: ( 1 / ilość przedmiotów ) * 100%.\n" +
+                                   "Postęp analizowania połączeń aktualizowany jest stopniowo.\n" +
                                    "Jeżeli analiza połączeń trwa zbyt długo możesz ją przerwać naciskając klawisz \"Esc\" na klawiaturze.\n" +
                                    "Po zakończonym analizowaniu połączeń wyniki są sortowane. Sortowanie może trwać długo jeżeli znaleziono wiele połączeń.\n" +
                                    "8. Wybierz filtr (dla dużej ilości wyników - powyżej kilkuset tysięcy - dodawanie ich do listy przefiltrowanych wyników trwa bardzo długo).\n" +

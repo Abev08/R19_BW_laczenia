@@ -260,7 +260,7 @@ namespace Narzędzie_Blood_Wars___R19
                         budynek.Wymagania.Charyzma = 70 + (10 * poziom); // Baza 70, współczynnik +10 na poziom
                         budynek.Wymagania.Wplywy = 70 + (10 * poziom); // Baza 70, współczynnik +10 na poziom
                         budynek.Wymagania.PosterunekPolicji = 10; // Wymaga Posterunku Policji na min 10 poziomie
-                        budynek.Efekt.ZycieWObronieGar = poziom + 1; // Wartość życia z Posterunku Policji * poziom
+                        budynek.Efekt.ZycieWObronieGar = poziom + 1; // Wartość życia w obornie = Charyzma * poziom Posterunku Policji * (poziom + 2) * 0.1
                         budynek.CzasBudowy = new TimeSpan(0, 30, 0); // Czas budowy - baza 30min, współczynnik *120% co poziom
                         wspolczynnik[3] = 1.2d;
                         wspolczynnik[4] = 1;
@@ -281,8 +281,7 @@ namespace Narzędzie_Blood_Wars___R19
                         budynek.Wymagania.Wplywy = 60 + (10 * poziom); // Baza 60, współczynnik +10 na poziom
                         budynek.Wymagania.Inteligencja = 50 + (10 * poziom); // Baza 50, współczynnik +10 na poziom
                         budynek.Wymagania.AgencjaOchrony = 7; // Wymaga Agencji Ochorny na min 7 poziomie
-                        //budynek.Efekt.ZycieWAtakuHan = poziom + 1; // Wartość życia z Agencji Ochrony * poziom
-                        budynek.Efekt.ZycieWAtakuHan = 5.0224 * Math.Pow(Math.E, 0.0728 * (poziom + 1));
+                        budynek.Efekt.ZycieWAtakuHan = poziom + 1; // Wartość życia w obronie = Wpływy * poziom Agencji Ochrony * (poziom + 3) * 0.1
                         budynek.CzasBudowy = new TimeSpan(0, 25, 0); // Czas budowy - baza 25min, współczynnik *120% co poziom
                         wspolczynnik[3] = 1.2d;
                         wspolczynnik[4] = 1;
@@ -302,8 +301,8 @@ namespace Narzędzie_Blood_Wars___R19
                         wspolczynnik[2] = 0d;
                         budynek.Wymagania.Charyzma = 60 + (15 * poziom); // Baza 60, współczynnik +15 na poziom
                         budynek.Wymagania.Wiedza = 35 + (7 * poziom); // Baza 35, współczynnik +7 na poziom
-                        //budynek.Efekt.PrzyrostKrwi = 7 + (3 * (poziom + 1)); // Baza 10 (dla poziomu 1), współczynnik +3 na poziom
-                        budynek.Efekt.PrzyrostKrwi = 7.692 * Math.Pow(Math.E, 0.2624 * (poziom + 1));
+                        budynek.Efekt.PrzyrostKrwi = 10; // Baza 10 (dla poziomu 1), współczynnik *1.3 na poziom
+                        for (int i = 0; i < poziom; i++) budynek.Efekt.PrzyrostKrwi *= 1.3d;
                         budynek.CzasBudowy = new TimeSpan(0, 40, 0); // Czas budowy - baza 40min, współczynnik *120% co poziom
                         wspolczynnik[3] = 1.2d;
                         wspolczynnik[4] = 1;
@@ -322,8 +321,8 @@ namespace Narzędzie_Blood_Wars___R19
                         wspolczynnik[1] = 1.4d;
                         wspolczynnik[2] = 0d;
                         budynek.Wymagania.Wiedza = 50 + (10 * poziom); // Baza 50, współczynnik +10 na poziom
-                        //budynek.Efekt.PrzyrostKasy = 300 + (30 * poziom * 2); // Baza 300 (dla poziomu 1), współczynnik +60 na poziom
-                        budynek.Efekt.PrzyrostKasy = 250 * Math.Pow(Math.E, 0.1823 * (poziom + 1));
+                        budynek.Efekt.PrzyrostKasy = 300; // Baza 300 (dla poziomu 1), współczynnik *1.2 na poziom
+                        for (int i = 0; i < poziom; i++) budynek.Efekt.PrzyrostKasy *= 1.2d;
                         budynek.CzasBudowy = new TimeSpan(0, 27, 0); // Czas budowy - baza 27min, współczynnik *120% co poziom
                         wspolczynnik[3] = 1.2d;
                         wspolczynnik[4] = 1;
@@ -334,16 +333,16 @@ namespace Narzędzie_Blood_Wars___R19
                     // Dziennik Lokalny "Nocna Zmiana"
                     if (poziom >= 0)
                     {
-                        budynek.Koszt.Pieniadze = 0d; // Baza 0, współczynnik *1 na poziom
+                        budynek.Koszt.Pieniadze = 35000d; // Baza 35000, współczynnik *1.5 na poziom
                         budynek.Koszt.AllPieniadze += budynek.Koszt.Pieniadze;
-                        wspolczynnik[0] = 1d;
-                        budynek.Koszt.Ludzie = 0d; // Baza 0, współczynnik *1 na poziom
+                        wspolczynnik[0] = 1.5d;
+                        budynek.Koszt.Ludzie = 700d; // Baza 700, współczynnik *1.8 na poziom
                         budynek.Koszt.AllLudzie += budynek.Koszt.Ludzie;
-                        wspolczynnik[1] = 1d;
+                        wspolczynnik[1] = 1.8d;
                         wspolczynnik[2] = 0d;
-                        budynek.Wymagania.Wyglad = 0 + (0 * poziom); // Baza 0, współczynnik +0 na poziom
+                        budynek.Wymagania.Wyglad = 42 + (14 * poziom); // Baza 0, współczynnik +0 na poziom
                         budynek.Efekt.EfektSchroniska = 20 + (5 * (poziom + 1)); // Baza 20, współczynnik +5 na poziom
-                        budynek.CzasBudowy = new TimeSpan(0, 0, 0); // Czas budowy - baza 0, współczynnik *100% co poziom
+                        budynek.CzasBudowy = new TimeSpan(1, 20, 0); // Czas budowy - baza 0, współczynnik *120% co poziom
                         wspolczynnik[3] = 1.2d;
                         wspolczynnik[4] = 1;
                     }
@@ -365,10 +364,10 @@ namespace Narzędzie_Blood_Wars___R19
                         budynek.Koszt.AllLudzie += budynek.Koszt.Ludzie;
                         wspolczynnik[1] = 1d;
                         wspolczynnik[2] = 0d;
-                        //budynek.Wymagania.Wyglad = 0 + (0 * poziom); // Baza 0, współczynnik +0 na poziom
+                        budynek.Wymagania.Pogotowie = 8; // Wymaga Pogotowia na min 8 poziomie
                         budynek.Efekt.PrzyrostKrwi = 0 + (0 * poziom); // Baza 0, współczynnik +0 na poziom
-                        budynek.CzasBudowy = new TimeSpan(0, 0, 0); // Czas budowy - baza 0, współczynnik *100% co poziom
-                        wspolczynnik[3] = 1d;
+                        budynek.CzasBudowy = new TimeSpan(1, 5, 0); // Czas budowy - baza 1:05, współczynnik *120% co poziom
+                        wspolczynnik[3] = 1.2d;
                         wspolczynnik[4] = 1;
                     }
                     break;
@@ -533,6 +532,7 @@ namespace Narzędzie_Blood_Wars___R19
         public int PosterunekPolicji; // Wymagania rozbudowy budynku - Posterunek Policji
         public int AgencjaOchrony; // Wymagania rozbudowy budynku - Agencja Ochrony
         public int Szpital; // Wymaga rozbudowy budynku - Szpital
+        public int Pogotowie; // Wymaga rozbudowy budynku - Pogotowie
 
         public string ToString(double latwosc)
         {
@@ -611,6 +611,11 @@ namespace Narzędzie_Blood_Wars___R19
                 if (ret.Length > 0) ret += "\r\n";
                 ret += "Szpital: " + this.Szpital.ToString();
             }
+            if (this.Pogotowie > 0)
+            {
+                if (ret.Length > 0) ret += "\r\n";
+                ret += "Pogotowie: " + this.Pogotowie.ToString();
+            }
             return ret;
         }
     }
@@ -639,7 +644,7 @@ namespace Narzędzie_Blood_Wars___R19
         public int ProdukcjaSzpitala; // "produkcja szpitala zwiększona o x%"
         public int MaxLvl; // Osgiąnieto maksymalny poziom budynku (x)
 
-        public override string ToString()
+        public string ToString(int charyzma, int wplywy, int pp, int ao)
         {
             string ret = "";
             if (this.PrzyrostLudzi > 0)
@@ -676,21 +681,25 @@ namespace Narzędzie_Blood_Wars___R19
             {
                 if (ret.Length > 0) ret += "\r\n";
                 ret += "+(Charyzma * " + this.ZycieWObroniePP.ToString() + ") do PKT ŻYCIA w obronie przed zasadzką";
+                if (charyzma > 0) ret += "\r\n-> +" + (charyzma * this.ZycieWObroniePP).ToString() + " PKT ŻYCIA w obronie przed zasadzką";
             }
             if (this.ZycieWObronieGar > 0)
             {
                 if (ret.Length > 0) ret += "\r\n";
-                ret += "+(Charyzma * poziom Posterunku Policji * (1 + (2 + " + this.ZycieWObronieGar.ToString() + ") / 10) - (Charyzma * poziom Posterunku Policji)) do PKT ŻYCIA w obronie przed zasadzką";
+                ret += "+(Charyzma * poziom Posterunku Policji * (" + this.ZycieWObronieGar.ToString() + " + 2) * 0.1) do PKT ŻYCIA w obronie przed zasadzką";
+                if ((charyzma > 0) && (pp > 0)) ret += "\r\n-> +" + (charyzma * pp * (this.ZycieWObronieGar + 2) * 0.1).ToString() + " PKT ŻYCIA w obronie przed zasadzką";
             }
             if (this.ZycieWAtakuAO > 0)
             {
                 if (ret.Length > 0) ret += "\r\n";
                 ret += "+(Wpływy * " + this.ZycieWAtakuAO.ToString() + ") do PKT ŻYCIA w czasie ataku";
+                if (wplywy > 0) ret += "\r\n-> +" + (wplywy * this.ZycieWAtakuAO).ToString() + " PKT ŻYCIA w czasie ataku";
             }
             if (this.ZycieWAtakuHan > 0)
             {
                 if (ret.Length > 0) ret += "\r\n";
-                ret += "+(Wpływy * " + Math.Round(this.ZycieWAtakuHan).ToString() + ") do PKT ŻYCIA w czasie ataku";
+                ret += "+(Wpływy * poziom Agencji Ochrony * (" + this.ZycieWAtakuHan.ToString() + " + 3) * 0.1) do PKT ŻYCIA w czasie ataku";
+                if ((wplywy > 0) && (ao > 0)) ret += "\r\n-> +" + (wplywy * ao * (this.ZycieWAtakuHan + 3) * 0.1).ToString() + " PKT ŻYCIA w czasie ataku";
             }
             if (this.ObrazeniaWAtaku > 0)
             {
