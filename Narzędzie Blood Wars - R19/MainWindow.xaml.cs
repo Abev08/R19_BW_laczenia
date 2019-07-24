@@ -85,7 +85,7 @@ namespace Narzędzie_Blood_Wars___R19
             byMe.ToolTip = "Wersja programu: " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString() + "\nProszę zgłaszać wszelkie znalezione błędy / sugestie :D";
         }
 
-        const string Version = "Version 3.1"; // Aktuwalna wersja programu, trzeba pamiętać o zmianie :(
+        const string Version = "Version 3.1.1"; // Aktuwalna wersja programu, trzeba pamiętać o zmianie :(
         BackgroundWorker VersionWorker;
 
         TableWindow TableWindow;
@@ -514,16 +514,16 @@ namespace Narzędzie_Blood_Wars___R19
             rtbAnalizatorLaczen.AppendText(string.Empty);
             AnaLaczItems = AnaLaczItems.OrderBy(y => y.pref).ThenBy(z => z.baza).ThenBy(k => k.suf).ToList();
             string selectedItem = cbAnalizatorLaczenItemType.SelectedItem.ToString();
-            if (selectedItem == ItemType.Items[0]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaHelm) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[1]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaZbroja) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[2]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaSpodnie) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[3]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPierscien) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[4]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaAmulet) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[5]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaBiala1h) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[6]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaBiala2h) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[7]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPalna1h) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[8]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaPalna2h) + "\r\n\0");
-            else if (selectedItem == ItemType.Items[9]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText(i.ToString(BazaDystans) + "\r\n\0");
+            if (selectedItem == ItemType.Items[0]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaHelm));
+            else if (selectedItem == ItemType.Items[1]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaZbroja));
+            else if (selectedItem == ItemType.Items[2]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaSpodnie));
+            else if (selectedItem == ItemType.Items[3]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaPierscien));
+            else if (selectedItem == ItemType.Items[4]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaAmulet));
+            else if (selectedItem == ItemType.Items[5]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaBiala1h));
+            else if (selectedItem == ItemType.Items[6]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaBiala2h));
+            else if (selectedItem == ItemType.Items[7]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaPalna1h));
+            else if (selectedItem == ItemType.Items[8]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaPalna2h));
+            else if (selectedItem == ItemType.Items[9]) foreach (Item i in AnaLaczItems) rtbAnalizatorLaczen.AppendText("\r\n" + i.ToString(BazaDystans));
             rtbAnalizatorLaczen.ScrollToEnd();
         }
 
